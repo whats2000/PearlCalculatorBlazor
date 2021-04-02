@@ -1,0 +1,47 @@
+@inherits LayoutComponentBase
+
+<div class="page">
+
+    <Layout>
+        <Header Style="padding-left: 0; padding-right: 0; background: #fff;">
+            <div class="logo" />
+
+            <Menu Theme="MenuTheme.Light" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new [] {"calculator"})>
+                <MenuItem Key="calculator">
+                    <MenuLink Href="">Calculator</MenuLink>
+                </MenuItem>
+
+                <MenuItem Key="about">
+                    <MenuLink Href="about">About</MenuLink>
+                </MenuItem>
+            </Menu>
+
+        </Header>
+
+        <div style="height: 940px">
+            @Body
+        </div>
+
+        <Footer>
+            <p></p>
+        </Footer>
+
+    </Layout>
+
+    <style>
+        .logo
+        {
+            width: 120px;
+            height: 30px;
+            float: left;
+        }
+    </style>
+
+    <!--
+    <div class="main">
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+        -->
+</div>

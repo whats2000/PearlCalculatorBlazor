@@ -1,0 +1,84 @@
+﻿@page "/GeneralFTL_General"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@inject MessageService AntMessage
+
+<div>
+    <Text class="calculator-input-container-label">Pearl X :</Text>
+    <InputNumber class="calculator-input-container-box" @bind-Value="@PearlX" />
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Pearl Z :</Text>
+    <InputNumber class="calculator-input-container-box" @bind-Value="@PearlZ" />
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Destination X :</Text>
+    <InputNumber class="calculator-input-container-box" @bind-Value="@DestinationX" />
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Destination Z :</Text>
+    <InputNumber class="calculator-input-container-box" @bind-Value="@DestinationZ" />
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Max TNT :</Text>
+    <InputNumber class="calculator-input-container-box" @bind-Value="@MaxTNT" />
+</div>
+<br />
+
+<div>
+    <RadioGroup @bind-Value="@Direction" Style="width: 100%; text-align: center; display: flex; flex-wrap: wrap">
+        <span class="calculator-input-container-direction-radio">
+            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.North">North</Radio>
+        </span>
+        <span class="calculator-input-container-direction-radio">
+            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.South">South</Radio>
+        </span>
+        <span class="calculator-input-container-direction-radio">
+            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.East">East</Radio>
+        </span>
+        <span class="calculator-input-container-direction-radio">
+            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.West">West</Radio>
+        </span>
+    </RadioGroup>
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Red TNT :</Text>
+    <InputNumber class="calculator-input-container-box" Value="@RedTNT" />
+</div>
+<br />
+
+<div>
+    <Text class="calculator-input-container-label">Blue TNT :</Text>
+    <InputNumber class="calculator-input-container-box" Value="@BlueTNT" />
+</div>
+<br />
+
+<ul class="calculator-general-btn-group">
+    <li>
+        <Button Type="Default" Style="width: 100%" @onclick="CalculateTNTAmount">Calculate TNT Amount</Button>
+    </li>
+    <li>
+        <Button Type="Default" Style="width: 100%" @onclick="PearlSimulate">Pearl Simulate</Button>
+    </li>
+    <li>
+        <Button Type="Default" Style="width: 100%" @onclick="ImportSettings_OnClick">Import Settings</Button>
+
+        <Microsoft.AspNetCore.Components.Forms.InputFile id="import-settings-handle" style="display: none"
+                                                        OnChange="ImportHandleFileSelected" />
+    </li>
+    <li>
+        <Button Type="Default" Style="width: 100%" @onclick="ExportSettings_OnClick">Export Settings</Button>
+    </li>
+</ul>
+
+<a href="#" id="download-settings-link" />

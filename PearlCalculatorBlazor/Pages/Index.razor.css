@@ -1,0 +1,25 @@
+﻿.calculator-root {
+    height: 100%;
+    display: flex;
+}
+
+::deep .calculator-card {
+    width: 50%;
+    height: 100%;
+}
+
+.calculator-input-tab {
+}
+
+.calculator-output-tab {
+}
+
+@media screen and (max-width: 800px) {
+    .calculator-root {
+        display: inherit;
+    }
+
+    ::deep .calculator-card {
+        width: 100%;
+    }
+}
