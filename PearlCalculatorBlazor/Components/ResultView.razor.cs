@@ -41,7 +41,6 @@ namespace PearlCalculatorBlazor.Components
 
                 _amountTable.DataSource = AmountResult;
                 if (ShowMode != ShowResultMode.Amount) ShowMode = ShowResultMode.Amount;
-                _amountTable.ReloadData();
                 StateHasChanged();
             });
 
@@ -63,7 +62,6 @@ namespace PearlCalculatorBlazor.Components
 
                 _pearlTable.DataSource = PearlTrace;
                 if (ShowMode != ShowResultMode.Trace) ShowMode = ShowResultMode.Trace;
-                _pearlTable.ReloadData();
                 StateHasChanged();
             });
         }
