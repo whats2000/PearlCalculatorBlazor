@@ -35,19 +35,26 @@
 <br />
 
 <div>
-    <RadioGroup @bind-Value="@Direction" Style="width: 100%; text-align: center; display: flex; flex-wrap: wrap">
-        <span class="calculator-input-container-direction-radio">
-            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.North">North</Radio>
-        </span>
-        <span class="calculator-input-container-direction-radio">
-            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.South">South</Radio>
-        </span>
-        <span class="calculator-input-container-direction-radio">
-            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.East">East</Radio>
-        </span>
-        <span class="calculator-input-container-direction-radio">
-            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.West">West</Radio>
-        </span>
+    <RadioGroup @bind-Value="@Direction" Style="width: 100%; display: flex; flex-wrap: wrap">
+
+        <Row Style="width: inherit">
+            <AntDesign.Col Span="6" Class="calculator-input-container-direction-radio">
+                <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.North">North</Radio>
+            </AntDesign.Col>
+
+            <AntDesign.Col Span="6" Class="calculator-input-container-direction-radio">
+                <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.South">South</Radio>
+            </AntDesign.Col>
+
+            <AntDesign.Col Span="6" Class="calculator-input-container-direction-radio">
+                <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.East">East</Radio>
+            </AntDesign.Col>
+
+            <AntDesign.Col Span="6" Class="calculator-input-container-direction-radio">
+                <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.West">West</Radio>
+            </AntDesign.Col>
+        </Row>
+
     </RadioGroup>
 </div>
 <br />

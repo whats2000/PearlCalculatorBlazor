@@ -92,8 +92,17 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             });
         }
 
+        static readonly MessageConfig CalculatingMessage = new ()
+        {
+            Content = "calculating...",
+            Duration = 0
+        };
+
         private async void CalculateTNTAmount()
         {
+            var loading = AntMessage.Loading(CalculatingMessage);
+            await Task.Delay(200);
+
             var isSu = false;
 
             await Task.Run(() =>
@@ -107,6 +116,8 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs(PublishKey));
+
+            loading.Start();
         }
 
         private void PearlSimulate()

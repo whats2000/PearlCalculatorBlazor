@@ -7,7 +7,7 @@
 }
 
 ::deep .calculator-input-container-direction-radio {
-    width: 22.5%;
+    text-align: center;
 }
 
 ul.calculator-general-btn-group {

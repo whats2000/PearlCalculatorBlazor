@@ -1,5 +1,5 @@
 ﻿@page "/ResultView"
-@inject MessageService _message
+@inject MessageService AntMessage
 
 <div class="calculator-result-table@(ShowMode != ShowResultMode.Amount ? "-hidden" : string.Empty)">
     <Table @ref="_amountTable"
@@ -11,7 +11,11 @@
            ScrollY="800px"
            OnRowClick="OnAmountRowClick"
            >
-        <Column @bind-Field="@context.Distance" Sortable></Column>
+        <Column @bind-Field="@context.Distance" Sortable>
+            <Tooltip Title="@context.Distance.ToString()">
+                <Text>@context.Distance.ToString().Substring(0, 5)</Text>
+            </Tooltip>
+        </Column>
         <Column @bind-Field="@context.Tick" Sortable></Column>
         <Column @bind-Field="@context.Blue"></Column>
         <Column @bind-Field="@context.Red"></Column>
