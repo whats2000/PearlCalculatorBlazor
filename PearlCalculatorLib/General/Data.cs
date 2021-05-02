@@ -39,12 +39,12 @@ namespace PearlCalculatorLib.General
 
         public static void Reset()
         {
-            NorthWestTNT = new Space3D(-0.884999990463257 , 170.5 , -0.884999990463257);
-            NorthEastTNT = new Space3D(+0.884999990463257 , 170.5 , -0.884999990463257);
-            SouthWestTNT = new Space3D(-0.884999990463257 , 170.5 , +0.884999990463257);
-            SouthEastTNT = new Space3D(+0.884999990463257 , 170.5 , +0.884999990463257);
-            Pearl.Position = new Space3D(0 , 170.34722638929408 , 0);
-            Pearl.Motion = new Space3D(0 , 0.2716278719434352 , 0);
+            NorthWestTNT = new Space3D(-0.884999990463257, 170.5, -0.884999990463257);
+            NorthEastTNT = new Space3D(+0.884999990463257, 170.5, -0.884999990463257);
+            SouthWestTNT = new Space3D(-0.884999990463257, 170.5, +0.884999990463257);
+            SouthEastTNT = new Space3D(+0.884999990463257, 170.5, +0.884999990463257);
+            Pearl.Position = new Space3D(0, 170.34722638929408, 0);
+            Pearl.Motion = new Space3D(0, 0.2716278719434352, 0);
             DefaultRedDuper = Direction.SouthEast;
             DefaultBlueDuper = Direction.NorthWest;
             PearlOffset = new Surface2D();

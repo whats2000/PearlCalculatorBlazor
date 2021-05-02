@@ -9,6 +9,5 @@ namespace PearlCalculatorBlazor.Components
 {
     public partial class GeneralFTL
     {
-
     }
 }
