@@ -1,8 +1,12 @@
-﻿var downloadSettingsLink;
+﻿var importSettingsHandle;
+var downloadSettingsLink;
 
 function ImportSettings() {
 
-    return document.getElementById("import-settings-handle").click();
+    if (!importSettingsHandle) {
+        importSettingsHandle = document.getElementById("import-settings-handle");
+    }
+    return importSettingsHandle.click();
 }
 
 function ExportSettings(json) {
