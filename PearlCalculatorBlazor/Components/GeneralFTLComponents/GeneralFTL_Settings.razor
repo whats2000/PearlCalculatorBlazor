@@ -201,25 +201,25 @@
 
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px">
+        <Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px;">
         <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block")">
             <span> Default Red TNT Position</span>
         </Tooltip>
         </Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <Col Span="12" Style="Padding:2px 8px;">
         <Select DataSource="@Red_list"
                 @bind-Value="@DefaultRedTNTPosition"
                 DefaultValue="@("SouthEast")"
                 ValueName="@nameof(ArrayPos.Name)"
                 LabelName="@nameof(ArrayPos.Value)"
-                Style="width:95%">
+                Style="width:95%;">
         </Select>
         </Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px">
+        <Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px;">
         <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the blue array relative to the pearl without being changed by the slime block")">
             <span> Default Blue TNT Position</span>
         </Tooltip>
@@ -258,6 +258,7 @@
         border-right-style: solid;
         border-color: #f0f0f0;
         border-right-width: 1px;
+        top:3px;
     }
 
     .setting-input-container-box {

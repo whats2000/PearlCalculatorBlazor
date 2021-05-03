@@ -1,18 +1,5 @@
-﻿using AntDesign;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
-using PearlCalculatorBlazor.Managers;
-using PearlCalculatorLib.General;
+﻿using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
-using PearlCalculatorLib.Result;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
