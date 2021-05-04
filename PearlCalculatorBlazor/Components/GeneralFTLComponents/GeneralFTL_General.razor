@@ -73,20 +73,20 @@
 
 <ul class="calculator-general-btn-group">
     <li>
-        <Button Type="Default" Style="width: 100%" @onclick="CalculateTNTAmount">Calculate TNT Amount</Button>
+        <Button Style="width: 100%" @onclick="CalculateTNTAmount">Calculate TNT Amount</Button>
     </li>
     <li>
-        <Button Type="Default" Style="width: 100%" @onclick="PearlSimulate">Pearl Simulate</Button>
+        <Button Style="width: 100%" @onclick="PearlSimulate">Pearl Simulate</Button>
     </li>
     <li>
-        <Button Type="Default" Style="width: 100%" @onclick="ImportSettings_OnClick">Import Settings</Button>
+        <Button Style="width: 100%" @onclick="ImportSettings_OnClick">Import Settings</Button>
 
         <Microsoft.AspNetCore.Components.Forms.InputFile 
             id="import-settings-handle" style="display: none" OnChange="ImportHandleFileSelected" accept=".json" />
 
     </li>
     <li>
-        <Button Type="Default" Style="width: 100%" @onclick="ExportSettings_OnClick">Export Settings</Button>
+        <Button Style="width: 100%" @onclick="ExportSettings_OnClick">Export Settings</Button>
     </li>
 </ul>
 

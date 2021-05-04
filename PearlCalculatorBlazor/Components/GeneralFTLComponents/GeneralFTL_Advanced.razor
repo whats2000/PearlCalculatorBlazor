@@ -10,66 +10,52 @@
     <br />
 
     <div>
-        <Text>&emsp;&emsp;Offset :</Text>
+        <Text>&emsp;Offset :</Text>
     </div>
     <br />
 
-    <Row Class="adavced-row">
-        <Col Span="3" Class="advanced-name-value-box" Style="Padding:2px 8px">
-            <Text Style="padding-left: 37.5%;">
-                X :
-            </Text>
-        </Col>
 
-        <Col Span="21" Style="Padding:2px 8px">
-        <InputNumber Class="advanced-input-container-box" @bind-Value="@PearlOffSetX" Size="@InputSize.Small" />
-        </Col>
-    </Row>
+    <Text>&emsp;X :&emsp;</Text>
+    <InputNumber Class="advanced-input-container-box" @bind-Value="@PearlOffSetX" Size="@InputSize.Default" />
+    <Text>&emsp;</Text>
 
-    <Row Class="adavced-row">
-        <Col Span="3" Class="advanced-name-value-box" Style="Padding:2px 8px">
-            <Text Style="padding-left: 37.5%;">
-                Z :
-            </Text>
-        </Col>
+    <br />
+    <br />
 
-        <Col Span="21" Style="Padding:2px 8px">
-        <InputNumber Class="advanced-input-container-box" @bind-Value="@PearlOffSetZ" Size="@InputSize.Small" />
-        </Col>
-    </Row>
+    <Text>&emsp;Z :&emsp;</Text>
+    <InputNumber Class="advanced-input-container-box" @bind-Value="@PearlOffSetZ" Size="@InputSize.Default" />
+    <Text>&emsp;</Text>
 
-    <Row Class="adavced-row">
-        <Col Span="12" Class="advanced-name-value-box" style="Padding:2px 8px"><br /></Col>
-    </Row>
+    <br />
+    <br />
 </div>
 <br />
 
 <Row Class="adavced-row">
-    <Col Span="6" Class="advanced-name-value-box" Style="Padding:2px 8px">
+    <Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
     TNT Weight
     </Col>
 
-    <Col Span="18" Style="Padding:2px 8px">
+    <Col Span="19" Style="Padding:2px 8px">
     <div>
-        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" Value="@TNTWeight"/>
+        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" Value="@TNTWeight" />
     </div>
     </Col>
 </Row>
 
-
 <style>
     .advanced-name-value-box {
-        top:3px;
+        top: 4px;
     }
 
     .advanced-input-container-box {
-        width: 95%;
+        width: 85%;
     }
 </style>
 
 @code {
-        string tipFormatter(double currentEdgeValue)
-        {
-            return $"{currentEdgeValue}%";
-        }
+    string tipFormatter(double currentEdgeValue)
+    {
+        return $"{currentEdgeValue}%";
+    }
 }
