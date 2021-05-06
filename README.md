@@ -10,7 +10,7 @@ This website supports multiple Browser (Google, Bing etc).
 
 Please install the dotnet Core runtime before proceeding.
 
-- dotnet Core 3.1 (Link: https://dotnet.microsoft.com/download)
+- dotnet 5.0 (Link: https://dotnet.microsoft.com/download)
 
 ### PearlCalculationLib
 
