@@ -92,15 +92,16 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             });
         }
 
-        static readonly MessageConfig CalculatingMessage = new ()
-        {
-            Content = "calculating...",
-            Duration = 0
-        };
-
         private async void CalculateTNTAmount()
         {
-            var loading = AntMessage.Loading(CalculatingMessage);
+
+            MessageConfig mc = new()
+            {
+                Content = "calculating...",
+                Duration = 0
+            };
+
+            var loading = AntMessage.Loading(mc);
             await Task.Delay(200);
 
             var isSu = false;
@@ -109,7 +110,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             {
                 if (Calculation.CalculateTNTAmount(100, 10))
                 {
-                    Data.TNTResult.SortByWeightedDistance(new(0, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                    Data.TNTResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
                     isSu = true;
                 }
             });

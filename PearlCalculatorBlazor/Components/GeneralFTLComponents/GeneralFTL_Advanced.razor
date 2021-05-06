@@ -38,7 +38,7 @@
 
     <Col Span="19" Style="Padding:2px 8px">
     <div>
-        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" Value="@TNTWeight" />
+        <Slider TValue="double" Min="0" Max="100" TipFormatter="@(v => $"{v}%")" @bind-Value="@TNTWeight" />
     </div>
     </Col>
 </Row>
@@ -53,9 +53,3 @@
     }
 </style>
 
-@code {
-    string tipFormatter(double currentEdgeValue)
-    {
-        return $"{currentEdgeValue}%";
-    }
-}

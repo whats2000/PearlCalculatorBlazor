@@ -30,7 +30,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             set => Data.PearlOffset.Z = value;
         }
 
-        private int TNTWeight
+        private double TNTWeight
         {
             get => Data.TNTWeight;
             set => Data.TNTWeight = (int)value;
