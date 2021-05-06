@@ -32,15 +32,15 @@
 <br />
 
 <Row Class="adavced-row">
-    <Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
-    TNT Weight
-    </Col>
+    <AntDesign.Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
+        TNT Weight
+    </AntDesign.Col>
 
-    <Col Span="19" Style="Padding:2px 8px">
+    <AntDesign.Col Span="19" Style="Padding:2px 8px">
     <div>
-        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" @bind-Value="@TNTWeight"/>
+        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" @bind-Value="@TNTWeight" />
     </div>
-    </Col>
+    </AntDesign.Col>
 </Row>
 
 <style>

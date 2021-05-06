@@ -1,218 +1,211 @@
 ﻿@page "/GeneralFTL_Settings"
 
-<div style="    
+<div style="
         border-style: solid;
-        border-color: #f0f0f0;
+        border-Color: #f0f0f0;
         border-width: 1px;
         border-radius: 2px;
         line-height: 1.2;
     ">
-    
-    <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">Name</Col>
-        <Col Span="12" style="Padding:2px 8px">Value</Col>
+
+    <Row>
+        <AntDesign.Col Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height:8px" />
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box"/>
-    </Row>
-
-    <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North West TNT (X Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntXCheck.isChecked" @bind-Value="@NorthWestTntX" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@NorthWestTntXCheck.isChecked" CheckedChange="@NorthWestTntXCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North West TNT (Y Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntYCheck.isChecked" @bind-Value="@NorthWestTntY" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@NorthWestTntYCheck.isChecked" CheckedChange="@NorthWestTntYCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North West TNT (Z Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntZCheck.isChecked" @bind-Value="@NorthWestTntZ" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@NorthWestTntZCheck.isChecked" CheckedChange="@NorthWestTntZCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North East TNT (X Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntXCheck.isChecked" @bind-Value="@NorthEastTntX" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@NorthEastTntXCheck.isChecked" CheckedChange="@NorthEastTntXCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North East TNT (Y Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntYCheck.isChecked" @bind-Value="@NorthEastTntY" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@NorthEastTntYCheck.isChecked" CheckedChange="@NorthEastTntYCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         North East TNT (Z Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntZCheck.isChecked" @bind-Value="@NorthEastTntZ" Size="@InputSize.Small" />
-         <Checkbox Class="setting-check-box" Checked="@NorthEastTntZCheck.isChecked" CheckedChange="@NorthEastTntZCheck.ToggleChecked"></Checkbox>
-        </Col>
+        <Checkbox Class="setting-check-box" Checked="@NorthEastTntZCheck.isChecked" CheckedChange="@NorthEastTntZCheck.ToggleChecked"></Checkbox>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         South West TNT (X Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntXCheck.isChecked" @bind-Value="@SouthWestTntX" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@SouthWestTntXCheck.isChecked" CheckedChange="@SouthWestTntXCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         South West TNT (Y Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntYCheck.isChecked" @bind-Value="@SouthWestTntY" Size="@InputSize.Small" />
-       <Checkbox Class="setting-check-box" Checked="@SouthWestTntYCheck.isChecked" CheckedChange="@SouthWestTntYCheck.ToggleChecked"></Checkbox>
-        </Col>
+        <Checkbox Class="setting-check-box" Checked="@SouthWestTntYCheck.isChecked" CheckedChange="@SouthWestTntYCheck.ToggleChecked"></Checkbox>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         South West TNT (Z Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntZCheck.isChecked" @bind-Value="@SouthWestTntZ" Size="@InputSize.Small" />
-       <Checkbox Class="setting-check-box" Checked="@SouthWestTntZCheck.isChecked" CheckedChange="@SouthWestTntZCheck.ToggleChecked"></Checkbox>
-        </Col>
+        <Checkbox Class="setting-check-box" Checked="@SouthWestTntZCheck.isChecked" CheckedChange="@SouthWestTntZCheck.ToggleChecked"></Checkbox>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         South East TNT (X Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthEastTntXCheck.isChecked" @bind-Value="@SouthEastTntX" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@SouthEastTntXCheck.isChecked" CheckedChange="@SouthEastTntXCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding:2px 8px">
         South East TNT (Y Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthEastTntYCheck.isChecked" @bind-Value="@SouthEastTntY" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@SouthEastTntYCheck.isChecked" CheckedChange="@SouthEastTntYCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         South East TNT (Z Axis)
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@SouthEastTntZCheck.isChecked" @bind-Value="@SouthEastTntZ" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@SouthEastTntZCheck.isChecked" CheckedChange="@SouthEastTntZCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         Pearl Y Coordinate
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@PearlYCoordinateCheck.isChecked" @bind-Value="@PearlYCoordinate" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@PearlYCoordinateCheck.isChecked" CheckedChange="@PearlYCoordinateCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box">
+        <AntDesign.Col Span="12" Class="setting-name-value-box">
         Pearl Y Momentum
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding:2px 8px">
         <InputNumber Class="setting-input-container-box" Disabled="@PearlYMomentumCheck.isChecked" @bind-Value="@PearlYMomentum" Size="@InputSize.Small" />
         <Checkbox Class="setting-check-box" Checked="@PearlYMomentumCheck.isChecked" CheckedChange="@PearlYMomentumCheck.ToggleChecked"></Checkbox>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box" Style="Padding: 9.5px 8px">
+        <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px">
         <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block")">
             <span> Default Red TNT Position</span>
         </Tooltip>
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding: 2px 8px">
         <Select DataSource="@Red_list"
                 @bind-Value="@DefaultRedTNTPosition"
                 DefaultValue="@("SouthEast")"
                 ValueName="@nameof(ArrayPos.Name)"
                 LabelName="@nameof(ArrayPos.Value)"
-        >
+                Size="@InputSize.Small"
+                Style="width: 85%;">
         </Select>
-        </Col>
+        </AntDesign.Col>
     </Row>
 
     <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box" Style="Padding: 9.5px 8px">
+        <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
         <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the blue array relative to the pearl without being changed by the slime block")">
             <span> Default Blue TNT Position</span>
         </Tooltip>
-        </Col>
+        </AntDesign.Col>
 
-        <Col Span="12" Style="Padding:2px 8px">
+        <AntDesign.Col Span="12" Style="Padding: 2px 8px;">
         <Select DataSource="@Blue_list"
                 @bind-Value="@DefaultBlueTNTPosition"
                 DefaultValue="@("NorthWest")"
                 ValueName="@nameof(ArrayPos.Name)"
                 LabelName="@nameof(ArrayPos.Value)"
-        >
+                Size="@InputSize.Small"
+                Style="width: 85%;">
         </Select>
-        </Col>
+        </AntDesign.Col>
     </Row>
-    
-    <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box"><br /></Col>
-    </Row>
-    <Row Class="setting-row">
-        <Col Span="12" Class="setting-name-value-box"><br /></Col>
+    <Row>
+        <AntDesign.Col Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height:4px" />
     </Row>
 </div>
 <br />
@@ -221,13 +214,17 @@
 </li>
 
 <style>
+    .setting-row{
+        height:32px;
+    }
+
     .setting-check-box {
         left: 4%;
     }
 
     .setting-name-value-box {
         border-right-style: solid;
-        border-color: #f0f0f0;
+        border-Color: #f0f0f0;
         border-right-width: 1px;
         align-content: center;
         Padding: 5.5px 8px;
