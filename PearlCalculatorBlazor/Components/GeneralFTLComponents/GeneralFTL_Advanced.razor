@@ -38,7 +38,7 @@
 
     <Col Span="19" Style="Padding:2px 8px">
     <div>
-        <Slider TValue="double" Min="0" Max="100" TipFormatter="@(v => $"{v}%")" @bind-Value="@TNTWeight" />
+        <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" OnChange="(e)=>OnChangeTNTWeight(e)"/>
     </div>
     </Col>
 </Row>
@@ -53,3 +53,14 @@
     }
 </style>
 
+@code {
+    private void OnChangeTNTWeight(double args)
+    {
+        TNTWeight = (int)args;
+    }
+
+    string tipFormatter(double currentEdgeValue)
+    {
+        return $"{currentEdgeValue}%";
+    }
+}
