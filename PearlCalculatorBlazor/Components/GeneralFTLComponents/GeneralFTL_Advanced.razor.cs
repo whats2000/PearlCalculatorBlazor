@@ -35,5 +35,11 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             get => Data.TNTWeight;
             set => Data.TNTWeight = (int)value;
         }
+
+        private void CalculateTNTAmount()
+        {
+            Data.TNTResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+            EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs("GFTL_General"));
+        }
     }
 }
