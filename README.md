@@ -24,7 +24,7 @@ Here is a tutorial about how to use
 
 ### Set the FTL information
 
-First, you need to set FTL information. Go to `Settings`. You can also import settings by clicking 'Import Settings'.
+First, you need to set FTL information. Go to `Settings`. You can also import settings by clicking `Import Settings`.
 
 Here is the setting of the FTL.
 
@@ -49,7 +49,7 @@ Here is the setting of the FTL.
 
 ### Set the Pearl and Destination information
 
-Second, you need to set the pearl information and TNT/destination. Go to `General`. You can also import settings by clicking 'Import Settings'.
+Second, you need to set the pearl information and TNT/destination. Go to `General`. You can also import settings by clicking `Import Settings`.
 
 Here is the setting of the pearl information and TNT/destination.
 
