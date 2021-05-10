@@ -5,119 +5,115 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
     public partial class GeneralFTL_Settings
     {
-        private double NorthWestTntX
+        private static double NorthWestTntX
         {
             get => Data.NorthWestTNT.X;
             set => Data.NorthWestTNT.X = value;
         }
 
-        private double NorthWestTntY
+        private static double NorthWestTntY
         {
             get => Data.NorthWestTNT.Y;
             set => Data.NorthWestTNT.Y = value;
         }
 
-        private double NorthWestTntZ
+        private static double NorthWestTntZ
         {
             get => Data.NorthWestTNT.Z;
             set => Data.NorthWestTNT.Z = value;
         }
 
-        private double NorthEastTntX
+        private static double NorthEastTntX
         {
             get => Data.NorthEastTNT.X;
             set => Data.NorthEastTNT.X = value;
         }
 
-        private double NorthEastTntY
+        private static double NorthEastTntY
         {
             get => Data.NorthEastTNT.Y;
             set => Data.NorthEastTNT.Y = value;
         }
 
-        private double NorthEastTntZ
+        private static double NorthEastTntZ
         {
             get => Data.NorthEastTNT.Z;
             set => Data.NorthEastTNT.Z = value;
         }
 
-        private double SouthWestTntX
+        private static double SouthWestTntX
         {
             get => Data.SouthWestTNT.X;
             set => Data.SouthWestTNT.X = value;
         }
 
-        private double SouthWestTntY
+        private static double SouthWestTntY
         {
             get => Data.SouthWestTNT.Y;
             set => Data.SouthWestTNT.Y = value;
         }
 
-        private double SouthWestTntZ
+        private static double SouthWestTntZ
         {
             get => Data.SouthWestTNT.Z;
             set => Data.SouthWestTNT.Z = value;
         }
 
-        private double SouthEastTntX
+        private static double SouthEastTntX
         {
             get => Data.SouthEastTNT.X;
             set => Data.SouthEastTNT.X = value;
         }
 
-        private double SouthEastTntY
+        private static double SouthEastTntY
         {
             get => Data.SouthEastTNT.Y;
             set => Data.SouthEastTNT.Y = value;
         }
 
-        private double SouthEastTntZ
+        private static double SouthEastTntZ
         {
             get => Data.SouthEastTNT.Z;
             set => Data.SouthEastTNT.Z = value;
         }
 
-        private double PearlYCoordinate
+        private static double PearlYCoordinate
         {
             get => Data.Pearl.Position.Y;
             set => Data.Pearl.Position.Y = value;
         }
 
-        private double PearlYMomentum
+        private static double PearlYMomentum
         {
             get => Data.Pearl.Motion.Y;
             set => Data.Pearl.Motion.Y = value;
         }
 
-        private string DefaultRedTNTPosition
+        private static string DefaultRedTNTPosition
         {
             get => Data.DefaultRedDuper.ToString();
             set => Data.DefaultRedDuper = SetDefaultPosition(value);
         }
 
-        private string DefaultBlueTNTPosition
+        private static string DefaultBlueTNTPosition
         {
             get => Data.DefaultBlueDuper.ToString();
             set => Data.DefaultBlueDuper = SetDefaultPosition(value);
         }
 
-        private Direction SetDefaultPosition(string value)
+        private static Direction SetDefaultPosition(string value)
         {
-            switch (value)
+            return value switch
             {
-                case "NorthWest":
-                    return Direction.NorthWest;
-                case "NorthEast":
-                    return Direction.NorthEast;
-                case "SouthWest":
-                    return Direction.SouthWest;
-                case "SouthEast":
-                    return Direction.SouthEast;
-                default:
-                    return Direction.None;
-            }
+                "NorthWest" => Direction.NorthWest,
+                "NorthEast" => Direction.NorthEast,
+                "SouthWest" => Direction.SouthWest,
+                "SouthEast" => Direction.SouthEast,
+                _ => Direction.None,
+            };
         }
-        private void ResetToDefault_OnClick()
+
+        private static void ResetToDefault_OnClick()
         {
             PearlCalculatorLib.General.Data.Reset();
         }

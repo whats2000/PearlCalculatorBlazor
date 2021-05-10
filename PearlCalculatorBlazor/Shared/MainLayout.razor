@@ -3,19 +3,10 @@
 <div class="page">
 
     <Layout>
-        <Header Style="padding-left: 0; padding-right: 0; background: #fff;">
-            <div class="logo" />
-
-            <Menu Theme="MenuTheme.Light" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new [] {"calculator"})>
-                <MenuItem Key="calculator">
-                    <MenuLink Href="">Calculator</MenuLink>
-                </MenuItem>
-
-                <MenuItem Key="about">
-                    <MenuLink Href="https://github.com/memorydream/PearlCalculatorBlazor#pearlcalculatorblazor">About</MenuLink>
-                </MenuItem>
-            </Menu>
-
+        <Header Style="padding-left: 0; padding-right: 0; background: #fff; ">
+            <a href="https://github.com/memorydream/PearlCalculatorBlazor" style="float: right; margin-right: 24px;" class="githubIcon">
+                <Icon Type="github" Theme="outline" Style="font-size: 20px" />
+            </a>
         </Header>
 
         <div style="height: 940px">
@@ -35,6 +26,17 @@
             height: 30px;
             float: left;
         }
+
+        a.githubIcon:link 
+        {
+            color: #f0f0f0;
+        }
+
+        a.githubIcon:hover, a.githubIcon:active
+        {
+            color: black;
+        }
+        
     </style>
 
     <!--
