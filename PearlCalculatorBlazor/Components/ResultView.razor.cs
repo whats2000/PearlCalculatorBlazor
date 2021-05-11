@@ -64,6 +64,15 @@ namespace PearlCalculatorBlazor.Components
                 if (ShowMode != ShowResultMode.Trace) ShowMode = ShowResultMode.Trace;
                 StateHasChanged();
             });
+
+            EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", (sender, args) =>
+            {
+                if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
+
+                AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                StateHasChanged();
+
+            });
         }
 
         private void OnAmountRowClick(RowData<TNTCalculationResult> res)

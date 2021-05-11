@@ -40,8 +40,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         private void ChangeTNTWeight()
         {
-            Data.TNTResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
-            EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs("GFTL_General"));
+            EventManager.Instance.PublishEvent(this, "resortResult", new ButtonClickArgs("GFTL_Advanced"));
         }
 
         [JSInvokable]
