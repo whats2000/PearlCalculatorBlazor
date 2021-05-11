@@ -6,19 +6,19 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
     public partial class GeneralFTL_Advanced
     {
-        private static double PearlOffSetX 
+        private double PearlOffSetX 
         {
             get => Data.PearlOffset.X;
             set => Data.PearlOffset.X = value;
         }
 
-        private static double PearlOffSetZ
+        private double PearlOffSetZ
         {
             get => Data.PearlOffset.Z;
             set => Data.PearlOffset.Z = value;
         }
 
-        private static double TNTWeight
+        private double TNTWeight
         {
             get => Data.TNTWeight;
             set => Data.TNTWeight = (int)value;
