@@ -1,5 +1,7 @@
 ﻿@page "/GeneralFTL_Advanced"
 
+@inject IJSRuntime JSRuntime
+
 <div style="
         border-style: solid;
         border-color: #f0f0f0;
@@ -37,9 +39,9 @@
     </AntDesign.Col>
 
     <AntDesign.Col Span="19" Style="Padding:2px 8px">
-    <div>
-        <Slider OnChange="(e)=>TNTWeightOnChange(e)" TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" @bind-Value="@TNTWeight" />
-    </div>
+        <div>
+            <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" @bind-Value="@TNTWeight" Id="tnt-weight-slider" />
+        </div>
     </AntDesign.Col>
 </Row>
 
@@ -54,10 +56,6 @@
 </style>
 
 @code {
-    private void TNTWeightOnChange(double args)
-    {
-        CalculateTNTAmount();
-    }
 
     string tipFormatter(double currentEdgeValue)
     {
