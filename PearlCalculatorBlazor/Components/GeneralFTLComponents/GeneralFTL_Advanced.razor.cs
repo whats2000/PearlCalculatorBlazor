@@ -1,6 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
+using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
@@ -9,16 +10,16 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
     {
         private static GeneralFTL_Advanced _instance;
 
-        private double PearlOffSetX 
+        public double PearlOffsetX
         {
             get => Data.PearlOffset.X;
-            set => Data.PearlOffset.X = value;
+            set => Data.PearlOffset = new Surface2D(value, PearlOffsetZ);            
         }
 
-        private double PearlOffSetZ
+        public double PearlOffsetZ
         {
             get => Data.PearlOffset.Z;
-            set => Data.PearlOffset.Z = value;
+            set => Data.PearlOffset = new Surface2D(PearlOffsetX, value);
         }
 
         private double TNTWeight
@@ -47,6 +48,11 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         public static void ChangeTNTWeightJS()
         {
             _instance.ChangeTNTWeight();
+        }
+
+        string tipFormatter(double currentEdgeValue)
+        {
+            return $"{currentEdgeValue}%";
         }
     }
 }

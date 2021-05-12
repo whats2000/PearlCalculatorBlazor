@@ -1,6 +1,7 @@
 ﻿using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
+using System.Collections.Generic;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
@@ -104,7 +105,63 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         private void ResetToDefault_OnClick()
         {
-            PearlCalculatorLib.General.Data.Reset();
+            Data.Reset();
+        }
+
+        class Checkbox
+        {
+            public bool isChecked = true;
+
+            public void ToggleChecked(bool value)
+            {
+                isChecked = !isChecked;
+            }
+        };
+
+        Checkbox NorthWestTntXCheck = new();
+        Checkbox NorthWestTntYCheck = new();
+        Checkbox NorthWestTntZCheck = new();
+
+        Checkbox NorthEastTntXCheck = new();
+        Checkbox NorthEastTntYCheck = new();
+        Checkbox NorthEastTntZCheck = new();
+
+        Checkbox SouthWestTntXCheck = new();
+        Checkbox SouthWestTntYCheck = new();
+        Checkbox SouthWestTntZCheck = new();
+
+        Checkbox SouthEastTntXCheck = new();
+        Checkbox SouthEastTntYCheck = new();
+        Checkbox SouthEastTntZCheck = new();
+
+        Checkbox PearlYCoordinateCheck = new();
+        Checkbox PearlYMomentumCheck = new();
+
+        List<ArrayPos> Red_list, Blue_list;
+
+        class ArrayPos
+        {
+            public string Value { get; set; }
+            public string Name { get; set; }
+        }
+
+        protected override void OnInitialized()
+        {
+            Red_list = new List<ArrayPos>
+    {
+            new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
+            new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
+            new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
+            new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
+        };
+
+            Blue_list = new List<ArrayPos>
+    {
+            new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
+            new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
+            new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
+            new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
+        };
         }
     }
 }

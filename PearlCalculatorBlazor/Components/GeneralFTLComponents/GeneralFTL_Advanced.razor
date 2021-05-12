@@ -14,24 +14,23 @@
     <div>
         <Text>&emsp;Offset :</Text>
     </div>
+
     <br />
 
-
     <Text>&emsp;X :&emsp;</Text>
-    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffSetX" Size="@InputSize.Default" />
+    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default" />
     <Text>&emsp;</Text>
 
     <br />
     <br />
 
     <Text>&emsp;Z :&emsp;</Text>
-    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffSetZ" Size="@InputSize.Default" />
+    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default" />
     <Text>&emsp;</Text>
 
     <br />
     <br />
 </div>
-<br />
 
 <Row Class="adavced-row">
     <AntDesign.Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
@@ -56,9 +55,5 @@
 </style>
 
 @code {
-
-    string tipFormatter(double currentEdgeValue)
-    {
-        return $"{currentEdgeValue}%";
-    }
+    
 }
