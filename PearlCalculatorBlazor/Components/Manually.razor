@@ -1,1 +1,225 @@
 ﻿@page "/Manually"
+
+<div style="
+        border-style: solid;
+        border-Color: #f0f0f0;
+        border-width: 1px;
+        border-radius: 2px;
+        line-height: 1.2;
+    ">
+
+    <Row>
+        <AntDesign.Col Span="12" Style="height: 12px"></AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Pearl X:
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Momentum X:
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosX" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumX" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Pearl Y:
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Momentum Y:
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosY" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumY" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Pearl Z:
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            Momentum Z:
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosZ" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumZ" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT X(A):
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT X(B):
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTX" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTX" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Y(A):
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Y(B):
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTY" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTY" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Z(A):
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Z(B):
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTZ" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTZ" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="setting-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Amount(A):
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            TNT Amount(B):
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTAmount" />
+        </AntDesign.Col>
+
+        <AntDesign.Col Span="12" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTAmount" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="24" Class="manually-name-value-box">
+            Destination X:
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="24" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyDestinationX" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="24" Class="manually-name-value-box">
+            Destination Z:
+        </AntDesign.Col>
+    </Row>
+
+    <Row Class="manually-row">
+        <AntDesign.Col Span="24" Class="manually-name-value-box">
+            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyDestinationZ" />
+        </AntDesign.Col>
+    </Row>
+
+    <Row>
+        <AntDesign.Col Span="12" Style="height: 12px"></AntDesign.Col>
+    </Row>
+
+    <ul class="calculator-manually-btn-group">
+        <li style="margin-bottom:10px;">
+            <Button Style="width: 100%" @onclick="@ManuallyCalculateTNTAmount">Calculate TNT Amount</Button>
+        </li>
+
+        <li style="margin-bottom:10px;">
+            <Button Style="width: 100%" @onclick="@ManuallyCalculatePearlTrace">Calculate Pearl Trace</Button>
+        </li>
+
+        <li style="margin-bottom:10px;">
+            <Button Style="width: 100%" @onclick="@ManuallyCalculatePearlMomentum">Calculate Pearl Momentum</Button>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .manually-row {
+
+    }
+
+    .manually-check-box {
+        left: 4%;
+    }
+
+    .manually-name-value-box {
+        align-content: center;
+        Padding: 5.5px 8px;
+    }
+
+    .manually-input-container-box {
+        width: 100%;
+        position: center;
+    }
+
+    ul.calculator-manually-btn-group {
+        list-style: none;
+        padding: 0 10px;
+    }
+</style>
+
+@code{
+
+}
