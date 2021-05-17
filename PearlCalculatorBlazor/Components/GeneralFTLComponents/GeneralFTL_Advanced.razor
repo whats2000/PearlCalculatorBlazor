@@ -39,7 +39,7 @@
 
     <AntDesign.Col Span="19" Style="Padding:2px 8px">
         <div>
-            <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="(d) => tipFormatter(d)" @bind-Value="@TNTWeight" Id="tnt-weight-slider" />
+            <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="@(value => $"{value}%")" @bind-Value="@TNTWeight" Id="tnt-weight-slider" />
         </div>
     </AntDesign.Col>
 </Row>

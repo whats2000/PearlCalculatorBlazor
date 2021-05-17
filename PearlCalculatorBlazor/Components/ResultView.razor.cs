@@ -21,8 +21,6 @@ namespace PearlCalculatorBlazor.Components
 
         private ShowResultMode ShowMode { get; set; } = ShowResultMode.Amount;
 
-        private Table<TNTCalculationResult> _amountTable;
-        private Table<EntityWrapper> _pearlTable;
         private int _pageIndex = 1;
         private int _pageSize = 50;
 
@@ -39,8 +37,7 @@ namespace PearlCalculatorBlazor.Components
             {
                 _pageIndex = 1;
 
-                _amountTable.DataSource = AmountResult;
-                if (ShowMode != ShowResultMode.Amount) ShowMode = ShowResultMode.Amount;
+                ShowMode = ShowResultMode.Amount;
                 StateHasChanged();
             });
 
@@ -60,8 +57,7 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
-                _pearlTable.DataSource = PearlTrace;
-                if (ShowMode != ShowResultMode.Trace) ShowMode = ShowResultMode.Trace;
+                ShowMode = ShowResultMode.Trace;
                 StateHasChanged();
             });
 
@@ -71,7 +67,6 @@ namespace PearlCalculatorBlazor.Components
 
                 AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
                 StateHasChanged();
-
             });
         }
 

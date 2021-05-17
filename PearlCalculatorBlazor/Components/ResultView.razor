@@ -2,8 +2,7 @@
 @inject MessageService AntMessage
 
 <div class="calculator-result-table@(ShowMode != ShowResultMode.Amount ? "-hidden" : string.Empty)">
-    <Table @ref="_amountTable"
-           TItem="PearlCalculatorLib.Result.TNTCalculationResult"
+    <Table TItem="PearlCalculatorLib.Result.TNTCalculationResult"
            DataSource="@AmountResult"
            Total="_amountTotal"
            @bind-PageIndex="_pageIndex"
@@ -24,8 +23,7 @@
 </div>
 
 <div class="calculator-result-table@(ShowMode != ShowResultMode.Trace ? "-hidden" : string.Empty)">
-    <Table @ref="_pearlTable"
-           TItem="EntityWrapper"
+    <Table TItem="EntityWrapper"
            DataSource="@PearlTrace"
            Total="_pearlTotal"
            @bind-PageIndex="_pageIndex"

@@ -50,9 +50,5 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             _instance.ChangeTNTWeight();
         }
 
-        string tipFormatter(double currentEdgeValue)
-        {
-            return $"{currentEdgeValue}%";
-        }
     }
 }
