@@ -16,7 +16,7 @@ namespace PearlCalculatorBlazor.Components
     {
         enum ShowResultMode
         {
-            Amount, Trace
+            Amount, Trace, Momentum
         }
 
         private ShowResultMode ShowMode { get; set; } = ShowResultMode.Amount;
@@ -24,12 +24,18 @@ namespace PearlCalculatorBlazor.Components
         private int _pageIndex = 1;
         private int _pageSize = 50;
 
-        private int _amountTotal => AmountResult is null ? 0 : AmountResult.Count;
-        private int _pearlTotal => PearlTrace is null ? 0 : PearlTrace.Count;
+        private int AmountTotal => AmountResult is null ? 0 : AmountResult.Count;
+        private int PearlTotal => PearlTrace is null ? 0 : PearlTrace.Count;
+        private int MotionTotal => PearlMotion is null ? 0 : PearlMotion.Count;
+
 
         private List<TNTCalculationResult> AmountResult => Data.TNTResult;
 
-        private List<EntityWrapper> PearlTrace { get; set; } = new List<EntityWrapper>();
+
+        private List<EntityWrapper> PearlTrace { get; set; } = new();
+        private List<EntityWrapper> PearlMotion { get; set; } = new();
+
+
 
         protected override void OnInitialized()
         {

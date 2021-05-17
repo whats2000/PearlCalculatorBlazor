@@ -4,7 +4,7 @@
 <div class="calculator-result-table@(ShowMode != ShowResultMode.Amount ? "-hidden" : string.Empty)">
     <Table TItem="PearlCalculatorLib.Result.TNTCalculationResult"
            DataSource="@AmountResult"
-           Total="_amountTotal"
+           Total="AmountTotal"
            @bind-PageIndex="_pageIndex"
            @bind-PageSize="_pageSize"
            ScrollY="800px"
@@ -19,21 +19,39 @@
         <Column @bind-Field="@context.Blue"></Column>
         <Column @bind-Field="@context.Red"></Column>
         <Column @bind-Field="@context.TotalTNT" Sortable></Column>
+
     </Table>
 </div>
 
 <div class="calculator-result-table@(ShowMode != ShowResultMode.Trace ? "-hidden" : string.Empty)">
     <Table TItem="EntityWrapper"
            DataSource="@PearlTrace"
-           Total="_pearlTotal"
+           Total="PearlTotal"
            @bind-PageIndex="_pageIndex"
            @bind-PageSize="_pageSize"
-           ScrollY="800px"
-           >
+           ScrollY="800px">
+
         <Column @bind-Field="@context.Tick"></Column>
         <Column @bind-Field="@context.XCoor"></Column>
         <Column @bind-Field="@context.YCoor"></Column>
         <Column @bind-Field="@context.ZCoor"></Column>
+
+    </Table>
+</div>
+
+<div class="calculator-result-table@(ShowMode != ShowResultMode.Momentum ? "-hidden" : string.Empty)">
+    <Table TItem="EntityWrapper"
+           DataSource="@PearlMotion"
+           Total="MotionTotal"
+           @bind-PageIndex="_pageIndex"
+           @bind-PageSize="_pageSize"
+           ScrollX="800px">
+
+        <Column @bind-Field="@context.Tick"></Column>
+        <Column @bind-Field="@context.XCoor" Title="X Motion"></Column>
+        <Column @bind-Field="@context.YCoor" Title="Y Motion"></Column>
+        <Column @bind-Field="@context.ZCoor" Title="Z Motion"></Column>
+
     </Table>
 </div>
 
