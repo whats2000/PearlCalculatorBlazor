@@ -1,4 +1,5 @@
 ﻿@page "/Manually"
+@inject MessageService AntMessage
 
 <div style="
         border-style: solid;
@@ -186,18 +187,17 @@
         </li>
 
         <li style="margin-bottom:10px;">
-            <Button Style="width: 100%" @onclick="@ManuallyCalculatePearlTrace">Calculate Pearl Trace</Button>
+            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("trace"))">Calculate Pearl Trace</Button>
         </li>
 
         <li style="margin-bottom:10px;">
-            <Button Style="width: 100%" @onclick="@ManuallyCalculatePearlMomentum">Calculate Pearl Momentum</Button>
+            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("motion"))">Calculate Pearl Momentum</Button>
         </li>
     </ul>
 </div>
 
 <style>
     .manually-row {
-
     }
 
     .manually-check-box {

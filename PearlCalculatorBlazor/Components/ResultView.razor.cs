@@ -29,8 +29,7 @@ namespace PearlCalculatorBlazor.Components
         private int MotionTotal => PearlMotion is null ? 0 : PearlMotion.Count;
 
 
-        private List<TNTCalculationResult> AmountResult => Data.TNTResult;
-
+        private List<TNTCalculationResult> AmountResult { get; set; } = new();
 
         private List<EntityWrapper> PearlTrace { get; set; } = new();
         private List<EntityWrapper> PearlMotion { get; set; } = new();
@@ -69,9 +68,63 @@ namespace PearlCalculatorBlazor.Components
 
             EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", (sender, args) =>
             {
+                AmountResult = Data.TNTResult;
+
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
                 AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<CalculateTNTAmuontArgs>("calculate", (sender, args) =>
+            {
+                _pageIndex = 1;
+
+                AmountResult = args.Results;
+
+                if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
+
+                AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<PearlSimulateArgs>("trace", async (sender, args) =>
+            {
+                _pageIndex = 1;
+
+                PearlTrace = await Task.FromResult(Enumerable.Range(0, args.Trace.Count).Select(index =>
+                {
+                    ref var p = ref args.Trace[index].Position;
+                    return new EntityWrapper
+                    {
+                        XCoor = p.X,
+                        YCoor = p.Y,
+                        ZCoor = p.Z,
+                        Tick = index
+                    };
+                }).ToList());
+
+                ShowMode = ShowResultMode.Trace;
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<PearlSimulateArgs>("motion", async (sender, args) =>
+            {
+                _pageIndex = 1;
+
+                PearlTrace = await Task.FromResult(Enumerable.Range(0, args.Trace.Count).Select(index =>
+                {
+                    ref var p = ref args.Trace[index].Motion;
+                    return new EntityWrapper
+                    {
+                        XCoor = p.X,
+                        YCoor = p.Y,
+                        ZCoor = p.Z,
+                        Tick = index
+                    };
+                }).ToList());
+
+                ShowMode = ShowResultMode.Trace;
                 StateHasChanged();
             });
         }

@@ -1,4 +1,5 @@
 ﻿using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorLib.Result;
 using System.Collections.Generic;
 
 namespace PearlCalculatorBlazor
@@ -39,6 +40,16 @@ namespace PearlCalculatorBlazor
         {
             this.Red = red;
             this.Blue = blue;
+        }
+    }
+
+    public class CalculateTNTAmuontArgs : EventArgs
+    {
+        public readonly List<TNTCalculationResult> Results;
+
+        public CalculateTNTAmuontArgs(string publishKey, List<TNTCalculationResult> results) : base(publishKey)
+        {
+            this.Results = results;
         }
     }
 }
