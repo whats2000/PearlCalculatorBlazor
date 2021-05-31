@@ -24,6 +24,11 @@ jobs:
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
         base_href: /PearlCalculatorBlazor/
+        
+    - name: BlazorWebAssemblyFileHashFixer
+      uses: StefH/ghaction-BlazorWebAssemblyFileHashFixer@v2
+      with:
+        wwwroot-path: ${{ env.PUBLISH_DIR }}
 
     - name: GitHub Pages
       if: success()
