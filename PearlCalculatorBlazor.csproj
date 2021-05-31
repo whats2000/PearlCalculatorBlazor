@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\Index.razor.css~RF123d7950.TMP" />
+    <Compile Remove="PearlCalculatorLib\**" />
+    <Content Remove="PearlCalculatorLib\**" />
+    <EmbeddedResource Remove="PearlCalculatorLib\**" />
+    <None Remove="PearlCalculatorLib\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PearlCalculatorLib\PearlCalculatorLib.csproj" />
+    <ProjectReference Include=".\PearlCalculatorLib\PearlCalculatorLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
