@@ -7,13 +7,10 @@
         border-width: 1px;
         border-radius: 2px;
         line-height: 1.2;
+        padding: 20px 18.5px 24px 18.5px;
     ">
 
-    <Row>
-        <AntDesign.Col Span="12" Style="height: 12px"></AntDesign.Col>
-    </Row>
-
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             Pearl X:
         </AntDesign.Col>
@@ -33,7 +30,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             Pearl Y:
         </AntDesign.Col>
@@ -53,7 +50,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             Pearl Z:
         </AntDesign.Col>
@@ -73,7 +70,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             TNT X(A):
         </AntDesign.Col>
@@ -93,7 +90,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             TNT Y(A):
         </AntDesign.Col>
@@ -113,7 +110,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             TNT Z(A):
         </AntDesign.Col>
@@ -133,7 +130,7 @@
         </AntDesign.Col>
     </Row>
 
-    <Row Class="setting-row">
+    <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
             TNT Amount(A):
         </AntDesign.Col>
@@ -182,28 +179,21 @@
     </Row>
 
     <ul class="calculator-manually-btn-group">
-        <li style="margin-bottom:10px;">
+        <li style="margin-bottom:5px;">
             <Button Style="width: 100%" @onclick="@ManuallyCalculateTNTAmount">Calculate TNT Amount</Button>
         </li>
 
-        <li style="margin-bottom:10px;">
+        <li style="margin-bottom:5px;">
             <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("trace"))">Calculate Pearl Trace</Button>
         </li>
 
-        <li style="margin-bottom:10px;">
+        <li style="margin-bottom:5px;">
             <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("motion"))">Calculate Pearl Momentum</Button>
         </li>
     </ul>
 </div>
 
 <style>
-    .manually-row {
-    }
-
-    .manually-check-box {
-        left: 4%;
-    }
-
     .manually-name-value-box {
         align-content: center;
         Padding: 5.5px 8px;
@@ -216,7 +206,7 @@
 
     ul.calculator-manually-btn-group {
         list-style: none;
-        padding: 0 10px;
+        padding: 8px 18px 0px 18px;
     }
 </style>
 
