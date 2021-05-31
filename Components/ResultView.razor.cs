@@ -42,6 +42,8 @@ namespace PearlCalculatorBlazor.Components
             {
                 _pageIndex = 1;
 
+                AmountResult = Data.TNTResult;
+
                 ShowMode = ShowResultMode.Amount;
                 StateHasChanged();
             });
