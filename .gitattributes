@@ -1,1 +1,2 @@
-* binary
+*.js text eol=lf
+*.dll binary
