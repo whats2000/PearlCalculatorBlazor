@@ -70,8 +70,6 @@ namespace PearlCalculatorBlazor.Components
 
             EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", (sender, args) =>
             {
-                AmountResult = Data.TNTResult;
-
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
                 AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
@@ -114,7 +112,7 @@ namespace PearlCalculatorBlazor.Components
             {
                 _pageIndex = 1;
 
-                PearlTrace = await Task.FromResult(Enumerable.Range(0, args.Trace.Count).Select(index =>
+                PearlMotion = await Task.FromResult(Enumerable.Range(0, args.Trace.Count).Select(index =>
                 {
                     ref var p = ref args.Trace[index].Motion;
                     return new EntityWrapper
@@ -126,7 +124,7 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
-                ShowMode = ShowResultMode.Trace;
+                ShowMode = ShowResultMode.Momentum;
                 StateHasChanged();
             });
         }

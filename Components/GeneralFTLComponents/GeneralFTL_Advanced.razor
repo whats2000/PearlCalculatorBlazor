@@ -8,28 +8,24 @@
         border-width: 1px;
         border-radius: 2px;
         line-height: 1.2;
+        padding: 0px 24px 14px 24px;
     ">
     <br />
 
-    <div>
-        <Text>&emsp;Offset :</Text>
+    <div style="padding-bottom: 10px;">
+        <Text Style="margin-left: 5px;">Offset :</Text>
     </div>
 
-    <br />
+    <div style="padding-bottom: 10px;">
+        <Text Style="margin-left: 5px;">X :</Text>
+        <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default" />
+    </div>
+    
+    <div style="padding-bottom: 10px;">
+        <Text Style="margin-left: 5px;">Z :</Text>
+        <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default" />
+    </div>
 
-    <Text>&emsp;X :&emsp;</Text>
-    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default" />
-    <Text>&emsp;</Text>
-
-    <br />
-    <br />
-
-    <Text>&emsp;Z :&emsp;</Text>
-    <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default" />
-    <Text>&emsp;</Text>
-
-    <br />
-    <br />
 </div>
 
 <Row Class="adavced-row">
@@ -50,7 +46,7 @@
     }
 
     .advanced-input-container-box {
-        width: 85%;
+        width: 100%;
     }
 </style>
 

@@ -76,6 +76,16 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             set => Data.BlueTNT = (int)value;
         }
 
+        private async Task NoticeWithIcon(NotificationType type)
+        {
+            await _notice.Open(new NotificationConfig()
+            {
+                Message = "Notification",
+                Description = "The current input value is not calculable",
+                NotificationType = type
+            });
+        }
+
         protected override void OnInitialized()
         {
             EventManager.Instance.AddListener<SetRTCountArgs>("tntAmountSetRTCount", (sender, args) =>
@@ -112,6 +122,8 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs(PublishKey));
+            else
+                await NoticeWithIcon(NotificationType.Error);
 
             loading.Start();
         }

@@ -3,6 +3,7 @@
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @inject MessageService AntMessage
+@inject NotificationService _notice
 
 <div>
     <Text class="calculator-input-container-label">Pearl X :</Text>
@@ -81,8 +82,7 @@
     <li>
         <Button Style="width: 100%" @onclick="ImportSettings_OnClick">Import Settings</Button>
 
-        <Microsoft.AspNetCore.Components.Forms.InputFile 
-            id="import-settings-handle" style="display: none" OnChange="ImportHandleFileSelected" accept=".json" />
+        <Microsoft.AspNetCore.Components.Forms.InputFile id="import-settings-handle" style="display: none" OnChange="ImportHandleFileSelected" accept=".json" />
 
     </li>
     <li>

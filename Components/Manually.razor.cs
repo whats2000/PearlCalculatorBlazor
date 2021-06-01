@@ -174,6 +174,16 @@ namespace PearlCalculatorBlazor.Components
             }
         }
 
+        private async Task NoticeWithIcon(NotificationType type)
+        {
+            await _notice.Open(new NotificationConfig()
+            {
+                Message = "Notification",
+                Description = "The current input value is not calculable",
+                NotificationType = type
+            });
+        }
+
         private async void ManuallyCalculateTNTAmount()
         {
             MessageConfig mc = new()
@@ -196,6 +206,8 @@ namespace PearlCalculatorBlazor.Components
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new CalculateTNTAmuontArgs(PublishKey, results));
+            else 
+                await NoticeWithIcon(NotificationType.Error);
 
             loading.Start();
         }
