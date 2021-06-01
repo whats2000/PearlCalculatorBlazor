@@ -13,6 +13,7 @@
 ul.calculator-general-btn-group {
     list-style: none;
     padding: 0 10px;
+    margin: 0;
 }
 
     ul.calculator-general-btn-group li {
@@ -20,12 +21,12 @@ ul.calculator-general-btn-group {
         margin-bottom: 5px;
     }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
     ::deep .calculator-input-container-direction-radio {
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 540px) {
     ::deep .calculator-input-container-direction-radio {
     }
 }

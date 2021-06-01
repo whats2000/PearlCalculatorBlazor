@@ -7,9 +7,9 @@
            Total="AmountTotal"
            @bind-PageIndex="_pageIndex"
            @bind-PageSize="_pageSize"
-           ScrollY="800px"
-           OnRowClick="OnAmountRowClick"
-           >
+           ScrollY=@(TableScrollY)
+           OnRowClick="OnAmountRowClick">
+
         <Column @bind-Field="@context.Distance" Sortable>
             <Tooltip Title="@context.Distance.ToString()">
                 <Text>@context.Distance.ToString().Substring(0, 5)</Text>
@@ -29,7 +29,7 @@
            Total="PearlTotal"
            @bind-PageIndex="_pageIndex"
            @bind-PageSize="_pageSize"
-           ScrollY="800px">
+           ScrollY=@(TableScrollY)>
 
         <Column @bind-Field="@context.Tick"></Column>
         <Column @bind-Field="@context.XCoor"></Column>
@@ -45,7 +45,7 @@
            Total="MotionTotal"
            @bind-PageIndex="_pageIndex"
            @bind-PageSize="_pageSize"
-           ScrollX="800px">
+           ScrollY=@(TableScrollY)>
 
         <Column @bind-Field="@context.Tick"></Column>
         <Column @bind-Field="@context.XCoor" Title="X Motion"></Column>
@@ -67,3 +67,7 @@
     .tnt-amount-result-table {
     }
 </style>
+
+@code {
+    private const string TableScrollY = "770px";
+}
