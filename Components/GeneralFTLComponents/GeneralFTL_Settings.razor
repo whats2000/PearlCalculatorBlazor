@@ -176,14 +176,15 @@
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding: 2px 8px">
-            <Select DataSource="@Red_list"
-                    @bind-Value="@DefaultRedTNTPosition"
-                    DefaultValue="@("SouthEast")"
-                    ValueName="@nameof(ArrayPos.Name)"
-                    LabelName="@nameof(ArrayPos.Value)"
-                    Size="@InputSize.Small"
-                    Class="setting-select-box">
-            </Select>
+            <div class="setting-select-box">
+                <Select DataSource="@Red_list"
+                        @bind-Value="@DefaultRedTNTPosition"
+                        DefaultValue="@("SouthEast")"
+                        ValueName="@nameof(ArrayPos.Name)"
+                        LabelName="@nameof(ArrayPos.Value)"
+                        Size="@InputSize.Small">
+                </Select>
+            </div>
         </AntDesign.Col>
     </Row>
 
@@ -195,14 +196,15 @@
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding: 2px 8px;">
-            <Select DataSource="@Blue_list"
-                    @bind-Value="@DefaultBlueTNTPosition"
-                    DefaultValue="@("NorthWest")"
-                    ValueName="@nameof(ArrayPos.Name)"
-                    LabelName="@nameof(ArrayPos.Value)"
-                    Size="@InputSize.Small"
-                    Class="setting-select-box">
-            </Select>
+            <div class="setting-select-box">
+                <Select DataSource="@Blue_list"
+                        @bind-Value="@DefaultBlueTNTPosition"
+                        DefaultValue="@("NorthWest")"
+                        ValueName="@nameof(ArrayPos.Name)"
+                        LabelName="@nameof(ArrayPos.Value)"
+                        Size="@InputSize.Small">
+                </Select>
+            </div>
         </AntDesign.Col>
     </Row>
     <Row>

@@ -14,7 +14,7 @@
 .calculator-output-tab {
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
     .calculator-root {
         display: inherit;
     }

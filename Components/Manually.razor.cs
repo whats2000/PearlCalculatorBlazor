@@ -176,7 +176,7 @@ namespace PearlCalculatorBlazor.Components
 
         private async Task NoticeWithIcon(NotificationType type)
         {
-            await _notice.Open(new NotificationConfig()
+            await Notice.Open(new NotificationConfig()
             {
                 Message = "Notification",
                 Description = "The current input value is not calculable",
@@ -195,21 +195,18 @@ namespace PearlCalculatorBlazor.Components
             var loading = AntMessage.Loading(mc);
             await Task.Delay(200);
 
-            var isSu = false;
-
             List<TNTCalculationResult> results = null;
 
-            await Task.Run(() =>
-            {
-                isSu = Calculation.CalculateTNTAmount(Data.Destination, 100, out results);
-            });
+            var isSu = await Task.Run(() => Calculation.CalculateTNTAmount(Data.Destination, 100, out results));
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new CalculateTNTAmuontArgs(PublishKey, results));
-            else 
+            
+            loading.Start();
+            
+            if (!isSu)
                 await NoticeWithIcon(NotificationType.Error);
 
-            loading.Start();
         }
 
         private void ManuallyCalculatePearl(string key)

@@ -78,7 +78,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         private async Task NoticeWithIcon(NotificationType type)
         {
-            await _notice.Open(new NotificationConfig()
+            await Notice.Open(new NotificationConfig()
             {
                 Message = "Notification",
                 Description = "The current input value is not calculable",
@@ -122,10 +122,11 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs(PublishKey));
-            else
-                await NoticeWithIcon(NotificationType.Error);
 
             loading.Start();
+
+            if (!isSu)
+                await NoticeWithIcon(NotificationType.Error);
         }
 
         private void PearlSimulate()
