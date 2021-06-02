@@ -43,17 +43,19 @@
     </Select>
 
     <div style="border: 1px solid #EFEFEF; padding: 2px; padding-top: 10px">
-        <div style="@(_activeKey == "GFTL_General" ? string.Empty : "display: none")">
+
+        @if (_activeKey == "GFTL_General")
+        {
             <GeneralFTL_General />
-        </div>
-
-        <div style="@(_activeKey == "GFTL_Advanced" ? string.Empty : "display: none")">
+        }
+        else if (_activeKey == "GFTL_Advanced")
+        {
             <GeneralFTL_Advanced />
-        </div>
-
-        <div style="@(_activeKey == "GFTL_Settings" ? string.Empty : "display: none")">
+        }
+        else
+        {
             <GeneralFTL_Settings />
-        </div>
+        }
     </div>
 </div>
 
