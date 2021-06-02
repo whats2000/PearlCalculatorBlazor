@@ -1,28 +1,60 @@
 ﻿@page "/GeneralFTL"
 
-<Card>
-    <CardTabs>
-        <Tabs DefaultActiveKey="GFTL_General">
-            <TabPane Key="GFTL_General">
-                <Tab>General</Tab>
-                <ChildContent>
-                    <GeneralFTL_General />
-                </ChildContent>
-            </TabPane>
+<div class="calculator-general-root-default">
+    <Card>
+        <CardTabs>
+            <Tabs @bind-ActiveKey="_activeKey">
+                <TabPane Key="GFTL_General">
+                    <Tab>General</Tab>
+                    <ChildContent>
+                        <GeneralFTL_General />
+                    </ChildContent>
+                </TabPane>
 
-            <TabPane Key="GFTL_Advanced">
-                <Tab>Advanced</Tab>
-                <ChildContent>
-                    <GeneralFTL_Advanced />
-                </ChildContent>
-            </TabPane>
+                <TabPane Key="GFTL_Advanced">
+                    <Tab>Advanced</Tab>
+                    <ChildContent>
+                        <GeneralFTL_Advanced />
+                    </ChildContent>
+                </TabPane>
 
-            <TabPane Key="GFTL_Settings">
-                <Tab>Settings</Tab>
-                <ChildContent>
-                    <GeneralFTL_Settings />
-                </ChildContent>
-            </TabPane>
-        </Tabs>
-    </CardTabs>
-</Card>
+                <TabPane Key="GFTL_Settings">
+                    <Tab>Settings</Tab>
+                    <ChildContent>
+                        <GeneralFTL_Settings />
+                    </ChildContent>
+                </TabPane>
+            </Tabs>
+        </CardTabs>
+    </Card>
+</div>
+
+<div class="calculator-general-root-mobile">
+
+    <Select @bind-Value="_activeKey"
+            TItem="string"
+            TItemValue="string"
+            Style="width: 100%; margin: 10px 0">
+        <SelectOptions>
+            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_General")" Label="General" />
+            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_Advanced")" Label="Advanced" />
+            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_Settings")" Label="Settings" />
+        </SelectOptions>
+    </Select>
+
+    <div style="border: 1px solid #EFEFEF; padding: 2px; padding-top: 10px">
+        <div style="@(_activeKey == "GFTL_General" ? string.Empty : "display: none")">
+            <GeneralFTL_General />
+        </div>
+
+        <div style="@(_activeKey == "GFTL_Advanced" ? string.Empty : "display: none")">
+            <GeneralFTL_Advanced />
+        </div>
+
+        <div style="@(_activeKey == "GFTL_Settings" ? string.Empty : "display: none")">
+            <GeneralFTL_Settings />
+        </div>
+    </div>
+</div>
+
+@code { private string _activeKey = "GFTL_General"; }

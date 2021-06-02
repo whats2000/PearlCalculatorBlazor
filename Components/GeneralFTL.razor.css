@@ -1,0 +1,18 @@
+﻿.calculator-general-root-default {
+    margin-top: -12px;
+}
+
+.calculator-general-root-mobile {
+    display: none;
+    margin: -20px;
+}
+
+@media screen and (max-width: 420px) {
+    .calculator-general-root-default {
+        display: none;
+    }
+
+    .calculator-general-root-mobile {
+        display: block;
+    }
+}
