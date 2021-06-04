@@ -1,7 +1,7 @@
 ﻿@page "/ResultView"
 @inject MessageService AntMessage
 
-<div class="calculator-result">
+<div class="calculator-result-table">
     @if (ShowMode == ShowResultMode.Amount)
     {
         <Table TItem="PearlCalculatorLib.Result.TNTCalculationResult"
@@ -10,8 +10,7 @@
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
                ScrollY=@(TableScrollY)
-               OnRowClick="OnAmountRowClick"
-               Class="calculator-result-table">
+               OnRowClick="OnAmountRowClick">
 
             <Column @bind-Field="@context.Distance" Sortable>
                 <Tooltip Title="@context.Distance.ToString()">
@@ -32,8 +31,7 @@
                Total="PearlTotal"
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
-               ScrollY=@(TableScrollY)
-               Class="calculator-result-table">
+               ScrollY=@(TableScrollY)>
 
             <Column @bind-Field="@context.Tick"></Column>
             <Column @bind-Field="@context.XCoor"></Column>
@@ -49,8 +47,7 @@
                Total="MotionTotal"
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
-               ScrollY=@(TableScrollY)
-               Class="calculator-result-table">
+               ScrollY=@(TableScrollY)>
 
             <Column @bind-Field="@context.Tick"></Column>
             <Column @bind-Field="@context.XCoor" Title="X Motion"></Column>
@@ -73,26 +70,14 @@
 </div>
 
 <style>
-    .calculator-result {
-
-    }
-
     .calculator-result-table {
-        
+        height: 100%;
     }
 
-    .calculator-result-row {
-        border-style: solid;
-        border-Color: #fafafa;
-        border-width: 1px;
-    }
-
-    .div.ant-table-body {
-        overflow-y: scroll;
-        max-height: 700px;
+    .tnt-amount-result-table {
     }
 </style>
 
 @code {
-    private const string TableScrollY = "710px";
+    private const string TableScrollY = "770px";
 }
