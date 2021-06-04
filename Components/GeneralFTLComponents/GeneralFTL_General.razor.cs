@@ -175,8 +175,6 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 Data.BlueTNT = settings.BlueTNT;
                 Data.MaxTNT = settings.MaxTNT;
                 Data.Direction = settings.Direction;
-
-                ResultView.ShowDirectionResult(Data.Pearl.Position, Data.Destination);
             }
             catch (Exception e)
             {
