@@ -61,20 +61,27 @@
     }
 </div>
 
+<div>
+    <Row>
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">Result Direction</AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">Result Angle (x | z)</AntDesign.Col>
+
+    </Row>
+    <Row Class="calculator-result-row">
+        <AntDesign.Col Span="12" Style="background-color: white;">@ResultDirection</AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: white;">@ResultAngle</AntDesign.Col>
+    </Row>
+</div>
+
 <style>
-    .calculator-result {
-
-    }
-
-    .calculator-result-table {
-        
-    }
-
     .calculator-result-table-hidden {
         display: none
     }
 
-    .tnt-amount-result-table {
+    .calculator-result-row {
+        border-style: solid;
+        border-Color: #fafafa;
+        border-width: 1px;
     }
 </style>
 

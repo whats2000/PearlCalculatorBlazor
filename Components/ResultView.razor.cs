@@ -1,10 +1,12 @@
 ﻿using AntDesign.TableModels;
 using PearlCalculatorBlazor.Managers;
-using PearlCalculatorLib.General;
+using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GeneralData = PearlCalculatorLib.General.Data;
+using ManuallyData = PearlCalculatorLib.Manually.Data;
 
 namespace PearlCalculatorBlazor.Components
 {
@@ -30,15 +32,33 @@ namespace PearlCalculatorBlazor.Components
         private List<EntityWrapper> PearlTrace { get; set; } = new();
         private List<EntityWrapper> PearlMotion { get; set; } = new();
 
+        private static string ResultDirection = string.Empty;
+
+        private static string ResultAngle = string.Empty;
+
+        public static void ShowDirectionResult(Space3D pearlPos, Space3D destination)
+        {
+            var angle = pearlPos.WorldAngle(destination);
+
+            if (angle == 370)
+                return;
+
+            ResultDirection = pearlPos.Direction(angle).ToString();
+
+            ResultAngle = angle.ToString();
+        }
+
         protected override void OnInitialized()
         {
             EventManager.Instance.AddListener<ButtonClickArgs>("calculate", (sender, args) =>
             {
                 _pageIndex = 1;
 
-                AmountResult = Data.TNTResult;
+                AmountResult = GeneralData.TNTResult;
 
                 ShowMode = ShowResultMode.Amount;
+
+                ShowDirectionResult(GeneralData.Pearl.Position, GeneralData.Destination);
 
                 StateHasChanged();
             });
@@ -58,6 +78,8 @@ namespace PearlCalculatorBlazor.Components
                         Tick = index
                     };
                 }).ToList());
+
+                ShowDirectionResult(GeneralData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
                 
                 ShowMode = ShowResultMode.Trace;
                 
@@ -68,7 +90,7 @@ namespace PearlCalculatorBlazor.Components
             {
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
-                AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance));
                 
                 StateHasChanged();
             });
@@ -81,7 +103,9 @@ namespace PearlCalculatorBlazor.Components
 
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
-                AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance));
+                AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance));
+
+                ShowDirectionResult(ManuallyData.Pearl.Position, ManuallyData.Destination.ToSpace3D());
 
                 StateHasChanged();
             });
@@ -101,6 +125,8 @@ namespace PearlCalculatorBlazor.Components
                         Tick = index
                     };
                 }).ToList());
+
+                ShowDirectionResult(ManuallyData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
                 ShowMode = ShowResultMode.Trace;
 
@@ -123,7 +149,16 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
+                ShowDirectionResult(ManuallyData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
+
                 ShowMode = ShowResultMode.Momentum;
+
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<ButtonClickArgs>("ExportSettings", (sender, args) =>
+            {
+                ShowDirectionResult(GeneralData.Pearl.Position, GeneralData.Destination);
 
                 StateHasChanged();
             });
