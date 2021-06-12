@@ -79,14 +79,5 @@
   "SettingsSouthWestTNTZ": "South West TNT (Z Axis)",
   "SettingsSouthEastTNTX": "South East TNT (X Axis)",
   "SettingsSouthEastTNTY": "South East TNT (Y Axis)",
-  "SettingsSouthEastTNTZ": "South East TNT (Z Axis)",
-
-  "_comment0": "This 'Language' should be '{Your language name} Languages'. Replace 'Your language name' with Native language (Not English).",
-  "Languages": "Languages",
-
-  "_comment1": "These json down below for other language should not be translated",
-  "en": "English",
-  "zh_cn": "简体中文",
-  "zh_tw": "繁體中文",
-  "_comment2": "Please replace me with a key to your language. And the value of it"
+  "SettingsSouthEastTNTZ": "South East TNT (Z Axis)"
 }

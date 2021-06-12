@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
@@ -8,13 +8,20 @@ namespace PearlCalculatorBlazor.Localizer
 {
     public class TranslateText
     {
+        public static readonly Dictionary<string, string> LanguageDict = new Dictionary<string, string> 
+        { 
+            { "en", "English" }, 
+            { "zh_cn", "简体中文" }, 
+            { "zh_tw", "繁體中文" } 
+        };
+
         private const string FallbackLanguage = "en";       
         private string _currentLanguage = string.Empty;
 
-        private static HttpClient _httpClient = new HttpClient();
+        private static HttpClient _httpClient = new();
 
-        private static Dictionary<string, string> _displayText = new Dictionary<string, string>();
-        private static Dictionary<string, string> _fallbackDisplayText = new Dictionary<string, string>();
+        private static Dictionary<string, string> _displayText = new();
+        private static Dictionary<string, string> _fallbackDisplayText = new();
         
         public static event Action OnLanguageChange;
 

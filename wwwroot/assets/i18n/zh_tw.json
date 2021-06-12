@@ -82,10 +82,5 @@
   "SettingsSouthWestTNTZ": "South West TNT (Z座標)",
   "SettingsSouthEastTNTX": "South East TNT (X座標)",
   "SettingsSouthEastTNTY": "South East TNT (Y座標)",
-  "SettingsSouthEastTNTZ": "South East TNT (Z座標)",
-
-  "Languages": "語言 Languages",
-  "en": "English",
-  "zh_cn": "简体中文",
-  "zh_tw": "繁體中文"
+  "SettingsSouthEastTNTZ": "South East TNT (Z座標)"
 }
