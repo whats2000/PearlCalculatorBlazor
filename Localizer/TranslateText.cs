@@ -11,8 +11,9 @@ namespace PearlCalculatorBlazor.Localizer
         public static readonly Dictionary<string, string> LanguageDict = new Dictionary<string, string> 
         { 
             { "en", "English" }, 
+            { "es_ES", "Español" },
             { "zh_cn", "简体中文" }, 
-            { "zh_tw", "繁體中文" } 
+            { "zh_tw", "繁體中文" }          
         };
 
         private const string FallbackLanguage = "en";       

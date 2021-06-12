@@ -12,8 +12,10 @@ namespace PearlCalculatorBlazor.Components
     public partial class Manually
     {
         const string PublishKey = "Manually";
+
         bool _valueHasChanged = true;
-        List<Entity> _calculateResult;
+
+        private List<Entity> _calculateResult;
 
         private double ManuallyPearlPosX
         {
@@ -47,10 +49,10 @@ namespace PearlCalculatorBlazor.Components
 
         private double ManuallyPearlMomentumY
         {
-            get => Data.Pearl.Position.Y;
+            get => Data.Pearl.Motion.Y;
             set
             {
-                Data.Pearl.Position.Y = value;
+                Data.Pearl.Motion.Y = value;
                 _valueHasChanged = true;
             }
         }

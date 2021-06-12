@@ -102,9 +102,7 @@ namespace PearlCalculatorBlazor.Components
 
                 AmountResult = args.Results;
 
-                if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
-
-                AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance));
+                ShowMode = ShowResultMode.Amount;
 
                 ShowDirectionResult(ManuallyData.Pearl.Position, ManuallyData.Destination.ToSpace3D());
 
