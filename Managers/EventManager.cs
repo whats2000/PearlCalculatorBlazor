@@ -82,7 +82,7 @@ namespace PearlCalculatorBlazor.Managers
 
             if (_eventCon.TryGetValue(eventKey, out var dict) &&
                 dict.TryGetValue(typeof(T), out var wrapper))
-            { 
+            {
                 wrapper?.Invoke(sender, args);
             }
         }

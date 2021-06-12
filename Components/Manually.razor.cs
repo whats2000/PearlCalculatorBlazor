@@ -202,9 +202,9 @@ namespace PearlCalculatorBlazor.Components
 
             if (isSu)
                 EventManager.Instance.PublishEvent(this, "calculate", new CalculateTNTAmuontArgs(PublishKey, results));
-            
+
             loading.Start();
-            
+
             if (!isSu)
                 await NoticeWithIcon(NotificationType.Error);
 

@@ -14,7 +14,7 @@ namespace PearlCalculatorBlazor.Pages
             TranslateText.OnLanguageChange += RefreshPage;
         }
 
-        public void RefreshPage() 
+        public void RefreshPage()
         {
             StateHasChanged();
         }

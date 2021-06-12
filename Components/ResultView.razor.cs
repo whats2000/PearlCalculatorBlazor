@@ -81,9 +81,9 @@ namespace PearlCalculatorBlazor.Components
                 }).ToList());
 
                 ShowDirectionResult(GeneralData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
-                
+
                 ShowMode = ShowResultMode.Trace;
-                
+
                 StateHasChanged();
             });
 
@@ -92,7 +92,7 @@ namespace PearlCalculatorBlazor.Components
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
                 AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance));
-                
+
                 StateHasChanged();
             });
 
@@ -163,7 +163,7 @@ namespace PearlCalculatorBlazor.Components
 
                 StateHasChanged();
             });
-            
+
             TranslateText.OnLanguageChange += RefreshPage;
         }
 

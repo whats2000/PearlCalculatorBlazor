@@ -13,7 +13,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         public double PearlOffsetX
         {
             get => Data.PearlOffset.X;
-            set => Data.PearlOffset = new Surface2D(value, PearlOffsetZ);            
+            set => Data.PearlOffset = new Surface2D(value, PearlOffsetZ);
         }
 
         public double PearlOffsetZ
