@@ -52,14 +52,4 @@ namespace PearlCalculatorBlazor
             this.Results = results;
         }
     }
-
-    public class SetLanguageArgs : EventArgs
-    {
-        public readonly string Language;
-
-        public SetLanguageArgs(string publishKey, string language) : base(publishKey)
-        {
-            this.Language = language;
-        }
-    }
 }

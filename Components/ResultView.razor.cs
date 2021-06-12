@@ -163,18 +163,18 @@ namespace PearlCalculatorBlazor.Components
 
                 StateHasChanged();
             });
-
-            EventManager.Instance.AddListener<SetLanguageArgs>("SetLanguage", async (sender, args) =>
-            {
-                await TransText.LoadLanguageAsync(args.Language);
-
-                StateHasChanged();
-            });
+            
+            TranslateText.OnLanguageChange += RefreshPage;
         }
 
         private void OnAmountRowClick(RowData<TNTCalculationResult> res)
         {
             EventManager.Instance.PublishEvent(this, "tntAmountSetRTCount", new SetRTCountArgs("ResultView", res.Data.Red, res.Data.Blue));
+        }
+
+        public void RefreshPage()
+        {
+            StateHasChanged();
         }
     }
 

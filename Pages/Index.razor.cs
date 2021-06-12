@@ -4,9 +4,9 @@ namespace PearlCalculatorBlazor.Pages
 {
     public partial class Index
     {
-        private void OnClickChangeLanguage(string language)
+        private async void OnClickChangeLanguage(string language)
         {
-            Managers.EventManager.Instance.PublishEvent(this, "SetLanguage", new SetLanguageArgs("Index", language));
+            await TransText.LoadLanguageAsync(language);
         }
 
         protected override void OnInitialized()
