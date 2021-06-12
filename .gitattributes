@@ -1,2 +1,2 @@
-*.js text eol=lf
-*.dll binary
+autocrlf=false
+* binary
