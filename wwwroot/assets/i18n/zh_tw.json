@@ -1,0 +1,91 @@
+{
+  "GeneralFTLHeader": "通用FTL",
+  "ManuallyHeader": "自訂義FTL",
+
+  "GeneralFTLGeneralHeader": "一般設定",
+  "GeneralFTLAdvancedHeader": "進階設定",
+  "GeneralFTLSettingsHeader": "更多基礎設定",
+
+  "PearlPosX": "珍珠X座標 :",
+  "PearlPosY": "珍珠Y座標 :",
+  "PearlPosZ": "珍珠Z座標 :",
+
+  "DestinationX": "目標點X座標 :",
+  "DestinationZ": "目標點Z座標 :",
+
+  "MaxTNT": "最大TNT數量",
+  "RedTNT": "紅色TNT陣列",
+  "BlueTNT": "藍色TNT陣列",
+  "Offset": "珍珠矯正偏移",
+  "TNTWeight": "TNT最大數量",
+
+  "PearlSimulate": "珍珠模擬軌跡",
+  "ImportSettings": "開啟設定檔",
+  "SaveSettings": "儲存設定檔",
+
+  "DisplayHeader": "結果輸出",
+  "ConsoleHeader": "控制台",
+
+  "ResetToDefault": "恢復至預設值",
+
+  "MomentumX": "X動量 :",
+  "MomentumY": "Y動量 :",
+  "MomentumZ": "Z動量 :",
+
+  "DisplayXMotion": "X動量",
+  "DisplayYMotion": "Y動量",
+  "DisplayZMotion": "Z動量",
+
+  "XCoor": "X座標",
+  "YCoor": "Y座標",
+  "ZCoor": "Z座標",
+
+  "TNTXA": "TNT(A)的X座標 :",
+  "TNTYA": "TNT(A)的Y座標 :",
+  "TNTZA": "TNT(A)的Z座標 :",
+
+  "TNTXB": "TNT(B)的X座標 :",
+  "TNTYB": "TNT(B)的Y座標 :",
+  "TNTZB": "TNT(B)的Z座標 :",
+
+  "AmountA": "TNT(A)數量 :",
+  "AmountB": "TNT(B)數量 :",
+
+  "CalculateTNTAmount": "計算TNT數量",
+  "CalculatePearlTrace": "計算珍珠軌跡",
+  "CalculatePearlMomentum": "計算珍珠動量",
+
+  "PearlYCoordinate": "珍珠Y座標",
+  "PearlYMomentum": "珍珠Y動量",
+  "DefaultRedTNTPos": "預設紅色TNT方位",
+  "DefaultRedTNTPosDesc": "預設從紅色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",
+  "DefaultBlueTNTPos": "預設藍色TNT方位",
+  "DefaultBlueTNTPosDesc": "預設從藍色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",
+
+  "DisplayDistance": "距離偏移",
+  "DisplayTicks": "遊戲刻",
+  "DisplayBlue": "藍色",
+  "DisplayRed": "紅色",
+  "DisplayTotal": "總量",
+
+  "DisplayDirection": "方位",
+  "DisplayAngle": "發射角度 (x | z)",
+
+  "SettingsNorthWestTNTX": "North West TNT (X座標)",
+  "SettingsNorthWestTNTY": "North West TNT (Y座標)",
+  "SettingsNorthWestTNTZ": "North West TNT (Z座標)",
+  "SettingsNorthEastTNTX": "North East TNT (X座標)",
+  "SettingsNorthEastTNTY": "North East TNT (Y座標)",
+  "SettingsNorthEastTNTZ": "North East TNT (Z座標)",
+  "SettingsSouthWestTNTX": "South West TNT (X座標)",
+  "SettingsSouthWestTNTY": "South West TNT (Y座標)",
+  "SettingsSouthWestTNTZ": "South West TNT (Z座標)",
+  "SettingsSouthEastTNTX": "South East TNT (X座標)",
+  "SettingsSouthEastTNTY": "South East TNT (Y座標)",
+  "SettingsSouthEastTNTZ": "South East TNT (Z座標)",
+
+  "Languages": "語言 Languages",
+  "en": "English",
+  "zh_cn": "简体中文",
+  "zh_tw": "繁體中文"
+}

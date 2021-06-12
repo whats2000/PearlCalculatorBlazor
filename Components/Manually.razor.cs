@@ -5,6 +5,7 @@ using AntDesign;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorBlazor.Localizer;
 
 namespace PearlCalculatorBlazor.Components
 {
@@ -216,6 +217,16 @@ namespace PearlCalculatorBlazor.Components
             _valueHasChanged = false;
 
             EventManager.Instance.PublishEvent(this, key, new PearlSimulateArgs(PublishKey, _calculateResult));
+        }
+
+        protected override void OnInitialized()
+        {
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
+        public void RefreshPage()
+        {
+            StateHasChanged();
         }
     }
 }

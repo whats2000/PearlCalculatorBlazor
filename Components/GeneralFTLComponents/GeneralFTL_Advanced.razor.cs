@@ -1,8 +1,8 @@
 ﻿using Microsoft.JSInterop;
+using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
-using PearlCalculatorLib.Result;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
@@ -50,5 +50,14 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             _instance.ChangeTNTWeight();
         }
 
+        protected override void OnInitialized()
+        {
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
+        public void RefreshPage()
+        {
+            StateHasChanged();
+        }
     }
 }

@@ -1,5 +1,8 @@
 ﻿@page "/GeneralFTL_Settings"
-@inject IJSRuntime JSRuntime
+
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer
 
 <div style="
         border-style: solid;
@@ -15,7 +18,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North West TNT (X Axis)
+            @TranslateText.GetTranslateText("SettingsNorthWestTNTX")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -26,7 +29,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North West TNT (Y Axis)
+            @TranslateText.GetTranslateText("SettingsNorthWestTNTY")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -37,7 +40,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North West TNT (Z Axis)
+            @TranslateText.GetTranslateText("SettingsNorthWestTNTZ")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -48,7 +51,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North East TNT (X Axis)
+            @TranslateText.GetTranslateText("SettingsNorthEastTNTX")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -59,7 +62,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North East TNT (Y Axis)
+            @TranslateText.GetTranslateText("SettingsNorthEastTNTY")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -70,7 +73,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            North East TNT (Z Axis)
+            @TranslateText.GetTranslateText("SettingsNorthEastTNTZ")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -81,7 +84,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South West TNT (X Axis)
+            @TranslateText.GetTranslateText("SettingsSouthWestTNTX")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -92,7 +95,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South West TNT (Y Axis)
+            @TranslateText.GetTranslateText("SettingsSouthWestTNTY")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -103,7 +106,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South West TNT (Z Axis)
+            @TranslateText.GetTranslateText("SettingsSouthWestTNTZ")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -114,7 +117,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South East TNT (X Axis)
+            @TranslateText.GetTranslateText("SettingsSouthEastTNTX")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -125,7 +128,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South East TNT (Y Axis)
+            @TranslateText.GetTranslateText("SettingsSouthEastTNTY")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -136,7 +139,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            South East TNT (Z Axis)
+            @TranslateText.GetTranslateText("SettingsSouthEastTNTZ")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -147,7 +150,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            Pearl Y Coordinate
+            @TranslateText.GetTranslateText("PearlYCoordinate")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -158,7 +161,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box">
-            Pearl Y Momentum
+            @TranslateText.GetTranslateText("PearlYMomentum")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Style="Padding:2px 8px">
@@ -170,8 +173,8 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px">
-            <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block")">
-                <span> Default Red TNT Position</span>
+            <Tooltip Placement="PlacementType.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
+                <span>@TranslateText.GetTranslateText("DefaultRedTNTPos")</span>
             </Tooltip>
         </AntDesign.Col>
 
@@ -190,8 +193,8 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
-            <Tooltip Placement="PlacementType.TopLeft" Title="@("Preset the position of the TNT duped from the blue array relative to the pearl without being changed by the slime block")">
-                <span> Default Blue TNT Position</span>
+            <Tooltip Placement="PlacementType.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
+                <span>@TranslateText.GetTranslateText("DefaultBlueTNTPos")</span>
             </Tooltip>
         </AntDesign.Col>
 
@@ -213,11 +216,11 @@
 </div>
 <br />
 <li style="padding: 0px 10px 0px 10px">
-    <Button Style="width: 100%" @onclick="@ResetToDefault_OnClick">Reset To Default</Button>
+    <Button Style="width: 100%" @onclick="@ResetToDefault_OnClick">@TranslateText.GetTranslateText("ResetToDefault")</Button>
 </li>
 
 <style>
-    .setting-row{
+    .setting-row {
         height: 32px;
     }
 

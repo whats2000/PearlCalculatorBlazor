@@ -5,6 +5,7 @@ using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
+using PearlCalculatorBlazor.Localizer;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -95,6 +96,8 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 BlueTNT = (uint)args.Blue;
                 StateHasChanged();
             });
+
+            TranslateText.OnLanguageChange += RefreshPage;
         }
 
         private async void CalculateTNTAmount()
@@ -183,6 +186,11 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 AntMessage.Error(e.Message);
             }
 
+            StateHasChanged();
+        }
+
+        public void RefreshPage()
+        {
             StateHasChanged();
         }
     }

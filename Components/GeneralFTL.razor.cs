@@ -1,13 +1,17 @@
-﻿using PearlCalculatorLib.General;
-using PearlCalculatorLib.PearlCalculationLib.World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PearlCalculatorBlazor.Localizer;
 
 namespace PearlCalculatorBlazor.Components
 {
     public partial class GeneralFTL
     {
+        protected override void OnInitialized()
+        {
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
+        public void RefreshPage()
+        {
+            StateHasChanged();
+        }
     }
 }

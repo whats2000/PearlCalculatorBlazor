@@ -1,5 +1,8 @@
 ﻿@page "/ResultView"
 @inject MessageService AntMessage
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer
 
 <div class="calculator-result">
     @if (ShowMode == ShowResultMode.Amount)
@@ -13,15 +16,15 @@
                OnRowClick="OnAmountRowClick"
                Class="calculator-result-table">
 
-            <Column @bind-Field="@context.Distance" Sortable>
+            <Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
                 <Tooltip Title="@context.Distance.ToString()">
                     <Text>@context.Distance.ToString().Substring(0, 5)</Text>
                 </Tooltip>
             </Column>
-            <Column @bind-Field="@context.Tick" Sortable></Column>
-            <Column @bind-Field="@context.Blue"></Column>
-            <Column @bind-Field="@context.Red"></Column>
-            <Column @bind-Field="@context.TotalTNT" Sortable></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></Column>
 
         </Table>
     }
@@ -35,10 +38,10 @@
                ScrollY=@(TableScrollY)
                Class="calculator-result-table">
 
-            <Column @bind-Field="@context.Tick"></Column>
-            <Column @bind-Field="@context.XCoor"></Column>
-            <Column @bind-Field="@context.YCoor"></Column>
-            <Column @bind-Field="@context.ZCoor"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></Column>
+            <Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></Column>
+            <Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></Column>
+            <Column Title="@TranslateText.GetTranslateText("ZCoor")" @bind-Field="@context.ZCoor"></Column>
 
         </Table>
     }
@@ -52,10 +55,10 @@
                ScrollY=@(TableScrollY)
                Class="calculator-result-table">
 
-            <Column @bind-Field="@context.Tick"></Column>
-            <Column @bind-Field="@context.XCoor" Title="X Motion"></Column>
-            <Column @bind-Field="@context.YCoor" Title="Y Motion"></Column>
-            <Column @bind-Field="@context.ZCoor" Title="Z Motion"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayXMotion")" @bind-Field="@context.XCoor"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></Column>
+            <Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></Column>
 
         </Table>
     }
@@ -63,8 +66,8 @@
 
 <div>
     <Row>
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">Result Direction</AntDesign.Col>
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">Result Angle (x | z)</AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">@TranslateText.GetTranslateText("DisplayDirection")</AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">@TranslateText.GetTranslateText("DisplayAngle")</AntDesign.Col>
 
     </Row>
     <Row Class="calculator-result-row">

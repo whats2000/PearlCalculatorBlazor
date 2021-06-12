@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using PearlCalculatorLib.General;
-using PearlCalculatorLib.PearlCalculationLib.World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PearlCalculatorBlazor.Localizer;
 
 namespace PearlCalculatorBlazor.Pages
 {
     public partial class Index
     {
+        private void OnClickChangeLanguage(string language)
+        {
+            Managers.EventManager.Instance.PublishEvent(this, "SetLanguage", new SetLanguageArgs("Index", language));
+        }
+
+        protected override void OnInitialized()
+        {
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
+        public void RefreshPage() 
+        {
+            StateHasChanged();
+        }
     }
 }

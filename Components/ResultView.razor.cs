@@ -2,6 +2,7 @@
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
+using PearlCalculatorBlazor.Localizer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -159,6 +160,13 @@ namespace PearlCalculatorBlazor.Components
             EventManager.Instance.AddListener<ButtonClickArgs>("ExportSettings", (sender, args) =>
             {
                 ShowDirectionResult(GeneralData.Pearl.Position, GeneralData.Destination);
+
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<SetLanguageArgs>("SetLanguage", async (sender, args) =>
+            {
+                await TransText.LoadLanguageAsync(args.Language);
 
                 StateHasChanged();
             });

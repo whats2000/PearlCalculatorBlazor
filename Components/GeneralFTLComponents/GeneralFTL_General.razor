@@ -4,33 +4,36 @@
 @inject IJSRuntime JSRuntime
 @inject MessageService AntMessage
 @inject NotificationService Notice
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer; 
 
 <div>
-    <Text class="calculator-input-container-label">Pearl X :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("PearlPosX")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@PearlX" />
 </div>
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Pearl Z :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("PearlPosZ")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@PearlZ" />
 </div>
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Destination X :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("DestinationX")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@DestinationX" />
 </div>
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Destination Z :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("DestinationZ")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@DestinationZ" />
 </div>
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Max TNT :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("MaxTNT")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@MaxTNT" />
 </div>
 <br />
@@ -61,32 +64,32 @@
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Red TNT :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("RedTNT")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@RedTNT" />
 </div>
 <br />
 
 <div>
-    <Text class="calculator-input-container-label">Blue TNT :</Text>
+    <Text class="calculator-input-container-label">@TranslateText.GetTranslateText("BlueTNT")</Text>
     <InputNumber class="calculator-input-container-box" @bind-Value="@BlueTNT" />
 </div>
 <br />
 
 <ul class="calculator-general-btn-group">
     <li>
-        <Button Style="width: 100%" @onclick="CalculateTNTAmount">Calculate TNT Amount</Button>
+        <Button Style="width: 100%" @onclick="CalculateTNTAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
     </li>
     <li>
-        <Button Style="width: 100%" @onclick="PearlSimulate">Pearl Simulate</Button>
+        <Button Style="width: 100%" @onclick="PearlSimulate">@TranslateText.GetTranslateText("PearlSimulate")</Button>
     </li>
     <li>
-        <Button Style="width: 100%" @onclick="ImportSettings_OnClick">Import Settings</Button>
+        <Button Style="width: 100%" @onclick="ImportSettings_OnClick">@TranslateText.GetTranslateText("ImportSettings")</Button>
 
         <Microsoft.AspNetCore.Components.Forms.InputFile id="import-settings-handle" style="display: none" OnChange="ImportHandleFileSelected" accept=".json" />
 
     </li>
     <li>
-        <Button Style="width: 100%" @onclick="ExportSettings_OnClick">Export Settings</Button>
+        <Button Style="width: 100%" @onclick="ExportSettings_OnClick">@TranslateText.GetTranslateText("SaveSettings")</Button>
     </li>
 </ul>
 

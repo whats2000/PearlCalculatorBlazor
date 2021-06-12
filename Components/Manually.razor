@@ -1,6 +1,9 @@
 ﻿@page "/Manually"
 @inject MessageService AntMessage
 @inject NotificationService Notice
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer
 
 <div style="
         border-style: solid;
@@ -13,11 +16,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Pearl X:
+            @TranslateText.GetTranslateText("PearlPosX")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Momentum X:
+            @TranslateText.GetTranslateText("MomentumX")
         </AntDesign.Col>
     </Row>
 
@@ -33,11 +36,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Pearl Y:
+            @TranslateText.GetTranslateText("PearlPosY")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Momentum Y:
+            @TranslateText.GetTranslateText("MomentumY")
         </AntDesign.Col>
     </Row>
 
@@ -53,11 +56,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Pearl Z:
+            @TranslateText.GetTranslateText("PearlPosZ")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            Momentum Z:
+            @TranslateText.GetTranslateText("MomentumZ")
         </AntDesign.Col>
     </Row>
 
@@ -73,11 +76,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT X(A):
+            @TranslateText.GetTranslateText("TNTXA")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT X(B):
+            @TranslateText.GetTranslateText("TNTXB")
         </AntDesign.Col>
     </Row>
 
@@ -93,11 +96,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Y(A):
+            @TranslateText.GetTranslateText("TNTYA")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Y(B):
+            @TranslateText.GetTranslateText("TNTYB")
         </AntDesign.Col>
     </Row>
 
@@ -113,11 +116,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Z(A):
+            @TranslateText.GetTranslateText("TNTZA")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Z(B):
+            @TranslateText.GetTranslateText("TNTZB")
         </AntDesign.Col>
     </Row>
 
@@ -133,11 +136,11 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Amount(A):
+            @TranslateText.GetTranslateText("AmountA")
         </AntDesign.Col>
 
         <AntDesign.Col Span="12" Class="manually-name-value-box">
-            TNT Amount(B):
+            @TranslateText.GetTranslateText("AmountB")
         </AntDesign.Col>
     </Row>
 
@@ -153,7 +156,7 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="24" Class="manually-name-value-box">
-            Destination X:
+            @TranslateText.GetTranslateText("DestinationX")
         </AntDesign.Col>
     </Row>
 
@@ -165,7 +168,7 @@
 
     <Row Class="manually-row">
         <AntDesign.Col Span="24" Class="manually-name-value-box">
-            Destination Z:
+            @TranslateText.GetTranslateText("DestinationZ")
         </AntDesign.Col>
     </Row>
 
@@ -181,15 +184,15 @@
 
     <ul class="calculator-manually-btn-group">
         <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@ManuallyCalculateTNTAmount">Calculate TNT Amount</Button>
+            <Button Style="width: 100%" @onclick="@ManuallyCalculateTNTAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
         </li>
 
         <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("trace"))">Calculate Pearl Trace</Button>
+            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("trace"))">@TranslateText.GetTranslateText("CalculatePearlTrace")</Button>
         </li>
 
         <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("motion"))">Calculate Pearl Momentum</Button>
+            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("motion"))">@TranslateText.GetTranslateText("CalculatePearlMomentum")</Button>
         </li>
     </ul>
 </div>

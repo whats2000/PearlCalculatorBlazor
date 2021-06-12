@@ -1,0 +1,92 @@
+﻿{
+  "GeneralFTLHeader": "General FTL",
+  "ManuallyHeader": "Manually",
+
+  "GeneralFTLGeneralHeader": "General",
+  "GeneralFTLAdvancedHeader": "Advanced",
+  "GeneralFTLSettingsHeader": "Settings",
+
+  "PearlPosX": "Pearl X :",
+  "PearlPosY": "Pearl Y :",
+  "PearlPosZ": "Pearl Z :",
+
+  "DestinationX": "Destination X :",
+  "DestinationZ": "Destination Z :",
+
+  "MaxTNT": "Max TNT :",
+  "RedTNT": "Red TNT :",
+  "BlueTNT": "Blue TNT :",
+  "Offset": "Offset :",
+  "TNTWeight": "TNT Weight",
+
+  "PearlSimulate": "Pearl Simulate",
+  "ImportSettings": "Import Settings",
+  "SaveSettings": "Export Settings",
+
+  "ResetToDefault": "Reset To Default",
+
+  "MomentumX": "Momentum X:",
+  "MomentumY": "Momentum Y:",
+  "MomentumZ": "Momentum Z:",
+
+  "DisplayXMotion": "X Motion",
+  "DisplayYMotion": "Y Motion",
+  "DisplayZMotion": "Z Motion",
+
+  "XCoor": "XCoor",
+  "YCoor": "YCoor",
+  "ZCoor": "ZCoor",
+
+  "TNTXA": "TNT X(A):",
+  "TNTYA": "TNT Y(A):",
+  "TNTZA": "TNT Z(A):",
+
+  "TNTXB": "TNT X(B):",
+  "TNTYB": "TNT Y(B):",
+  "TNTZB": "TNT Z(B):",
+
+  "AmountA": "TNT Amount(A):",
+  "AmountB": "TNT Amount(B):",
+
+  "CalculateTNTAmount": "Calculate TNT Amount",
+  "CalculatePearlTrace": "Calculate Pearl Trace",
+  "CalculatePearlMomentum": "Calculate Pearl Momentum",
+
+  "PearlYCoordinate": "Pearl Y Coordinate",
+  "PearlYMomentum": "Pearl Y Momentum",
+  "DefaultRedTNTPos": "Default Red TNT Position",
+  "DefaultRedTNTPosDesc": "Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block",
+  "DefaultBlueTNTPos": "Default Blue TNT Position",
+  "DefaultBlueTNTPosDesc": "Preset the position of the TNT duped from the blue array relative to the pearl without being changed by the slime block",
+
+  "DisplayDistance": "Distance",
+  "DisplayTicks": "Tick",
+  "DisplayBlue": "Blue",
+  "DisplayRed": "Red",
+  "DisplayTotal": "TotalTNT",
+
+  "DisplayDirection": "Result Direction",
+  "DisplayAngle": "Result Angle (x | z)",
+
+  "SettingsNorthWestTNTX": "North West TNT (X Axis)",
+  "SettingsNorthWestTNTY": "North West TNT (Y Axis)",
+  "SettingsNorthWestTNTZ": "North West TNT (Z Axis)",
+  "SettingsNorthEastTNTX": "North East TNT (X Axis)",
+  "SettingsNorthEastTNTY": "North East TNT (Y Axis)",
+  "SettingsNorthEastTNTZ": "North East TNT (Z Axis)",
+  "SettingsSouthWestTNTX": "South West TNT (X Axis)",
+  "SettingsSouthWestTNTY": "South West TNT (Y Axis)",
+  "SettingsSouthWestTNTZ": "South West TNT (Z Axis)",
+  "SettingsSouthEastTNTX": "South East TNT (X Axis)",
+  "SettingsSouthEastTNTY": "South East TNT (Y Axis)",
+  "SettingsSouthEastTNTZ": "South East TNT (Z Axis)",
+
+  "_comment0": "This 'Language' should be '{Your language name} Languages'. Replace 'Your language name' with Native language (Not English).",
+  "Languages": "Languages",
+
+  "_comment1": "These json down below for other language should not be translated",
+  "en": "English",
+  "zh_cn": "简体中文",
+  "zh_tw": "繁體中文",
+  "_comment2": "Please replace me with a key to your language. And the value of it"
+}

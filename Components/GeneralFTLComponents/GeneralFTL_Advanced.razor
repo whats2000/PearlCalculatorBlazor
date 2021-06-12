@@ -1,6 +1,9 @@
 ﻿@page "/GeneralFTL_Advanced"
 
 @inject IJSRuntime JSRuntime
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer
 
 <div style="
         border-style: solid;
@@ -13,14 +16,14 @@
     <br />
 
     <div style="padding-bottom: 10px;">
-        <Text Style="margin-left: 5px;">Offset :</Text>
+        <Text Style="margin-left: 5px;">@TranslateText.GetTranslateText("Offset")</Text>
     </div>
 
     <div style="padding-bottom: 10px;">
         <Text Style="margin-left: 5px;">X :</Text>
         <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default" />
     </div>
-    
+
     <div style="padding-bottom: 10px;">
         <Text Style="margin-left: 5px;">Z :</Text>
         <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default" />
@@ -30,7 +33,7 @@
 
 <Row Class="adavced-row">
     <AntDesign.Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
-        TNT Weight
+        @TranslateText.GetTranslateText("TNTWeight")
     </AntDesign.Col>
 
     <AntDesign.Col Span="19" Style="Padding:2px 8px">
@@ -52,5 +55,5 @@
 </style>
 
 @code {
-    
+
 }

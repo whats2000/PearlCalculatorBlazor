@@ -1,5 +1,9 @@
 ﻿@page "/"
 
+@inject TranslateText TransText
+
+@using PearlCalculatorBlazor.Localizer
+
 <div class="calculator-root">
 
     <div class="calculator-card calculator-input-tab">
@@ -7,21 +11,39 @@
             <CardTabs>
                 <Tabs DefaultActiveKey="General">
 
-                    <TabPane Key="General">
-                        <Tab>General FTL</Tab>
-                        <ChildContent>
-                            <PearlCalculatorBlazor.Components.GeneralFTL />
-                        </ChildContent>
-                    </TabPane>
+                    <TabBarExtraContent>
+                        <Dropdown>
+                            <Overlay>
+                                <Menu>
+                                    <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" @key="1">@TranslateText.GetTranslateText("en")</MenuItem>
+                                    <MenuItem @onclick="@(() => OnClickChangeLanguage("zh_cn"))" @key="2">@TranslateText.GetTranslateText("zh_cn")</MenuItem>
+                                    <MenuItem @onclick="@(() => OnClickChangeLanguage("zh_tw"))" @key="3">@TranslateText.GetTranslateText("zh_tw")</MenuItem>
+                                </Menu>
+                            </Overlay>
+                            <ChildContent>
+                                <a class="ant-dropdown-link" @onclick:preventDefault>
+                                    @TranslateText.GetTranslateText("Languages") <Icon Type="down" />
+                                </a>
+                            </ChildContent>
+                        </Dropdown>
+                    </TabBarExtraContent>
 
-                    <TabPane Key="Manually">
-                        <Tab>Manually</Tab>
-                        <ChildContent>
-                            <PearlCalculatorBlazor.Components.Manually />
-                        </ChildContent>
-                    </TabPane>
+                    <ChildContent>
+                        <TabPane Key="General">
+                            <Tab>@TranslateText.GetTranslateText("GeneralFTLHeader")</Tab>
+                            <ChildContent>
+                                <PearlCalculatorBlazor.Components.GeneralFTL />
+                            </ChildContent>
+                        </TabPane>
 
-                </Tabs>
+                        <TabPane Key="Manually">
+                            <Tab>@TranslateText.GetTranslateText("ManuallyHeader")</Tab>
+                            <ChildContent>
+                                <PearlCalculatorBlazor.Components.Manually />
+                            </ChildContent>
+                        </TabPane>
+                    </ChildContent>
+</Tabs>
             </CardTabs>
         </Card>
     </div>
@@ -48,5 +70,4 @@
     .ant-card-body {
         height: auto;
     }
-
 </style>

@@ -1,4 +1,5 @@
-﻿using PearlCalculatorLib.General;
+﻿using PearlCalculatorBlazor.Localizer;
+using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 using System.Collections.Generic;
@@ -148,20 +149,27 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         protected override void OnInitialized()
         {
             Red_list = new List<ArrayPos>
-    {
-            new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
-            new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
-            new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
-            new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
-        };
+            {
+                new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
+                new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
+                new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
+                new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
+            };
 
             Blue_list = new List<ArrayPos>
-    {
-            new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
-            new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
-            new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
-            new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
-        };
+            {
+                new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
+                new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
+                new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
+                new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
+            };
+
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
+        public void RefreshPage()
+        {
+            StateHasChanged();
         }
     }
 }
