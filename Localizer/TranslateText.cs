@@ -51,8 +51,10 @@ namespace PearlCalculatorBlazor.Localizer
         {
             if (_displayText.ContainsKey(key))
                 return _displayText[key];
-            else
+            else if (_fallbackDisplayText.ContainsKey(key))
                 return _fallbackDisplayText[key];
+            else
+                return string.Empty;
         }
     }
 }

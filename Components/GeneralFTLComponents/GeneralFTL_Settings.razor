@@ -180,12 +180,13 @@
 
         <AntDesign.Col Span="12" Style="Padding: 2px 8px">
             <div class="setting-select-box">
-                <Select DataSource="@Red_list"
+                <Select DataSource="@_selectList"
                         @bind-Value="@DefaultRedTNTPosition"
                         DefaultValue="@("SouthEast")"
-                        ValueName="@nameof(ArrayPos.Name)"
-                        LabelName="@nameof(ArrayPos.Value)"
-                        Size="@InputSize.Small">
+                        ValueName="@nameof(ArrayPos.Key)"
+                        LabelName="@nameof(ArrayPos.DisplayName)"
+                        Size="@InputSize.Small"
+                        IgnoreItemChanges="false">
                 </Select>
             </div>
         </AntDesign.Col>
@@ -200,12 +201,13 @@
 
         <AntDesign.Col Span="12" Style="Padding: 2px 8px;">
             <div class="setting-select-box">
-                <Select DataSource="@Blue_list"
+                <Select DataSource="@_selectList"
                         @bind-Value="@DefaultBlueTNTPosition"
                         DefaultValue="@("NorthWest")"
-                        ValueName="@nameof(ArrayPos.Name)"
-                        LabelName="@nameof(ArrayPos.Value)"
-                        Size="@InputSize.Small">
+                        ValueName="@nameof(ArrayPos.Key)"
+                        LabelName="@nameof(ArrayPos.DisplayName)"
+                        Size="@InputSize.Small"
+                        IgnoreItemChanges="false">
                 </Select>
             </div>
         </AntDesign.Col>

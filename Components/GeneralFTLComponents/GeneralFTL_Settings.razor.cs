@@ -113,55 +113,47 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             public bool isChecked = true;
 
-            public void ToggleChecked(bool value)
+            public void ToggleChecked()
             {
                 isChecked = !isChecked;
             }
         };
 
-        Checkbox NorthWestTntXCheck = new();
-        Checkbox NorthWestTntYCheck = new();
-        Checkbox NorthWestTntZCheck = new();
+        readonly Checkbox NorthWestTntXCheck = new();
+        readonly Checkbox NorthWestTntYCheck = new();
+        readonly Checkbox NorthWestTntZCheck = new();
 
-        Checkbox NorthEastTntXCheck = new();
-        Checkbox NorthEastTntYCheck = new();
-        Checkbox NorthEastTntZCheck = new();
+        readonly Checkbox NorthEastTntXCheck = new();
+        readonly Checkbox NorthEastTntYCheck = new();
+        readonly Checkbox NorthEastTntZCheck = new();
 
-        Checkbox SouthWestTntXCheck = new();
-        Checkbox SouthWestTntYCheck = new();
-        Checkbox SouthWestTntZCheck = new();
+        readonly Checkbox SouthWestTntXCheck = new();
+        readonly Checkbox SouthWestTntYCheck = new();
+        readonly Checkbox SouthWestTntZCheck = new();
 
-        Checkbox SouthEastTntXCheck = new();
-        Checkbox SouthEastTntYCheck = new();
-        Checkbox SouthEastTntZCheck = new();
+        readonly Checkbox SouthEastTntXCheck = new();
+        readonly Checkbox SouthEastTntYCheck = new();
+        readonly Checkbox SouthEastTntZCheck = new();
 
-        Checkbox PearlYCoordinateCheck = new();
-        Checkbox PearlYMomentumCheck = new();
+        readonly Checkbox PearlYCoordinateCheck = new();
+        readonly Checkbox PearlYMomentumCheck = new();
 
-        List<ArrayPos> Red_list, Blue_list;
+        List<ArrayPos> _selectList;
 
         class ArrayPos
         {
-            public string Value { get; set; }
-            public string Name { get; set; }
+            public string Key { get; set; }
+            public string DisplayName { get; set; }
         }
 
         protected override void OnInitialized()
         {
-            Red_list = new List<ArrayPos>
+            _selectList = new List<ArrayPos>
             {
-                new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
-                new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
-                new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
-                new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
-            };
-
-            Blue_list = new List<ArrayPos>
-            {
-                new ArrayPos {Value = "NorthWest", Name = "NorthWest"},
-                new ArrayPos {Value = "NorthEast", Name = "NorthEast"},
-                new ArrayPos {Value = "SouthWest", Name = "SouthWest"},
-                new ArrayPos {Value = "SouthEast", Name = "SouthEast"}
+                new ArrayPos {Key = "NorthWest", DisplayName = TranslateText.GetTranslateText("NorthWest")},
+                new ArrayPos {Key = "NorthEast", DisplayName = TranslateText.GetTranslateText("NorthEast")},
+                new ArrayPos {Key = "SouthWest", DisplayName = TranslateText.GetTranslateText("SouthWest")},
+                new ArrayPos {Key = "SouthEast", DisplayName = TranslateText.GetTranslateText("SouthEast")}
             };
 
             TranslateText.OnLanguageChange += RefreshPage;
@@ -169,6 +161,8 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         public void RefreshPage()
         {
+            foreach (var pair in _selectList)
+                pair.DisplayName = TranslateText.GetTranslateText(pair.Key);
             StateHasChanged();
         }
     }

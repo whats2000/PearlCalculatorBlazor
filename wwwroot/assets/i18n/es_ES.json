@@ -1,56 +1,73 @@
 ﻿{
   "GeneralFTLHeader": "FTL General",
   "ManuallyHeader": "Manual",
+
   "GeneralFTLGeneralHeader": "General",
   "GeneralFTLAdvancedHeader": "Avanzado",
   "GeneralFTLSettingsHeader": "Configuración",
+
   "PearlPosX": "X Perla :",
   "PearlPosY": "Y Perla :",
   "PearlPosZ": "Z Perla :",
+
   "DestinationX": "X Destino :",
   "DestinationZ": "Z Destino :",
+
   "MaxTNT": "Máximo TNT (Total) :",
   "RedTNT": "TNT Roja :",
   "BlueTNT": "TNT Azul:",
   "Offset": "Desfase :",
   "TNTWeight": "Peso TNT",
+
   "PearlSimulate": "Simular Perla",
   "ImportSettings": "Importar Configuración",
   "SaveSettings": "Exportar Configuración",
+
   "ResetToDefault": "Resetear",
+
   "MomentumX": "Velocidad X:",
   "MomentumY": "Velocidad Y:",
   "MomentumZ": "Velocidad Z:",
+
   "DisplayXMotion": "Vel. X",
   "DisplayYMotion": "Vel. Y",
   "DisplayZMotion": "Vel. Z",
+
   "XCoor": "Pos. X",
   "YCoor": "Pos. Y",
   "ZCoor": "Pos. Z",
+
   "TNTXA": "X TNT(A):",
   "TNTYA": "Y TNT(A):",
   "TNTZA": "Z TNT(A):",
+
   "TNTXB": "X TNT(B):",
   "TNTYB": "Y TNT(B):",
   "TNTZB": "Z TNT(B):",
+
   "AmountA": "Cantidad de TNT(A):",
   "AmountB": "Cantidad de TNT(B):",
+
   "CalculateTNTAmount": "Calcular Cantidades de TNT",
   "CalculatePearlTrace": "Simular Pos. Perla",
   "CalculatePearlMomentum": "Simular Vel. Perla",
   "PearlYCoordinate": "Coordenada Y de Perla",
   "PearlYMomentum": "Velocidad Y de Perla",
+
   "DefaultRedTNTPos": "Posición Predet. TNT Roja",
   "DefaultRedTNTPosDesc": "La Posición de la TNT Roja (Respecto a la perla) si el Slime Block no la mueve",
   "DefaultBlueTNTPos": "Posición Predet. TNT Azul",
   "DefaultBlueTNTPosDesc": "La Posición de la TNT Azul (Respecto a la perla) si el Slime Block no la mueve",
+
   "DisplayDistance": "Distancia",
   "DisplayTicks": "Tick",
   "DisplayBlue": "Azul",
   "DisplayRed": "Roja",
   "DisplayTotal": "TNTTotal",
+
   "DisplayDirection": "Dirección de Resultado",
   "DisplayAngle": "Ángulo de Resultado (x | z)",
+
   "SettingsNorthWestTNTX": "X TNT Noroeste",
   "SettingsNorthWestTNTY": "Y TNT Noroeste",
   "SettingsNorthWestTNTZ": "Z TNT Noroeste",
@@ -62,5 +79,15 @@
   "SettingsSouthWestTNTZ": "Z TNT Sudoeste",
   "SettingsSouthEastTNTX": "X TNT Sudeste",
   "SettingsSouthEastTNTY": "Y TNT Sudeste",
-  "SettingsSouthEastTNTZ": "Z TNT Sudeste"
+  "SettingsSouthEastTNTZ": "Z TNT Sudeste",
+
+  "North": "Norte",
+  "South": "Sur",
+  "East": "Este",
+  "West": "Oeste",
+
+  "NorthWest": "Noroeste",
+  "NorthEast": "Noreste",
+  "SouthWest": "Sudoeste",
+  "SouthEast": "Sudeste"
 }

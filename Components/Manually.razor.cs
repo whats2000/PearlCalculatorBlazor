@@ -223,6 +223,14 @@ namespace PearlCalculatorBlazor.Components
 
         protected override void OnInitialized()
         {
+            EventManager.Instance.AddListener<SetRTCountArgs>("tntAmountSetRTCount", (sender, args) =>
+            {
+                ATNTAmount = args.Red;
+                BTNTAmount = args.Blue;
+
+                StateHasChanged();
+            });
+
             TranslateText.OnLanguageChange += RefreshPage;
         }
 
