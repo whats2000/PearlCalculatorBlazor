@@ -35,24 +35,20 @@
 
 <div class="calculator-general-root-mobile">
 
-    <Select @bind-Value="_activeKey"
-            TItem="string"
-            TItemValue="string"
-            Style="width: 100%; margin: 10px 0">
-        <SelectOptions>
-            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_General")" Label="General" />
-            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_Advanced")" Label="Advanced" />
-            <SelectOption TItem="string" TItemValue="string" Value="@("GFTL_Settings")" Label="Settings" />
-        </SelectOptions>
+    <Select DataSource="@_selectList"
+            DefaultValue="@("GeneralFTLGeneralHeader")"
+            ValueName="@nameof(Array.Key)"
+            LabelName="@nameof(Array.DisplayName)"
+            IgnoreItemChanges="false">
     </Select>
 
     <div style="border: 1px solid #EFEFEF; padding: 2px; padding-top: 10px">
 
-        @if (_activeKey == "GFTL_General")
+        @if (_activeKey == "GeneralFTLGeneralHeader")
         {
             <GeneralFTL_General />
         }
-        else if (_activeKey == "GFTL_Advanced")
+        else if (_activeKey == "GeneralFTLAdvancedHeader")
         {
             <GeneralFTL_Advanced />
         }
