@@ -56,12 +56,12 @@ namespace PearlCalculatorLib.General
         /// </summary>
         public static PearlEntity Pearl = new PearlEntity().WithPosition(0 , 170.34722638929408 , 0).WithVector(0 , 0.2716278719434352 , 0);
 
+
+
         /// <summary>
-        /// The Offset between Ender Pearl X and Z coordinate and lava pool ceter coordinate
+        /// The Offset between Ender Pearl X and Z coordinate and lava pool center coordinate
         /// <para>Required for All Calculation in <see cref="Calculation"/></para>
         /// </summary>
-        private static Surface2D _PearlOffset = new Surface2D(0 , 0);
-        
         public static Surface2D PearlOffset
         {
             get => _PearlOffset;
@@ -71,6 +71,7 @@ namespace PearlCalculatorLib.General
                     _PearlOffset = value;
             }
         }
+        private static Surface2D _PearlOffset = new Surface2D(0 , 0);
 
 
 
@@ -89,7 +90,7 @@ namespace PearlCalculatorLib.General
 
 
         /// <summary>
-        /// The weight value for sorting the TNT
+        /// The weight value for sorting the result
         /// <para>Note : Value Must be a Natural Number which is not larger than 100</para>
         /// <para>Required for <see cref="TNTCalculationResultSortComparerByWeighted"/></para>
         /// </summary>
@@ -98,7 +99,7 @@ namespace PearlCalculatorLib.General
 
 
         /// <summary>
-        /// The Max number of TNT in each side
+        /// The Max number of TNT from each side
         /// <para>Required for <see cref="Calculation.CalculateTNTAmount(int, double)"/></para>
         /// </summary>
         public static int MaxTNT;
@@ -118,9 +119,9 @@ namespace PearlCalculatorLib.General
 
 
         /// <summary>
-        /// The acceleration direction of the pearl
+        /// The acceleration direction of the Ender Pearl
         /// <para>Note : Not bound to any calculation. You can store your acceleration direction here or ignore this </para>
-        /// <para>Note : Only Allow for North, South, East, West</para>
+        /// <para>Note : Only Allow For North, South, East, West</para>
         /// </summary>
         public static Direction Direction = Direction.North;
 
@@ -128,14 +129,14 @@ namespace PearlCalculatorLib.General
 
         /// <summary>
         /// The default position in the lava pool. Should be opposite to Blue
-        /// <para>Note : Only Allow for NorthWest, NorthEast, SouthWest, SouthEast</para>
+        /// <para>Note : Only Allow For NorthWest, NorthEast, SouthWest, SouthEast</para>
         /// <para>Required for all calculation in <see cref="Calculation"/></para>
         /// </summary>
         public static Direction DefaultRedDuper = Direction.SouthEast;
 
         /// <summary>
         /// The default position in the lava pool. Should be opposite to Red
-        /// <para>Note : Only Allow for NorthWest, NorthEast, SouthWest, SouthEast</para>
+        /// <para>Note : Only Allow For NorthWest, NorthEast, SouthWest, SouthEast</para>
         /// <para>Required for all calculation in <see cref="Calculation"/></para>
         /// </summary>
         public static Direction DefaultBlueDuper = Direction.NorthWest;
@@ -147,6 +148,17 @@ namespace PearlCalculatorLib.General
         /// <para>Note : It is a Data Output</para>
         /// </summary>
         public static List<TNTCalculationResult> TNTResult = new List<TNTCalculationResult>();
+
+
+        /// <summary>
+        /// A list of TNT configuration. 
+        /// </summary>
+        public static List<int> RedTNTConfiguration = new List<int>();
+
+        /// <summary>
+        /// A list if TNT configuration
+        /// </summary>
+        public static List<int> BlueTNTConfiguration = new List<int>();
 
 
 

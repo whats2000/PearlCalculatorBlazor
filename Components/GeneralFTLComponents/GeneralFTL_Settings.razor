@@ -183,7 +183,7 @@
                 <Select DataSource="@_selectList"
                         @bind-Value="@DefaultRedTNTPosition"
                         DefaultValue="@("SouthEast")"
-                        ValueName="@nameof(ArrayPos.Key)"
+                        ValueName="@nameof(ArrayPos.ActiveKey)"
                         LabelName="@nameof(ArrayPos.DisplayName)"
                         Size="@InputSize.Small"
                         IgnoreItemChanges="false">
@@ -204,7 +204,7 @@
                 <Select DataSource="@_selectList"
                         @bind-Value="@DefaultBlueTNTPosition"
                         DefaultValue="@("NorthWest")"
-                        ValueName="@nameof(ArrayPos.Key)"
+                        ValueName="@nameof(ArrayPos.ActiveKey)"
                         LabelName="@nameof(ArrayPos.DisplayName)"
                         Size="@InputSize.Small"
                         IgnoreItemChanges="false">

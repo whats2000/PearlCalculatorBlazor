@@ -9,6 +9,7 @@ namespace PearlCalculatorBlazor.Components
         {
             public string Key { get; set; }
             public string DisplayName { get; set; }
+            public string ActiveKey { get; set; }
         }
         
         private List<Array> _selectList;
@@ -17,9 +18,9 @@ namespace PearlCalculatorBlazor.Components
         {
             _selectList = new List<Array>
             {
-                new Array {Key = "GeneralFTLGeneralHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLGeneralHeader")},
-                new Array {Key = "GeneralFTLAdvancedHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLAdvancedHeader")},
-                new Array {Key = "GeneralFTLSettingsHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLSettingsHeader")}
+                new Array { ActiveKey="GFTL_General", Key = "GeneralFTLGeneralHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLGeneralHeader")},
+                new Array { ActiveKey="GFTL_Advanced", Key = "GeneralFTLAdvancedHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLAdvancedHeader")},
+                new Array { ActiveKey="GFTL_Settings", Key = "GeneralFTLSettingsHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLSettingsHeader")}
             };
 
             TranslateText.OnLanguageChange += RefreshPage;

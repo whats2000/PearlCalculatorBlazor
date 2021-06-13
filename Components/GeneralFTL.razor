@@ -36,19 +36,20 @@
 <div class="calculator-general-root-mobile">
 
     <Select DataSource="@_selectList"
-            DefaultValue="@("GeneralFTLGeneralHeader")"
-            ValueName="@nameof(Array.Key)"
+            DefaultValue="@("GFTL_General")"
+            @bind-Value="_activeKey"
+            ValueName="@nameof(Array.ActiveKey)"
             LabelName="@nameof(Array.DisplayName)"
             IgnoreItemChanges="false">
     </Select>
 
     <div style="border: 1px solid #EFEFEF; padding: 2px; padding-top: 10px">
 
-        @if (_activeKey == "GeneralFTLGeneralHeader")
+        @if (_activeKey == "GFTL_General")
         {
             <GeneralFTL_General />
         }
-        else if (_activeKey == "GeneralFTLAdvancedHeader")
+        else if (_activeKey == "GFTL_Advanced")
         {
             <GeneralFTL_Advanced />
         }

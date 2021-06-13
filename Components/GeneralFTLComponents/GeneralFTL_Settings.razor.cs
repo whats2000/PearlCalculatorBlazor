@@ -142,7 +142,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         class ArrayPos
         {
-            public string Key { get; set; }
+            public string ActiveKey { get; set; }
             public string DisplayName { get; set; }
         }
 
@@ -150,10 +150,10 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             _selectList = new List<ArrayPos>
             {
-                new ArrayPos {Key = "NorthWest", DisplayName = TranslateText.GetTranslateText("NorthWest")},
-                new ArrayPos {Key = "NorthEast", DisplayName = TranslateText.GetTranslateText("NorthEast")},
-                new ArrayPos {Key = "SouthWest", DisplayName = TranslateText.GetTranslateText("SouthWest")},
-                new ArrayPos {Key = "SouthEast", DisplayName = TranslateText.GetTranslateText("SouthEast")}
+                new ArrayPos { ActiveKey = "NorthWest", DisplayName = TranslateText.GetTranslateText("NorthWest")},
+                new ArrayPos { ActiveKey = "NorthEast", DisplayName = TranslateText.GetTranslateText("NorthEast")},
+                new ArrayPos { ActiveKey = "SouthWest", DisplayName = TranslateText.GetTranslateText("SouthWest")},
+                new ArrayPos { ActiveKey = "SouthEast", DisplayName = TranslateText.GetTranslateText("SouthEast")}
             };
 
             TranslateText.OnLanguageChange += RefreshPage;
@@ -162,7 +162,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         public void RefreshPage()
         {
             foreach (var pair in _selectList)
-                pair.DisplayName = TranslateText.GetTranslateText(pair.Key);
+                pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
             StateHasChanged();
         }
     }
