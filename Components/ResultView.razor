@@ -64,16 +64,39 @@
     }
 </div>
 
-<div>
-    <Row>
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">@TranslateText.GetTranslateText("DisplayDirection")</AntDesign.Col>
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">@TranslateText.GetTranslateText("DisplayAngle")</AntDesign.Col>
-
+<div class="calculator-result-root-default">
+    <Row Class="calculator-result-row">
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">
+            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayDirection")</Text>
+        </AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: #fafafa;">
+            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayAngle")</Text>
+        </AntDesign.Col>
     </Row>
     <Row Class="calculator-result-row">
-        <AntDesign.Col Span="12" Style="background-color: white;">@TranslateText.GetTranslateText(ResultDirection)</AntDesign.Col>
-        <AntDesign.Col Span="12" Style="background-color: white;">@ResultAngle</AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: white;">
+            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText(ResultDirection)</Text>
+        </AntDesign.Col>
+        <AntDesign.Col Span="12" Style="background-color: white;">
+            <Text Style="padding-left: 10px;">@ResultAngle</Text>
+        </AntDesign.Col>
     </Row>
+</div>
+
+<div class="calculator-result-root-mobile">
+    <div style="background-color: #fafafa;">
+        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayDirection")</Text>
+    </div>
+    <div style="background-color: white;">
+        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText(ResultDirection)</Text>
+    </div>
+
+    <div Style="background-color: #fafafa;">
+        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayAngle")</Text>
+    </div>
+    <div Style="background-color: white;">
+        <Text Style="padding-left: 10px;">@ResultAngle</Text>
+    </div>
 </div>
 
 <style>
@@ -81,13 +104,31 @@
         display: none
     }
 
-    .calculator-result-row {
+    .calculator-result-root-default {
         border-style: solid;
         border-Color: #fafafa;
         border-width: 1px;
+        display: block;
+    }
+
+    .calculator-result-root-mobile {
+        display: none;
+    }
+
+    @@media screen and (max-width: 420px) {
+        .calculator-result-root-default {
+            display: none;
+        }
+
+        .calculator-result-root-mobile {
+            border-style: solid;
+            border-Color: #fafafa;
+            border-width: 1px;
+            display: block;
+        }
     }
 </style>
 
 @code {
-    private const string TableScrollY = "710px";
+    private const string TableScrollY = "678px";
 }

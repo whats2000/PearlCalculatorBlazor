@@ -2,9 +2,9 @@
   "GeneralFTLHeader": "FTL General",
   "ManuallyHeader": "Manual",
 
-  "GeneralFTLGeneralHeader": "General",
-  "GeneralFTLAdvancedHeader": "Avanzado",
-  "GeneralFTLSettingsHeader": "Configuración",
+  "GFTL_General": "General",
+  "GFTL_Advanced": "Avanzado",
+  "GFTL_Settings": "Configuración",
 
   "PearlPosX": "X Perla :",
   "PearlPosY": "Y Perla :",

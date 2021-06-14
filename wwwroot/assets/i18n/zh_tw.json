@@ -2,9 +2,9 @@
   "GeneralFTLHeader": "通用FTL",
   "ManuallyHeader": "自訂義FTL",
 
-  "GeneralFTLGeneralHeader": "一般設定",
-  "GeneralFTLAdvancedHeader": "進階設定",
-  "GeneralFTLSettingsHeader": "更多基礎設定",
+  "GFTL_General": "一般設定",
+  "GFTL_Advanced": "進階設定",
+  "GFTL_Settings": "更多基礎設定",
 
   "PearlPosX": "珍珠X座標 :",
   "PearlPosY": "珍珠Y座標 :",

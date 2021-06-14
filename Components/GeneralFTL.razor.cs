@@ -7,20 +7,19 @@ namespace PearlCalculatorBlazor.Components
     {
         class Array
         {
-            public string Key { get; set; }
             public string DisplayName { get; set; }
             public string ActiveKey { get; set; }
         }
-        
+
         private List<Array> _selectList;
 
         protected override void OnInitialized()
         {
             _selectList = new List<Array>
             {
-                new Array { ActiveKey="GFTL_General", Key = "GeneralFTLGeneralHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLGeneralHeader")},
-                new Array { ActiveKey="GFTL_Advanced", Key = "GeneralFTLAdvancedHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLAdvancedHeader")},
-                new Array { ActiveKey="GFTL_Settings", Key = "GeneralFTLSettingsHeader", DisplayName = TranslateText.GetTranslateText("GeneralFTLSettingsHeader")}
+                new Array { ActiveKey="GFTL_General", DisplayName = TranslateText.GetTranslateText("GFTL_General") },
+                new Array { ActiveKey="GFTL_Advanced", DisplayName = TranslateText.GetTranslateText("GFTL_Advanced") },
+                new Array { ActiveKey="GFTL_Settings", DisplayName = TranslateText.GetTranslateText("GFTL_Settings") }
             };
 
             TranslateText.OnLanguageChange += RefreshPage;
@@ -29,7 +28,7 @@ namespace PearlCalculatorBlazor.Components
         public void RefreshPage()
         {
             foreach (var pair in _selectList)
-                pair.DisplayName = TranslateText.GetTranslateText(pair.Key);
+                pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
 
             StateHasChanged();
         }
