@@ -178,7 +178,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 Data.MaxTNT = settings.MaxTNT;
                 Data.Direction = settings.Direction;
 
-                EventManager.Instance.PublishEvent(this, "ExportSettings", new ButtonClickArgs(PublishKey));
+                PearlSimulate();
             }
             catch (Exception e)
             {

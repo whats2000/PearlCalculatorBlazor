@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using GeneralData = PearlCalculatorLib.General.Data;
 using ManuallyData = PearlCalculatorLib.Manually.Data;
+using System;
+using AntDesign;
 
 namespace PearlCalculatorBlazor.Components
 {
@@ -49,6 +51,16 @@ namespace PearlCalculatorBlazor.Components
             ResultAngle = angle.ToString();
         }
 
+        private async Task NoticeWithIcon(NotificationType type, string msg)
+        {
+            await Notice.Open(new NotificationConfig()
+            {
+                Message = "Notification",
+                Description = msg,
+                NotificationType = type
+            });
+        }
+
         protected override void OnInitialized()
         {
             EventManager.Instance.AddListener<ButtonClickArgs>("calculate", (sender, args) =>
@@ -87,11 +99,18 @@ namespace PearlCalculatorBlazor.Components
                 StateHasChanged();
             });
 
-            EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", (sender, args) =>
+            EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", async (sender, args) =>
             {
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
-                AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance));
+                try 
+                { 
+                    AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance)); 
+                }
+                catch(Exception e)
+                {
+                    await NoticeWithIcon(NotificationType.Error, e.ToString());
+                }
 
                 StateHasChanged();
             });
@@ -151,13 +170,6 @@ namespace PearlCalculatorBlazor.Components
                 ShowDirectionResult(ManuallyData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
                 ShowMode = ShowResultMode.Momentum;
-
-                StateHasChanged();
-            });
-
-            EventManager.Instance.AddListener<ButtonClickArgs>("ExportSettings", (sender, args) =>
-            {
-                ShowDirectionResult(GeneralData.Pearl.Position, GeneralData.Destination);
 
                 StateHasChanged();
             });
