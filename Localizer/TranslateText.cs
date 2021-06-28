@@ -17,9 +17,9 @@ namespace PearlCalculatorBlazor.Localizer
         };
 
         private const string FallbackLanguage = "en";       
-        private string _currentLanguage = string.Empty;
+        private string _currentLanguage = FallbackLanguage;
 
-        private static HttpClient _httpClient = new();
+        private static HttpClient _httpClient;
 
         private static Dictionary<string, string> _displayText = new();
         private static Dictionary<string, string> _fallbackDisplayText = new();
