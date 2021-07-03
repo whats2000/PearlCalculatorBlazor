@@ -55,8 +55,10 @@
   "CalculatePearlTrace": "计算珍珠轨迹",
   "CalculatePearlMomentum": "计算珍珠动能",
 
-  "PearlYCoordinate": "珍珠Y坐标",
-  "PearlYMomentum": "珍珠Y矢量",
+  "PearlY": "珍珠Y",
+  "Coordinate": "坐标",
+  "Momentum": "矢量",
+
   "DefaultRedTNTPos": "预设红色TNT方位",
   "DefaultRedTNTPosDesc": "预设从红色阵列复制的TNT\n在不被粘液块改位置下相对于珍珠的方位",
   "DefaultBlueTNTPos": "预设蓝色TNT方位",
@@ -71,16 +73,8 @@
   "DisplayDirection": "方位",
   "DisplayAngle": "发射角度 (x | z)",
 
-  "SettingsNorthWestTNTX": "North West TNT (X坐标)",
-  "SettingsNorthWestTNTY": "North West TNT (Y坐标)",
-  "SettingsNorthWestTNTZ": "North West TNT (Z坐标)",
-  "SettingsNorthEastTNTX": "North East TNT (X坐标)",
-  "SettingsNorthEastTNTY": "North East TNT (Y坐标)",
-  "SettingsNorthEastTNTZ": "North East TNT (Z坐标)",
-  "SettingsSouthWestTNTX": "South West TNT (X坐标)",
-  "SettingsSouthWestTNTY": "South West TNT (Y坐标)",
-  "SettingsSouthWestTNTZ": "South West TNT (Z坐标)",
-  "SettingsSouthEastTNTX": "South East TNT (X坐标)",
-  "SettingsSouthEastTNTY": "South East TNT (Y坐标)",
-  "SettingsSouthEastTNTZ": "South East TNT (Z坐标)"
+  "SettingsNorthWestTNT": "North West TNT",
+  "SettingsNorthEastTNT": "North East TNT",
+  "SettingsSouthWestTNT": "South West TNT",
+  "SettingsSouthEastTNT": "South East TNT"
 }

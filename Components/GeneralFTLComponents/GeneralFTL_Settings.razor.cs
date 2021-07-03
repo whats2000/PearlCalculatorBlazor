@@ -119,24 +119,12 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             }
         };
 
-        readonly Checkbox NorthWestTntXCheck = new();
-        readonly Checkbox NorthWestTntYCheck = new();
-        readonly Checkbox NorthWestTntZCheck = new();
+        readonly Checkbox NorthWestTntCheck = new();
+        readonly Checkbox NorthEastTntCheck = new();
+        readonly Checkbox SouthWestTntCheck = new();
+        readonly Checkbox SouthEastTntCheck = new();
 
-        readonly Checkbox NorthEastTntXCheck = new();
-        readonly Checkbox NorthEastTntYCheck = new();
-        readonly Checkbox NorthEastTntZCheck = new();
-
-        readonly Checkbox SouthWestTntXCheck = new();
-        readonly Checkbox SouthWestTntYCheck = new();
-        readonly Checkbox SouthWestTntZCheck = new();
-
-        readonly Checkbox SouthEastTntXCheck = new();
-        readonly Checkbox SouthEastTntYCheck = new();
-        readonly Checkbox SouthEastTntZCheck = new();
-
-        readonly Checkbox PearlYCoordinateCheck = new();
-        readonly Checkbox PearlYMomentumCheck = new();
+        readonly Checkbox PearlYCheck = new();
 
         List<ArrayPos> _selectList;
 
