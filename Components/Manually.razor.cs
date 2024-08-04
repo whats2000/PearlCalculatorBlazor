@@ -29,10 +29,10 @@ namespace PearlCalculatorBlazor.Components
 
         private double ManuallyPearlMomentumX
         {
-            get => Data.Pearl.Position.X;
+            get => Data.Pearl.Motion.X;
             set
             {
-                Data.Pearl.Position.X = value;
+                Data.Pearl.Motion.X = value;
                 _valueHasChanged = true;
             }
         }
@@ -69,10 +69,10 @@ namespace PearlCalculatorBlazor.Components
 
         private double ManuallyPearlMomentumZ
         {
-            get => Data.Pearl.Position.Z;
+            get => Data.Pearl.Motion.Z;
             set
             {
-                Data.Pearl.Position.Z = value;
+                Data.Pearl.Motion.Z = value;
                 _valueHasChanged = true;
             }
         }
