@@ -22,7 +22,7 @@ namespace PearlCalculatorBlazor.Pages
             TranslateText.OnLanguageChange += RefreshPage;
 
             // Check if a language is stored in localStorage
-            var storedLanguage = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "userLanguage");
+            var storedLanguage = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_userLanguage");
 
             if (!string.IsNullOrEmpty(storedLanguage))
             {

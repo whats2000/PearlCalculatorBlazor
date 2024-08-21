@@ -19,7 +19,24 @@ namespace PearlCalculatorBlazor
             var rootElement = document.RootElement;
 
             var settings = new Settings();
-            
+
+            // If the root element has a "Version" property, it's an app version, otherwise it's a web version
+            if (rootElement.TryGetProperty("Version", out _))
+            {
+                settings = ReadAppSettings(rootElement);
+            }
+            else
+            {
+                settings = ReadWebSettings(rootElement);
+            }
+
+            return settings;
+        }
+
+        private Settings ReadWebSettings(JsonElement rootElement)
+        {
+            var settings = new Settings();
+
             settings.NorthEastTNT = ReadSpace3D(rootElement.GetProperty(nameof(settings.NorthEastTNT)));
             settings.NorthWestTNT = ReadSpace3D(rootElement.GetProperty(nameof(settings.NorthWestTNT)));
             settings.SouthEastTNT = ReadSpace3D(rootElement.GetProperty(nameof(settings.SouthEastTNT)));
@@ -37,7 +54,7 @@ namespace PearlCalculatorBlazor
                     out var direction)
                     ? direction
                     : Direction.North;
-            
+
             var pearlElemRoot = rootElement.GetProperty(nameof(settings.Pearl));
 
             settings.Pearl = new PearlEntity
@@ -45,7 +62,42 @@ namespace PearlCalculatorBlazor
                 Position = ReadSpace3D(pearlElemRoot.GetProperty(nameof(settings.Pearl.Position))),
                 Motion = ReadSpace3D(pearlElemRoot.GetProperty(nameof(settings.Pearl.Motion)))
             };
-            
+
+            return settings;
+        }
+
+        private Settings ReadAppSettings(JsonElement rootElement)
+        {
+            var settings = new Settings();
+
+            var cannonSettings = rootElement.GetProperty("CannonSettings")[0];
+
+            settings.NorthEastTNT = ReadSpace3D(cannonSettings.GetProperty(nameof(settings.NorthEastTNT)));
+            settings.NorthWestTNT = ReadSpace3D(cannonSettings.GetProperty(nameof(settings.NorthWestTNT)));
+            settings.SouthEastTNT = ReadSpace3D(cannonSettings.GetProperty(nameof(settings.SouthEastTNT)));
+            settings.SouthWestTNT = ReadSpace3D(cannonSettings.GetProperty(nameof(settings.SouthWestTNT)));
+
+            settings.Destination = ReadSurface2D(rootElement.GetProperty(nameof(settings.Destination))).ToSpace3D();
+            settings.Offset = ReadSurface2D(cannonSettings.GetProperty(nameof(settings.Offset)));
+
+            settings.RedTNT = rootElement.GetProperty(nameof(settings.RedTNT)).GetInt32();
+            settings.BlueTNT = rootElement.GetProperty(nameof(settings.BlueTNT)).GetInt32();
+            settings.MaxTNT = cannonSettings.GetProperty(nameof(settings.MaxTNT)).GetInt32();
+
+            settings.Direction =
+                Enum.TryParse<Direction>(rootElement.GetProperty(nameof(settings.Direction)).GetString(),
+                    out var direction)
+                    ? direction
+                    : Direction.North;
+
+            var pearlElemRoot = cannonSettings.GetProperty(nameof(settings.Pearl));
+
+            settings.Pearl = new PearlEntity
+            {
+                Position = ReadSpace3D(pearlElemRoot.GetProperty(nameof(settings.Pearl.Position))),
+                Motion = ReadSpace3D(pearlElemRoot.GetProperty(nameof(settings.Pearl.Motion)))
+            };
+
             return settings;
         }
 
