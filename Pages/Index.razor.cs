@@ -14,7 +14,7 @@ namespace PearlCalculatorBlazor.Pages
             await TransText.LoadLanguageAsync(language);
 
             // Store the selected language in localStorage
-            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "userLanguage", language);
+            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "PearlCalculatorBlazor_userLanguage", language);
         }
 
         protected override async void OnInitialized()
