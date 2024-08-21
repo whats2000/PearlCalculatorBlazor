@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="PearlCalculatorLib\**" />
+    <Compile Remove="wwwroot\resources\**" />
     <Content Remove="PearlCalculatorLib\**" />
+    <Content Remove="wwwroot\resources\**" />
     <EmbeddedResource Remove="PearlCalculatorLib\**" />
+    <EmbeddedResource Remove="wwwroot\resources\**" />
     <None Remove="PearlCalculatorLib\**" />
+    <None Remove="wwwroot\resources\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,21 +36,6 @@
 
   <ItemGroup>
     <Folder Include="Localizer\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Include="wwwroot\resources\assets\i18n\en.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="wwwroot\resources\assets\i18n\zh_cn.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="wwwroot\resources\assets\i18n\zh_tw.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

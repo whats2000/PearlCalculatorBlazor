@@ -21,6 +21,10 @@ jobs:
       with:
         html_path: ${{ env.PUBLISH_DIR }}/index.html
         base_href: /PearlCalculatorBlazor/
+
+    - name: Change base-tag in index.html from / to PearlCalculatorBlazor
+      run: |
+        sed -i 's|<base href="/"|<base href="/PearlCalculatorBlazor/"|' ${{ env.PUBLISH_DIR }}/index.html
         
     - name: Fix service-worker-assets.js hashes
       working-directory: bin/Release/net5.0/publish/wwwroot
