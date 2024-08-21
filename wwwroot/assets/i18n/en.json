@@ -66,6 +66,8 @@
   "DisplayBlue": "Blue",
   "DisplayRed": "Red",
   "DisplayTotal": "TotalTNT",
+  "TNTCalculationResultTooltip": "Click this row to automatically input the values into the Blue TNT and Red TNT input fields.",
+  "TNTCalculationSetSucessMessage": "TNT Calculation Set Sucessfully",
 
   "DisplayDirection": "Result Direction",
   "DisplayAngle": "Result Angle (x | z)",

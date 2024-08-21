@@ -69,6 +69,8 @@
   "DisplayBlue": "藍色",
   "DisplayRed": "紅色",
   "DisplayTotal": "總量",
+  "TNTCalculationResultTooltip": "點擊此行可自動將數值輸入到藍色 TNT 和紅色 TNT 的輸入欄位。",
+  "TNTCalculationSetSucessMessage": "成功設定 TNT 數量。",
 
   "DisplayDirection": "方位",
   "DisplayAngle": "發射角度 (x | z)",

@@ -14,9 +14,16 @@
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
                ScrollY=@(TableScrollY)
-               OnRowClick="OnAmountRowClick"
+               OnRowClick="OnAmountRowClickAsync"
                Class="calculator-result-table">
-
+            <!-- A Tooltips with icon for info click can set the red and blue tnt amounts -->
+            <ActionColumn Title="@TranslateText.GetTranslateText("DisplayAction")" Width="50px">
+                <Tooltip Title="@TranslateText.GetTranslateText("TNTCalculationResultTooltip")">
+                    <Text Type="secondary">
+                        <Icon Type="info-circle" Theme="outline" />
+                    </Text>
+                </Tooltip>
+            </ActionColumn>
             <Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
                 <Tooltip Title="@context.Distance.ToString()">
                     <Text>@context.Distance.ToString().Substring(0, 5)</Text>
@@ -26,7 +33,6 @@
             <Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></Column>
             <Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></Column>
             <Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></Column>
-
         </Table>
     }
     else if (ShowMode == ShowResultMode.Trace)

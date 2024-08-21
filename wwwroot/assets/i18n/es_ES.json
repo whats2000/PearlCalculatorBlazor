@@ -66,6 +66,8 @@
   "DisplayBlue": "Azul",
   "DisplayRed": "Roja",
   "DisplayTotal": "TNTTotal",
+  "TNTCalculationResultTooltip": "Haga clic en esta fila para ingresar automáticamente los valores en los campos de entrada de TNT Azul y TNT Rojo.",
+  "TNTCalculationSetSucessMessage": "Valores de TNT calculados con éxito.",
 
   "DisplayDirection": "Dirección de Resultado",
   "DisplayAngle": "Ángulo de Resultado (x | z)",

@@ -177,9 +177,10 @@ namespace PearlCalculatorBlazor.Components
             TranslateText.OnLanguageChange += RefreshPage;
         }
 
-        private void OnAmountRowClick(RowData<TNTCalculationResult> res)
+        private async Task OnAmountRowClickAsync(RowData<TNTCalculationResult> res)
         {
             EventManager.Instance.PublishEvent(this, "tntAmountSetRTCount", new SetRTCountArgs("ResultView", res.Data.Red, res.Data.Blue));
+            await NoticeWithIcon(NotificationType.Success, TranslateText.GetTranslateText("TNTCalculationSetSucessMessage"));
         }
 
         public void RefreshPage()
