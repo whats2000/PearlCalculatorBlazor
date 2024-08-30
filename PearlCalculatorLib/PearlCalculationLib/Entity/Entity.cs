@@ -1,8 +1,6 @@
-﻿using PearlCalculatorLib.PearlCalculationLib.MathLib;
-using PearlCalculatorLib.PearlCalculationLib.World;
+﻿using PearlCalculatorLib.PearlCalculationLib.World;
+using PearlCalculatorLib.PearlCalculationLib.AABB;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PearlCalculatorLib.PearlCalculationLib.Entity
 {
@@ -11,9 +9,45 @@ namespace PearlCalculatorLib.PearlCalculationLib.Entity
     {
         public Space3D Motion;
         public Space3D Position;
+        private AABBBox _aabb = new AABBBox();
+
+        public abstract void Tick();
 
         public abstract Space3D Size { get; }
 
-        public abstract void Tick();
+        public virtual AABBBox AABB => _aabb.ReSize(Position, Position + Size);
+    }
+
+    public static class EntityExtension
+    {
+        public static T WithPosition<T>(this T entity, double x, double y, double z) where T : Entity
+        {
+            entity.Position = new Space3D(x, y, z);
+            return entity;
+        }
+
+        public static T WithMotion<T>(this T entity, double x, double y, double z) where T : Entity
+        {
+            entity.Motion = new Space3D(x, y, z);
+            return entity;
+        }
+
+        public static T AddPosition<T>(this T entity, Space3D postion) where T : Entity
+        {
+            entity.Position += postion;
+            return entity;
+        }
+
+        public static T AddPosition<T>(this T entity, Surface2D postion) where T : Entity
+        {
+            entity.Position += postion.ToSpace3D();
+            return entity;
+        }
+
+        public static T AddMotion<T>(this T entity, Space3D motion) where T : Entity
+        {
+            entity.Motion += motion;
+            return entity;
+        }
     }
 }

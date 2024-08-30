@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace PearlCalculatorLib.PearlCalculationLib.MathLib
 {
+    /// <summary>
+    /// Ask Mojang for it's weird API
+    /// <para>I have No clue about it</para>
+    /// </summary>
     public static class MathHelper
     {
         public static float Sqrt(double value) => (float)Math.Sqrt(value);
@@ -14,9 +14,9 @@ namespace PearlCalculatorLib.PearlCalculationLib.MathLib
 
         public static double RadiantToDegree(double radiant) => radiant * 180 / Math.PI;
 
-        public static bool IsInside(double border1 , double border2 , double num)
+        public static bool IsInside(double border1, double border2, double num)
         {
-            return num <= Math.Max(border1 , border2) && num >= Math.Min(border1 , border2);
+            return num <= Math.Max(border1, border2) && num >= Math.Min(border1, border2);
         }
     }
 }

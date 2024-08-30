@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading;
 
 namespace PearlCalculatorLib.PearlCalculationLib.World
 {
@@ -33,15 +27,26 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
 
         public static bool IsWest(this Direction direction) => (direction & Direction.West) > 0;
 
+        public static Direction Invert(this Direction direction)
+        {
+            int result = 0;
+
+            if (((int)direction & 0b0011) > 0)
+                result = ~(int)direction & 0b0011;
+            if (((int)direction & 0b1100) > 0)
+                result |= ~(int)direction & 0b1100;
+
+            return (Direction)result;
+        }
     }
 
     public static class DirectionUtils
     {
-        public static Direction FormName(string name) => Enum.TryParse<Direction>(name , out var value) ? value : Direction.None;
+        public static Direction FormName(string name) => Enum.TryParse<Direction>(name, out var value) ? value : Direction.None;
 
-        public static bool TryParse(string s , out Direction result)
+        public static bool TryParse(string s, out Direction result)
         {
-            switch(s)
+            switch (s)
             {
                 case "N":
                 case "North":
@@ -83,7 +88,21 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
                     result = Direction.None;
                     return false;
             }
+        }
 
+        public static Direction GetDirection(double angle)
+        {
+            Direction direction = Direction.None;
+
+            if (angle > -135 && angle <= -45)
+                direction = Direction.East;
+            else if (angle > -45 && angle <= 45)
+                direction = Direction.South;
+            else if (angle > 45 && angle <= 135)
+                direction = Direction.West;
+            else if ((angle > 135 && angle <= 180) || (angle > -180 && angle <= -135))
+                direction = Direction.North;
+            return direction;
         }
     }
 }

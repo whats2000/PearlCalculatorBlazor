@@ -1,9 +1,5 @@
 ﻿using PearlCalculatorLib.PearlCalculationLib.Entity;
-using PearlCalculatorLib.PearlCalculationLib.MathLib;
-using PearlCalculatorLib.PearlCalculationLib.World;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PearlCalculatorLib.Result
 {
@@ -21,7 +17,7 @@ namespace PearlCalculatorLib.Result
 
     public static class TNTCalculationResultExtension
     {
-        public static void SortByWeightedDistance(this List<TNTCalculationResult> results , TNTResultSortByWeightedArgs args)
+        public static void SortByWeightedDistance(this List<TNTCalculationResult> results, TNTResultSortByWeightedArgs args)
         {
             results.Sort(new TNTCalculationResultSortComparerByWeighted(args).ByDistance);
         }
@@ -41,10 +37,9 @@ namespace PearlCalculatorLib.Result
             results.Sort(TNTCalculationResultSortComparer.ByTotal);
         }
 
-        public static void SortByWeightedTotal(this List<TNTCalculationResult> results , TNTResultSortByWeightedArgs args)
+        public static void SortByWeightedTotal(this List<TNTCalculationResult> results, TNTResultSortByWeightedArgs args)
         {
             results.Sort(new TNTCalculationResultSortComparerByWeighted(args).ByTotal);
         }
-
     }
 }

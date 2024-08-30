@@ -1,30 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace PearlCalculatorLib.PearlCalculationLib.World
 {
     [Serializable]
-    public class Surface2D
+    public struct Surface2D
     {
+        public static readonly Surface2D Zero = new Surface2D();
+
         public double X;
         public double Z;
-        public static readonly Surface2D zero = new Surface2D();
 
-        public Surface2D()
-        {
+        public double Length => Math.Sqrt(X * X + Z * Z);
 
-        }
-        public Surface2D(double x , double z)
+        public Surface2D Normalized => Length == 0 ? Zero : this / Length;
+
+        public Surface2D(double x, double z)
         {
             X = x;
             Z = z;
         }
 
-        public Space3D ToSpace3D() => new Space3D(X , 0 , Z);
+        public Space3D ToSpace3D() => new Space3D(X, 0, Z);
 
         public override string ToString() => $"Coordinate : {X} , {Z}";
 
@@ -36,26 +32,34 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
 
         public bool IsWest(Surface2D position2) => position2.Z > Z;
 
+        public bool IsClockWise(Surface2D vector2) => vector2.Transform(Normalized, Zero) > 0;
+
+        public bool IsCounterClockWise(Surface2D vector2) => vector2.Transform(Normalized, Zero) < 0;
+
         public double Angle(Surface2D position2) => Math.Atan((position2.Z - Z) / (position2.X - X)) / Math.PI * 180;
 
         public bool IsOrigin() => X == 0 && Z == 0;
 
-        public bool IsInside(Surface2D SouthEastConer , Surface2D NorthWestConer)
+        public bool IsInside(Surface2D southEastConer, Surface2D northWestConer)
         {
-            return X < SouthEastConer.X && Z < SouthEastConer.Z && X > NorthWestConer.X && Z > NorthWestConer.Z;
+            return X < southEastConer.X && Z < southEastConer.Z && X > northWestConer.X && Z > northWestConer.Z;
         }
 
         public double AngleInRad(Surface2D position2) => Math.Atan(position2.Z - Z / position2.X - X);
 
-        public static Space3D FromPolarCoordinate(double lenght , double Radinat)
+        public static Space3D FromPolarCoordinate(double lenght, double radinat) => new Space3D
         {
-            Space3D result = new Space3D(0 , 0 , 0)
-            {
-                X = lenght * Math.Sin(Radinat) ,
-                Z = lenght * Math.Cos(Radinat)
-            };
-            return result;
-        }
+            X = lenght * Math.Sin(radinat),
+            Z = lenght * Math.Cos(radinat)
+        };
+
+        public Surface2D Absolute() => new Surface2D(Math.Abs(X), Math.Abs(Z));
+
+        public double Distance(Surface2D position2) => Math.Sqrt(Math.Pow(position2.X - X, 2) + Math.Pow(position2.Z - Z, 2));
+
+        public override bool Equals(object obj) => obj is Surface2D s && Equals(s);
+
+        public Surface2D Transform(Surface2D iHat, Surface2D jHat) => X * iHat + Z * jHat;
 
         public bool AxialDistanceLessThan(double distance) => Math.Abs(X) < distance && Math.Abs(Z) < distance;
 
@@ -67,30 +71,42 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
 
         public bool AxialDistanceLargerOrEqualTo(double distance) => AxialDistanceLargerThan(distance) || AxialDistanceEqualTo(distance);
 
-        public Chunk ToChunk() => new Chunk((int)Math.Floor(X / 16) , (int)Math.Floor(Z / 16));
+        public Chunk ToChunk() => new Chunk((int)Math.Floor(X / 16), (int)Math.Floor(Z / 16));
 
-        public Surface2D Round() => new Surface2D(Math.Round(X) , Math.Round(Z));
+        public Surface2D Round() => new Surface2D(Math.Round(X), Math.Round(Z));
 
-        public static Surface2D operator +(Surface2D left , Surface2D right) => new Surface2D(left.X + right.X , left.Z + right.Z);
+        public override int GetHashCode() => X.GetHashCode() ^ Z.GetHashCode();
 
-        public static Surface2D operator -(Surface2D left , Surface2D right) => new Surface2D(left.X - right.X , left.Z - right.Z);
+        public static Surface2D operator +(Surface2D left, Surface2D right) => new Surface2D(left.X + right.X, left.Z + right.Z);
 
-        public static bool operator <(Surface2D left , double right) => left.X < right && left.Z < right;
+        public static Surface2D operator -(Surface2D left, Surface2D right) => new Surface2D(left.X - right.X, left.Z - right.Z);
 
-        public static bool operator >(Surface2D left , double right) => left.X > right && left.Z > right;
+        public static Surface2D operator *(Surface2D left, double right) => new Surface2D(left.X * right, left.Z * right);
 
-        public static bool operator <(Surface2D left , int right) => left.X < right && left.Z < right;
+        public static Surface2D operator *(double left, Surface2D right) => new Surface2D(left * right.X, left * right.Z);
 
-        public static bool operator >(Surface2D left , int right) => left.X > right && left.Z > right;
+        public static Surface2D operator /(Surface2D left, double right) => new Surface2D(left.X / right, left.Z / right);
 
-        public static bool operator <=(Surface2D left , double right) => left.X <= right && left.Z <= right;
+        public static bool operator <(Surface2D left, double right) => left.X < right && left.Z < right;
 
-        public static bool operator >=(Surface2D left , double right) => left.X >= right && left.Z >= right;
+        public static bool operator >(Surface2D left, double right) => left.X > right && left.Z > right;
 
-        public static bool operator <=(Surface2D left , int right) => left.X <= right && left.Z <= right;
+        public static bool operator <(Surface2D left, int right) => left.X < right && left.Z < right;
 
-        public static bool operator >=(Surface2D left , int right) => left.X >= right && left.Z >= right;
+        public static bool operator >(Surface2D left, int right) => left.X > right && left.Z > right;
 
+        public static bool operator <=(Surface2D left, double right) => left.X <= right && left.Z <= right;
 
+        public static bool operator >=(Surface2D left, double right) => left.X >= right && left.Z >= right;
+
+        public static bool operator <=(Surface2D left, int right) => left.X <= right && left.Z <= right;
+
+        public static bool operator >=(Surface2D left, int right) => left.X >= right && left.Z >= right;
+
+        public static bool operator ==(Surface2D left, double right) => left.X == right && left.Z == right;
+        public static bool operator !=(Surface2D left, double right) => !(left == right);
+
+        public static bool operator ==(Surface2D left, int right) => left.X == right && left.Z == right;
+        public static bool operator !=(Surface2D left, int right) => !(left == right);
     }
 }

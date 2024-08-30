@@ -91,7 +91,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             EventManager.Instance.AddListener<SetRTCountArgs>("tntAmountSetRTCount", (sender, args) =>
             {
-                Direction = Data.Pearl.Position.Direction(Data.Pearl.Position.WorldAngle(Data.Destination));
+                Direction = DirectionUtils.GetDirection(Data.Pearl.Position.WorldAngle(Data.Destination));
                 RedTNT = (uint)args.Red;
                 BlueTNT = (uint)args.Blue;
                 StateHasChanged();

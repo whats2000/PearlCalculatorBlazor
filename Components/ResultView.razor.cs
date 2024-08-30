@@ -46,7 +46,7 @@ namespace PearlCalculatorBlazor.Components
             if (angle == 370)
                 return;
 
-            ResultDirection = pearlPos.Direction(angle).ToString();
+            ResultDirection = DirectionUtils.GetDirection(angle).ToString();
 
             ResultAngle = angle.ToString();
         }
