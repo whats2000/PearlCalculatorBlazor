@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 using PearlCalculatorBlazor.Localizer;
+using PearlCalculatorLib.PearlCalculationLib.World;
 
 namespace PearlCalculatorBlazor.Components
 {
@@ -17,162 +18,179 @@ namespace PearlCalculatorBlazor.Components
 
         private List<Entity> _calculateResult;
 
+        private ManuallyData _manuallyData;
+
+        protected override void OnInitialized()
+        {
+            _manuallyData = new ManuallyData(0, 0, new Space3D(), new Space3D(), new Surface2D(), new PearlEntity());
+
+            EventManager.Instance.AddListener<SetRTCountArgs>("tntAmountSetRTCount", (sender, args) =>
+            {
+                _manuallyData.ATNTAmount = args.Red;
+                _manuallyData.BTNTAmount = args.Blue;
+
+                StateHasChanged();
+            });
+
+            TranslateText.OnLanguageChange += RefreshPage;
+        }
+
         private double ManuallyPearlPosX
         {
-            get => Data.Pearl.Position.X;
+            get => _manuallyData.Pearl.Position.X;
             set
             {
-                Data.Pearl.Position.X = value;
+                _manuallyData.Pearl.Position.X = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyPearlMomentumX
         {
-            get => Data.Pearl.Motion.X;
+            get => _manuallyData.Pearl.Motion.X;
             set
             {
-                Data.Pearl.Motion.X = value;
+                _manuallyData.Pearl.Motion.X = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyPearlPosY
         {
-            get => Data.Pearl.Position.Y;
+            get => _manuallyData.Pearl.Position.Y;
             set
             {
-                Data.Pearl.Position.Y = value;
+                _manuallyData.Pearl.Position.Y = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyPearlMomentumY
         {
-            get => Data.Pearl.Motion.Y;
+            get => _manuallyData.Pearl.Motion.Y;
             set
             {
-                Data.Pearl.Motion.Y = value;
+                _manuallyData.Pearl.Motion.Y = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyPearlPosZ
         {
-            get => Data.Pearl.Position.Z;
+            get => _manuallyData.Pearl.Position.Z;
             set
             {
-                Data.Pearl.Position.Z = value;
+                _manuallyData.Pearl.Position.Z = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyPearlMomentumZ
         {
-            get => Data.Pearl.Motion.Z;
+            get => _manuallyData.Pearl.Motion.Z;
             set
             {
-                Data.Pearl.Motion.Z = value;
+                _manuallyData.Pearl.Motion.Z = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ATNTX
         {
-            get => Data.ATNT.X;
+            get => _manuallyData.ATNT.X;
             set
             {
-                Data.ATNT.X = value;
+                _manuallyData.ATNT.X = value;
                 _valueHasChanged = true;
             }
         }
 
         private double BTNTX
         {
-            get => Data.BTNT.X;
+            get => _manuallyData.BTNT.X;
             set
             {
-                Data.BTNT.X = value;
+                _manuallyData.BTNT.X = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ATNTY
         {
-            get => Data.ATNT.Y;
+            get => _manuallyData.ATNT.Y;
             set
             {
-                Data.ATNT.Y = value;
+                _manuallyData.ATNT.Y = value;
                 _valueHasChanged = true;
             }
         }
 
         private double BTNTY
         {
-            get => Data.BTNT.Y;
+            get => _manuallyData.BTNT.Y;
             set
             {
-                Data.BTNT.Y = value;
+                _manuallyData.BTNT.Y = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ATNTZ
         {
-            get => Data.ATNT.Z;
+            get => _manuallyData.ATNT.Z;
             set
             {
-                Data.ATNT.Z = value;
+                _manuallyData.ATNT.Z = value;
                 _valueHasChanged = true;
             }
         }
 
         private double BTNTZ
         {
-            get => Data.BTNT.Z;
+            get => _manuallyData.BTNT.Z;
             set
             {
-                Data.BTNT.Z = value;
+                _manuallyData.BTNT.Z = value;
                 _valueHasChanged = true;
             }
         }
 
         private int ATNTAmount
         {
-            get => Data.ATNTAmount;
+            get => _manuallyData.ATNTAmount;
             set
             {
-                Data.ATNTAmount = value;
+                _manuallyData.ATNTAmount = value;
                 _valueHasChanged = true;
             }
         }
 
         private int BTNTAmount
         {
-            get => Data.BTNTAmount;
+            get => _manuallyData.BTNTAmount;
             set
             {
-                Data.BTNTAmount = value;
+                _manuallyData.BTNTAmount = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyDestinationX
         {
-            get => Data.Destination.X;
+            get => _manuallyData.Destination.X;
             set
             {
-                Data.Destination.X = value;
+                _manuallyData.Destination.X = value;
                 _valueHasChanged = true;
             }
         }
 
         private double ManuallyDestinationZ
         {
-            get => Data.Destination.Z;
+            get => _manuallyData.Destination.Z;
             set
             {
-                Data.Destination.Z = value;
+                _manuallyData.Destination.Z = value;
                 _valueHasChanged = true;
             }
         }
@@ -200,10 +218,10 @@ namespace PearlCalculatorBlazor.Components
 
             List<TNTCalculationResult> results = null;
 
-            var isSu = await Task.Run(() => Calculation.CalculateTNTAmount(Data.Destination, 100, out results));
+            var isSu = await Task.Run(() => Calculation.CalculateTNTAmount(_manuallyData, 100, 10, out results));
 
             if (isSu)
-                EventManager.Instance.PublishEvent(this, "calculate", new CalculateTNTAmuontArgs(PublishKey, results));
+                EventManager.Instance.PublishEvent(this, "calculate", new CalculateTNTAmuontArgs(PublishKey, _manuallyData, results));
 
             loading.Start();
 
@@ -215,23 +233,10 @@ namespace PearlCalculatorBlazor.Components
         private void ManuallyCalculatePearl(string key)
         {
             if (_valueHasChanged)
-                _calculateResult = Calculation.CalculatePearl(Data.ATNTAmount, Data.BTNTAmount, 100);
+                _calculateResult = Calculation.CalculatePearlTrace(_manuallyData, 100);
             _valueHasChanged = false;
 
-            EventManager.Instance.PublishEvent(this, key, new PearlSimulateArgs(PublishKey, _calculateResult));
-        }
-
-        protected override void OnInitialized()
-        {
-            EventManager.Instance.AddListener<SetRTCountArgs>("tntAmountSetRTCount", (sender, args) =>
-            {
-                ATNTAmount = args.Red;
-                BTNTAmount = args.Blue;
-
-                StateHasChanged();
-            });
-
-            TranslateText.OnLanguageChange += RefreshPage;
+            EventManager.Instance.PublishEvent(this, key, new PearlSimulateArgs(PublishKey, _manuallyData.Pearl, _calculateResult));
         }
 
         public void RefreshPage()

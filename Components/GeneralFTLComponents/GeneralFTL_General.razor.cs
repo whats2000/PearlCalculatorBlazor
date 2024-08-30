@@ -135,7 +135,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         private void PearlSimulate()
         {
             var pearlTraceList = Calculation.CalculatePearlTrace((int)RedTNT, (int)BlueTNT, 100, Direction);
-            EventManager.Instance.PublishEvent(this, "simulate", new PearlSimulateArgs(PublishKey, pearlTraceList));
+            EventManager.Instance.PublishEvent(this, "simulate", new PearlSimulateArgs(PublishKey, Data.Pearl, pearlTraceList));
         }
 
         private async void ImportSettings_OnClick()

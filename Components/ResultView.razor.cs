@@ -6,10 +6,9 @@ using PearlCalculatorBlazor.Localizer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GeneralData = PearlCalculatorLib.General.Data;
-using ManuallyData = PearlCalculatorLib.Manually.Data;
 using System;
 using AntDesign;
+using PearlCalculatorLib.General;
 
 namespace PearlCalculatorBlazor.Components
 {
@@ -67,11 +66,11 @@ namespace PearlCalculatorBlazor.Components
             {
                 _pageIndex = 1;
 
-                AmountResult = GeneralData.TNTResult;
+                AmountResult = Data.TNTResult;
 
                 ShowMode = ShowResultMode.Amount;
 
-                ShowDirectionResult(GeneralData.Pearl.Position, GeneralData.Destination);
+                ShowDirectionResult(Data.Pearl.Position, Data.Destination);
 
                 StateHasChanged();
             });
@@ -92,7 +91,7 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
-                ShowDirectionResult(GeneralData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
+                ShowDirectionResult(args.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
                 ShowMode = ShowResultMode.Trace;
 
@@ -105,7 +104,7 @@ namespace PearlCalculatorBlazor.Components
 
                 try 
                 { 
-                    AmountResult.SortByWeightedDistance(new(GeneralData.TNTWeight, GeneralData.MaxCalculateTNT, GeneralData.MaxCalculateDistance)); 
+                    AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance)); 
                 }
                 catch(Exception e)
                 {
@@ -120,10 +119,9 @@ namespace PearlCalculatorBlazor.Components
                 _pageIndex = 1;
 
                 AmountResult = args.Results;
-
                 ShowMode = ShowResultMode.Amount;
 
-                ShowDirectionResult(ManuallyData.Pearl.Position, ManuallyData.Destination.ToSpace3D());
+                ShowDirectionResult(args.ManuallyData.Pearl.Position, args.ManuallyData.Destination.ToSpace3D());
 
                 StateHasChanged();
             });
@@ -144,7 +142,7 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
-                ShowDirectionResult(ManuallyData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
+                ShowDirectionResult(args.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
                 ShowMode = ShowResultMode.Trace;
 
@@ -167,7 +165,7 @@ namespace PearlCalculatorBlazor.Components
                     };
                 }).ToList());
 
-                ShowDirectionResult(ManuallyData.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
+                ShowDirectionResult(args.Pearl.Position, new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
                 ShowMode = ShowResultMode.Momentum;
 
