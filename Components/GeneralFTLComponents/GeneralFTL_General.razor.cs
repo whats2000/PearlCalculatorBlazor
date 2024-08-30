@@ -44,13 +44,23 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         private double DestinationX
         {
             get => Data.Destination.X;
-            set => Data.Destination.X = value;
+            set
+            {
+                var destination = Data.Destination;
+                destination.X = value;
+                Data.Destination = destination;
+            }
         }
 
         private double DestinationZ
         {
             get => Data.Destination.Z;
-            set => Data.Destination.Z = value;
+            set
+            {
+                var destination = Data.Destination;
+                destination.Z = value;
+                Data.Destination = destination;
+            }
         }
 
         private int MaxTNT

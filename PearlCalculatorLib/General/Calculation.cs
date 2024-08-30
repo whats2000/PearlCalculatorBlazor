@@ -1,10 +1,10 @@
 ﻿using PearlCalculatorLib.Result;
 using PearlCalculatorLib.PearlCalculationLib;
-using PearlCalculatorLib.PearlCalculationLib.Entity;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using PearlCalculatorLib.PearlCalculationLib.Entity;
 
 namespace PearlCalculatorLib.General
 {
@@ -13,11 +13,11 @@ namespace PearlCalculatorLib.General
         private static PearlEntity PearlSimulation(int redTNT, int blueTNT, int ticks, Direction direction)
         {
             //Simulating the pearl and return the end point
-            PearlEntity pearlEntity = new PearlEntity(Data.Pearl);
+            PearlEntity pearlEntity = new PearlEntity(Data.Pearl).AddPosition(Data.PearlOffset);
 
             CalculateTNTVector(direction, out Space3D redTNTVector, out Space3D blueTNTVector);
 
-            pearlEntity.Motion = redTNT * redTNTVector + blueTNT * blueTNTVector;
+            pearlEntity.Motion += redTNT * redTNTVector + blueTNT * blueTNTVector;
 
             for (int i = 0; i < ticks; i++)
                 pearlEntity.Tick();
@@ -35,6 +35,7 @@ namespace PearlCalculatorLib.General
         /// <returns>Returns a true or false value indicates whether the calculation is correctly executed or not
         /// <para>TNT combination result will be stored into <see cref="Data.TNTResult"/></para>
         /// </returns>
+        /// <exception cref="ArgumentException"></exception>
         public static bool CalculateTNTAmount(int maxTicks, double maxDistance)
         {
             int redTNT, blueTNT;
@@ -54,7 +55,6 @@ namespace PearlCalculatorLib.General
             Data.TNTResult.Clear();
             direction = DirectionUtils.GetDirection(truePosition.WorldAngle(Data.Destination));
             CalculateTNTVector(direction, out Space3D redTNTVector, out Space3D blueTNTVector);
-
             //Calculate redTNT and blueTNT through simultaneous equations
             trueRed = (trueDistance.Z * blueTNTVector.X - trueDistance.X * blueTNTVector.Z) / (redTNTVector.Z * blueTNTVector.X - blueTNTVector.Z * redTNTVector.X);
             trueBlue = (trueDistance.X - trueRed * redTNTVector.X) / blueTNTVector.X;
@@ -71,6 +71,7 @@ namespace PearlCalculatorLib.General
                 //It is not perfect dude to the round up
                 for (int r = -5; r <= 5; r++)
                 {
+
                     for (int b = -5; b <= 5; b++)
                     {
                         //Simulate the pearl and get it's end point
@@ -119,6 +120,7 @@ namespace PearlCalculatorLib.General
         /// <param name="ticks">The Maximum Tick the Ender Pearl Allowed to travel</param>
         /// <param name="direction">The accelerating Direction of the Ender Pearl. Only Allow North, South, East, West</param>
         /// <returns>Return A List of Entity contains the Motion and Position in each Ticks</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static List<Entity> CalculatePearlTrace(int redTNT, int blueTNT, int ticks, Direction direction)
         {
             List<Entity> result = new List<Entity>(ticks + 1);
@@ -195,11 +197,12 @@ namespace PearlCalculatorLib.General
         }
 
         /// <summary>
-        /// Calculate the accelerating vector of each Blue and Red TNT in given Direction
+        /// Calculate the accelerating vector created by Blue and Red TNT in a given Direction
         /// </summary>
         /// <param name="direction">The Acceleration Direction of the Ender Pearl</param>
-        /// <param name="redTNTVector">Return am accelerating vector of Red TNT</param>
+        /// <param name="redTNTVector">Return an accelerating vector of Red TNT</param>
         /// <param name="blueTNTVector">Return an accelerating vector of Blue TNT</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void CalculateTNTVector(Direction direction, out Space3D redTNTVector, out Space3D blueTNTVector)
         {
             Space3D pearlPosition = Data.PearlOffset.ToSpace3D();

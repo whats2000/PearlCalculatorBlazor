@@ -1,10 +1,5 @@
-﻿using PearlCalculatorLib.PearlCalculationLib.MathLib;
-using PearlCalculatorLib.Result;
-using PearlCalculatorLib.PearlCalculationLib;
-using PearlCalculatorLib.PearlCalculationLib.World;
+﻿using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 
 namespace PearlCalculatorLib.General
@@ -12,7 +7,7 @@ namespace PearlCalculatorLib.General
     [Serializable]
     public class Settings
     {
-        public const string FileSuffix = "pcld file|*.pcld";
+        public const string Version = "2.7";
 
         public Space3D NorthWestTNT;
         public Space3D NorthEastTNT;
@@ -25,24 +20,29 @@ namespace PearlCalculatorLib.General
         public int BlueTNT;
         public int MaxTNT;
         public Direction Direction;
+        public Direction DefaultRedTNTDirection;
+        public Direction DefaultBlueTNTDirection;
 
         public static Settings CreateSettingsFormData() => new Settings()
         {
-            NorthWestTNT = Data.NorthWestTNT ,
-            NorthEastTNT = Data.NorthEastTNT ,
-            SouthWestTNT = Data.SouthWestTNT ,
-            SouthEastTNT = Data.SouthEastTNT ,
+            NorthWestTNT = Data.NorthWestTNT,
+            NorthEastTNT = Data.NorthEastTNT,
+            SouthWestTNT = Data.SouthWestTNT,
+            SouthEastTNT = Data.SouthEastTNT,
 
-            Pearl = Data.Pearl ,
+            Pearl = Data.Pearl,
 
-            RedTNT = Data.RedTNT ,
-            BlueTNT = Data.BlueTNT ,
-            MaxTNT = Data.MaxTNT ,
+            RedTNT = Data.RedTNT,
+            BlueTNT = Data.BlueTNT,
+            MaxTNT = Data.MaxTNT,
 
-            Destination = Data.Destination ,
-            Offset = Data.PearlOffset ,
+            Destination = Data.Destination,
+            Offset = Data.PearlOffset,
 
-            Direction = Data.Direction
+            Direction = Data.Direction,
+
+            DefaultRedTNTDirection = Data.DefaultRedDuper,
+            DefaultBlueTNTDirection = Data.DefaultBlueDuper
         };
     }
 }

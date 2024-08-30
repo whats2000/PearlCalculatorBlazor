@@ -11,73 +11,134 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         private double NorthWestTntX
         {
             get => Data.NorthWestTNT.X;
-            set => Data.NorthWestTNT.X = value;
+            set
+            {
+                var northWestTnt = Data.NorthWestTNT;
+                northWestTnt.X = value;
+                Data.NorthWestTNT = northWestTnt;
+            }
         }
 
         private double NorthWestTntY
         {
             get => Data.NorthWestTNT.Y;
-            set => Data.NorthWestTNT.Y = value;
+            set
+            {
+                var northWestTnt = Data.NorthWestTNT;
+                northWestTnt.Y = value;
+                Data.NorthWestTNT = northWestTnt;
+            }
         }
 
         private double NorthWestTntZ
         {
             get => Data.NorthWestTNT.Z;
-            set => Data.NorthWestTNT.Z = value;
+            set
+            {
+                var northWestTnt = Data.NorthWestTNT;
+                northWestTnt.Z = value;
+                Data.NorthWestTNT = northWestTnt;
+            }
         }
 
         private double NorthEastTntX
         {
             get => Data.NorthEastTNT.X;
-            set => Data.NorthEastTNT.X = value;
+            set
+            {
+                var northEastTnt = Data.NorthEastTNT;
+                northEastTnt.X = value;
+                Data.NorthEastTNT = northEastTnt;
+            }
         }
 
         private double NorthEastTntY
         {
             get => Data.NorthEastTNT.Y;
-            set => Data.NorthEastTNT.Y = value;
+            set
+            {
+                var northEastTnt = Data.NorthEastTNT;
+                northEastTnt.Y = value;
+                Data.NorthEastTNT = northEastTnt;
+            }
         }
 
         private double NorthEastTntZ
         {
             get => Data.NorthEastTNT.Z;
-            set => Data.NorthEastTNT.Z = value;
+            set
+            {
+                var northEastTnt = Data.NorthEastTNT;
+                northEastTnt.Z = value;
+                Data.NorthEastTNT = northEastTnt;
+            }
         }
 
         private double SouthWestTntX
         {
             get => Data.SouthWestTNT.X;
-            set => Data.SouthWestTNT.X = value;
+            set
+            {
+                var southWestTnt = Data.SouthWestTNT;
+                southWestTnt.X = value;
+                Data.SouthWestTNT = southWestTnt;
+            }
         }
 
         private double SouthWestTntY
         {
             get => Data.SouthWestTNT.Y;
-            set => Data.SouthWestTNT.Y = value;
+            set
+            {
+                var southWestTnt = Data.SouthWestTNT;
+                southWestTnt.Y = value;
+                Data.SouthWestTNT = southWestTnt;
+            }
         }
 
         private double SouthWestTntZ
         {
             get => Data.SouthWestTNT.Z;
-            set => Data.SouthWestTNT.Z = value;
+            set
+            {
+                var southWestTnt = Data.SouthWestTNT;
+                southWestTnt.Z = value;
+                Data.SouthWestTNT = southWestTnt;
+            }
         }
 
         private double SouthEastTntX
         {
             get => Data.SouthEastTNT.X;
-            set => Data.SouthEastTNT.X = value;
+            set
+            {
+                var southEastTnt = Data.SouthEastTNT;
+                southEastTnt.X = value;
+                Data.SouthEastTNT = southEastTnt;
+            }
         }
 
         private double SouthEastTntY
         {
             get => Data.SouthEastTNT.Y;
-            set => Data.SouthEastTNT.Y = value;
+            set
+            {
+                var southEastTnt = Data.SouthEastTNT;
+                southEastTnt.Y = value;
+                Data.SouthEastTNT = southEastTnt;
+            }
         }
+
 
         private double SouthEastTntZ
         {
             get => Data.SouthEastTNT.Z;
-            set => Data.SouthEastTNT.Z = value;
+            set
+            {
+                var southEastTnt = Data.SouthEastTNT;
+                southEastTnt.Z = value;
+                Data.SouthEastTNT = southEastTnt;
+            }
         }
 
         private double PearlYCoordinate
