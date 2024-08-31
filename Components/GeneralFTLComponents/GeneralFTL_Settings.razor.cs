@@ -3,6 +3,7 @@ using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 using System.Collections.Generic;
+using Microsoft.JSInterop;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
@@ -165,9 +166,10 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             set => Data.DefaultBlueDuper = Enum.Parse<Direction>(value);
         }
 
-        private void ResetToDefault_OnClick()
+        private async void ResetToDefault_OnClick()
         {
             Data.Reset();
+            await JSRuntime.InvokeVoidAsync("ResetStateInJs");
         }
 
         class Checkbox

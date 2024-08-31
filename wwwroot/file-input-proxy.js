@@ -19,3 +19,8 @@ function ExportSettings(json) {
     downloadSettingsLink.download = "pearl calculator settings.json";
     downloadSettingsLink.click();
 }
+
+function ResetStateInJs() {
+    importSettingsHandle = null;
+    downloadSettingsLink = null;
+}
