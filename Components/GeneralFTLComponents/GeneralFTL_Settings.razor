@@ -222,7 +222,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
-            <Tooltip Placement="PlacementType.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
+            <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
                 <span style="border-bottom: 1px dashed #dadada;">
                     @TranslateText.GetTranslateText("DefaultRedTNTPos")
                 </span>
@@ -245,7 +245,7 @@
 
     <Row Class="setting-row">
         <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
-            <Tooltip Placement="PlacementType.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
+            <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
                 <span style="border-bottom: 1px dashed #dadada;">
                     @TranslateText.GetTranslateText("DefaultBlueTNTPos")
                 </span>
@@ -286,8 +286,8 @@
     .setting-check-box {
         float: right;
         left: 4%;
-        top: 0px;
-        bottom: 0px;
+        top: 0;
+        bottom: 0;
     }
 
     .setting-name-value-box {
@@ -300,7 +300,6 @@
 
     .setting-input-container-box {
         width: 100%;
-        position: center;
     }
 
     .setting-select-box {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <BlazorCacheBootResources>false</BlazorCacheBootResources>
   </PropertyGroup>
@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AntDesign" Version="0.8.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.3" PrivateAssets="all" />
+    <PackageReference Include="AntDesign" Version="0.20.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.33" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.33" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>

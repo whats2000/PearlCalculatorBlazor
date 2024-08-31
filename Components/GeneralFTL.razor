@@ -1,29 +1,24 @@
 ﻿@page "/GeneralFTL"
 
-@inject TranslateText TransText
-
 @using PearlCalculatorBlazor.Localizer
 
 <div class="calculator-general-root-default">
     <Card>
         <CardTabs>
             <Tabs @bind-ActiveKey="_activeKey">
-                <TabPane Key="GFTL_General">
-                    <Tab>@TranslateText.GetTranslateText("GFTL_General")</Tab>
+                <TabPane Key="GFTL_General" Tab="@TranslateText.GetTranslateText("GFTL_General")">
                     <ChildContent>
                         <GeneralFTL_General />
                     </ChildContent>
                 </TabPane>
 
-                <TabPane Key="GFTL_Advanced">
-                    <Tab>@TranslateText.GetTranslateText("GFTL_Advanced")</Tab>
+                <TabPane Key="GFTL_Advanced" Tab="@TranslateText.GetTranslateText("GFTL_Advanced")">
                     <ChildContent>
                         <GeneralFTL_Advanced />
                     </ChildContent>
                 </TabPane>
 
-                <TabPane Key="GFTL_Settings">
-                    <Tab>@TranslateText.GetTranslateText("GFTL_Settings")</Tab>
+                <TabPane Key="GFTL_Settings" Tab="@TranslateText.GetTranslateText("GFTL_Settings")">
                     <ChildContent>
                         <GeneralFTL_Settings />
                     </ChildContent>
@@ -43,7 +38,7 @@
             IgnoreItemChanges="false">
     </Select>
 
-    <div style="border: 1px solid #EFEFEF; padding: 2px; padding-top: 10px">
+    <div style="border: 1px solid #EFEFEF; padding: 10px 2px 2px;">
 
         @if (_activeKey == "GFTL_General")
         {

@@ -12,7 +12,7 @@
                 <Tabs DefaultActiveKey="General">
 
                     <TabBarExtraContent>
-                        <Dropdown Placement="@PlacementType.BottomRight">
+                        <Dropdown Placement="Placement.BottomRight">
                             <Overlay>
                                 <Menu DefaultSelectedKeys=@(new[] { "en" })>
                                     <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
@@ -25,21 +25,19 @@
                                 </Menu>
                             </Overlay>
                             <ChildContent>
-                                <Button Type="@ButtonType.Link" Class="traslation-icon" Icon="translation" /> 
+                                <Button Type="@ButtonType.Link" Class="traslation-icon" Icon="translation"></Button>
                             </ChildContent>
                         </Dropdown>
                     </TabBarExtraContent>
 
                     <ChildContent>
-                        <TabPane Key="General">
-                            <Tab>@TranslateText.GetTranslateText("GeneralFTLHeader")</Tab>
+                        <TabPane Key="General" Tab="@TranslateText.GetTranslateText("GeneralHeader")">
                             <ChildContent>
                                 <PearlCalculatorBlazor.Components.GeneralFTL />
                             </ChildContent>
                         </TabPane>
 
-                        <TabPane Key="Manually">
-                            <Tab>@TranslateText.GetTranslateText("ManuallyHeader")</Tab>
+                        <TabPane Key="Manually" Tab="@TranslateText.GetTranslateText("ManuallyHeader")">
                             <ChildContent>
                                 <PearlCalculatorBlazor.Components.Manually />
                             </ChildContent>

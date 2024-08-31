@@ -74,6 +74,18 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             get => Data.Direction;
             set => Data.Direction = value;
         }
+        
+        private Direction DefaultRedTNTDirection
+        {
+            get => Data.DefaultRedDuper;
+            set => Data.DefaultRedDuper = value;
+        }
+        
+        private Direction DefaultBlueTNTDirection
+        {
+            get => Data.DefaultBlueDuper;
+            set => Data.DefaultBlueDuper = value;
+        }
 
         private uint RedTNT
         {
@@ -174,19 +186,24 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             {
                 var settings = JsonSerializer.Deserialize<Settings>(reader, ReadSerializerOptions);
 
-                Data.Pearl = settings.Pearl;
-                Data.PearlOffset = settings.Offset;
-                Data.Destination = settings.Destination;
-
                 Data.NorthWestTNT = settings.NorthWestTNT;
                 Data.NorthEastTNT = settings.NorthEastTNT;
                 Data.SouthWestTNT = settings.SouthWestTNT;
                 Data.SouthEastTNT = settings.SouthEastTNT;
+                
+                Data.Pearl = settings.Pearl;
 
                 Data.RedTNT = settings.RedTNT;
                 Data.BlueTNT = settings.BlueTNT;
                 Data.MaxTNT = settings.MaxTNT;
+                
+                Data.Destination = settings.Destination;
+                Data.PearlOffset = settings.Offset;
+                
                 Data.Direction = settings.Direction;
+                
+                Data.DefaultRedDuper = settings.DefaultRedTNTDirection;
+                Data.DefaultBlueDuper = settings.DefaultBlueTNTDirection;
 
                 PearlSimulate();
             }
@@ -199,7 +216,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             StateHasChanged();
         }
 
-        public void RefreshPage()
+        private void RefreshPage()
         {
             StateHasChanged();
         }
