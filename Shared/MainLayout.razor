@@ -1,40 +1,10 @@
 @inherits LayoutComponentBase
 
 <div class="page">
-   
-
     <Layout>
-        <Header Style="padding-left: 0; padding-right: 0; background: #fff; ">
-            <a href="https://github.com/memorydream/PearlCalculatorBlazor" class="github-icon">
-                <Icon Type="github" Theme="outline" Style="font-size: 20px" />
-            </a>
-        </Header>
-
-        <div style="height: 940px">
+        <SharedHeader></SharedHeader>
+        <div>
             @Body
         </div>
     </Layout>
-
-    <style>
-        .logo{
-            width: 120px;
-            height: 30px;
-            float: left;
-        }
-
-        a.github-icon {
-            color: rgba(0,0,0,0.4);
-            float: right;
-            margin-right: 24px;
-        }
-
-        a.github-icon:hover{
-            color: black;
-        }
-        
-    </style>
 </div>
-
-@code{
-
-}

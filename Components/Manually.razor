@@ -5,214 +5,193 @@
 
 @using PearlCalculatorBlazor.Localizer
 
-<div style="
-        border-style: solid;
-        border-Color: #f0f0f0;
-        border-width: 1px;
-        border-radius: 2px;
-        line-height: 1.2;
-        padding: 20px 19px 24px 19px;
-    ">
-
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+<div class="manually-settings">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("PearlPosX")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("MomentumX")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosX" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlPosX" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumX" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlMomentumX" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("PearlPosY")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("MomentumY")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosY" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlPosY" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumY" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlMomentumY" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("PearlPosZ")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("MomentumZ")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlPosZ" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlPosZ" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyPearlMomentumZ" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ManuallyPearlMomentumZ" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTXA")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTXB")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTX" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ATNTX" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTX" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@BTNTX" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTYA")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTYB")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTY" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ATNTY" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTY" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@BTNTY" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTZA")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("TNTZB")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTZ" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ATNTZ" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTZ" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@BTNTZ" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("AmountA")
-        </AntDesign.Col>
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
+        <GridCol Span="12">
             @TranslateText.GetTranslateText("AmountB")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ATNTAmount" />
-        </AntDesign.Col>
+    <GridRow Gutter="16">
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@ATNTAmount" />
+        </GridCol>
 
-        <AntDesign.Col Span="12" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@BTNTAmount" />
-        </AntDesign.Col>
-    </Row>
+        <GridCol Span="12">
+            <InputNumber @bind-Value="@BTNTAmount" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="24" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="24">
             @TranslateText.GetTranslateText("DestinationX")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="24" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyDestinationX" />
-        </AntDesign.Col>
-    </Row>
+    <GridRow Gutter="16">
+        <GridCol Span="24">
+            <InputNumber @bind-Value="@ManuallyDestinationX" />
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="24" Class="manually-name-value-box">
+    <GridRow Gutter="16">
+        <GridCol Span="24">
             @TranslateText.GetTranslateText("DestinationZ")
-        </AntDesign.Col>
-    </Row>
+        </GridCol>
+    </GridRow>
 
-    <Row Class="manually-row">
-        <AntDesign.Col Span="24" Class="manually-name-value-box">
-            <InputNumber Class="manually-input-container-box" @bind-Value="@ManuallyDestinationZ" />
-        </AntDesign.Col>
-    </Row>
+    <GridRow Gutter="16">
+        <GridCol Span="24">
+            <InputNumber @bind-Value="@ManuallyDestinationZ" />
+        </GridCol>
+    </GridRow>
 
-    <Row>
-        <AntDesign.Col Span="12" Style="height: 12px"></AntDesign.Col>
-    </Row>
+    <GridRow Gutter="16">
+        <GridCol Span="12" Style="height: 12px"></GridCol>
+    </GridRow>
 
-    <ul class="calculator-manually-btn-group">
-        <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@ManuallyCalculateTNTAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
-        </li>
-
-        <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("trace"))">@TranslateText.GetTranslateText("CalculatePearlTrace")</Button>
-        </li>
-
-        <li style="margin-bottom:5px;">
-            <Button Style="width: 100%" @onclick="@(() => ManuallyCalculatePearl("motion"))">@TranslateText.GetTranslateText("CalculatePearlMomentum")</Button>
-        </li>
-    </ul>
+    <div class="button-block">
+        <Button Block="true" @onclick="@ManuallyCalculateTNTAmount">
+            @TranslateText.GetTranslateText("CalculateTNTAmount")
+        </Button>
+        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("trace"))">
+            @TranslateText.GetTranslateText("CalculatePearlTrace")
+        </Button>
+        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("motion"))">
+            @TranslateText.GetTranslateText("CalculatePearlMomentum")
+        </Button>
+    </div>
 </div>
 
 <style>
-    .manually-name-value-box {
-        align-content: center;
-        Padding: 6px 8px;
-    }
-
-    .manually-input-container-box {
-        width: 100%;
-    }
-
-    ul.calculator-manually-btn-group {
-        list-style: none;
-        padding: 8px 18px 0 18px;
+    div.manually-settings {
+        .ant-input-number {
+            width: 100%;
+            margin-bottom: 8px;
+        }
     }
 </style>
-
-@code{
-
-}

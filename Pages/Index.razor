@@ -1,44 +1,12 @@
 ﻿@page "/"
 
-@inject TranslateText TransText
-
 @using PearlCalculatorBlazor.Localizer
-
-@{
-    Dictionary<string, int> gutter = new()
-    {
-        ["xs"] = 8,
-        ["sm"] = 16,
-        ["md"] = 24,
-        ["lg"] = 32,
-        ["xl"] = 48,
-        ["xxl"] = 64
-    };
-}
 
 <GridRow>
     <GridCol Xs="24" Sm="24" Md="24" Lg="12" Xl="12" Xxl="12">
         <Card Style="height: 100%">
             <CardTabs>
                 <Tabs DefaultActiveKey="General">
-                    <TabBarExtraContent>
-                        <Dropdown Placement="Placement.BottomRight">
-                            <Overlay>
-                                <Menu DefaultSelectedKeys=@(new[] { "en" })>
-                                    <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
-                                    @foreach (var pair in TranslateText.LanguageDict)
-                                    {
-                                        if (pair.Key == "en")
-                                            continue;
-                                        <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>@pair.Value</MenuItem>
-                                    }
-                                </Menu>
-                            </Overlay>
-                            <ChildContent>
-                                <Button Type="@ButtonType.Link" Class="traslation-icon" Icon="translation"></Button>
-                            </ChildContent>
-                        </Dropdown>
-                    </TabBarExtraContent>
                     <ChildContent>
                         <TabPane Key="General" Tab="@TranslateText.GetTranslateText("GeneralHeader")">
                             <ChildContent>
