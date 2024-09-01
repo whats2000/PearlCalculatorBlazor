@@ -54,7 +54,26 @@ namespace PearlCalculatorLib.General
         public static PearlEntity Pearl { get; set; } = new PearlEntity().WithPosition(0, 170.34722638929412, 0).WithMotion(0, 0.2716278719434352, 0);
 
 
+        /// <summary>
+        /// The Flag determine whether the pearl alignment is using Y Motion cancellation technique
+        /// <para>Note : The default is without Y Motion cancellation</para>
+        /// </summary>
+        public static bool PearlYMotionCancellation { get; set; } = false;
 
+        /// <summary>
+        /// The Y position of the pearl before Y Motion cancellation, which is the position of the pearl taking TNT Motion into account
+        /// <para>Note : To get the Y position of the pearl, you should remove the piston which is used to cancel the Y motion and get the Y position of the pearl at explosion tick</para>
+        /// <para>Required when <see cref="Data.UseYMotionCancellation"/> is set to true</para>
+        /// </summary>
+        public static double PearlYPositionOriginal { get; set; } = 170.34722638929412;
+
+        /// <summary>
+        /// The Y position of the pearl after Y Motion cancellation, which is set after the explosion takes place.
+        /// <para>Note : To get the Y position of the pearl, just place the piston which is used to cancel the Y motion and get the Y position at the end of the tick</para>
+        /// <para>Required when <see cref="Data.UseYMotionCancellation"/> is set to true</para>
+        /// </summary>
+        public static double PearlYPositionAdjusted { get; set; } = 170.0;
+        
         /// <summary>
         /// The Offset between Ender Pearl X and Z coordinate and lava pool center coordinate
         /// <para>Required for All Calculation in <see cref="Calculation"/></para>
@@ -188,6 +207,9 @@ namespace PearlCalculatorLib.General
             SouthEastTNT = new Space3D(+0.884999990463257, 170.5, +0.884999990463257);
             Pearl.Position = new Space3D(0, 170.34722638929412, 0);
             Pearl.Motion = new Space3D(0, 0.2716278719434352, 0);
+            PearlYMotionCancellation = false;
+            PearlYPositionOriginal = 170.34722638929412;
+            PearlYPositionAdjusted = 170.0;
             DefaultRedDuper = Direction.SouthEast;
             DefaultBlueDuper = Direction.NorthWest;
             PearlOffset = new Surface2D();

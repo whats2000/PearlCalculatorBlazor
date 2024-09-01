@@ -67,6 +67,14 @@ namespace PearlCalculatorBlazor
                 nameof(settings.DefaultBlueTNTDirection),
                 Direction.NorthWest
             );
+            
+            // For null safety
+            settings.PearlYMotionCancellation = rootElement.TryGetProperty(
+                nameof(settings.PearlYMotionCancellation), out var elem) && elem.GetBoolean();
+            settings.PearlYPositionOriginal = rootElement.TryGetProperty(
+                nameof(settings.PearlYPositionOriginal), out elem) ? elem.GetDouble() : settings.Pearl.Position.Y;
+            settings.PearlYPositionAdjusted = rootElement.TryGetProperty(
+                nameof(settings.PearlYPositionAdjusted), out elem) ? elem.GetDouble() : Math.Floor(settings.Pearl.Position.Y);
 
             return settings;
         }
@@ -147,6 +155,10 @@ namespace PearlCalculatorBlazor
             writer.WriteString(nameof(value.Direction), value.Direction.ToString());
             writer.WriteString(nameof(value.DefaultRedTNTDirection), value.DefaultRedTNTDirection.ToString());
             writer.WriteString(nameof(value.DefaultBlueTNTDirection), value.DefaultBlueTNTDirection.ToString());
+            
+            writer.WriteBoolean(nameof(value.PearlYMotionCancellation), value.PearlYMotionCancellation);
+            writer.WriteNumber(nameof(value.PearlYPositionOriginal), value.PearlYPositionOriginal);
+            writer.WriteNumber(nameof(value.PearlYPositionAdjusted), value.PearlYPositionAdjusted);
 
             writer.WriteEndObject();
         }

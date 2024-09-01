@@ -9,6 +9,9 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
     public partial class GeneralFTL_Settings
     {
+        private List<ArrayPos> _pearlYMotionOptions;
+        private List<ArrayPos> _selectList;
+        
         private double NorthWestTntX
         {
             get => Data.NorthWestTNT.X;
@@ -141,6 +144,12 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 Data.SouthEastTNT = southEastTnt;
             }
         }
+        
+        private string PearlYMotionMode
+        {
+            get => Data.PearlYMotionCancellation ? "PerfectHorizontalProjection" : "NormalProjection";
+            set => Data.PearlYMotionCancellation = value == "PerfectHorizontalProjection";
+        }
 
         private double PearlYCoordinate
         {
@@ -152,6 +161,18 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             get => Data.Pearl.Motion.Y;
             set => Data.Pearl.Motion.Y = value;
+        }
+        
+        private double PearlYPositionOriginal
+        {
+            get => Data.PearlYPositionOriginal;
+            set => Data.PearlYPositionOriginal = value;
+        }
+        
+        private double PearlYPositionAdjusted
+        {
+            get => Data.PearlYPositionAdjusted;
+            set => Data.PearlYPositionAdjusted = value;
         }
 
         private string DefaultRedTNTPosition
@@ -170,6 +191,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             Data.Reset();
             await JSRuntime.InvokeVoidAsync("ResetStateInJs");
+            StateHasChanged();
         }
 
         class Checkbox
@@ -189,22 +211,29 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         readonly Checkbox PearlYCheck = new();
 
-        List<ArrayPos> _selectList;
-
         class ArrayPos
         {
             public string ActiveKey { get; set; }
             public string DisplayName { get; set; }
         }
 
+
         protected override void OnInitialized()
         {
+            // Initialize _selectList for TNT positions
             _selectList = new List<ArrayPos>
             {
                 new ArrayPos { ActiveKey = "NorthWest", DisplayName = TranslateText.GetTranslateText("NorthWest")},
                 new ArrayPos { ActiveKey = "NorthEast", DisplayName = TranslateText.GetTranslateText("NorthEast")},
                 new ArrayPos { ActiveKey = "SouthWest", DisplayName = TranslateText.GetTranslateText("SouthWest")},
                 new ArrayPos { ActiveKey = "SouthEast", DisplayName = TranslateText.GetTranslateText("SouthEast")}
+            };
+
+            // Initialize _pearlYMotionOptions for PearlYMotionMode enum
+            _pearlYMotionOptions = new List<ArrayPos>
+            {
+                new ArrayPos { ActiveKey = "NormalProjection", DisplayName = TranslateText.GetTranslateText("NormalProjection")},
+                new ArrayPos { ActiveKey = "PerfectHorizontalProjection", DisplayName = TranslateText.GetTranslateText("PerfectHorizontalProjection")}
             };
 
             TranslateText.OnLanguageChange += RefreshPage;
@@ -214,6 +243,11 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             foreach (var pair in _selectList)
                 pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
+
+            // Update the display names for PearlYMotionMode options
+            foreach (var pair in _pearlYMotionOptions)
+                pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
+
             StateHasChanged();
         }
     }

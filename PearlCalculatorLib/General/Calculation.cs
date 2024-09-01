@@ -14,10 +14,23 @@ namespace PearlCalculatorLib.General
         {
             //Simulating the pearl and return the end point
             PearlEntity pearlEntity = new PearlEntity(Data.Pearl).AddPosition(Data.PearlOffset);
+            
+            // Override the Y position of the pearl when Y Motion cancellation is enabled
+            if (Data.PearlYMotionCancellation)
+            {
+                pearlEntity.Position.Y = Data.PearlYPositionOriginal;
+            }
 
             CalculateTNTVector(direction, out Space3D redTNTVector, out Space3D blueTNTVector);
 
             pearlEntity.Motion += redTNT * redTNTVector + blueTNT * blueTNTVector;
+            
+            // Adjust the Y and cancel the Y motion of the pearl after the calculation of TNT vector
+            if (Data.PearlYMotionCancellation)
+            {
+                pearlEntity.Position.Y = Data.PearlYPositionAdjusted;
+                pearlEntity.Motion.Y = 0;
+            }
 
             for (int i = 0; i < ticks; i++)
                 pearlEntity.Tick();
@@ -125,9 +138,23 @@ namespace PearlCalculatorLib.General
         {
             List<Entity> result = new List<Entity>(ticks + 1);
             PearlEntity pearl = new PearlEntity(Data.Pearl.AddPosition(Data.PearlOffset));
+            
+            // Override the Y position of the pearl when Y Motion cancellation is enabled
+            if (Data.PearlYMotionCancellation)
+            {
+                pearl.Position.Y = Data.PearlYPositionOriginal;
+            }
 
             CalculateTNTVector(direction, out Space3D redTNTVector, out Space3D blueTNTVector);
             pearl.Motion += redTNT * redTNTVector + blueTNT * blueTNTVector;
+            
+            // Adjust the Y and cancel the Y motion of the pearl after the calculation of TNT vector
+            if (Data.PearlYMotionCancellation)
+            {
+                pearl.Position.Y = Data.PearlYPositionAdjusted;
+                pearl.Motion.Y = 0;
+            }
+            
             result.Add(new PearlEntity(pearl));
 
             for (int i = 0; i < ticks; i++)

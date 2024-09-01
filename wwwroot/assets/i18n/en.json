@@ -60,6 +60,11 @@
   "PearlY": "Pearl Y",
   "Coordinate": "Coordinate",
   "Momentum": "Momentum",
+  "PearlYMotionMode": "Pearl Y Motion Mode",
+  "NormalProjection": "Normal Projection",
+  "PerfectHorizontalProjection": "Perfect Horizontal Projection",
+  "PearlYPositionOriginal": "Pearl Y Position (Original)",
+  "PearlYPositionAdjusted": "Pearl Y Position (Adjusted)",
 
   "DefaultRedTNTPos": "Default Red TNT Position",
   "DefaultRedTNTPosDesc": "Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block",

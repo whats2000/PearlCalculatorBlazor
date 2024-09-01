@@ -22,6 +22,9 @@ namespace PearlCalculatorLib.General
         public Direction Direction;
         public Direction DefaultRedTNTDirection;
         public Direction DefaultBlueTNTDirection;
+        public bool PearlYMotionCancellation;
+        public double PearlYPositionOriginal;
+        public double PearlYPositionAdjusted;
 
         public static Settings CreateSettingsFormData() => new Settings()
         {
@@ -42,7 +45,11 @@ namespace PearlCalculatorLib.General
             Direction = Data.Direction,
 
             DefaultRedTNTDirection = Data.DefaultRedDuper,
-            DefaultBlueTNTDirection = Data.DefaultBlueDuper
+            DefaultBlueTNTDirection = Data.DefaultBlueDuper,
+            
+            PearlYMotionCancellation = Data.PearlYMotionCancellation,
+            PearlYPositionOriginal = Data.PearlYPositionOriginal,
+            PearlYPositionAdjusted = Data.PearlYPositionAdjusted
         };
     }
 }

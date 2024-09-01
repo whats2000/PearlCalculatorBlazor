@@ -162,6 +162,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         private async void ImportSettings_OnClick()
         {
+            await JSRuntime.InvokeVoidAsync("ResetStateInJs");
             await JSRuntime.InvokeAsync<string>("ImportSettings");
         }
 
@@ -204,6 +205,10 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
                 
                 Data.DefaultRedDuper = settings.DefaultRedTNTDirection;
                 Data.DefaultBlueDuper = settings.DefaultBlueTNTDirection;
+                
+                Data.PearlYMotionCancellation = settings.PearlYMotionCancellation;
+                Data.PearlYPositionOriginal = settings.PearlYPositionOriginal;
+                Data.PearlYPositionAdjusted = settings.PearlYPositionAdjusted;
 
                 PearlSimulate();
             }

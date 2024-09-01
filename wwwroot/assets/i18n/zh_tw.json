@@ -63,6 +63,11 @@
   "PearlY": "珍珠Y",
   "Coordinate": "座標",
   "Momentum": "動量",
+  "PearlYMotionMode": "珍珠Y軸運動模式",
+  "NormalProjection": "正常抛射",
+  "PerfectHorizontalProjection": "完美水平抛射",
+  "PearlYPositionOriginal": "珍珠Y軸位置（原始）",
+  "PearlYPositionAdjusted": "珍珠Y軸位置（調整後）",
 
   "DefaultRedTNTPos": "預設紅色TNT方位",
   "DefaultRedTNTPosDesc": "預設從紅色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",

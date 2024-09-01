@@ -60,6 +60,11 @@
   "PearlY": "Y de Perla",
   "Coordinate": "Coordenada",
   "Momentum": "Velocidad",
+  "PearlYMotionMode": "Modo de Movimiento de Perla Y",
+  "NormalProjection": "Proyección Normal",
+  "PerfectHorizontalProjection": "Proyección Horizontal Perfecta",
+  "PearlYPositionOriginal": "Posición Y de la Perla (Original)",
+  "PearlYPositionAdjusted": "Posición Y de la Perla (Ajustada)",
 
   "DefaultRedTNTPos": "Posición Predet. TNT Roja",
   "DefaultRedTNTPosDesc": "La Posición de la TNT Roja (Respecto a la perla) si el Slime Block no la mueve",
