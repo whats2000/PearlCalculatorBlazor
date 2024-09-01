@@ -10,7 +10,7 @@ This website supports multiple Browsers (Google, Edge, etc).
 
 Please install the Dotnet Core runtime before proceeding.
 
-- dotnet 5.0 (Link: https://dotnet.microsoft.com/download)
+- dotnet 6.0 (Link: https://dotnet.microsoft.com/download)
 
 ### PearlCalculationLib
 
@@ -84,7 +84,7 @@ Click on the result of the amount you want.
 
 Finally, click `Pearl Simulate` to see the Pearl flight path.
 
-## SVG Icon Reference
+### SVG Icon Reference
 - [Moon Dark Theme SVG Vector](https://www.svgrepo.com/svg/304625/moon-dark-theme): Under CC0 License
 - [Sun Light Theme SVG Vector](https://www.svgrepo.com/svg/304624/sun-light-theme): Under CC0 License
 - [Coordinates SVG Vector](https://www.svgrepo.com/svg/95272/coordinates): Under CC0 License
