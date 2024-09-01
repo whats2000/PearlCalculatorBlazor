@@ -1,5 +1,5 @@
 {
-  "GeneralFTLHeader": "通用FTL",
+  "GeneralHeader": "通用FTL",
   "ManuallyHeader": "自訂義FTL",
 
   "GFTL_General": "一般設定",
