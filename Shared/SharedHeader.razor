@@ -7,53 +7,53 @@
     <TitleTemplate>
         <Flex Align="center" Gap="10">
             <Image Preview="false" Height="40" src="Logo.png" alt="banner"/>
-            <Title Level="1" Style="margin-bottom: 0; font-size: 25px;">Pearl Calculator Blazor</Title>
+            <Title Level="1" Style="margin-bottom: 0; font-size: 20px;">Pearl Calculator Blazor</Title>
         </Flex>
     </TitleTemplate>
     <PageHeaderExtra>
-        <Dropdown Placement="Placement.BottomRight">
-            <Overlay>
-                <Menu DefaultSelectedKeys=@(new[] { "en" })>
-                    <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
-                    @foreach (var pair in TranslateText.LanguageDict)
-                    {
+        <Flex Wrap="true" Gap="10">
+            <Dropdown Placement="Placement.BottomRight">
+                <Overlay>
+                    <Menu DefaultSelectedKeys=@(new[] { "en" })>
+                        <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
+                        @foreach (var pair in TranslateText.LanguageDict)
+                        {
                         if (pair.Key == "en")
-                            continue;
+                        continue;
                         <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>@pair.Value</MenuItem>
-                    }
-                </Menu>
-            </Overlay>
-            <ChildContent>
-                <Button
-                    Shape="@ButtonShape.Round"
-                    Type="@ButtonType.Default"
-                    Size="Large"
-                    Icon="translation">
-                    Language
-                </Button>
-            </ChildContent>
-        </Dropdown>
-        <a href="https://github.com/whats2000/PearlCalculatorBlazor" target="_blank">
+                        }
+                    </Menu>
+                </Overlay>
+                <ChildContent>
+                    <Button
+                        Shape="@ButtonShape.Round"
+                        Type="@ButtonType.Default"
+                        Size="Large"
+                        Icon="translation">
+                        Language
+                    </Button>
+                </ChildContent>
+            </Dropdown>
             <Button
                 class="github-icon"
                 Shape="@ButtonShape.Round"
                 Type="@ButtonType.Default"
                 Size="Large"
                 Icon="github">
-                GitHub
+                <a href="https://github.com/whats2000/PearlCalculatorBlazor" target="_blank">
+                    GitHub
+                </a>
             </Button>
-        </a>
-        <!-- For switch between Light and Dark theme -->
-        <Button
-            Shape="@ButtonShape.Round"
-            Type="@ButtonType.Default"
-            Size="Large"
-            @onclick="ToggleTheme">
-            <ChildContent>
+            <Button
+                Shape="@ButtonShape.Round"
+                Type="@ButtonType.Default"
+                Size="Large"
+                NoSpanWrap="true"
+                @onclick="ToggleTheme">
                 <Flex Align="center">
                     @(GetThemeIcon())
                 </Flex>
-            </ChildContent>
-        </Button>
+            </Button>
+        </Flex>
     </PageHeaderExtra>
 </PageHeader>
