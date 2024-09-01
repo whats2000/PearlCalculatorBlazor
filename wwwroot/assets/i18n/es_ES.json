@@ -13,11 +13,16 @@
   "DestinationX": "X Destino :",
   "DestinationZ": "Z Destino :",
 
+  "Direction": "Dirección :",
+
   "MaxTNT": "Máximo TNT (Total) :",
   "RedTNT": "TNT Roja :",
   "BlueTNT": "TNT Azul:",
   "Offset": "Desfase :",
+  "ResultSortControl": "Control de Orden de Resultados",
   "TNTWeight": "Peso TNT",
+  "MixedWeightedDistance": "Distancia Ponderada Mixta",
+  "MixedWeightedTotal": "Total Ponderado Mixto",
 
   "PearlSimulate": "Simular Perla",
   "ImportSettings": "Importar Configuración",

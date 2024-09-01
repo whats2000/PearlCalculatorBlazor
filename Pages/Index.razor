@@ -4,13 +4,23 @@
 
 @using PearlCalculatorBlazor.Localizer
 
-<div class="calculator-root">
+@{
+    Dictionary<string, int> gutter = new()
+    {
+        ["xs"] = 8,
+        ["sm"] = 16,
+        ["md"] = 24,
+        ["lg"] = 32,
+        ["xl"] = 48,
+        ["xxl"] = 64
+    };
+}
 
-    <div class="calculator-card calculator-input-tab">
-        <Card>
+<GridRow>
+    <GridCol Xs="24" Sm="24" Md="24" Lg="12" Xl="12" Xxl="12">
+        <Card Style="height: 100%">
             <CardTabs>
                 <Tabs DefaultActiveKey="General">
-
                     <TabBarExtraContent>
                         <Dropdown Placement="Placement.BottomRight">
                             <Overlay>
@@ -29,47 +39,25 @@
                             </ChildContent>
                         </Dropdown>
                     </TabBarExtraContent>
-
                     <ChildContent>
                         <TabPane Key="General" Tab="@TranslateText.GetTranslateText("GeneralHeader")">
                             <ChildContent>
-                                <PearlCalculatorBlazor.Components.GeneralFTL />
+                                <PearlCalculatorBlazor.Components.GeneralFTL/>
                             </ChildContent>
                         </TabPane>
-
                         <TabPane Key="Manually" Tab="@TranslateText.GetTranslateText("ManuallyHeader")">
                             <ChildContent>
-                                <PearlCalculatorBlazor.Components.Manually />
+                                <PearlCalculatorBlazor.Components.Manually/>
                             </ChildContent>
                         </TabPane>
                     </ChildContent>
                 </Tabs>
             </CardTabs>
         </Card>
-    </div>
-
-    <div class="calculator-card calculator-output-tab">
-        <Card>
-            <PearlCalculatorBlazor.Components.ResultView />
+    </GridCol>
+    <GridCol Xs="24" Sm="24" Md="24" Lg="12" Xl="12" Xxl="12">
+        <Card Style="height: 100%">
+            <PearlCalculatorBlazor.Components.ResultView/>
         </Card>
-    </div>
-</div>
-
-
-<style>
-    .ant-input-number-handler-wrap {
-        visibility: hidden;
-    }
-
-    .ant-card {
-        height: 100%;
-    }
-
-    .ant-card-body {
-        height: auto;
-    }
-</style>
-
-@code{
-
-}
+    </GridCol>
+</GridRow>

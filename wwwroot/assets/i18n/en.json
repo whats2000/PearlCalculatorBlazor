@@ -12,12 +12,17 @@
 
   "DestinationX": "Destination X :",
   "DestinationZ": "Destination Z :",
+  
+  "Direction": "Direction :",
 
   "MaxTNT": "Max TNT :",
   "RedTNT": "Red TNT :",
   "BlueTNT": "Blue TNT :",
   "Offset": "Offset :",
+  "ResultSortControl": "Result Sort Control",
   "TNTWeight": "TNT Weight",
+  "MixedWeightedDistance": "Mixed Weighted Distance",
+  "MixedWeightedTotal": "Mixed Weighted Total",
 
   "PearlSimulate": "Pearl Simulate",
   "ImportSettings": "Import Settings",

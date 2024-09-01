@@ -1,22 +1,26 @@
-﻿using Microsoft.JSInterop;
+﻿using System;
+using System.Net.Sockets;
+using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
+using PearlCalculatorLib.Result;
 
 namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 {
     public partial class GeneralFTL_Advanced
     {
         private static GeneralFTL_Advanced _instance;
+        private static SortMode _sortBy = SortMode.SortByWeightedDistance;
 
-        public double PearlOffsetX
+        private double PearlOffsetX
         {
             get => Data.PearlOffset.X;
             set => Data.PearlOffset = new Surface2D(value, PearlOffsetZ);
         }
 
-        public double PearlOffsetZ
+        private double PearlOffsetZ
         {
             get => Data.PearlOffset.Z;
             set => Data.PearlOffset = new Surface2D(PearlOffsetX, value);
@@ -26,6 +30,16 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
         {
             get => Data.TNTWeight;
             set => Data.TNTWeight = (int)value;
+        }
+        
+        private SortMode SelectSortMode
+        {
+            get => _sortBy;
+            set
+            {
+                _sortBy = value;
+                StateHasChanged();
+            }
         }
 
         public GeneralFTL_Advanced()
@@ -41,7 +55,8 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
 
         private void ChangeTNTWeight()
         {
-            EventManager.Instance.PublishEvent(this, "resortResult", new ButtonClickArgs("GFTL_Advanced"));
+            bool isSortByWeightedDistance = SelectSortMode == SortMode.SortByWeightedDistance;
+            EventManager.Instance.PublishEvent(this, isSortByWeightedDistance ? "sortByWeightedDistance" : "sortByWeightedTotal", new ButtonClickArgs("GFTL_Advanced"));
         }
 
         [JSInvokable]
@@ -55,9 +70,15 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             TranslateText.OnLanguageChange += RefreshPage;
         }
 
-        public void RefreshPage()
+        private void RefreshPage()
         {
             StateHasChanged();
         }
+    }
+    
+    public enum SortMode
+    {
+        SortByWeightedDistance,
+        SortByWeightedTotal
     }
 }

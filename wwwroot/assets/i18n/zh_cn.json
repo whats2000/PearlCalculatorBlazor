@@ -13,11 +13,16 @@
   "DestinationX": "目标点X坐标 :",
   "DestinationZ": "目标点Z坐标 :",
 
+  "Direction": "方向 :",
+
   "MaxTNT": "最大TNT当量",
   "RedTNT": "红色阵列",
   "BlueTNT": "蓝色阵列",
   "Offset": "珍珠矫正偏移",
+  "ResultSortControl": "结果排序控制",
   "TNTWeight": "TNT权重",
+  "MixedWeightedDistance": "混合加权距离",
+  "MixedWeightedTotal": "混合加权总量",
 
   "PearlSimulate": "珍珠模拟",
   "ImportSettings": "导入设置",

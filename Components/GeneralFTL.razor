@@ -8,19 +8,19 @@
             <Tabs @bind-ActiveKey="_activeKey">
                 <TabPane Key="GFTL_General" Tab="@TranslateText.GetTranslateText("GFTL_General")">
                     <ChildContent>
-                        <GeneralFTL_General />
+                        <GeneralFTL_General/>
                     </ChildContent>
                 </TabPane>
 
                 <TabPane Key="GFTL_Advanced" Tab="@TranslateText.GetTranslateText("GFTL_Advanced")">
                     <ChildContent>
-                        <GeneralFTL_Advanced />
+                        <GeneralFTL_Advanced/>
                     </ChildContent>
                 </TabPane>
 
                 <TabPane Key="GFTL_Settings" Tab="@TranslateText.GetTranslateText("GFTL_Settings")">
                     <ChildContent>
-                        <GeneralFTL_Settings />
+                        <GeneralFTL_Settings/>
                     </ChildContent>
                 </TabPane>
             </Tabs>
@@ -29,30 +29,32 @@
 </div>
 
 <div class="calculator-general-root-mobile">
-
-    <Select DataSource="@_selectList"
-            DefaultValue="@("GFTL_General")"
-            @bind-Value="_activeKey"
-            ValueName="@nameof(Array.ActiveKey)"
-            LabelName="@nameof(Array.DisplayName)"
-            IgnoreItemChanges="false">
-    </Select>
-
-    <div style="border: 1px solid #EFEFEF; padding: 10px 2px 2px;">
-
-        @if (_activeKey == "GFTL_General")
-        {
-            <GeneralFTL_General />
-        }
-        else if (_activeKey == "GFTL_Advanced")
-        {
-            <GeneralFTL_Advanced />
-        }
-        else
-        {
-            <GeneralFTL_Settings />
-        }
-    </div>
+    <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+        <SpaceItem>
+            <Select DataSource="@_selectList"
+                    DefaultValue="@("GFTL_General")"
+                    @bind-Value="_activeKey"
+                    ValueName="@nameof(Array.ActiveKey)"
+                    LabelName="@nameof(Array.DisplayName)"
+                    IgnoreItemChanges="false">
+            </Select>
+        </SpaceItem>
+        <Divider></Divider>
+        <SpaceItem>
+            @if (_activeKey == "GFTL_General")
+            {
+            <GeneralFTL_General/>
+            }
+            else if (_activeKey == "GFTL_Advanced")
+            {
+            <GeneralFTL_Advanced/>
+            }
+            else
+            {
+            <GeneralFTL_Settings/>
+            }
+        </SpaceItem>
+    </Space>
 </div>
 
 @code { private string _activeKey = "GFTL_General"; }

@@ -5,275 +5,331 @@
 
 @using PearlCalculatorBlazor.Localizer
 
-<div style="
-        border-style: solid;
-        border-Color: #f0f0f0;
-        border-width: 1px;
-        border-radius: 2px;
-        line-height: 1.2;
-    ">
+<Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+<SpaceItem>
+<GridRow>
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text>@TranslateText.GetTranslateText("SettingsNorthWestTNT")</Text>
+    </GridCol>
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Switch style="float: right;" Size="small" @bind-Checked="@NorthWestTntCheck.isChecked"/>
+    </GridCol>
+</GridRow>
 
-    <Row>
-        <AntDesign.Col Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height: 12px"></AntDesign.Col>
-    </Row>
+<GridRow>
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">X</Text>
+    </GridCol>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@NorthWestTntCheck.isChecked" 
+            @bind-Value="@NorthWestTntX" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            @TranslateText.GetTranslateText("SettingsNorthWestTNT")
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Y</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Style="Padding: 4px 8px">
-            <div style="float: right;">
-                <Switch Size="small" @bind-Checked="@NorthWestTntCheck.isChecked" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@NorthWestTntCheck.isChecked" 
+            @bind-Value="@NorthWestTntY" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">X</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Z</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntCheck.isChecked" @bind-Value="@NorthWestTntX" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Class="setting-input-container-box"
+            Disabled="@NorthWestTntCheck.isChecked"
+            @bind-Value="@NorthWestTntZ"
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Y</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsNorthEastTNT")
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntCheck.isChecked" @bind-Value="@NorthWestTntY" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@NorthEastTntCheck.isChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Z</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">X</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthWestTntCheck.isChecked" @bind-Value="@NorthWestTntZ" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@NorthEastTntCheck.isChecked" 
+            @bind-Value="@NorthEastTntX" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            @TranslateText.GetTranslateText("SettingsNorthEastTNT")
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Y</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Style="Padding: 4px 8px">
-            <div style="float: right;">
-                <Switch Size="small" @bind-Checked="@NorthEastTntCheck.isChecked" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@NorthEastTntCheck.isChecked" 
+            @bind-Value="@NorthEastTntY" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">X</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Z</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntCheck.isChecked" @bind-Value="@NorthEastTntX" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@NorthEastTntCheck.isChecked" 
+            @bind-Value="@NorthEastTntZ" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Y</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsSouthWestTNT")
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntCheck.isChecked" @bind-Value="@NorthEastTntY" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@SouthWestTntCheck.isChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Z</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">X</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@NorthEastTntCheck.isChecked" @bind-Value="@NorthEastTntZ" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@SouthWestTntCheck.isChecked" 
+            @bind-Value="@SouthWestTntX"
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            @TranslateText.GetTranslateText("SettingsSouthWestTNT")
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Y</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Style="Padding: 4px 8px">
-            <div style="float: right;">
-                <Switch Size="small" @bind-Checked="@SouthWestTntCheck.isChecked" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@SouthWestTntCheck.isChecked" 
+            @bind-Value="@SouthWestTntY" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">X</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Z</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntCheck.isChecked" @bind-Value="@SouthWestTntX" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@SouthWestTntCheck.isChecked" 
+            @bind-Value="@SouthWestTntZ" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Y</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsSouthEastTNT")
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntCheck.isChecked" @bind-Value="@SouthWestTntY" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@SouthEastTntCheck.isChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Z</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">X</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@SouthWestTntCheck.isChecked" @bind-Value="@SouthWestTntZ" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@SouthEastTntCheck.isChecked" 
+            @bind-Value="@SouthEastTntX" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            @TranslateText.GetTranslateText("SettingsSouthEastTNT")
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Y</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Style="Padding: 4px 8px">
-            <div style="float: right;">
-                <Switch Size="small" @bind-Checked="@SouthEastTntCheck.isChecked" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@SouthEastTntCheck.isChecked" 
+            @bind-Value="@SouthEastTntY" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">X</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">Z</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@SouthEastTntCheck.isChecked" @bind-Value="@SouthEastTntX" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Style="width: 100%" 
+            Disabled="@SouthEastTntCheck.isChecked" 
+            @bind-Value="@SouthEastTntZ" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Y</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("PearlY")
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@SouthEastTntCheck.isChecked" @bind-Value="@SouthEastTntY" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@PearlYCheck.isChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">Z</Text>
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">@TranslateText.GetTranslateText("Coordinate")</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Style="width: 100%" Disabled="@SouthEastTntCheck.isChecked" @bind-Value="@SouthEastTntZ" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@PearlYCheck.isChecked" 
+            @bind-Value="@PearlYCoordinate" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            @TranslateText.GetTranslateText("PearlY")
-        </AntDesign.Col>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text style="margin-left: 10px;">@TranslateText.GetTranslateText("Momentum")</Text>
+    </GridCol>
 
-        <AntDesign.Col Span="12" Style="Padding: 4px 8px">
-            <div style="float: right;">
-                <Switch Size="small" @bind-Checked="@PearlYCheck.isChecked" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber 
+            Class="setting-input-container-box" 
+            Disabled="@PearlYCheck.isChecked" 
+            @bind-Value="@PearlYMomentum" 
+            Size="@InputSize.Small"
+        />
+    </GridCol>
+</GridRow>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">@TranslateText.GetTranslateText("Coordinate")</Text>
-        </AntDesign.Col>
+<GridRow>
+    <GridCol Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height: 30px"></GridCol>
+</GridRow>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@PearlYCheck.isChecked" @bind-Value="@PearlYCoordinate" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
+        <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
+            <span style="border-bottom: 1px dashed #dadada;">
+                @TranslateText.GetTranslateText("DefaultRedTNTPos")
+            </span>
+        </Tooltip>
+    </GridCol>
 
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box">
-            <Text style="margin-left: 10px;">@TranslateText.GetTranslateText("Momentum")</Text>
-        </AntDesign.Col>
+    <GridCol Span="12" Class="setting-col">
+        <div class="setting-select-box">
+            <Select DataSource="@_selectList"
+                    @bind-Value="@DefaultRedTNTPosition"
+                    DefaultValue="@("SouthEast")"
+                    ValueName="@nameof(ArrayPos.ActiveKey)"
+                    LabelName="@nameof(ArrayPos.DisplayName)"
+                    Size="@InputSize.Small"
+                    IgnoreItemChanges="false">
+            </Select>
+        </div>
+    </GridCol>
+</GridRow>
 
-        <AntDesign.Col Span="12" Class="setting-col">
-            <InputNumber Class="setting-input-container-box" Disabled="@PearlYCheck.isChecked" @bind-Value="@PearlYMomentum" Size="@InputSize.Small" />
-        </AntDesign.Col>
-    </Row>
+<GridRow Class="setting-row">
+    <GridCol Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
+        <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
+            <span style="border-bottom: 1px dashed #dadada;">
+                @TranslateText.GetTranslateText("DefaultBlueTNTPos")
+            </span>
+        </Tooltip>
+    </GridCol>
 
-    <Row>
-        <AntDesign.Col Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height: 30px"></AntDesign.Col>
-    </Row>
-
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
-            <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
-                <span style="border-bottom: 1px dashed #dadada;">
-                    @TranslateText.GetTranslateText("DefaultRedTNTPos")
-                </span>
-            </Tooltip>
-        </AntDesign.Col>
-
-        <AntDesign.Col Span="12" Class="setting-col">
-            <div class="setting-select-box">
-                <Select DataSource="@_selectList"
-                        @bind-Value="@DefaultRedTNTPosition"
-                        DefaultValue="@("SouthEast")"
-                        ValueName="@nameof(ArrayPos.ActiveKey)"
-                        LabelName="@nameof(ArrayPos.DisplayName)"
-                        Size="@InputSize.Small"
-                        IgnoreItemChanges="false">
-                </Select>
-            </div>
-        </AntDesign.Col>
-    </Row>
-
-    <Row Class="setting-row">
-        <AntDesign.Col Span="12" Class="setting-name-value-box" Style="Padding: 4px 8px;">
-            <Tooltip Placement="Placement.TopLeft" Title="@(@TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
-                <span style="border-bottom: 1px dashed #dadada;">
-                    @TranslateText.GetTranslateText("DefaultBlueTNTPos")
-                </span>
-            </Tooltip>
-        </AntDesign.Col>
-
-        <AntDesign.Col Span="12" Class="setting-col">
-            <div class="setting-select-box">
-                <Select DataSource="@_selectList"
-                        @bind-Value="@DefaultBlueTNTPosition"
-                        DefaultValue="@("NorthWest")"
-                        ValueName="@nameof(ArrayPos.ActiveKey)"
-                        LabelName="@nameof(ArrayPos.DisplayName)"
-                        Size="@InputSize.Small"
-                        IgnoreItemChanges="false">
-                </Select>
-            </div>
-        </AntDesign.Col>
-    </Row>
-    <Row>
-        <AntDesign.Col Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height:8px"></AntDesign.Col>
-    </Row>
-</div>
-<br />
-<li style="padding: 0px 10px 0px 10px">
+    <GridCol Span="12" Class="setting-col">
+        <div class="setting-select-box">
+            <Select DataSource="@_selectList"
+                    @bind-Value="@DefaultBlueTNTPosition"
+                    DefaultValue="@("NorthWest")"
+                    ValueName="@nameof(ArrayPos.ActiveKey)"
+                    LabelName="@nameof(ArrayPos.DisplayName)"
+                    Size="@InputSize.Small"
+                    IgnoreItemChanges="false">
+            </Select>
+        </div>
+    </GridCol>
+</GridRow>
+<GridRow>
+    <GridCol Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height:8px"></GridCol>
+</GridRow>
+</SpaceItem>
+<SpaceItem>
     <Button Style="width: 100%" @onclick="@ResetToDefault_OnClick">@TranslateText.GetTranslateText("ResetToDefault")</Button>
-</li>
+</SpaceItem>
+</Space>
 
 <style>
     .setting-row {
@@ -284,19 +340,10 @@
         padding: 2px 8px;
     }
 
-    .setting-check-box {
-        float: right;
-        left: 4%;
-        top: 0;
-        bottom: 0;
-    }
-
     .setting-name-value-box {
-        border-right-style: solid;
-        border-Color: #f0f0f0;
-        border-right-width: 1px;
+        border-right: 1px solid #f0f0f0;
         align-content: center;
-        Padding: 5.75px 8px;
+        Padding: 6px 8px;
     }
 
     .setting-input-container-box {
@@ -307,7 +354,3 @@
         width: 100%;
     }
 </style>
-
-@code{
-
-}

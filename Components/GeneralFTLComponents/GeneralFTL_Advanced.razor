@@ -5,55 +5,64 @@
 
 @using PearlCalculatorBlazor.Localizer
 
-<div style="
-        border-style: solid;
-        border-color: #f0f0f0;
-        border-width: 1px;
-        border-radius: 2px;
-        line-height: 1.2;
-        padding: 0px 24px 14px 24px;
-    ">
-    <br />
 
-    <div style="padding-bottom: 10px;">
-        <Text Style="margin-left: 5px;">@TranslateText.GetTranslateText("Offset")</Text>
-    </div>
-
-    <div style="padding-bottom: 10px;">
-        <Text Style="margin-left: 5px;">X :</Text>
-        <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default" />
-    </div>
-
-    <div style="padding-bottom: 10px;">
-        <Text Style="margin-left: 5px;">Z :</Text>
-        <InputNumber Class="advanced-input-container-box" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default" />
-    </div>
-
-</div>
-
-<Row Class="adavced-row">
-    <AntDesign.Col Span="5" Class="advanced-name-value-box" Style="Padding:2px 8px">
-        @TranslateText.GetTranslateText("TNTWeight")
-    </AntDesign.Col>
-
-    <AntDesign.Col Span="19" Style="Padding:2px 8px">
-        <div>
-            <Slider TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="@(value => $"{value}%")" @bind-Value="@TNTWeight" Id="tnt-weight-slider" />
-        </div>
-    </AntDesign.Col>
-</Row>
-
-<style>
-    .advanced-name-value-box {
-        top: 4px;
-    }
-
-    .advanced-input-container-box {
-        width: 100%;
-        margin-top: 5px;
-    }
-</style>
-
-@code {
-
-}
+<Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+    <SpaceItem>
+        <Card Title="@TranslateText.GetTranslateText("Offset")" Style="width: 100%">
+            <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+                <SpaceItem>
+                    <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+                        <SpaceItem>
+                            <Text>X :</Text>
+                        </SpaceItem>
+                        <SpaceItem>
+                            <InputNumber Style="width: 100%" Min="-1" Max="1" @bind-Value="@PearlOffsetX" Size="@InputSize.Default"/>
+                        </SpaceItem>
+                    </Space>
+                </SpaceItem>
+                <SpaceItem>
+                    <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+                        <SpaceItem>
+                            <Text>Z :</Text>
+                        </SpaceItem>
+                        <SpaceItem>
+                            <InputNumber Style="width: 100%" Min="-1" Max="1" @bind-Value="@PearlOffsetZ" Size="@InputSize.Default"/>
+                        </SpaceItem>
+                    </Space>
+                </SpaceItem>
+            </Space>
+        </Card>
+    </SpaceItem>
+    <SpaceItem>
+        <Card Title="@TranslateText.GetTranslateText("ResultSortControl")" Style="width: 100%">
+            <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+                <SpaceItem>
+                    <Space Style="width: 100%; justify-content: space-between;">
+                        <SpaceItem>
+                            <Text>@TranslateText.GetTranslateText("TNTWeight")</Text>
+                        </SpaceItem>
+                        <SpaceItem Style="width: 75%">
+                            <Slider Style="width: 100%" TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="@(value => $"{value}%")" @bind-Value="@TNTWeight" Id="tnt-weight-slider"/>
+                        </SpaceItem>
+                    </Space>
+                </SpaceItem>
+                <SpaceItem>
+                    <RadioGroup @bind-Value="@SelectSortMode" Style="width: 100%;">
+                        <Space Style="width: 100%; justify-content: space-between;">
+                            <SpaceItem>
+                                <Radio Value="@SortMode.SortByWeightedDistance">
+                                    @TranslateText.GetTranslateText("MixedWeightedDistance")
+                                </Radio>
+                            </SpaceItem>
+                            <SpaceItem>
+                                <Radio Value="@SortMode.SortByWeightedTotal">
+                                    @TranslateText.GetTranslateText("MixedWeightedTotal")
+                                </Radio>
+                            </SpaceItem>
+                        </Space>
+                    </RadioGroup>
+                </SpaceItem>
+            </Space>
+        </Card>
+    </SpaceItem>
+</Space>

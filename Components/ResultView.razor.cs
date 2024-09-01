@@ -98,13 +98,29 @@ namespace PearlCalculatorBlazor.Components
                 StateHasChanged();
             });
 
-            EventManager.Instance.AddListener<ButtonClickArgs>("resortResult", async (sender, args) =>
+            EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedDistance", async (sender, args) =>
             {
                 if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
                 try 
                 { 
                     AmountResult.SortByWeightedDistance(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance)); 
+                }
+                catch(Exception e)
+                {
+                    await NoticeWithIcon(NotificationType.Error, e.ToString());
+                }
+
+                StateHasChanged();
+            });
+
+            EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedTotal", async (sender, args) =>
+            {
+                if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
+
+                try 
+                { 
+                    AmountResult.SortByWeightedTotal(new(Data.TNTWeight, Data.MaxCalculateTNT, Data.MaxCalculateDistance)); 
                 }
                 catch(Exception e)
                 {
