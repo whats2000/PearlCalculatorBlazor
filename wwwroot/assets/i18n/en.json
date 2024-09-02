@@ -64,7 +64,9 @@
   "NormalProjection": "Normal Projection",
   "PerfectHorizontalProjection": "Perfect Horizontal Projection",
   "PearlYPositionOriginal": "Pearl Y Position (Original)",
+  "PearlYPositionOriginalDesc": "To get the Y position of the pearl, you should remove the piston which is used to cancel the Y motion and get the Y position of the pearl at explosion tick. This position is where the pearl to get the momentum.",
   "PearlYPositionAdjusted": "Pearl Y Position (Adjusted)",
+  "PearlYPositionAdjustedDesc": "To get the Y position of the pearl, just place the piston which is used to cancel the Y motion and get the Y position at the end of the tick. This position is where the pearl starts to move.",
 
   "DefaultRedTNTPos": "Default Red TNT Position",
   "DefaultRedTNTPosDesc": "Preset the position of the TNT duped from the red array relative to the pearl without being changed by the slime block",

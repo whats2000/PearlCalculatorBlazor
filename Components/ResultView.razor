@@ -3,6 +3,7 @@
 @inject NotificationService Notice
 @inject TranslateText TransText
 
+@using System.Globalization
 @using PearlCalculatorBlazor.Localizer
 
 <div class="calculator-result">
@@ -13,26 +14,26 @@
                Total="AmountTotal"
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
-               ScrollY=@(TableScrollY)
+               ScrollY="80vh"
                OnRowClick="OnAmountRowClickAsync"
                Class="calculator-result-table">
             <!-- A Tooltips with icon for info click can set the red and blue tnt amounts -->
             <ActionColumn Title="@TranslateText.GetTranslateText("DisplayAction")" Width="50px">
                 <Tooltip Title="@TranslateText.GetTranslateText("TNTCalculationResultTooltip")">
                     <Text Type="secondary">
-                        <Icon Type="info-circle" Theme="outline" />
+                        <Icon Type="info-circle" Theme="outline"/>
                     </Text>
                 </Tooltip>
             </ActionColumn>
-            <Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
-                <Tooltip Title="@context.Distance.ToString()">
-                    <Text>@context.Distance.ToString().Substring(0, 5)</Text>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
+                <Tooltip Title="@context.Distance.ToString(CultureInfo.InvariantCulture)">
+                    <Text>@context.Distance.ToString(CultureInfo.InvariantCulture).Substring(0, 5)</Text>
                 </Tooltip>
-            </Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></Column>
+            </AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></AntDesign.Column>
         </Table>
     }
     else if (ShowMode == ShowResultMode.Trace)
@@ -42,13 +43,13 @@
                Total="PearlTotal"
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
-               ScrollY=@(TableScrollY)
+               ScrollY="80vh"
                Class="calculator-result-table">
 
-            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></Column>
-            <Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></Column>
-            <Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></Column>
-            <Column Title="@TranslateText.GetTranslateText("ZCoor")" @bind-Field="@context.ZCoor"></Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("ZCoor")" @bind-Field="@context.ZCoor"></AntDesign.Column>
 
         </Table>
     }
@@ -59,83 +60,30 @@
                Total="MotionTotal"
                @bind-PageIndex="_pageIndex"
                @bind-PageSize="_pageSize"
-               ScrollY=@(TableScrollY)
+               ScrollY="80vh"
                Class="calculator-result-table">
 
-            <Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayXMotion")" @bind-Field="@context.XCoor"></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></Column>
-            <Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></Column>
-
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayXMotion")" @bind-Field="@context.XCoor"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></AntDesign.Column>
+            <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></AntDesign.Column>
         </Table>
     }
 </div>
 
-<div class="calculator-result-root-default">
-    <Row Class="calculator-result-row">
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">
-            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayDirection")</Text>
-        </AntDesign.Col>
-        <AntDesign.Col Span="12" Style="background-color: #fafafa;">
-            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayAngle")</Text>
-        </AntDesign.Col>
-    </Row>
-    <Row Class="calculator-result-row">
-        <AntDesign.Col Span="12" Style="background-color: white;">
-            <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText(ResultDirection)</Text>
-        </AntDesign.Col>
-        <AntDesign.Col Span="12" Style="background-color: white;">
-            <Text Style="padding-left: 10px;">@ResultAngle</Text>
-        </AntDesign.Col>
-    </Row>
-</div>
-
-<div class="calculator-result-root-mobile">
-    <div style="background-color: #fafafa;">
-        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayDirection")</Text>
-    </div>
-    <div style="background-color: white;">
-        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText(ResultDirection)</Text>
-    </div>
-
-    <div Style="background-color: #fafafa;">
-        <Text Style="padding-left: 10px;">@TranslateText.GetTranslateText("DisplayAngle")</Text>
-    </div>
-    <div Style="background-color: white;">
-        <Text Style="padding-left: 10px;">@ResultAngle</Text>
-    </div>
-</div>
-
-<style>
-    .calculator-result-table-hidden {
-        display: none
-    }
-
-    .calculator-result-root-default {
-        border-style: solid;
-        border-Color: #fafafa;
-        border-width: 1px;
-        display: block;
-    }
-
-    .calculator-result-root-mobile {
-        display: none;
-    }
-
-    @@media screen and (max-width: 420px) {
-        .calculator-result-root-default {
-            display: none;
-        }
-
-        .calculator-result-root-mobile {
-            border-style: solid;
-            border-Color: #fafafa;
-            border-width: 1px;
-            display: block;
-        }
-    }
-</style>
-
-@code {
-    private const string TableScrollY = "678px";
-}
+<GridRow Gutter="12">
+    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+        <Card Title="@TranslateText.GetTranslateText("DisplayDirection")">
+            <Text>
+                @TranslateText.GetTranslateText(_resultDirection)
+            </Text>
+        </Card>
+    </GridCol>
+    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+        <Card Title="@TranslateText.GetTranslateText("DisplayAngle")">
+            <Text>
+                @_resultAngle
+            </Text>
+        </Card>
+    </GridCol>
+</GridRow>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using System.Globalization;
 using AntDesign;
 using PearlCalculatorLib.General;
 
@@ -27,16 +28,14 @@ namespace PearlCalculatorBlazor.Components
         private int AmountTotal => AmountResult is null ? 0 : AmountResult.Count;
         private int PearlTotal => PearlTrace is null ? 0 : PearlTrace.Count;
         private int MotionTotal => PearlMotion is null ? 0 : PearlMotion.Count;
-
-
+        
         private List<TNTCalculationResult> AmountResult { get; set; } = new();
 
         private List<EntityWrapper> PearlTrace { get; set; } = new();
         private List<EntityWrapper> PearlMotion { get; set; } = new();
 
-        private static string ResultDirection = string.Empty;
-
-        private static string ResultAngle = string.Empty;
+        private static string _resultDirection = string.Empty;
+        private static string _resultAngle = string.Empty;
 
         public static void ShowDirectionResult(Space3D pearlPos, Space3D destination)
         {
@@ -45,9 +44,9 @@ namespace PearlCalculatorBlazor.Components
             if (angle == 370)
                 return;
 
-            ResultDirection = DirectionUtils.GetDirection(angle).ToString();
+            _resultDirection = DirectionUtils.GetDirection(angle).ToString();
 
-            ResultAngle = angle.ToString();
+            _resultAngle = angle.ToString(CultureInfo.InvariantCulture);
         }
 
         private async Task NoticeWithIcon(NotificationType type, string msg)
@@ -197,7 +196,7 @@ namespace PearlCalculatorBlazor.Components
             await NoticeWithIcon(NotificationType.Success, TranslateText.GetTranslateText("TNTCalculationSetSucessMessage"));
         }
 
-        public void RefreshPage()
+        private void RefreshPage()
         {
             StateHasChanged();
         }

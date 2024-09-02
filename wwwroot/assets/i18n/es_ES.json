@@ -64,7 +64,9 @@
   "NormalProjection": "Proyección Normal",
   "PerfectHorizontalProjection": "Proyección Horizontal Perfecta",
   "PearlYPositionOriginal": "Posición Y de la Perla (Original)",
+  "PearlYPositionOriginalDesc": "Para obtener la posición Y de la perla, debes quitar el pistón que se usa para cancelar el movimiento Y y obtener la posición Y de la perla en el tick de la explosión. Esta posición es donde la perla obtiene el impulso.",
   "PearlYPositionAdjusted": "Posición Y de la Perla (Ajustada)",
+  "PearlYPositionAdjustedDesc": "Para obtener la posición Y de la perla, simplemente coloca el pistón que se usa para cancelar el movimiento Y y obtén la posición Y al final del tick. Esta posición es donde la perla comienza a moverse.",
 
   "DefaultRedTNTPos": "Posición Predet. TNT Roja",
   "DefaultRedTNTPosDesc": "La Posición de la TNT Roja (Respecto a la perla) si el Slime Block no la mueve",

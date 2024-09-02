@@ -65,9 +65,10 @@
   "Momentum": "矢量",
   "PearlYMotionMode": "珍珠Y轴运动模式",
   "NormalProjection": "正常抛射",
-  "PerfectHorizontalProjection": "完美水平抛射",
-  "PearlYPositionOriginal": "珍珠Y軸位置（原始）",
-  "PearlYPositionAdjusted": "珍珠Y軸位置（調整後）",
+  "PerfectHorizontalProjection": "完美水平抛射","PearlYPositionOriginal": "珍珠 Y 轴位置（原始）",
+  "PearlYPositionOriginalDesc": "要获得珍珠的 Y 轴位置，应移除用于取消 Y 轴运动的活塞，并在爆炸时刻获得珍珠的 Y 轴位置。这个位置是珍珠获得矢量的地方。",
+  "PearlYPositionAdjusted": "珍珠 Y 轴位置（调整后）",
+  "PearlYPositionAdjustedDesc": "要获得珍珠的 Y 轴位置，只需放置用于取消 Y 轴运动的活塞，并在时间结束时获得 Y 轴位置。这个位置是珍珠开始移动的地方。",
 
   "DefaultRedTNTPos": "预设红色TNT方位",
   "DefaultRedTNTPosDesc": "预设从红色阵列复制的TNT\n在不被粘液块改位置下相对于珍珠的方位",
