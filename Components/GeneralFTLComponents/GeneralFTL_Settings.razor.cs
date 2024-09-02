@@ -239,7 +239,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents
             TranslateText.OnLanguageChange += RefreshPage;
         }
 
-        public void RefreshPage()
+        private void RefreshPage()
         {
             foreach (var pair in _selectList)
                 pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
