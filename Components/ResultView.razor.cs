@@ -241,7 +241,7 @@ public partial class ResultView
             StateHasChanged();
         });
 
-        EventManager.Instance.AddListener<PearlSimulateArgs>("trace", async (_, args) =>
+        EventManager.Instance.AddListener<PearlSimulateManuallyArgs>("manuallyPearlTrace", async (_, args) =>
         {
             _pageIndex = 1;
 
@@ -257,7 +257,7 @@ public partial class ResultView
                 };
             }).ToList());
 
-            ShowDirectionResult(args.Pearl.Position,
+            ShowDirectionResult(args.ManuallyData.Pearl.Position,
                 new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
 
             ShowMode = ShowResultMode.Trace;
@@ -265,7 +265,7 @@ public partial class ResultView
             StateHasChanged();
         });
 
-        EventManager.Instance.AddListener<PearlSimulateArgs>("motion", async (_, args) =>
+        EventManager.Instance.AddListener<PearlSimulateManuallyArgs>("manuallyPearlMotion", async (_, args) =>
         {
             _pageIndex = 1;
 
@@ -281,9 +281,9 @@ public partial class ResultView
                 };
             }).ToList());
 
-            var firstTickPos = args.Pearl.Position + args.Trace[0].Motion;
+            var firstTickPos = args.ManuallyData.Pearl.Position + args.Trace[0].Motion;
 
-            ShowDirectionResult(args.Pearl.Position,
+            ShowDirectionResult(args.ManuallyData.Pearl.Position,
                 new Space3D(firstTickPos.X, firstTickPos.Y, firstTickPos.Z));
 
             ShowMode = ShowResultMode.Momentum;

@@ -234,7 +234,7 @@ public partial class Manually
         _valueHasChanged = false;
 
         EventManager.Instance.PublishEvent(this, key,
-            new PearlSimulateArgs(PublishKey, _manuallyData.Pearl, _calculateResult));
+            new PearlSimulateManuallyArgs(PublishKey, _manuallyData, _calculateResult));
     }
 
     private void RefreshPage()

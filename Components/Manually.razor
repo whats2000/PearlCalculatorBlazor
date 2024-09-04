@@ -177,10 +177,10 @@
         <Button Block="true" @onclick="@ManuallyCalculateTntAmount">
             @TranslateText.GetTranslateText("CalculateTNTAmount")
         </Button>
-        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("trace"))">
+        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("manuallyPearlTrace"))">
             @TranslateText.GetTranslateText("CalculatePearlTrace")
         </Button>
-        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("motion"))">
+        <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("manuallyPearlMotion"))">
             @TranslateText.GetTranslateText("CalculatePearlMomentum")
         </Button>
     </div>

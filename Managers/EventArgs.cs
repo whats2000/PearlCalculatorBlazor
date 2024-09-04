@@ -34,6 +34,19 @@ public class PearlSimulateArgs : EventArgs
     }
 }
 
+public class PearlSimulateManuallyArgs : EventArgs
+{
+    public readonly ManuallyData ManuallyData;
+    public readonly List<Entity> Trace;
+
+    public PearlSimulateManuallyArgs(string publishKey, ManuallyData manuallyData, List<Entity> trace) :
+        base(publishKey)
+    {
+        ManuallyData = manuallyData;
+        Trace = trace;
+    }
+}
+
 public class SetRtCountArgs : EventArgs
 {
     public readonly int Blue;
