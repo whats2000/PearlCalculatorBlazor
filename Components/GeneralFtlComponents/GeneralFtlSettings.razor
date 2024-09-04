@@ -1,0 +1,389 @@
+﻿@page "/GeneralFtlSettings"
+@using PearlCalculatorBlazor.Localizer
+
+@inject TranslateText TransText
+@inject IJSRuntime JsRuntime
+
+<Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+<SpaceItem>
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text>@TranslateText.GetTranslateText("SettingsNorthWestTNT")</Text>
+    </GridCol>
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Switch style="float: right;" Size="small" @bind-Checked="@_northWestTntCheck.IsChecked"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>X</Text>
+    </GridCol>
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northWestTntCheck.IsChecked"
+            @bind-Value="@NorthWestTntX"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Y</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northWestTntCheck.IsChecked"
+            @bind-Value="@NorthWestTntY"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Z</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northWestTntCheck.IsChecked"
+            @bind-Value="@NorthWestTntZ"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsNorthEastTNT")
+    </GridCol>
+
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@_northEastTntCheck.IsChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>X</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northEastTntCheck.IsChecked"
+            @bind-Value="@NorthEastTntX"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Y</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northEastTntCheck.IsChecked"
+            @bind-Value="@NorthEastTntY"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Z</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_northEastTntCheck.IsChecked"
+            @bind-Value="@NorthEastTntZ"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsSouthWestTNT")
+    </GridCol>
+
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@_southWestTntCheck.IsChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>X</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southWestTntCheck.IsChecked"
+            @bind-Value="@SouthWestTntX"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Y</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southWestTntCheck.IsChecked"
+            @bind-Value="@SouthWestTntY"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Z</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southWestTntCheck.IsChecked"
+            @bind-Value="@SouthWestTntZ"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        @TranslateText.GetTranslateText("SettingsSouthEastTNT")
+    </GridCol>
+
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@_southEastTntCheck.IsChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>X</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southEastTntCheck.IsChecked"
+            @bind-Value="@SouthEastTntX"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Y</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southEastTntCheck.IsChecked"
+            @bind-Value="@SouthEastTntY"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>Z</Text>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <InputNumber
+            Style="width: 100%"
+            Disabled="@_southEastTntCheck.IsChecked"
+            @bind-Value="@SouthEastTntZ"
+            Size="@InputSize.Small"/>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Text>@TranslateText.GetTranslateText("PearlY")</Text>
+    </GridCol>
+
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <div style="float: right;">
+            <Switch Size="small" @bind-Checked="@_pearlYCheck.IsChecked"/>
+        </div>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+        <Text>
+            @TranslateText.GetTranslateText("PearlYMotionMode")
+        </Text>
+    </GridCol>
+
+    <GridCol Span="12" Style="Padding: 4px 8px">
+        <Select DataSource="@_pearlYMotionOptions"
+                @bind-Value="PearlYMotionMode"
+                DefaultValue="@PearlYMotionMode"
+                ValueName="@nameof(ArrayPos.ActiveKey)"
+                LabelName="@nameof(ArrayPos.DisplayName)"
+                Size="@InputSize.Small">
+        </Select>
+    </GridCol>
+</GridRow>
+
+
+<!-- Conditional Rendering for Pearl Y Settings -->
+@if (PearlYMotionMode == "NormalProjection")
+{
+    <GridRow Align="center">
+        <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+            <Text>@TranslateText.GetTranslateText("Coordinate")</Text>
+        </GridCol>
+
+        <GridCol Span="12" Class="setting-col">
+            <InputNumber
+                Style="width: 100%"
+                Disabled="@_pearlYCheck.IsChecked"
+                @bind-Value="PearlYCoordinate"
+                Size="@InputSize.Small"/>
+        </GridCol>
+    </GridRow>
+
+    <GridRow Align="center">
+        <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+            <Text>@TranslateText.GetTranslateText("Momentum")</Text>
+        </GridCol>
+
+        <GridCol Span="12" Class="setting-col">
+            <InputNumber
+                Style="width: 100%"
+                Disabled="@_pearlYCheck.IsChecked"
+                @bind-Value="PearlYMomentum"
+                Size="@InputSize.Small"/>
+        </GridCol>
+    </GridRow>
+}
+else
+{
+    <GridRow Align="center">
+        <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+            <Tooltip Placement="Placement.TopLeft" Title="@(TranslateText.GetTranslateText("PearlYPositionOriginalDesc"))">
+                <Text Style="border-bottom: 1px dashed #dadada;">
+                    @TranslateText.GetTranslateText("PearlYPositionOriginal")
+                </Text>
+            </Tooltip>
+        </GridCol>
+
+        <GridCol Span="12" Class="setting-col">
+            <InputNumber
+                Style="width: 100%"
+                Disabled="@_pearlYCheck.IsChecked"
+                @bind-Value="PearlYPositionOriginal"
+                Size="@InputSize.Small"/>
+        </GridCol>
+    </GridRow>
+
+    <GridRow Align="center">
+        <GridCol Span="12" Class="setting-name-value-box" Style="padding-left: 18px;">
+            <Tooltip Placement="Placement.TopLeft" Title="@(TranslateText.GetTranslateText("PearlYPositionAdjustedDesc"))">
+                <Text Style="border-bottom: 1px dashed #dadada;">
+                    @TranslateText.GetTranslateText("PearlYPositionAdjusted")
+                </Text>
+            </Tooltip>
+        </GridCol>
+
+        <GridCol Span="12" Class="setting-col">
+            <InputNumber
+                Style="width: 100%"
+                Disabled="@_pearlYCheck.IsChecked"
+                @bind-Value="PearlYPositionAdjusted"
+                Size="@InputSize.Small"/>
+        </GridCol>
+    </GridRow>
+}
+
+<GridRow Align="center">
+    <GridCol Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height: 30px"></GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Tooltip Placement="Placement.TopLeft" Title="@(TranslateText.GetTranslateText("DefaultRedTNTPosDesc"))">
+            <Text Style="border-bottom: 1px dashed #dadada;">
+                @TranslateText.GetTranslateText("DefaultRedTNTPos")
+            </Text>
+        </Tooltip>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <Select DataSource="@_selectList"
+                @bind-Value="@DefaultRedTntPosition"
+                DefaultValue="@("SouthEast")"
+                ValueName="@nameof(ArrayPos.ActiveKey)"
+                LabelName="@nameof(ArrayPos.DisplayName)"
+                Size="@InputSize.Small"
+                IgnoreItemChanges="false">
+        </Select>
+    </GridCol>
+</GridRow>
+
+<GridRow Align="center">
+    <GridCol Span="12" Class="setting-name-value-box">
+        <Tooltip Placement="Placement.TopLeft" Title="@(TranslateText.GetTranslateText("DefaultBlueTNTPosDesc"))">
+            <Text style="border-bottom: 1px dashed #dadada;">
+                @TranslateText.GetTranslateText("DefaultBlueTNTPos")
+            </Text>
+        </Tooltip>
+    </GridCol>
+
+    <GridCol Span="12" Class="setting-col">
+        <Select DataSource="@_selectList"
+                @bind-Value="@DefaultBlueTntPosition"
+                DefaultValue="@("NorthWest")"
+                ValueName="@nameof(ArrayPos.ActiveKey)"
+                LabelName="@nameof(ArrayPos.DisplayName)"
+                Size="@InputSize.Small"
+                IgnoreItemChanges="false">
+        </Select>
+    </GridCol>
+</GridRow>
+<GridRow Align="center">
+    <GridCol Span="12" Style="border-right-style: solid; border-Color: #f0f0f0; border-right-width: 1px; height:8px"></GridCol>
+</GridRow>
+</SpaceItem>
+<SpaceItem>
+    <Button Style="width: 100%" @onclick="@ResetToDefault_OnClick">@TranslateText.GetTranslateText("ResetToDefault")</Button>
+</SpaceItem>
+</Space>
+
+<style>
+    .setting-col {
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .setting-name-value-box {
+        border-right: 1px solid #f0f0f0;
+        align-content: center;
+        Padding: 6px 8px;
+    }
+</style>

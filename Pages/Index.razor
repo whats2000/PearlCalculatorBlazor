@@ -1,5 +1,5 @@
 ﻿@page "/"
-
+@using PearlCalculatorBlazor.Components
 @using PearlCalculatorBlazor.Localizer
 
 <GridRow>
@@ -10,7 +10,7 @@
                     <ChildContent>
                         <TabPane Key="General" Tab="@TranslateText.GetTranslateText("GeneralHeader")">
                             <ChildContent>
-                                <PearlCalculatorBlazor.Components.GeneralFTL/>
+                                <GeneralFtl/>
                             </ChildContent>
                         </TabPane>
                         <TabPane Key="Manually" Tab="@TranslateText.GetTranslateText("ManuallyHeader")">
