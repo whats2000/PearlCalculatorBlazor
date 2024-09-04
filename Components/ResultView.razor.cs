@@ -24,7 +24,8 @@ public partial class ResultView
         Padding = "auto",
         AutoFit = true,
         XField = "tick",
-        YField = "yCoor"
+        YField = "value",
+        SeriesField = "axis"
     };
 
     private DualAxesConfig _dualAxesConfig = new()
@@ -57,8 +58,10 @@ public partial class ResultView
     private int _pageIndex = 1;
     private int _pageSize = 50;
 
-    private object[] StackedBarData => GetStackedBarData();
-    private object[] LineData => GetLineData();
+    private object[] PearlTraceData => GetPearlTraceData();
+
+    private object[] AmountResultStackedBarData => GetAmountResultStackedBarData();
+    private object[] AmountResultLineData => GetAmountResultLineData();
 
     private ShowResultMode ShowMode { get; set; } = ShowResultMode.Amount;
 
@@ -71,7 +74,30 @@ public partial class ResultView
     private List<EntityWrapper> PearlTrace { get; set; } = new();
     private List<EntityWrapper> PearlMotion { get; set; } = new();
 
-    private object[] GetStackedBarData()
+    private object[] GetPearlTraceData()
+    {
+        var selectedPearlTrace = PearlTrace.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
+        return selectedPearlTrace.Select(r => new
+            {
+                tick = r.Tick,
+                value = r.XCoor,
+                axis = "X"
+            })
+            .Concat(selectedPearlTrace.Select(r => new
+            {
+                tick = r.Tick,
+                value = r.YCoor,
+                axis = "Y"
+            }))
+            .Concat(selectedPearlTrace.Select(r => new
+            {
+                tick = r.Tick,
+                value = r.ZCoor,
+                axis = "Z"
+            })).ToArray<object>();
+    }
+
+    private object[] GetAmountResultStackedBarData()
     {
         return AmountResult
             .Select((r, index) => new
@@ -89,7 +115,7 @@ public partial class ResultView
             .ToArray<object>();
     }
 
-    private object[] GetLineData()
+    private object[] GetAmountResultLineData()
     {
         return AmountResult.Select((r, index) => new
             {
@@ -253,9 +279,11 @@ public partial class ResultView
                     Tick = index
                 };
             }).ToList());
+            
+            var firstTickPos = args.Pearl.Position + args.Trace[0].Motion;
 
             ShowDirectionResult(args.Pearl.Position,
-                new Space3D(PearlTrace[1].XCoor, PearlTrace[1].YCoor, PearlTrace[1].ZCoor));
+                new Space3D(firstTickPos.X, firstTickPos.Y, firstTickPos.Z));
 
             ShowMode = ShowResultMode.Momentum;
 

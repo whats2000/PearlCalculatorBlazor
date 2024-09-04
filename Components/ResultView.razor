@@ -38,8 +38,8 @@
                                     </Tooltip>
                                 </AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></AntDesign.Column>
-                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></AntDesign.Column>
                             </Table>
                             break;
@@ -96,7 +96,7 @@
                 <TabPane Key="GraphMode" Tab="@TranslateText.GetTranslateText("GraphMode")">
                     @if (ShowMode == ShowResultMode.Trace)
                     {
-                        <AntDesign.Charts.Line Data="@PearlTrace" Config="@_lineConfig"/>
+                        <AntDesign.Charts.Line Data="@PearlTraceData" Config="@_lineConfig"/>
                     }
                     else if (ShowMode == ShowResultMode.Momentum)
                     {
@@ -104,7 +104,7 @@
                     }
                     else if (ShowMode == ShowResultMode.Amount)
                     {
-                        <DualAxes Data="@(new[] { StackedBarData, LineData })" Config="_dualAxesConfig"/>
+                        <DualAxes Data="@(new[] { AmountResultStackedBarData, AmountResultLineData })" Config="_dualAxesConfig"/>
                     }
                 </TabPane>
             </ChildContent>
