@@ -58,7 +58,8 @@ public partial class ResultView
     private int _pageIndex = 1;
     private int _pageSize = 50;
 
-    private object[] PearlTraceData => GetPearlTraceData();
+    private object[] PearlTraceData => GetEntityWrapperData(PearlTrace);
+    private object[] PearlMotionData => GetEntityWrapperData(PearlMotion);
 
     private object[] AmountResultStackedBarData => GetAmountResultStackedBarData();
     private object[] AmountResultLineData => GetAmountResultLineData();
@@ -74,22 +75,22 @@ public partial class ResultView
     private List<EntityWrapper> PearlTrace { get; set; } = new();
     private List<EntityWrapper> PearlMotion { get; set; } = new();
 
-    private object[] GetPearlTraceData()
+    private object[] GetEntityWrapperData(List<EntityWrapper> data)
     {
-        var selectedPearlTrace = PearlTrace.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
-        return selectedPearlTrace.Select(r => new
+        var selectedData = data.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
+        return selectedData.Select(r => new
             {
                 tick = r.Tick,
                 value = r.XCoor,
                 axis = "X"
             })
-            .Concat(selectedPearlTrace.Select(r => new
+            .Concat(selectedData.Select(r => new
             {
                 tick = r.Tick,
                 value = r.YCoor,
                 axis = "Y"
             }))
-            .Concat(selectedPearlTrace.Select(r => new
+            .Concat(selectedData.Select(r => new
             {
                 tick = r.Tick,
                 value = r.ZCoor,
@@ -279,7 +280,7 @@ public partial class ResultView
                     Tick = index
                 };
             }).ToList());
-            
+
             var firstTickPos = args.Pearl.Position + args.Trace[0].Motion;
 
             ShowDirectionResult(args.Pearl.Position,
