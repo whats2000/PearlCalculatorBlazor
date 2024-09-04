@@ -61,7 +61,7 @@ public partial class GeneralFTL_Advanced
         var isSortByWeightedDistance = SelectSortMode == SortMode.SortByWeightedDistance;
         EventManager.Instance.PublishEvent(this,
             isSortByWeightedDistance ? "sortByWeightedDistance" : "sortByWeightedTotal",
-            new ButtonClickArgs("GFTL_Advanced"));
+            new ButtonClickArgs("GeneralFtlAdvanced"));
     }
 
     [JSInvokable]

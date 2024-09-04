@@ -2,9 +2,9 @@
   "GeneralHeader": "General FTL",
   "ManuallyHeader": "Manually",
 
-  "GFTL_General": "General",
-  "GFTL_Advanced": "Advanced",
-  "GFTL_Settings": "Settings",
+  "GeneralFtlGeneral": "General",
+  "GeneralFtlAdvanced": "Advanced",
+  "GeneralFtlSettings": "Settings",
 
   "PearlPosX": "Pearl X :",
   "PearlPosY": "Pearl Y :",

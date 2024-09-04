@@ -2,9 +2,9 @@
   "GeneralHeader": "通用FTL",
   "ManuallyHeader": "自定义FTL",
 
-  "GFTL_General": "一般选项",
-  "GFTL_Advanced": "进阶选项",
-  "GFTL_Settings": "更多基础选项",
+  "GeneralFtlGeneral": "一般选项",
+  "GeneralFtlAdvanced": "进阶选项",
+  "GeneralFtlSettings": "更多基础选项",
 
   "PearlPosX": "珍珠X坐标 :",
   "PearlPosY": "珍珠Y坐标 :",

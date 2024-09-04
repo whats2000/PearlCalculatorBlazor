@@ -11,9 +11,18 @@ public partial class GeneralFTL
     {
         _selectList = new List<Array>
         {
-            new() { ActiveKey = "GFTL_General", DisplayName = TranslateText.GetTranslateText("GFTL_General") },
-            new() { ActiveKey = "GFTL_Advanced", DisplayName = TranslateText.GetTranslateText("GFTL_Advanced") },
-            new() { ActiveKey = "GFTL_Settings", DisplayName = TranslateText.GetTranslateText("GFTL_Settings") }
+            new()
+            {
+                ActiveKey = "GeneralFtlGeneral", DisplayName = TranslateText.GetTranslateText("GeneralFtlGeneral")
+            },
+            new()
+            {
+                ActiveKey = "GeneralFtlAdvanced", DisplayName = TranslateText.GetTranslateText("GeneralFtlAdvanced")
+            },
+            new()
+            {
+                ActiveKey = "GeneralFtlSettings", DisplayName = TranslateText.GetTranslateText("GeneralFtlSettings")
+            }
         };
 
         TranslateText.OnLanguageChange += RefreshPage;

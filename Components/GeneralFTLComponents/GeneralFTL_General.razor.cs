@@ -14,7 +14,7 @@ namespace PearlCalculatorBlazor.Components.GeneralFTLComponents;
 
 public partial class GeneralFTL_General
 {
-    private const string PublishKey = "GFTL_General";
+    private const string PublishKey = "GeneralFtlGeneral";
 
     private static readonly SettingsJsonConverter JsonConverter = new();
 
