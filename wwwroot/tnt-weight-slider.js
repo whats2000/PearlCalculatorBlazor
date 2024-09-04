@@ -9,7 +9,7 @@ function AddTNTWeightSliderEvent() {
     document.onmouseup = () => {
         if (isTntWeightSliderMouseDown) {
             isTntWeightSliderMouseDown = false;
-            DotNet.invokeMethod("PearlCalculatorBlazor", "ChangeTNTWeightJS");
+            DotNet.invokeMethod("PearlCalculatorBlazor", "ChangeTntWeightJs");
         }
     }
 }

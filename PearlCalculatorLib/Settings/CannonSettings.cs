@@ -27,6 +27,10 @@ namespace PearlCalculatorLib.Settings
         public List<int> RedTNTConfiguration { get; set; }
         public List<int> BlueTNTConfiguration { get; set; }
         
+        public bool PearlYMotionCancellation { get; set; }
+        public double PearlYPositionOriginal { get; set; }
+        public double PearlYPositionAdjusted { get; set; }
+        
         public CannonSettings DeepClone()
         {
             List<int> redTNTConfiguration = new List<int>(RedTNTConfiguration.Count);
@@ -48,7 +52,10 @@ namespace PearlCalculatorLib.Settings
                 Offset               = Offset,
                 Pearl                = Pearl.DeepClone(),
                 RedTNTConfiguration  = redTNTConfiguration,
-                BlueTNTConfiguration = blueTNTConfiguration
+                BlueTNTConfiguration = blueTNTConfiguration,
+                PearlYMotionCancellation = PearlYMotionCancellation,
+                PearlYPositionOriginal = PearlYPositionOriginal,
+                PearlYPositionAdjusted = PearlYPositionAdjusted
             };
 
             return result;

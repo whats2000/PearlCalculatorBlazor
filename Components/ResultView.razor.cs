@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AntDesign;
+using AntDesign.Charts;
 using AntDesign.TableModels;
 using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
@@ -18,8 +19,46 @@ public partial class ResultView
     private static string _resultDirection = string.Empty;
     private static string _resultAngle = string.Empty;
 
+    private readonly LineConfig _lineConfig = new()
+    {
+        Padding = "auto",
+        AutoFit = true,
+        XField = "tick",
+        YField = "yCoor"
+    };
+
+    private DualAxesConfig _dualAxesConfig = new()
+    {
+        XField = "index",
+        YField = new[] { "value", "count" },
+        GeometryOptions = new object[]
+        {
+            new
+            {
+                Geometry = "column",
+                IsStack = true,
+                seriesField = "type",
+                // Red, Blue
+                Color = new[] { "#FF7260", "#9BD7D5" }
+            },
+            new
+            {
+                Geometry = "line",
+                seriesField = "name",
+                Color = new[] { "#129793", "#90AEC6" },
+                LineStyle = new
+                {
+                    lineWidth = 1.5
+                }
+            }
+        }
+    };
+
     private int _pageIndex = 1;
     private int _pageSize = 50;
+
+    private object[] StackedBarData => GetStackedBarData();
+    private object[] LineData => GetLineData();
 
     private ShowResultMode ShowMode { get; set; } = ShowResultMode.Amount;
 
@@ -31,6 +70,42 @@ public partial class ResultView
 
     private List<EntityWrapper> PearlTrace { get; set; } = new();
     private List<EntityWrapper> PearlMotion { get; set; } = new();
+
+    private object[] GetStackedBarData()
+    {
+        return AmountResult
+            .Select((r, index) => new
+            {
+                index,
+                value = r.Red,
+                type = TranslateText.GetTranslateText("DisplayRed")
+            })
+            .Concat(AmountResult.Select((r, index) => new
+            {
+                index,
+                value = r.Blue,
+                type = TranslateText.GetTranslateText("DisplayBlue")
+            }))
+            .ToArray<object>();
+    }
+
+    private object[] GetLineData()
+    {
+        return AmountResult.Select((r, index) => new
+            {
+                index,
+                count = r.Distance,
+                name = TranslateText.GetTranslateText("DisplayDistance")
+            })
+            .Concat(AmountResult.Select((r, index) => new
+            {
+                index,
+                count = (double)r.Tick,
+                name = TranslateText.GetTranslateText("DisplayTicks")
+            }))
+            .ToArray<object>();
+    }
+
 
     private static void ShowDirectionResult(Space3D pearlPos, Space3D destination)
     {

@@ -2,89 +2,113 @@
 @using System.Globalization
 @using PearlCalculatorBlazor.Localizer
 @using PearlCalculatorLib.Result
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
 @inject MessageService AntMessage
 @inject NotificationService Notice
 @inject TranslateText TransText
 
-<div class="calculator-result">
-    @switch (ShowMode)
-    {
-        case ShowResultMode.Amount:
-            <Table TItem="TNTCalculationResult"
-                   DataSource="@AmountResult"
-                   Total="AmountTotal"
-                   @bind-PageIndex="_pageIndex"
-                   @bind-PageSize="_pageSize"
-                   ScrollY="80vh"
-                   OnRowClick="OnAmountRowClickAsync"
-                   Class="calculator-result-table">
-                <!-- A Tooltips with icon for info click can set the red and blue tnt amounts -->
-                <ActionColumn Width="50px">
-                    <Tooltip Title="@TranslateText.GetTranslateText("TNTCalculationResultTooltip")">
-                        <Text Type="secondary">
-                            <Icon Type="info-circle" Theme="outline"/>
-                        </Text>
-                    </Tooltip>
-                </ActionColumn>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
-                    <Tooltip Title="@context.Distance.ToString(CultureInfo.InvariantCulture)">
-                        <Text>@context.Distance.ToString(CultureInfo.InvariantCulture).Substring(0, 5)</Text>
-                    </Tooltip>
-                </AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></AntDesign.Column>
-            </Table>
-            break;
-        case ShowResultMode.Trace:
-            <Table TItem="EntityWrapper"
-                   DataSource="@PearlTrace"
-                   Total="PearlTotal"
-                   @bind-PageIndex="_pageIndex"
-                   @bind-PageSize="_pageSize"
-                   ScrollY="80vh"
-                   Class="calculator-result-table">
+<Card Style="height: 100%">
+    <CardTabs>
+        <Tabs DefaultActiveKey="TableMode">
+            <ChildContent>
+                <TabPane Key="TableMode" Tab="@TranslateText.GetTranslateText("TableMode")">
+                    @switch (ShowMode)
+                    {
+                        case ShowResultMode.Amount:
+                            <Table TItem="TNTCalculationResult"
+                                   DataSource="@AmountResult"
+                                   Total="AmountTotal"
+                                   @bind-PageIndex="_pageIndex"
+                                   @bind-PageSize="_pageSize"
+                                   ScrollY="80vh"
+                                   OnRowClick="OnAmountRowClickAsync"
+                                   Class="calculator-result-table">
+                                <!-- A Tooltips with icon for info click can set the red and blue tnt amounts -->
+                                <ActionColumn Width="50px">
+                                    <Tooltip Title="@TranslateText.GetTranslateText("TNTCalculationResultTooltip")">
+                                        <Text Type="secondary">
+                                            <Icon Type="info-circle" Theme="outline"/>
+                                        </Text>
+                                    </Tooltip>
+                                </ActionColumn>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayDistance")" @bind-Field="@context.Distance" Sortable>
+                                    <Tooltip Title="@context.Distance.ToString(CultureInfo.InvariantCulture)">
+                                        <Text>@context.Distance.ToString(CultureInfo.InvariantCulture).Substring(0, 5)</Text>
+                                    </Tooltip>
+                                </AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick" Sortable></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayBlue")" @bind-Field="@context.Blue"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayRed")" @bind-Field="@context.Red"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTotal")" @bind-Field="@context.TotalTNT" Sortable></AntDesign.Column>
+                            </Table>
+                            break;
+                        case ShowResultMode.Trace:
+                            <Table TItem="EntityWrapper"
+                                   DataSource="@PearlTrace"
+                                   Total="PearlTotal"
+                                   @bind-PageIndex="_pageIndex"
+                                   @bind-PageSize="_pageSize"
+                                   ScrollY="80vh"
+                                   Class="calculator-result-table">
 
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("ZCoor")" @bind-Field="@context.ZCoor"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("ZCoor")" @bind-Field="@context.ZCoor"></AntDesign.Column>
 
-            </Table>
-            break;
-        case ShowResultMode.Momentum:
-        default:
-            <Table TItem="EntityWrapper"
-                   DataSource="@PearlMotion"
-                   Total="MotionTotal"
-                   @bind-PageIndex="_pageIndex"
-                   @bind-PageSize="_pageSize"
-                   ScrollY="80vh"
-                   Class="calculator-result-table">
+                            </Table>
+                            break;
+                        case ShowResultMode.Momentum:
+                        default:
+                            <Table TItem="EntityWrapper"
+                                   DataSource="@PearlMotion"
+                                   Total="MotionTotal"
+                                   @bind-PageIndex="_pageIndex"
+                                   @bind-PageSize="_pageSize"
+                                   ScrollY="80vh"
+                                   Class="calculator-result-table">
 
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayXMotion")" @bind-Field="@context.XCoor"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></AntDesign.Column>
-                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></AntDesign.Column>
-            </Table>
-            break;
-    }
-</div>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayXMotion")" @bind-Field="@context.XCoor"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></AntDesign.Column>
+                                <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></AntDesign.Column>
+                            </Table>
+                            break;
+                    }
+                    <GridRow Gutter="12">
+                        <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                            <Card Title="@TranslateText.GetTranslateText("DisplayDirection")">
+                                <Text>
+                                    @TranslateText.GetTranslateText(_resultDirection)
+                                </Text>
+                            </Card>
+                        </GridCol>
+                        <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                            <Card Title="@TranslateText.GetTranslateText("DisplayAngle")">
+                                <Text>
+                                    @_resultAngle
+                                </Text>
+                            </Card>
+                        </GridCol>
+                    </GridRow>
+                </TabPane>
+                <TabPane Key="GraphMode" Tab="@TranslateText.GetTranslateText("GraphMode")">
+                    @if (ShowMode == ShowResultMode.Trace)
+                    {
+                        <AntDesign.Charts.Line Data="@PearlTrace" Config="@_lineConfig"/>
+                    }
+                    else if (ShowMode == ShowResultMode.Momentum)
+                    {
+                        <AntDesign.Charts.Line Data="@PearlMotion" Config="@_lineConfig"/>
+                    }
+                    else if (ShowMode == ShowResultMode.Amount)
+                    {
+                        <DualAxes Data="@(new[] { StackedBarData, LineData })" Config="_dualAxesConfig"/>
+                    }
+                </TabPane>
+            </ChildContent>
+        </Tabs>
+    </CardTabs>
 
-<GridRow Gutter="12">
-    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
-        <Card Title="@TranslateText.GetTranslateText("DisplayDirection")">
-            <Text>
-                @TranslateText.GetTranslateText(_resultDirection)
-            </Text>
-        </Card>
-    </GridCol>
-    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
-        <Card Title="@TranslateText.GetTranslateText("DisplayAngle")">
-            <Text>
-                @_resultAngle
-            </Text>
-        </Card>
-    </GridCol>
-</GridRow>
+</Card>

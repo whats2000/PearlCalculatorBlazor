@@ -47,18 +47,21 @@ namespace PearlCalculatorLib.Settings
             SettingsList = new List<CannonSettings>();
             CannonSettings setting = new CannonSettings
             {
-                CannonName           = "Default",
-                MaxTNT               = Data.MaxTNT,
-                DefaultRedDirection  = Data.DefaultRedDuper,
-                DefaultBlueDirection = Data.DefaultBlueDuper,
-                NorthWestTNT         = Data.NorthWestTNT,
-                NorthEastTNT         = Data.NorthEastTNT,
-                SouthWestTNT         = Data.SouthWestTNT,
-                SouthEastTNT         = Data.SouthEastTNT,
-                Offset               = Data.PearlOffset,
-                Pearl                = Data.Pearl,
-                RedTNTConfiguration  = Data.RedTNTConfiguration,
-                BlueTNTConfiguration = Data.BlueTNTConfiguration
+                CannonName               = "Default",
+                MaxTNT                   = Data.MaxTNT,
+                DefaultRedDirection      = Data.DefaultRedDuper,
+                DefaultBlueDirection     = Data.DefaultBlueDuper,
+                NorthWestTNT             = Data.NorthWestTNT,
+                NorthEastTNT             = Data.NorthEastTNT,
+                SouthWestTNT             = Data.SouthWestTNT,
+                SouthEastTNT             = Data.SouthEastTNT,
+                Offset                   = Data.PearlOffset,
+                Pearl                    = Data.Pearl,
+                RedTNTConfiguration      = Data.RedTNTConfiguration,
+                BlueTNTConfiguration     = Data.BlueTNTConfiguration,
+                PearlYMotionCancellation = Data.PearlYMotionCancellation,
+                PearlYPositionOriginal   = Data.PearlYPositionOriginal,
+                PearlYPositionAdjusted   = Data.PearlYPositionAdjusted
             };
             SettingsList.Add(setting);
             _selectedCannon = setting;
@@ -88,17 +91,20 @@ namespace PearlCalculatorLib.Settings
         
         private void SetGeneralData(CannonSettings settings)
         {
-            Data.MaxTNT               = settings.MaxTNT;
-            Data.DefaultBlueDuper     = settings.DefaultBlueDirection;
-            Data.DefaultRedDuper      = settings.DefaultRedDirection;
-            Data.NorthEastTNT         = settings.NorthEastTNT;
-            Data.NorthWestTNT         = settings.NorthWestTNT;
-            Data.SouthEastTNT         = settings.SouthEastTNT;
-            Data.SouthWestTNT         = settings.SouthWestTNT;
-            Data.Pearl                = settings.Pearl;
-            Data.PearlOffset          = settings.Offset;
-            Data.RedTNTConfiguration  = settings.RedTNTConfiguration;
-            Data.BlueTNTConfiguration = settings.BlueTNTConfiguration;
+            Data.MaxTNT                   = settings.MaxTNT;
+            Data.DefaultBlueDuper         = settings.DefaultBlueDirection;
+            Data.DefaultRedDuper          = settings.DefaultRedDirection;
+            Data.NorthEastTNT             = settings.NorthEastTNT;
+            Data.NorthWestTNT             = settings.NorthWestTNT;
+            Data.SouthEastTNT             = settings.SouthEastTNT;
+            Data.SouthWestTNT             = settings.SouthWestTNT;
+            Data.Pearl                    = settings.Pearl;
+            Data.PearlOffset              = settings.Offset;
+            Data.RedTNTConfiguration      = settings.RedTNTConfiguration;
+            Data.BlueTNTConfiguration     = settings.BlueTNTConfiguration;
+            Data.PearlYMotionCancellation = settings.PearlYMotionCancellation;
+            Data.PearlYPositionOriginal   = settings.PearlYPositionOriginal;
+            Data.PearlYPositionAdjusted   = settings.PearlYPositionAdjusted;
         }
 
         public CannonSettings GetSettings(string cannonName) => 
