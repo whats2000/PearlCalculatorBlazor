@@ -36,7 +36,7 @@ public partial class ResultView
     {
         var angle = pearlPos.WorldAngle(destination);
 
-        if (Math.Abs(angle) < 370)
+        if (Math.Abs(Math.Abs(angle) - 370) < 0.01)
             return;
 
         _resultDirection = DirectionUtils.GetDirection(angle).ToString();
