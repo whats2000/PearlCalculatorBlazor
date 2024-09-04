@@ -1,8 +1,8 @@
 ﻿async function FetchVersionFromServer() {
     try {
-        // Append a timestamp to the URL to prevent caching
+        const basePath = window.location.pathname.replace(/\/$/, "");
         const timestamp = new Date().getTime();
-        const response = await fetch(`/version.json?t=${timestamp}`);
+        const response = await fetch(`${basePath}/version.json?t=${timestamp}`);
         const data = await response.json();
         return data.version;
     } catch (error) {
