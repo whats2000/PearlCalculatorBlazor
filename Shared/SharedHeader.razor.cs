@@ -1,4 +1,5 @@
-﻿using AntDesign;
+﻿using System.Threading.Tasks;
+using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
@@ -11,9 +12,13 @@ public enum Theme
     Dark
 }
 
-public partial class SharedHeader : ComponentBase
+public partial class SharedHeader
 {
     private Theme _currentTheme = Theme.Light;
+    private string _currentVersion = "Loading...";
+    private string _latestVersion;
+    private string _modalContent = "";
+    private bool _visible = false;
     [Inject] private IJSRuntime JsRuntime { get; set; }
 
     private RenderFragment LightThemeIcon => builder =>
@@ -83,6 +88,25 @@ public partial class SharedHeader : ComponentBase
         }
     }
 
+    private void ShowVersionModal()
+    {
+        _modalContent = $"New version: {_latestVersion} found.";
+        _visible = true;
+        StateHasChanged();
+    }
+
+    private async Task HandleOk()
+    {
+        _visible = false;
+        await JsRuntime.InvokeVoidAsync("localStorage.setItem", "PearlCalculatorBlazor_version", _latestVersion);
+        await JsRuntime.InvokeVoidAsync("ClearCacheAndReload");
+    }
+
+    private void HandleCancel()
+    {
+        _visible = false;
+    }
+
     private RenderFragment GetThemeIcon()
     {
         return _currentTheme switch
@@ -108,7 +132,8 @@ public partial class SharedHeader : ComponentBase
             _ => null
         };
 
-        var url = fileName == null ? "" : $"/_content/AntDesign/css/{fileName}.css";
+        var baseUrl = await JsRuntime.InvokeAsync<string>("GetBaseUrl");
+        var url = fileName == null ? "" : $"{baseUrl}_content/AntDesign/css/{fileName}.css";
         await JsRuntime.InvokeVoidAsync("AddElementToBody", url);
         await JsRuntime.InvokeVoidAsync("localStorage.setItem", "PearlCalculatorBlazor_userTheme", theme);
     }
@@ -117,6 +142,20 @@ public partial class SharedHeader : ComponentBase
     {
         await TransText.LoadLanguageAsync(language);
         await JsRuntime.InvokeVoidAsync("localStorage.setItem", "PearlCalculatorBlazor_userLanguage", language);
+    }
+
+    private async void CheckForUpdate()
+    {
+        _currentVersion = "Loading...";
+        _latestVersion = await JsRuntime.InvokeAsync<string>("FetchVersionFromServer");
+        _currentVersion = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_version");
+        if (_currentVersion == _latestVersion)
+        {
+            StateHasChanged();
+            return;
+        }
+
+        ShowVersionModal();
     }
 
     protected override async void OnInitialized()
@@ -128,13 +167,13 @@ public partial class SharedHeader : ComponentBase
 
         if (!string.IsNullOrEmpty(storedLanguage))
             await TransText.LoadLanguageAsync(storedLanguage);
-        
-        var storedTheme = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_userTheme");
-        
-        if (!string.IsNullOrEmpty(storedTheme))
-        {
-            CurrentTheme = storedTheme == "dark" ? Theme.Dark : Theme.Light;
-        }
+
+        var storedTheme =
+            await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_userTheme");
+
+        if (!string.IsNullOrEmpty(storedTheme)) CurrentTheme = storedTheme == "dark" ? Theme.Dark : Theme.Light;
+
+        CheckForUpdate();
     }
 
     private void RefreshPage()

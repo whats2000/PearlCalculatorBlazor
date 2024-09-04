@@ -8,3 +8,7 @@
     }
     link.href = url;
 }
+
+function GetBaseUrl() {
+    return window.location.origin + window.location.pathname;
+}

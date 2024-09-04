@@ -1,13 +1,24 @@
-﻿@inject TranslateText TransText
+﻿@using PearlCalculatorBlazor.Localizer
+@inject TranslateText TransText
 @inject NotificationService Notice
-
-@using PearlCalculatorBlazor.Localizer
 
 <PageHeader>
     <TitleTemplate>
         <Flex Align="center" Gap="10">
             <Image Preview="false" Height="40" src="Logo.png" alt="banner"/>
             <Title Level="1" Style="margin-bottom: 0; font-size: 20px;">Pearl Calculator Blazor</Title>
+            <Tooltip Title="Check for updates">
+                <div @onclick="@CheckForUpdate">
+                    @if (_currentVersion == "Loading...")
+                    {
+                        <Spin/>
+                    }
+                    else
+                    {
+                        <Text>@_currentVersion</Text>
+                    }
+                </div>
+            </Tooltip>
         </Flex>
     </TitleTemplate>
     <PageHeaderExtra>
@@ -18,9 +29,9 @@
                         <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
                         @foreach (var pair in TranslateText.LanguageDict)
                         {
-                        if (pair.Key == "en")
-                        continue;
-                        <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>@pair.Value</MenuItem>
+                            if (pair.Key == "en")
+                                continue;
+                            <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>@pair.Value</MenuItem>
                         }
                     </Menu>
                 </Overlay>
@@ -57,3 +68,25 @@
         </Flex>
     </PageHeaderExtra>
 </PageHeader>
+
+@{
+    RenderFragment ModelFooterTemplate =
+        @<Template>
+            <Button OnClick="@HandleCancel" @key="@("back")">
+                Stay in this version
+            </Button>
+            <Button OnClick="@HandleOk"
+                    @key="@("Refresh and Update")"
+                    Type="@ButtonType.Primary">
+                Refresh and Update
+            </Button>
+        </Template>;
+}
+
+<Modal Title="New version available"
+       Visible="@_visible"
+       OnOk="@HandleOk"
+       OnCancel="@HandleCancel"
+       Footer="@ModelFooterTemplate">
+    <p>@_modalContent</p>
+</Modal>
