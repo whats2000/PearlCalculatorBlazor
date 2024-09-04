@@ -1,60 +1,60 @@
-﻿using PearlCalculatorLib.Manually;
+﻿using System.Collections.Generic;
+using PearlCalculatorLib.Manually;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 using PearlCalculatorLib.Result;
-using System.Collections.Generic;
 
-namespace PearlCalculatorBlazor
+namespace PearlCalculatorBlazor.Managers;
+
+public abstract class EventArgs
 {
-    public abstract class EventArgs
-    {
-        public readonly string PublishKey;
+    public readonly string PublishKey;
 
-        public EventArgs(string publishKey)
-        {
-            this.PublishKey = publishKey;
-        }
+    protected EventArgs(string publishKey)
+    {
+        PublishKey = publishKey;
     }
+}
 
-    public class ButtonClickArgs : EventArgs
+public class ButtonClickArgs : EventArgs
+{
+    public ButtonClickArgs(string publishKey) : base(publishKey)
     {
-        public ButtonClickArgs(string publishKey) : base(publishKey)
-        {
-        }
     }
+}
 
-    public class PearlSimulateArgs : EventArgs
+public class PearlSimulateArgs : EventArgs
+{
+    public readonly PearlEntity Pearl;
+    public readonly List<Entity> Trace;
+
+    public PearlSimulateArgs(string publishKey, PearlEntity pearl, List<Entity> trace) : base(publishKey)
     {
-        public readonly PearlEntity Pearl = new();
-        public readonly List<Entity> Trace;
-
-        public PearlSimulateArgs(string publishKey, PearlEntity pearl, List<Entity> trace) : base(publishKey)
-        {
-            this.Pearl = pearl;
-            this.Trace = trace;
-        }
+        Pearl = pearl;
+        Trace = trace;
     }
+}
 
-    public class SetRTCountArgs : EventArgs
+public class SetRtCountArgs : EventArgs
+{
+    public readonly int Blue;
+    public readonly int Red;
+
+    public SetRtCountArgs(string publishKey, int red, int blue) : base(publishKey)
     {
-        public readonly int Red;
-        public readonly int Blue;
-
-        public SetRTCountArgs(string publishKey, int red, int blue) : base(publishKey)
-        {
-            this.Red = red;
-            this.Blue = blue;
-        }
+        Red = red;
+        Blue = blue;
     }
+}
 
-    public class CalculateTNTAmuontArgs : EventArgs
+public class CalculateTntAmountArgs : EventArgs
+{
+    public readonly ManuallyData ManuallyData;
+    public readonly List<TNTCalculationResult> Results;
+
+    public CalculateTntAmountArgs(string publishKey, ManuallyData manuallyData, List<TNTCalculationResult> results) :
+        base(publishKey)
     {
-        public readonly ManuallyData ManuallyData;
-        public readonly List<TNTCalculationResult> Results;
-
-        public CalculateTNTAmuontArgs(string publishKey, ManuallyData manuallyData, List<TNTCalculationResult> results) : base(publishKey)
-        {
-            this.ManuallyData = manuallyData;
-            this.Results = results;
-        }
+        ManuallyData = manuallyData;
+        Results = results;
     }
 }

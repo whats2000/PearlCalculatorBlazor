@@ -1,9 +1,8 @@
 ﻿@page "/Manually"
+@using PearlCalculatorBlazor.Localizer
 @inject MessageService AntMessage
 @inject NotificationService Notice
 @inject TranslateText TransText
-
-@using PearlCalculatorBlazor.Localizer
 
 <div class="manually-settings">
     <GridRow Gutter="16">
@@ -18,11 +17,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlPosX" />
+            <InputNumber @bind-Value="@ManuallyPearlPosX"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlMomentumX" />
+            <InputNumber @bind-Value="@ManuallyPearlMomentumX"/>
         </GridCol>
     </GridRow>
 
@@ -38,11 +37,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlPosY" />
+            <InputNumber @bind-Value="@ManuallyPearlPosY"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlMomentumY" />
+            <InputNumber @bind-Value="@ManuallyPearlMomentumY"/>
         </GridCol>
     </GridRow>
 
@@ -58,11 +57,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlPosZ" />
+            <InputNumber @bind-Value="@ManuallyPearlPosZ"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ManuallyPearlMomentumZ" />
+            <InputNumber @bind-Value="@ManuallyPearlMomentumZ"/>
         </GridCol>
     </GridRow>
 
@@ -78,11 +77,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ATNTX" />
+            <InputNumber @bind-Value="@ATntX"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@BTNTX" />
+            <InputNumber @bind-Value="@BTntX"/>
         </GridCol>
     </GridRow>
 
@@ -98,11 +97,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ATNTY" />
+            <InputNumber @bind-Value="@ATntY"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@BTNTY" />
+            <InputNumber @bind-Value="@BTntY"/>
         </GridCol>
     </GridRow>
 
@@ -118,11 +117,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ATNTZ" />
+            <InputNumber @bind-Value="@ATntZ"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@BTNTZ" />
+            <InputNumber @bind-Value="@BTntZ"/>
         </GridCol>
     </GridRow>
 
@@ -138,11 +137,11 @@
 
     <GridRow Gutter="16">
         <GridCol Span="12">
-            <InputNumber @bind-Value="@ATNTAmount" />
+            <InputNumber @bind-Value="@ATntAmount"/>
         </GridCol>
 
         <GridCol Span="12">
-            <InputNumber @bind-Value="@BTNTAmount" />
+            <InputNumber @bind-Value="@BTntAmount"/>
         </GridCol>
     </GridRow>
 
@@ -154,7 +153,7 @@
 
     <GridRow Gutter="16">
         <GridCol Span="24">
-            <InputNumber @bind-Value="@ManuallyDestinationX" />
+            <InputNumber @bind-Value="@ManuallyDestinationX"/>
         </GridCol>
     </GridRow>
 
@@ -166,7 +165,7 @@
 
     <GridRow Gutter="16">
         <GridCol Span="24">
-            <InputNumber @bind-Value="@ManuallyDestinationZ" />
+            <InputNumber @bind-Value="@ManuallyDestinationZ"/>
         </GridCol>
     </GridRow>
 
@@ -175,7 +174,7 @@
     </GridRow>
 
     <div class="button-block">
-        <Button Block="true" @onclick="@ManuallyCalculateTNTAmount">
+        <Button Block="true" @onclick="@ManuallyCalculateTntAmount">
             @TranslateText.GetTranslateText("CalculateTNTAmount")
         </Button>
         <Button Block="true" @onclick="@(() => ManuallyCalculatePearl("trace"))">

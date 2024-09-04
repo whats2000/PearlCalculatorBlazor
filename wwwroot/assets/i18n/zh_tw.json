@@ -1,20 +1,15 @@
 {
   "GeneralHeader": "通用FTL",
   "ManuallyHeader": "自訂義FTL",
-
   "GFTL_General": "一般設定",
   "GFTL_Advanced": "進階設定",
   "GFTL_Settings": "更多基礎設定",
-
   "PearlPosX": "珍珠X座標 :",
   "PearlPosY": "珍珠Y座標 :",
   "PearlPosZ": "珍珠Z座標 :",
-
   "DestinationX": "目標點X座標 :",
   "DestinationZ": "目標點Z座標 :",
-
   "Direction": "方向 :",
-
   "MaxTNT": "最大TNT數量",
   "RedTNT": "紅色TNT陣列",
   "BlueTNT": "藍色TNT陣列",
@@ -23,70 +18,55 @@
   "TNTWeight": "TNT最大數量",
   "MixedWeightedDistance": "混合加權距離",
   "MixedWeightedTotal": "混合加權總量",
-
   "PearlSimulate": "珍珠模擬軌跡",
   "ImportSettings": "開啟設定檔",
   "SaveSettings": "儲存設定檔",
-
   "DisplayHeader": "結果輸出",
   "ConsoleHeader": "控制台",
-
   "ResetToDefault": "恢復至預設值",
-
   "MomentumX": "X動量 :",
   "MomentumY": "Y動量 :",
   "MomentumZ": "Z動量 :",
-
   "DisplayXMotion": "X動量",
   "DisplayYMotion": "Y動量",
   "DisplayZMotion": "Z動量",
-
   "XCoor": "X座標",
   "YCoor": "Y座標",
   "ZCoor": "Z座標",
-
   "TNTXA": "TNT(A)的X座標 :",
   "TNTYA": "TNT(A)的Y座標 :",
   "TNTZA": "TNT(A)的Z座標 :",
-
   "TNTXB": "TNT(B)的X座標 :",
   "TNTYB": "TNT(B)的Y座標 :",
   "TNTZB": "TNT(B)的Z座標 :",
-
   "AmountA": "TNT(A)數量 :",
   "AmountB": "TNT(B)數量 :",
-
   "CalculateTNTAmount": "計算TNT數量",
   "CalculatePearlTrace": "計算珍珠軌跡",
   "CalculatePearlMomentum": "計算珍珠動量",
-
   "PearlY": "珍珠Y",
   "Coordinate": "座標",
   "Momentum": "動量",
   "PearlYMotionMode": "珍珠Y軸運動模式",
   "NormalProjection": "正常抛射",
-  "PerfectHorizontalProjection": "完美水平抛射","PearlYPositionOriginal": "珍珠 Y 軸位置（原始）",
+  "PerfectHorizontalProjection": "完美水平抛射",
+  "PearlYPositionOriginal": "珍珠 Y 軸位置（原始）",
   "PearlYPositionOriginalDesc": "要獲得珍珠的 Y 軸位置，應移除用來取消 Y 軸運動的活塞，並在爆炸時刻獲得珍珠的 Y 軸位置。這個位置是珍珠獲得動量的地方。",
   "PearlYPositionAdjusted": "珍珠 Y 軸位置（調整後）",
   "PearlYPositionAdjustedDesc": "要獲得珍珠的 Y 軸位置，只需放置用來取消 Y 軸運動的活塞，並在時間結束時獲得 Y 軸位置。這個位置是珍珠開始移動的地方。",
-
-
   "DefaultRedTNTPos": "預設紅色TNT方位",
   "DefaultRedTNTPosDesc": "預設從紅色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",
   "DefaultBlueTNTPos": "預設藍色TNT方位",
   "DefaultBlueTNTPosDesc": "預設從藍色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",
-
   "DisplayDistance": "距離偏移",
   "DisplayTicks": "遊戲刻",
   "DisplayBlue": "藍色",
   "DisplayRed": "紅色",
   "DisplayTotal": "總量",
   "TNTCalculationResultTooltip": "點擊此行可自動將數值輸入到藍色 TNT 和紅色 TNT 的輸入欄位。",
-  "TNTCalculationSetSucessMessage": "成功設定 TNT 數量。",
-
+  "TNTCalculationSetSuccessMessage": "成功設定 TNT 數量。",
   "DisplayDirection": "方位",
   "DisplayAngle": "發射角度 (x | z)",
-
   "SettingsNorthWestTNT": "North West TNT",
   "SettingsNorthEastTNT": "North East TNT",
   "SettingsSouthWestTNT": "South West TNT",

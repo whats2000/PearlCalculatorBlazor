@@ -1,9 +1,8 @@
 ﻿@page "/GeneralFTL_Advanced"
-
-@inject IJSRuntime JSRuntime
-@inject TranslateText TransText
-
 @using PearlCalculatorBlazor.Localizer
+
+@inject IJSRuntime JsRuntime
+@inject TranslateText TransText
 
 
 <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
@@ -42,7 +41,7 @@
                             <Text>@TranslateText.GetTranslateText("TNTWeight")</Text>
                         </SpaceItem>
                         <SpaceItem Style="width: 75%">
-                            <Slider Style="width: 100%" TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="@(value => $"{value}%")" @bind-Value="@TNTWeight" Id="tnt-weight-slider"/>
+                            <Slider Style="width: 100%" TValue="double" Min="0" Max="100" DefaultValue="0" TipFormatter="@(value => $"{value}%")" @bind-Value="@TntWeight" Id="tnt-weight-slider"/>
                         </SpaceItem>
                     </Space>
                 </SpaceItem>

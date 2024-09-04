@@ -1,12 +1,12 @@
 ﻿@page "/GeneralFTL_General"
+@using PearlCalculatorBlazor.Localizer
+@using PearlCalculatorLib.PearlCalculationLib.World
 
 @inject HttpClient Http
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JsRuntime
 @inject MessageService AntMessage
 @inject NotificationService Notice
 @inject TranslateText TransText
-
-@using PearlCalculatorBlazor.Localizer;
 
 <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
     <SpaceItem>
@@ -55,7 +55,7 @@
                 <Text>@TranslateText.GetTranslateText("MaxTNT")</Text>
             </SpaceItem>
             <SpaceItem>
-                <InputNumber Style="width: 100%" @bind-Value="@MaxTNT"/>
+                <InputNumber Style="width: 100%" @bind-Value="@MaxTnt"/>
             </SpaceItem>
         </Space>
     </SpaceItem>
@@ -68,22 +68,22 @@
                 <RadioGroup @bind-Value="@Direction" Style="width: 100%;">
                     <Row>
                         <AntDesign.Col Span="6">
-                            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.North">
+                            <Radio Value="@Direction.North">
                                 @TranslateText.GetTranslateText("North")
                             </Radio>
                         </AntDesign.Col>
                         <AntDesign.Col Span="6">
-                            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.South">
+                            <Radio Value="@Direction.South">
                                 @TranslateText.GetTranslateText("South")
                             </Radio>
                         </AntDesign.Col>
                         <AntDesign.Col Span="6">
-                            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.East">
+                            <Radio Value="@Direction.East">
                                 @TranslateText.GetTranslateText("East")
                             </Radio>
                         </AntDesign.Col>
                         <AntDesign.Col Span="6">
-                            <Radio Value="@PearlCalculatorLib.PearlCalculationLib.World.Direction.West">
+                            <Radio Value="@Direction.West">
                                 @TranslateText.GetTranslateText("West")
                             </Radio>
                         </AntDesign.Col>
@@ -98,7 +98,7 @@
                 <Text>@TranslateText.GetTranslateText("RedTNT")</Text>
             </SpaceItem>
             <SpaceItem>
-                <InputNumber Style="width: 100%" @bind-Value="@RedTNT"/>
+                <InputNumber Style="width: 100%" @bind-Value="@RedTnt"/>
             </SpaceItem>
         </Space>
     </SpaceItem>
@@ -108,22 +108,21 @@
                 <Text>@TranslateText.GetTranslateText("BlueTNT")</Text>
             </SpaceItem>
             <SpaceItem>
-                <InputNumber Style="width: 100%" @bind-Value="@BlueTNT"/>
+                <InputNumber Style="width: 100%" @bind-Value="@BlueTnt"/>
             </SpaceItem>
         </Space>
     </SpaceItem>
 </Space>
 
 <div class="button-block">
-    <Button Block="true" @onclick="CalculateTNTAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
+    <Button Block="true" @onclick="CalculateTntAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
     <Button Block="true" @onclick="PearlSimulate">@TranslateText.GetTranslateText("PearlSimulate")</Button>
     <Button Block="true" @onclick="ImportSettings_OnClick">@TranslateText.GetTranslateText("ImportSettings")</Button>
     <Button Block="true" @onclick="ExportSettings_OnClick">@TranslateText.GetTranslateText("SaveSettings")</Button>
-    <Microsoft.AspNetCore.Components.Forms.InputFile 
-        id="import-settings-handle" 
-        style="display: none" 
-        OnChange="ImportHandleFileSelected" accept=".json"
-    />
+    <Microsoft.AspNetCore.Components.Forms.InputFile
+        id="import-settings-handle"
+        style="display: none"
+        OnChange="ImportHandleFileSelected" accept=".json"/>
 </div>
 
 <a href="#" id="download-settings-link"/>

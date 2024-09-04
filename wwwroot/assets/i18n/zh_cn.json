@@ -81,7 +81,7 @@
   "DisplayRed": "红色",
   "DisplayTotal": "总量",
   "TNTCalculationResultTooltip": "点击此行可自动将数值输入到蓝色 TNT 和红色 TNT 的输入字段。",
-  "TNTCalculationSetSucessMessage": "成功设置 TNT 数量。",
+  "TNTCalculationSetSuccessMessage": "成功设置 TNT 数量。",
 
   "DisplayDirection": "方位",
   "DisplayAngle": "发射角度 (x | z)",

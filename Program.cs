@@ -5,25 +5,24 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using PearlCalculatorBlazor.Localizer;
 
-namespace PearlCalculatorBlazor
+namespace PearlCalculatorBlazor;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);            
-            builder.RootComponents.Add<App>("#app");
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddAntDesign();
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });           
-            builder.Services.AddScoped(sp => new TranslateText());
+        builder.Services.AddAntDesign();
+        builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        builder.Services.AddScoped(_ => new TranslateText());
 
-            var host = builder.Build();
+        var host = builder.Build();
 
-            var trans = host.Services.GetRequiredService<TranslateText>();
-            await trans.Init(host.Services.GetRequiredService<HttpClient>());
+        var trans = host.Services.GetRequiredService<TranslateText>();
+        await trans.Init(host.Services.GetRequiredService<HttpClient>());
 
-            await host.RunAsync();
-        }
+        await host.RunAsync();
     }
 }
