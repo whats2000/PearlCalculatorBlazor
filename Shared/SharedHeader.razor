@@ -4,25 +4,23 @@
 
 <PageHeader>
     <TitleTemplate>
-        <Flex Align="center" Gap="10">
-            <Image Preview="false" Height="40" src="Logo.png" alt="banner"/>
+        <Flex Align="center" Gap="10" Justify="center" Wrap="wrap">
+            <Image Class="hide-on-mobile" Preview="false" Height="40" src="Logo.png" alt="banner"/>
             <Title Level="1" Style="margin-bottom: 0; font-size: 20px;">Pearl Calculator Blazor</Title>
-            <Tooltip Title="Check for updates">
-                <div @onclick="@CheckForUpdate">
-                    @if (_currentVersion == "Loading...")
-                    {
-                        <Spin/>
-                    }
-                    else
-                    {
-                        <Text>@_currentVersion</Text>
-                    }
-                </div>
+            <Tooltip Style="display: flex; justify-items: center;" Title="@TranslateText.GetTranslateText("CheckForUpdate")">
+                <Button
+                    Size="@AntSizeLDSType.Small"
+                    Shape="@ButtonShape.Round"
+                    Icon="@IconType.Outline.Sync"
+                    Loading="@(_currentVersion == "Loading...")"
+                    @onclick="CheckForUpdate">
+                    @_currentVersion
+                </Button>
             </Tooltip>
         </Flex>
     </TitleTemplate>
     <PageHeaderExtra>
-        <Flex Wrap="true" Gap="10">
+        <Flex Align="center" Gap="10" Justify="center" Wrap="wrap" Style="height: 100%;">
             <Dropdown Placement="Placement.BottomRight">
                 <Overlay>
                     <Menu DefaultSelectedKeys=@(new[] { "en" })>
@@ -73,17 +71,17 @@
     RenderFragment ModelFooterTemplate =
         @<Template>
             <Button OnClick="@HandleCancel" @key="@("back")">
-                Stay in this version
+                @TranslateText.GetTranslateText("StayVersion")
             </Button>
             <Button OnClick="@HandleOk"
                     @key="@("Refresh and Update")"
                     Type="@ButtonType.Primary">
-                Refresh and Update
+                @TranslateText.GetTranslateText("UpdateNow")
             </Button>
         </Template>;
 }
 
-<Modal Title="New version available"
+<Modal Title="@TranslateText.GetTranslateText("NewVersionAvailable")"
        Visible="@_visible"
        OnOk="@HandleOk"
        OnCancel="@HandleCancel"

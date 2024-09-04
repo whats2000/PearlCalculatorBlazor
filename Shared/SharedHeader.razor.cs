@@ -90,7 +90,7 @@ public partial class SharedHeader
 
     private void ShowVersionModal()
     {
-        _modalContent = $"New version: {_latestVersion} found.";
+        _modalContent = TranslateText.GetTranslateText("NewVersionFound").Replace("{_latestVersion}", _latestVersion);
         _visible = true;
         StateHasChanged();
     }
@@ -149,6 +149,9 @@ public partial class SharedHeader
         _currentVersion = "Loading...";
         _latestVersion = await JsRuntime.InvokeAsync<string>("FetchVersionFromServer");
         _currentVersion = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_version");
+
+        await Task.Delay(1000);
+
         if (_currentVersion == _latestVersion)
         {
             StateHasChanged();
