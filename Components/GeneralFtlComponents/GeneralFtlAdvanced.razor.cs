@@ -46,7 +46,9 @@ public partial class GeneralFtlAdvanced
         set
         {
             _sortBy = value;
+
             StateHasChanged();
+            ChangeTntWeight();
         }
     }
 

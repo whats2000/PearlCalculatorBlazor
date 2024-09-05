@@ -94,17 +94,38 @@
                     </GridRow>
                 </TabPane>
                 <TabPane Key="GraphMode" Tab="@TranslateText.GetTranslateText("GraphMode")">
-                    @if (ShowMode == ShowResultMode.Trace)
+                    @if (_graphLoading)
                     {
-                        <AntDesign.Charts.Line Data="@PearlTraceData" Config="@_lineConfig"/>
+                        <Flex Justify="Center" Align="Middle" Style="height: 200px">
+                            <Spin Size="large"/>
+                        </Flex>
                     }
-                    else if (ShowMode == ShowResultMode.Momentum)
+                    else
                     {
-                        <AntDesign.Charts.Line Data="@PearlMotionData" Config="@_lineConfig"/>
-                    }
-                    else if (ShowMode == ShowResultMode.Amount)
-                    {
-                        <DualAxes Data="@(new[] { AmountResultStackedBarData, AmountResultLineData })" Config="_dualAxesConfig"/>
+                        switch (ShowMode)
+                        {
+                            case ShowResultMode.Trace:
+                                <GridRow>
+                                    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                                        <Scatter Data="@FilterEntityWrappers(PearlTrace)" Config="@_scatterConfig"/>
+                                    </GridCol>
+                                    <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                                        <Radar Data="@GetRadarChartData()" Config="@_radarConfig"/>
+                                    </GridCol>
+                                </GridRow>
+                    <AntDesign.Charts.Line Data="@PearlTraceData" Config="@_lineConfig"/>
+                                break;
+                            case ShowResultMode.Momentum:
+                                <AntDesign.Charts.Line Data="@PearlMotionData" Config="@_lineConfig"/>
+                                break;
+                            case ShowResultMode.Amount:
+                                <DualAxes Data="@(new[] { AmountResultStackedBarData, AmountResultLineData })" Config="_dualAxesConfig"/>
+                                break;
+                            case ShowResultMode.Empty:
+                            default:
+                                <Empty/>
+                                break;
+                        }
                     }
                 </TabPane>
             </ChildContent>

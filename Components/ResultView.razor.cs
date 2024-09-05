@@ -11,6 +11,7 @@ using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
+using Tooltip = AntDesign.Charts.Tooltip;
 
 namespace PearlCalculatorBlazor.Components;
 
@@ -25,7 +26,39 @@ public partial class ResultView
         AutoFit = true,
         XField = "tick",
         YField = "value",
-        SeriesField = "axis"
+        SeriesField = "axis",
+    };
+
+    private readonly RadarConfig _radarConfig = new()
+    {
+        XField = "angle",
+        YField = "value",
+        Tooltip = new Tooltip
+        {
+            Fields = new[] { "angle", "currentAngle" },
+            Shared = true
+        },
+    };
+
+    private readonly ScatterConfig _scatterConfig = new()
+    {
+        XField = "xCoor",
+        YField = "zCoor",
+        ColorField = "tick",
+        SizeField = "yCoor",
+        Color = new[] { "#0000FF", "#ADD8E6" },
+        RegressionLine = new RegressionLineConfig
+        {
+            Type = "linear"
+        },
+        Tooltip = new Tooltip
+        {
+            Fields = new[] { "tick", "xCoor", "yCoor", "zCoor" }
+        },
+        PointStyle = new GraphicStyle
+        {
+            LineWidth = 2
+        }
     };
 
     private DualAxesConfig _dualAxesConfig = new()
@@ -39,7 +72,6 @@ public partial class ResultView
                 Geometry = "column",
                 IsStack = true,
                 seriesField = "type",
-                // Red, Blue
                 Color = new[] { "#FF7260", "#9BD7D5" }
             },
             new
@@ -55,6 +87,8 @@ public partial class ResultView
         }
     };
 
+    private bool _graphLoading = false;
+
     private int _pageIndex = 1;
     private int _pageSize = 50;
 
@@ -64,7 +98,7 @@ public partial class ResultView
     private object[] AmountResultStackedBarData => GetAmountResultStackedBarData();
     private object[] AmountResultLineData => GetAmountResultLineData();
 
-    private ShowResultMode ShowMode { get; set; } = ShowResultMode.Amount;
+    private ShowResultMode ShowMode { get; set; } = ShowResultMode.Empty;
 
     private int AmountTotal => AmountResult?.Count ?? 0;
     private int PearlTotal => PearlTrace?.Count ?? 0;
@@ -75,9 +109,45 @@ public partial class ResultView
     private List<EntityWrapper> PearlTrace { get; set; } = new();
     private List<EntityWrapper> PearlMotion { get; set; } = new();
 
+    private object[] GetRadarChartData()
+    {
+        var radarData = new List<object>();
+        var currentAngle = _resultAngle == string.Empty
+            ? 0
+            : (int)double.Parse(_resultAngle, CultureInfo.InvariantCulture);
+
+        var closestAngle = (int)(Math.Round(currentAngle / 10.0) * 10);
+
+        radarData.AddRange(Enumerable.Range(0, 36).Select(i => new
+        {
+            angle = GetDirectionLabel(i * 10 - 180),
+            value = i * 10 - 180 == closestAngle ? 1 : 0,
+            currentAngle = _resultAngle
+        }));
+
+        return radarData.ToArray();
+    }
+
+    private string GetDirectionLabel(int angle)
+    {
+        return angle switch
+        {
+            0 => TranslateText.GetTranslateText("DirectionSouth"),
+            90 => TranslateText.GetTranslateText("DirectionWest"),
+            180 or -180 => TranslateText.GetTranslateText("DirectionNorth"),
+            -90 => TranslateText.GetTranslateText("DirectionEast"),
+            _ => $"{angle}°"
+        };
+    }
+
+    private List<EntityWrapper> FilterEntityWrappers(List<EntityWrapper> data)
+    {
+        return data.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
+    }
+
     private object[] GetEntityWrapperData(List<EntityWrapper> data)
     {
-        var selectedData = data.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
+        var selectedData = FilterEntityWrappers(data);
         return selectedData.Select(r => new
             {
                 tick = r.Tick,
@@ -133,6 +203,14 @@ public partial class ResultView
             .ToArray<object>();
     }
 
+    private async void RefreshGraph()
+    {
+        _graphLoading = true;
+        StateHasChanged();
+        await Task.Delay(50);
+        _graphLoading = false;
+        StateHasChanged();
+    }
 
     private static void ShowDirectionResult(Space3D pearlPos, Space3D destination)
     {
@@ -168,7 +246,7 @@ public partial class ResultView
 
             ShowDirectionResult(Data.Pearl.Position, Data.Destination);
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<PearlSimulateArgs>("simulate", async (_, args) =>
@@ -192,7 +270,7 @@ public partial class ResultView
 
             ShowMode = ShowResultMode.Trace;
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedDistance", async (_, _) =>
@@ -209,7 +287,7 @@ public partial class ResultView
                 await NoticeWithIcon(NotificationType.Error, e.ToString());
             }
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedTotal", async (_, _) =>
@@ -226,7 +304,7 @@ public partial class ResultView
                 await NoticeWithIcon(NotificationType.Error, e.ToString());
             }
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<CalculateTntAmountArgs>("calculate", (_, args) =>
@@ -238,7 +316,7 @@ public partial class ResultView
 
             ShowDirectionResult(args.ManuallyData.Pearl.Position, args.ManuallyData.Destination.ToSpace3D());
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<PearlSimulateManuallyArgs>("manuallyPearlTrace", async (_, args) =>
@@ -262,7 +340,7 @@ public partial class ResultView
 
             ShowMode = ShowResultMode.Trace;
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         EventManager.Instance.AddListener<PearlSimulateManuallyArgs>("manuallyPearlMotion", async (_, args) =>
@@ -288,7 +366,7 @@ public partial class ResultView
 
             ShowMode = ShowResultMode.Momentum;
 
-            StateHasChanged();
+            RefreshPage();
         });
 
         TranslateText.OnLanguageChange += RefreshPage;
@@ -304,11 +382,12 @@ public partial class ResultView
 
     private void RefreshPage()
     {
-        StateHasChanged();
+        RefreshGraph();
     }
 
     private enum ShowResultMode
     {
+        Empty,
         Amount,
         Trace,
         Momentum
