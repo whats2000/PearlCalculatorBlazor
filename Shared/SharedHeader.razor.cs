@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AntDesign;
 using Microsoft.AspNetCore.Components;
@@ -95,7 +94,7 @@ public partial class SharedHeader
     private void ShowVersionModal(string[] updateNotes)
     {
         _modalContent = TranslateText.GetTranslateText("NewVersionFound")
-                            .Replace("{_latestVersion}", _latestVersion);
+            .Replace("{_latestVersion}", _latestVersion);
         _updateNotes = updateNotes;
 
         _visible = true;
@@ -155,26 +154,34 @@ public partial class SharedHeader
     {
         _currentVersion = "Loading...";
 
-        // Fetch version and update notes
-        var versionData = await JsRuntime.InvokeAsync<VersionData>("FetchVersionFromServer");
-        _latestVersion = versionData?.Version;
-        var updateNotes = versionData?.UpdateNotes;
-        _currentVersion = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_version");
-
-        await Task.Delay(1000);
-
-        if (_currentVersion == _latestVersion)
+        try
         {
-            StateHasChanged();
-            return;
-        }
+            var versionData = await JsRuntime.InvokeAsync<VersionData>("FetchVersionFromServer");
+            _latestVersion = versionData?.Version;
+            var updateNotes = versionData?.UpdateNotes;
+            _currentVersion =
+                await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_version");
 
-        // Fetch and display the update notes based on the current language
-        var currentLanguage = TranslateText.GetCurrentLanguage();
-        if (updateNotes != null && updateNotes.TryGetValue(currentLanguage, out var note))
-            ShowVersionModal(note);
-        else
-            ShowVersionModal(new[] { "No update notes found" });
+            await Task.Delay(1000);
+
+            if (_currentVersion == _latestVersion)
+            {
+                StateHasChanged();
+                return;
+            }
+
+            // Fetch and display the update notes based on the current language
+            var currentLanguage = TranslateText.GetCurrentLanguage();
+            if (updateNotes != null && updateNotes.TryGetValue(currentLanguage, out var note))
+                ShowVersionModal(note);
+            else
+                ShowVersionModal(new[] { "No update notes found" });
+        }
+        catch (Exception ex)
+        {
+            await Console.Error.WriteLineAsync($"Error during version check: {ex.Message}");
+            await JsRuntime.InvokeVoidAsync("ClearCacheAndReload");
+        }
     }
 
     protected override async void OnInitialized()
