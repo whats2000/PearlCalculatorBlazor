@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -18,6 +21,7 @@ public partial class SharedHeader
     private string _currentVersion = "Loading...";
     private string _latestVersion;
     private string _modalContent = "";
+    private string[] _updateNotes = Array.Empty<string>();
     private bool _visible = false;
     [Inject] private IJSRuntime JsRuntime { get; set; }
 
@@ -88,9 +92,12 @@ public partial class SharedHeader
         }
     }
 
-    private void ShowVersionModal()
+    private void ShowVersionModal(string[] updateNotes)
     {
-        _modalContent = TranslateText.GetTranslateText("NewVersionFound").Replace("{_latestVersion}", _latestVersion);
+        _modalContent = TranslateText.GetTranslateText("NewVersionFound")
+                            .Replace("{_latestVersion}", _latestVersion);
+        _updateNotes = updateNotes;
+
         _visible = true;
         StateHasChanged();
     }
@@ -147,7 +154,11 @@ public partial class SharedHeader
     private async void CheckForUpdate()
     {
         _currentVersion = "Loading...";
-        _latestVersion = await JsRuntime.InvokeAsync<string>("FetchVersionFromServer");
+
+        // Fetch version and update notes
+        var versionData = await JsRuntime.InvokeAsync<VersionData>("FetchVersionFromServer");
+        _latestVersion = versionData?.Version;
+        var updateNotes = versionData?.UpdateNotes;
         _currentVersion = await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_version");
 
         await Task.Delay(1000);
@@ -158,7 +169,12 @@ public partial class SharedHeader
             return;
         }
 
-        ShowVersionModal();
+        // Fetch and display the update notes based on the current language
+        var currentLanguage = TranslateText.GetCurrentLanguage();
+        if (updateNotes != null && updateNotes.TryGetValue(currentLanguage, out var note))
+            ShowVersionModal(note);
+        else
+            ShowVersionModal(new[] { "No update notes found" });
     }
 
     protected override async void OnInitialized()
@@ -183,4 +199,10 @@ public partial class SharedHeader
     {
         StateHasChanged();
     }
+}
+
+public class VersionData
+{
+    public string Version { get; init; }
+    public Dictionary<string, string[]> UpdateNotes { get; init; }
 }

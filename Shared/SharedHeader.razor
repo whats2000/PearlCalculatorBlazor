@@ -86,5 +86,13 @@
        OnOk="@HandleOk"
        OnCancel="@HandleCancel"
        Footer="@ModelFooterTemplate">
-    <p>@_modalContent</p>
+    <Title Level="4">@_modalContent</Title>
+    <Paragraph>
+        <ul>
+            @foreach (var item in _updateNotes)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    </Paragraph>
 </Modal>

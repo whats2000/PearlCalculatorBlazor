@@ -1,3 +1,25 @@
 ﻿{
-  "version": "2.71.2"
+  "version": "2.71.3",
+  "updateNotes": {
+    "en": [
+      "Added manual mode to copy data from general mode.",
+      "Fixed issue where previous calculation results were displayed if no direction angle was found in the updated calculation.",
+      "Added update log feature."
+    ],
+    "es_ES": [
+      "Se añadió el modo manual para copiar datos del modo general.",
+      "Se corrigió un problema donde se mostraban los resultados de cálculos anteriores si no se encontraba un ángulo de dirección en el cálculo actualizado.",
+      "Se añadió la función de registro de actualizaciones."
+    ],
+    "zh_tw": [
+      "新增手動模式複製一般模式資料。",
+      "修正更新計算後若不存在方向角則仍維持顯示前一計算結果。",
+      "新增更新日誌功能。"
+    ],
+    "zh_cn": [
+      "新增手动模式复制一般模式资料。",
+      "修正更新计算后若不存在方向角则仍维持显示前一计算结果。",
+      "新增更新日志功能。"
+    ]
+  }
 }

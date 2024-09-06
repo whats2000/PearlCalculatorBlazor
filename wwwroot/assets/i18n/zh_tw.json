@@ -8,6 +8,7 @@
   "CheckForUpdate": "檢查更新",
   "ConsoleHeader": "控制台",
   "Coordinate": "座標",
+  "CopyGeneralDataToManuallyData": "複製一般設定",
   "DefaultBlueTNTPos": "預設藍色TNT方位",
   "DefaultBlueTNTPosDesc": "預設從藍色陣列複製的TNT\n在不被史萊姆方塊改位置下相對於珍珠的方位",
   "DefaultRedTNTPos": "預設紅色TNT方位",

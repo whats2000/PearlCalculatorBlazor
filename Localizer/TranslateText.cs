@@ -22,7 +22,7 @@ public class TranslateText
 
     private static Dictionary<string, string> _displayText = new();
     private static Dictionary<string, string> _fallbackDisplayText = new();
-    private string _currentLanguage = FallbackLanguage;
+    private static string _currentLanguage = FallbackLanguage;
 
     public static event Action OnLanguageChange;
 
@@ -54,6 +54,11 @@ public class TranslateText
         _currentLanguage = language;
 
         OnLanguageChange?.Invoke();
+    }
+
+    public static string GetCurrentLanguage()
+    {
+        return _currentLanguage;
     }
 
     public static string GetTranslateText(string key)

@@ -7,6 +7,7 @@
   "CalculateTNTAmount": "Calculate TNT Amount",
   "CheckForUpdate": "Check for Update",
   "Coordinate": "Coordinate",
+  "CopyGeneralDataToManuallyData": "Copy General Data",
   "DefaultBlueTNTPos": "Default Blue TNT Position",
   "DefaultBlueTNTPosDesc": "Preset the position of the TNT duped from the blue array relative to the pearl without being changed by the slime block",
   "DefaultRedTNTPos": "Default Red TNT Position",

@@ -4,7 +4,10 @@
         const timestamp = new Date().getTime();
         const response = await fetch(`${basePath}/version.json?t=${timestamp}`);
         const data = await response.json();
-        return data.version;
+        return {
+            version: data.version,
+            updateNotes: data.updateNotes
+        };
     } catch (error) {
         console.error('Error fetching version:', error);
         return null;
