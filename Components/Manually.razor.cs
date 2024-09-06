@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AntDesign;
 using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
+using PearlCalculatorLib.General;
 using PearlCalculatorLib.Manually;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
+using Calculation = PearlCalculatorLib.Manually.Calculation;
 
 namespace PearlCalculatorBlazor.Components;
 
@@ -236,6 +239,68 @@ public partial class Manually
         EventManager.Instance.PublishEvent(this, key,
             new PearlSimulateManuallyArgs(PublishKey, _manuallyData, _calculateResult));
     }
+
+    private void CopyGeneralDataToManuallyData()
+    {
+        // If the current direction is aligned with DefaultBlueDuper, Blue TNT stays in place
+        if ((Data.Direction & Data.DefaultBlueDuper) == 0)
+        {
+            // Blue TNT (BTNT) remains in its current position
+            _manuallyData.BTNT = GetTntPosition(Data.DefaultBlueDuper); // Fixed Blue TNT
+
+            // Red TNT (ATNT) moves to the opposite corner
+            _manuallyData.ATNT = GetOppositeTnt(Data.Direction, Data.DefaultBlueDuper); // Moving Red TNT
+        }
+        else
+        {
+            _manuallyData.ATNT = GetTntPosition(Data.DefaultRedDuper);
+            _manuallyData.BTNT = GetOppositeTnt(Data.Direction, Data.DefaultRedDuper);
+        }
+
+        // Copy the rest of the data
+        _manuallyData.Destination = Data.Destination.ToSurface2D();
+        _manuallyData.Pearl = Data.Pearl.DeepClone();
+        _manuallyData.ATNTAmount = Data.RedTNT;
+        _manuallyData.BTNTAmount = Data.BlueTNT;
+        
+        _valueHasChanged = true;
+    }
+
+    private Space3D GetTntPosition(Direction duper)
+    {
+        return duper switch
+        {
+            Direction.NorthWest => Data.NorthWestTNT,
+            Direction.NorthEast => Data.NorthEastTNT,
+            Direction.SouthWest => Data.SouthWestTNT,
+            Direction.SouthEast => Data.SouthEastTNT,
+            _ => throw new ArgumentException("Invalid TNT duper direction")
+        };
+    }
+
+    private Space3D GetOppositeTnt(Direction direction, Direction fixedDuper)
+    {
+        // Find the opposite duper that should move based on the direction being simulated
+        var oppositeDuper = direction switch
+        {
+            Direction.North => fixedDuper is Direction.SouthWest
+                ? Direction.SouthEast
+                : Direction.SouthWest,
+            Direction.South => fixedDuper is Direction.NorthWest
+                ? Direction.NorthEast
+                : Direction.NorthWest,
+            Direction.East => fixedDuper is Direction.NorthWest
+                ? Direction.SouthWest
+                : Direction.NorthWest,
+            Direction.West => fixedDuper is Direction.NorthEast
+                ? Direction.SouthEast
+                : Direction.NorthEast,
+            _ => throw new ArgumentException("Invalid direction")
+        };
+
+        return GetTntPosition(oppositeDuper);
+    }
+
 
     private void RefreshPage()
     {

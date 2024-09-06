@@ -26,7 +26,7 @@ public partial class ResultView
         AutoFit = true,
         XField = "tick",
         YField = "value",
-        SeriesField = "axis",
+        SeriesField = "axis"
     };
 
     private readonly RadarConfig _radarConfig = new()
@@ -37,7 +37,7 @@ public partial class ResultView
         {
             Fields = new[] { "angle", "currentAngle" },
             Shared = true
-        },
+        }
     };
 
     private readonly ScatterConfig _scatterConfig = new()
@@ -121,7 +121,9 @@ public partial class ResultView
         radarData.AddRange(Enumerable.Range(0, 36).Select(i => new
         {
             angle = GetDirectionLabel(i * 10 - 180),
-            value = i * 10 - 180 == closestAngle ? 1 : 0,
+            value = _resultAngle != string.Empty
+                ? i * 10 - 180 == closestAngle ? 1 : 0
+                : 0,
             currentAngle = _resultAngle
         }));
 
@@ -217,7 +219,11 @@ public partial class ResultView
         var angle = pearlPos.WorldAngle(destination);
 
         if (Math.Abs(Math.Abs(angle) - 370) < 0.01)
+        {
+            _resultDirection = string.Empty;
+            _resultAngle = string.Empty;
             return;
+        }
 
         _resultDirection = DirectionUtils.GetDirection(angle).ToString();
 
