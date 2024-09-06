@@ -242,19 +242,18 @@ public partial class Manually
 
     private void CopyGeneralDataToManuallyData()
     {
+        var adjustPosition = Data.Pearl.Position.ToSurface2D().ToSpace3D();
+        
         // If the current direction is aligned with DefaultBlueDuper, Blue TNT stays in place
         if ((Data.Direction & Data.DefaultBlueDuper) == 0)
         {
-            // Blue TNT (BTNT) remains in its current position
-            _manuallyData.BTNT = GetTntPosition(Data.DefaultBlueDuper); // Fixed Blue TNT
-
-            // Red TNT (ATNT) moves to the opposite corner
-            _manuallyData.ATNT = GetOppositeTnt(Data.Direction, Data.DefaultBlueDuper); // Moving Red TNT
+            _manuallyData.BTNT = adjustPosition + GetTntPosition(Data.DefaultBlueDuper);
+            _manuallyData.ATNT = adjustPosition + GetOppositeTnt(Data.Direction, Data.DefaultBlueDuper);
         }
         else
         {
-            _manuallyData.ATNT = GetTntPosition(Data.DefaultRedDuper);
-            _manuallyData.BTNT = GetOppositeTnt(Data.Direction, Data.DefaultRedDuper);
+            _manuallyData.ATNT = adjustPosition + GetTntPosition(Data.DefaultRedDuper);
+            _manuallyData.BTNT = adjustPosition + GetOppositeTnt(Data.Direction, Data.DefaultRedDuper);
         }
 
         // Copy the rest of the data
