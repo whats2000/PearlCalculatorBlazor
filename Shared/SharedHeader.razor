@@ -1,6 +1,8 @@
 ﻿@using PearlCalculatorBlazor.Localizer
+@using PearlCalculatorLib.Settings
 @inject TranslateText TransText
 @inject NotificationService Notice
+@inject SettingsManager SettingsManager
 
 <PageHeader>
     <TitleTemplate>
@@ -23,15 +25,15 @@
         <Flex Align="center" Gap="10" Justify="center" Wrap="wrap" Style="height: 100%;">
             <Dropdown Placement="Placement.BottomRight">
                 <Overlay>
-                    <Menu SelectedKeys="@(new[] { _selectedValue })">
-                        @foreach (var name in _settingsList)
+                    <Menu SelectedKeys="@(new[] { SettingsManager.SelectedCannon.CannonName })">
+                        @foreach (var (cannonSettings, index) in SettingsManager.SettingsList.Select((value, index) => (value, index)))
                         {
                             <MenuItem
                                 Icon="@IconType.Outline.Swap"
-                                @key=name
-                                @onclick="@(() => OnSelectSettings(name))">
+                                @key=index
+                                @onclick="@(() => OnSelectSettings(index))">
                                 <ChildContent>
-                                    <Text Style="margin-left: 10px;">@name</Text>
+                                    <Text Style="margin-left: 10px;">@cannonSettings.CannonName</Text>
                                 </ChildContent>
                             </MenuItem>
                         }
@@ -52,7 +54,7 @@
                         Type="@ButtonType.Default"
                         Size="Large"
                         Icon="@IconType.Outline.Swap">
-                        @_selectedValue
+                        @SettingsManager.SelectedCannon.CannonName
                     </Button>
                 </ChildContent>
             </Dropdown>
@@ -133,10 +135,11 @@
     </Paragraph>
 </Modal>
 
-<Drawer 
+<Drawer
+    Width="350"
     Title="@TranslateText.GetTranslateText("EditCannonSettings")"
-    Visible="@_editSettingsVisible" 
-    OnClose="@OnCloseEditSettings" 
+    Visible="@_editSettingsVisible"
+    OnClose="@OnCloseEditSettings"
     Placement="left">
     <EditSettingSlideBar/>
 </Drawer>

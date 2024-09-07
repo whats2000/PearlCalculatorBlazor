@@ -1,8 +1,10 @@
 ﻿@page "/GeneralFtlSettings"
 @using PearlCalculatorBlazor.Localizer
+@using PearlCalculatorLib.Settings
 
 @inject TranslateText TransText
 @inject IJSRuntime JsRuntime
+@inject SettingsManager SettingsManager
 
 <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
 <SpaceItem>
@@ -408,6 +410,6 @@
 </Space>
 </SpaceItem>
 <SpaceItem>
-    <Button Style="width: 100%" @onclick="@ResetToDefault_OnClick">@TranslateText.GetTranslateText("ResetToDefault")</Button>
+    <Button Style="width: 100%" @onclick="@ResetToDefaultOnClick">@TranslateText.GetTranslateText("ResetToDefault")</Button>
 </SpaceItem>
 </Space>

@@ -1,3 +1,44 @@
-﻿<Paragraph>
-    Not Implemented Yet
-</Paragraph>
+﻿@using PearlCalculatorBlazor.Localizer
+@using PearlCalculatorLib.Settings
+@inject TranslateText TransText
+@inject SettingsManager SettingsManager
+@inject NotificationService Notice
+
+
+<Space Align="center"
+       Wrap="true"
+       Direction="DirectionVHType.Vertical"
+       Style="width: 100%;">
+    @foreach (var (cannonSettings, index) in SettingsManager.SettingsList.Select((value, index) => (value, index)))
+    {
+        <SpaceItem>
+            <Space Align="center" Wrap="true">
+                <SpaceItem>
+                    <Input
+                        Style="width: 100%;"
+                        @bind-Value="_tempCannonNames[index]"
+                        @onblur="() => RenameCannon(_tempCannonNames[index], index)"/>
+                </SpaceItem>
+                <SpaceItem>
+                    <Button
+                        Icon="@IconType.Outline.Copy"
+                        @onclick="() => CopyCannon(index)">
+                    </Button>
+                </SpaceItem>
+                <SpaceItem>
+                    <Button
+                        Danger="true"
+                        Icon="@IconType.Outline.Delete"
+                        @onclick="() => RemoveCannon(index)"
+                        Disabled="@(SettingsManager.SettingsList.Count <= 1)">
+                    </Button>
+                </SpaceItem>
+            </Space>
+        </SpaceItem>
+    }
+    <SpaceItem>
+        <Button Icon="@IconType.Outline.Plus" Type="@ButtonType.Dashed" @onclick="CreateNewCannon">
+            @TranslateText.GetTranslateText("AddNewCannon")
+        </Button>
+    </SpaceItem>
+</Space>

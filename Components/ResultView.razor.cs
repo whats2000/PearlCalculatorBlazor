@@ -242,7 +242,7 @@ public partial class ResultView
 
     protected override void OnInitialized()
     {
-        EventManager.Instance.AddListener<ButtonClickArgs>("calculate", (_, _) =>
+        EventManager.Instance.AddListener<BaseEventArgs>("calculate", (_, _) =>
         {
             _pageIndex = 1;
 
@@ -279,7 +279,7 @@ public partial class ResultView
             RefreshPage();
         });
 
-        EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedDistance", async (_, _) =>
+        EventManager.Instance.AddListener<BaseEventArgs>("sortByWeightedDistance", async (_, _) =>
         {
             if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 
@@ -296,7 +296,7 @@ public partial class ResultView
             RefreshPage();
         });
 
-        EventManager.Instance.AddListener<ButtonClickArgs>("sortByWeightedTotal", async (_, _) =>
+        EventManager.Instance.AddListener<BaseEventArgs>("sortByWeightedTotal", async (_, _) =>
         {
             if (ShowMode != ShowResultMode.Amount || AmountResult is null) return;
 

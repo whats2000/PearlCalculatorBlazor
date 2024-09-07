@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using PearlCalculatorBlazor.Localizer;
+using PearlCalculatorLib.Settings;
 
 namespace PearlCalculatorBlazor;
 
@@ -17,6 +18,8 @@ public class Program
         builder.Services.AddAntDesign();
         builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
         builder.Services.AddScoped(_ => new TranslateText());
+
+        builder.Services.AddSingleton<SettingsManager>();
 
         var host = builder.Build();
 

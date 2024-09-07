@@ -15,9 +15,9 @@ public abstract class EventArgs
     }
 }
 
-public class ButtonClickArgs : EventArgs
+public class BaseEventArgs : EventArgs
 {
-    public ButtonClickArgs(string publishKey) : base(publishKey)
+    public BaseEventArgs(string publishKey) : base(publishKey)
     {
     }
 }

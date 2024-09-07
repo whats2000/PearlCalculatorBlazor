@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AntDesign;
@@ -9,20 +11,15 @@ using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
+using PearlCalculatorLib.Settings;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PearlCalculatorBlazor.Components.GeneralFtlComponents;
 
 public partial class GeneralFtlGeneral
 {
     private const string PublishKey = "GeneralFtlGeneral";
-
     private static readonly SettingsJsonConverter JsonConverter = new();
-
-    private static JsonSerializerOptions _writeSerializerOptions = new()
-    {
-        Converters = { JsonConverter },
-        WriteIndented = true
-    };
 
     private static JsonSerializerOptions _readSerializerOptions = new()
     {
@@ -111,6 +108,8 @@ public partial class GeneralFtlGeneral
 
     protected override void OnInitialized()
     {
+        TranslateText.OnLanguageChange += RefreshPage;
+        
         EventManager.Instance.AddListener<SetRtCountArgs>("tntAmountSetRTCount", (_, args) =>
         {
             Direction = DirectionUtils.GetDirection(Data.Pearl.Position.WorldAngle(Data.Destination));
@@ -118,8 +117,8 @@ public partial class GeneralFtlGeneral
             BlueTnt = (uint)args.Blue;
             StateHasChanged();
         });
-
-        TranslateText.OnLanguageChange += RefreshPage;
+        
+        EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
     }
 
     private async void CalculateTntAmount()
@@ -146,7 +145,7 @@ public partial class GeneralFtlGeneral
         });
 
         if (isSu)
-            EventManager.Instance.PublishEvent(this, "calculate", new ButtonClickArgs(PublishKey));
+            EventManager.Instance.PublishEvent(this, "calculate", new BaseEventArgs(PublishKey));
 
         loading.Start();
 
@@ -161,15 +160,17 @@ public partial class GeneralFtlGeneral
             new PearlSimulateArgs(PublishKey, Data.Pearl, pearlTraceList));
     }
 
-    private async void ImportSettings_OnClick()
+    private async void ImportSettingsOnClick()
     {
         await JsRuntime.InvokeVoidAsync("ResetStateInJs");
         await JsRuntime.InvokeAsync<string>("ImportSettings");
     }
 
-    private async void ExportSettings_OnClick()
+    private async Task ExportSettingsOnClick()
     {
-        var json = JsonSerializer.Serialize(Settings.CreateSettingsFormData(), _writeSerializerOptions);
+        // Sync the current cannon settings with the data before exporting
+        SettingsManager.SelectedCannon.SyncWithData();
+        var json = JsonUtility.Serialize(SettingsManager.CreateSettingsCollection());
         await JsRuntime.InvokeAsync<string>("ExportSettings", json);
     }
 
@@ -188,36 +189,68 @@ public partial class GeneralFtlGeneral
         LoadJson(buffer.AsSpan(0, buffer.Length));
     }
 
-    private void LoadJson(ReadOnlySpan<byte> reader)
+    private void LoadJson(ReadOnlySpan<byte> jsonData)
     {
         try
         {
-            var settings = JsonSerializer.Deserialize<Settings>(reader, _readSerializerOptions);
+            var settingsCollection = JsonUtility.DeSerialize(Encoding.UTF8.GetString(jsonData));
 
-            Data.NorthWestTNT = settings.NorthWestTNT;
-            Data.NorthEastTNT = settings.NorthEastTNT;
-            Data.SouthWestTNT = settings.SouthWestTNT;
-            Data.SouthEastTNT = settings.SouthEastTNT;
+            if (settingsCollection.CannonSettings is null)
+            {
+                var settings = JsonSerializer.Deserialize<Settings>(jsonData, _readSerializerOptions);
 
-            Data.Pearl = settings.Pearl;
+                Data.RedTNT = settings.RedTNT;
+                Data.BlueTNT = settings.BlueTNT;
+                Data.Direction = settings.Direction;
+                Data.Destination = settings.Destination;
 
-            Data.RedTNT = settings.RedTNT;
-            Data.BlueTNT = settings.BlueTNT;
-            Data.MaxTNT = settings.MaxTNT;
+                var cannonSettings = new CannonSettings
+                {
+                    CannonName = "Default",
+                    MaxTNT = settings.MaxTNT,
+                    DefaultRedDirection = settings.DefaultRedTNTDirection,
+                    DefaultBlueDirection = settings.DefaultBlueTNTDirection,
+                    NorthWestTNT = settings.NorthWestTNT,
+                    NorthEastTNT = settings.NorthEastTNT,
+                    SouthWestTNT = settings.SouthWestTNT,
+                    SouthEastTNT = settings.SouthEastTNT,
+                    Offset = settings.Offset,
+                    Pearl = settings.Pearl,
+                    RedTNTConfiguration = new List<int>(),
+                    BlueTNTConfiguration = new List<int>(),
+                    PearlYMotionCancellation = settings.PearlYMotionCancellation,
+                    PearlYPositionOriginal = settings.PearlYPositionOriginal,
+                    PearlYPositionAdjusted = settings.PearlYPositionAdjusted
+                };
 
-            Data.Destination = settings.Destination;
-            Data.PearlOffset = settings.Offset;
+                SettingsManager.SettingsList.Clear();
+                SettingsManager.AddSettings(cannonSettings);
+                SettingsManager.SelectCannon(0);
+            }
+            else
+            {
+                Data.RedTNT = settingsCollection.RedTNT;
+                Data.BlueTNT = settingsCollection.BlueTNT;
+                Data.TNTWeight = settingsCollection.TNTWeight;
+                Data.Direction = settingsCollection.Direction;
+                Data.Destination = settingsCollection.Destination.ToSpace3D();
 
-            Data.Direction = settings.Direction;
+                SettingsManager.SettingsList.Clear();
+                foreach (var cannonSettings in settingsCollection.CannonSettings)
+                    SettingsManager.AddSettings(cannonSettings);
 
-            Data.DefaultRedDuper = settings.DefaultRedTNTDirection;
-            Data.DefaultBlueDuper = settings.DefaultBlueTNTDirection;
-
-            Data.PearlYMotionCancellation = settings.PearlYMotionCancellation;
-            Data.PearlYPositionOriginal = settings.PearlYPositionOriginal;
-            Data.PearlYPositionAdjusted = settings.PearlYPositionAdjusted;
+                if (!string.IsNullOrEmpty(settingsCollection.SelectedCannon))
+                {
+                    var index = SettingsManager.SettingsList.FindIndex(x => x.CannonName == settingsCollection.SelectedCannon);
+                    SettingsManager.SelectCannon(index);
+                }
+                else
+                    SettingsManager.SelectCannon(0);
+            }
 
             PearlSimulate();
+            
+            EventManager.Instance.PublishEvent(this, "importSettings", new BaseEventArgs(PublishKey));
         }
         catch (Exception e)
         {

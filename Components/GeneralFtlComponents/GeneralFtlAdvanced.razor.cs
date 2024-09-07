@@ -63,7 +63,7 @@ public partial class GeneralFtlAdvanced
         var isSortByWeightedDistance = SelectSortMode == SortMode.SortByWeightedDistance;
         EventManager.Instance.PublishEvent(this,
             isSortByWeightedDistance ? "sortByWeightedDistance" : "sortByWeightedTotal",
-            new ButtonClickArgs("GeneralFtlAdvanced"));
+            new BaseEventArgs("GeneralFtlAdvanced"));
     }
 
     [JSInvokable]
@@ -75,6 +75,8 @@ public partial class GeneralFtlAdvanced
     protected override void OnInitialized()
     {
         TranslateText.OnLanguageChange += RefreshPage;
+        
+        EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
     }
 
     private void RefreshPage()

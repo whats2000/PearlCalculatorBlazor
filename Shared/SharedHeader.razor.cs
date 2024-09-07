@@ -5,6 +5,7 @@ using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
+using PearlCalculatorBlazor.Managers;
 
 namespace PearlCalculatorBlazor.Shared;
 
@@ -16,18 +17,14 @@ public enum Theme
 
 public partial class SharedHeader
 {
+    private const string PublishKey = "SharedHeader";
     private Theme _currentTheme = Theme.Light;
+
     private string _currentVersion = "Loading...";
+
+    private bool _editSettingsVisible = false;
     private string _latestVersion;
     private string _modalContent = "";
-    private string _selectedValue = "Default Cannon";
-    private bool _editSettingsVisible = false;
-
-    private List<string> _settingsList = new()
-    {
-        "Default Cannon"
-    };
-
     private string[] _updateNotes = Array.Empty<string>();
     private bool _visible = false;
     [Inject] private IJSRuntime JsRuntime { get; set; }
@@ -99,9 +96,25 @@ public partial class SharedHeader
         }
     }
 
-    private void OnSelectSettings(string value)
+    private async Task OnSelectSettings(int index)
     {
-        _selectedValue = value;
+        // Save the current cannon settings before switching to another cannon
+        SettingsManager.SelectedCannon.SyncWithData();
+        
+        // Select the new cannon settings
+        var selectSuccess = SettingsManager.SelectCannon(index);
+
+        if (!selectSuccess)
+            await Notice.Open(new NotificationConfig
+            {
+                Message = "Notification",
+                Description = TranslateText.GetTranslateText("CannonNotFound"),
+                Duration = 3,
+                NotificationType = NotificationType.Error
+            });
+        
+        EventManager.Instance.PublishEvent(this, "dataChanged", new BaseEventArgs(PublishKey));
+
         StateHasChanged();
     }
 
@@ -109,7 +122,7 @@ public partial class SharedHeader
     {
         _editSettingsVisible = true;
     }
-    
+
     private void OnCloseEditSettings()
     {
         _editSettingsVisible = false;
@@ -211,6 +224,7 @@ public partial class SharedHeader
     protected override async void OnInitialized()
     {
         TranslateText.OnLanguageChange += RefreshPage;
+        EventManager.Instance.AddListener<BaseEventArgs>("importSettings", (_, _) => { RefreshPage(); });
 
         var storedLanguage =
             await JsRuntime.InvokeAsync<string>("localStorage.getItem", "PearlCalculatorBlazor_userLanguage");

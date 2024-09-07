@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
+using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
+using PearlCalculatorLib.Settings;
 
 namespace PearlCalculatorBlazor.Components.GeneralFtlComponents;
 
@@ -192,9 +194,10 @@ public partial class GeneralFtlSettings
         set => Data.DefaultBlueDuper = Enum.Parse<Direction>(value);
     }
 
-    private async void ResetToDefault_OnClick()
+    private async void ResetToDefaultOnClick()
     {
         Data.Reset();
+        SettingsManager.SelectedCannon.SyncWithData();
         await JsRuntime.InvokeVoidAsync("ResetStateInJs");
         StateHasChanged();
     }
@@ -223,6 +226,8 @@ public partial class GeneralFtlSettings
         };
 
         TranslateText.OnLanguageChange += RefreshPage;
+        
+        EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
     }
 
     private void RefreshPage()

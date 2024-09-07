@@ -1,12 +1,14 @@
 ﻿@page "/GeneralFtlGeneral"
 @using PearlCalculatorBlazor.Localizer
 @using PearlCalculatorLib.PearlCalculationLib.World
+@using PearlCalculatorLib.Settings
 
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime
 @inject MessageService AntMessage
 @inject NotificationService Notice
 @inject TranslateText TransText
+@inject SettingsManager SettingsManager
 
 <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
     <SpaceItem>
@@ -117,8 +119,8 @@
 <div class="button-block">
     <Button Block="true" @onclick="CalculateTntAmount">@TranslateText.GetTranslateText("CalculateTNTAmount")</Button>
     <Button Block="true" @onclick="PearlSimulate">@TranslateText.GetTranslateText("PearlSimulate")</Button>
-    <Button Block="true" @onclick="ImportSettings_OnClick">@TranslateText.GetTranslateText("ImportSettings")</Button>
-    <Button Block="true" @onclick="ExportSettings_OnClick">@TranslateText.GetTranslateText("SaveSettings")</Button>
+    <Button Block="true" @onclick="ImportSettingsOnClick">@TranslateText.GetTranslateText("ImportSettings")</Button>
+    <Button Block="true" @onclick="ExportSettingsOnClick">@TranslateText.GetTranslateText("SaveSettings")</Button>
     <Microsoft.AspNetCore.Components.Forms.InputFile
         id="import-settings-handle"
         style="display: none"

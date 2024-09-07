@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 using PearlCalculatorLib.PearlCalculationLib.World;
@@ -59,6 +60,24 @@ namespace PearlCalculatorLib.Settings
             };
 
             return result;
+        }
+        
+        public void SyncWithData()
+        {
+            MaxTNT                   = Data.MaxTNT;
+            DefaultRedDirection      = Data.DefaultRedDuper;
+            DefaultBlueDirection     = Data.DefaultBlueDuper;
+            NorthWestTNT             = Data.NorthWestTNT;
+            NorthEastTNT             = Data.NorthEastTNT;
+            SouthWestTNT             = Data.SouthWestTNT;
+            SouthEastTNT             = Data.SouthEastTNT;
+            Offset                   = Data.PearlOffset;
+            Pearl                    = Data.Pearl.DeepClone();
+            RedTNTConfiguration      = Data.RedTNTConfiguration;
+            BlueTNTConfiguration     = Data.BlueTNTConfiguration;
+            PearlYMotionCancellation = Data.PearlYMotionCancellation;
+            PearlYPositionOriginal   = Data.PearlYPositionOriginal;
+            PearlYPositionAdjusted   = Data.PearlYPositionAdjusted;
         }
 
         object IDeepCloneable.DeepClone() => DeepClone();
