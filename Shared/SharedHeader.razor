@@ -23,13 +23,49 @@
         <Flex Align="center" Gap="10" Justify="center" Wrap="wrap" Style="height: 100%;">
             <Dropdown Placement="Placement.BottomRight">
                 <Overlay>
-                    <Menu DefaultSelectedKeys=@(new[] { "en" })>
-                        <MenuItem @onclick="@(() => OnClickChangeLanguage("en"))" Key="en">@TranslateText.LanguageDict["en"]</MenuItem>
+                    <Menu SelectedKeys="@(new[] { _selectedValue })">
+                        @foreach (var name in _settingsList)
+                        {
+                            <MenuItem
+                                Icon="@IconType.Outline.Swap"
+                                @key=name
+                                @onclick="@(() => OnSelectSettings(name))">
+                                <ChildContent>
+                                    <Text Style="margin-left: 10px;">@name</Text>
+                                </ChildContent>
+                            </MenuItem>
+                        }
+                        <MenuItem
+                            Icon="@IconType.Outline.Tool"
+                            @onclick="OnEditSettings">
+                            <ChildContent>
+                                <Text Style="margin-left: 10px;">
+                                    @TranslateText.GetTranslateText("EditCannonSettings")
+                                </Text>
+                            </ChildContent>
+                        </MenuItem>
+                    </Menu>
+                </Overlay>
+                <ChildContent>
+                    <Button
+                        Shape="@ButtonShape.Round"
+                        Type="@ButtonType.Default"
+                        Size="Large"
+                        Icon="@IconType.Outline.Swap">
+                        @_selectedValue
+                    </Button>
+                </ChildContent>
+            </Dropdown>
+            <Dropdown Placement="Placement.BottomRight">
+                <Overlay>
+                    <Menu DefaultSelectedKeys="@(new[] { TranslateText.GetCurrentLanguage() })">
                         @foreach (var pair in TranslateText.LanguageDict)
                         {
-                            if (pair.Key == "en")
-                                continue;
-                            <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>@pair.Value</MenuItem>
+                            <MenuItem @onclick="@(() => OnClickChangeLanguage(pair.Key))" @key=pair.Key>
+                                <ChildContent>
+                                    @pair.Value
+                                </ChildContent>
+                            </MenuItem>
                         }
                     </Menu>
                 </Overlay>
@@ -38,7 +74,7 @@
                         Shape="@ButtonShape.Round"
                         Type="@ButtonType.Default"
                         Size="Large"
-                        Icon="translation">
+                        Icon="@IconType.Outline.Translation">
                         Language
                     </Button>
                 </ChildContent>
@@ -96,3 +132,11 @@
         </ul>
     </Paragraph>
 </Modal>
+
+<Drawer 
+    Title="@TranslateText.GetTranslateText("EditCannonSettings")"
+    Visible="@_editSettingsVisible" 
+    OnClose="@OnCloseEditSettings" 
+    Placement="left">
+    <EditSettingSlideBar/>
+</Drawer>

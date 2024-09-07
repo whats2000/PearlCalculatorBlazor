@@ -20,6 +20,14 @@ public partial class SharedHeader
     private string _currentVersion = "Loading...";
     private string _latestVersion;
     private string _modalContent = "";
+    private string _selectedValue = "Default Cannon";
+    private bool _editSettingsVisible = false;
+
+    private List<string> _settingsList = new()
+    {
+        "Default Cannon"
+    };
+
     private string[] _updateNotes = Array.Empty<string>();
     private bool _visible = false;
     [Inject] private IJSRuntime JsRuntime { get; set; }
@@ -89,6 +97,22 @@ public partial class SharedHeader
                 UpdateTheme();
             }
         }
+    }
+
+    private void OnSelectSettings(string value)
+    {
+        _selectedValue = value;
+        StateHasChanged();
+    }
+
+    private void OnEditSettings()
+    {
+        _editSettingsVisible = true;
+    }
+    
+    private void OnCloseEditSettings()
+    {
+        _editSettingsVisible = false;
     }
 
     private void ShowVersionModal(string[] updateNotes)
