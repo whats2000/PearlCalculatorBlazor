@@ -116,6 +116,8 @@ public partial class GeneralFtlTntEncoding : ComponentBase
     protected override void OnInitialized()
     {
         TranslateText.OnLanguageChange += RefreshPage;
+        
+        EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
     }
 
     private void RefreshPage()

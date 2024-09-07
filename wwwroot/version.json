@@ -1,5 +1,5 @@
 ﻿{
-  "version": "2.73.0",
+  "version": "2.73.1",
   "updateNotes": {
     "en": [
       "Added cannon configuration mode: Multiple cannons can now be stored in the same configuration file.",
