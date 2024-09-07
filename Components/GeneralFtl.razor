@@ -1,27 +1,34 @@
 ﻿@page "/GeneralFtl"
-@using PearlCalculatorBlazor.Localizer
 
 <div class="calculator-general-root-default">
     <Card>
         <CardTabs>
             <Tabs @bind-ActiveKey="_activeKey">
-                <TabPane Key="GeneralFtlGeneral" Tab="@TranslateText.GetTranslateText("GeneralFtlGeneral")">
-                    <ChildContent>
-                        <GeneralFtlGeneral/>
-                    </ChildContent>
-                </TabPane>
-
-                <TabPane Key="GeneralFtlAdvanced" Tab="@TranslateText.GetTranslateText("GeneralFtlAdvanced")">
-                    <ChildContent>
-                        <GeneralFtlAdvanced/>
-                    </ChildContent>
-                </TabPane>
-
-                <TabPane Key="GeneralFtlSettings" Tab="@TranslateText.GetTranslateText("GeneralFtlSettings")">
-                    <ChildContent>
-                        <GeneralFtlSettings/>
-                    </ChildContent>
-                </TabPane>
+                @foreach (var tab in _selectList)
+                {
+                    <TabPane Key="@tab.ActiveKey" Tab="@tab.DisplayName">
+                        <ChildContent>
+                            @switch (tab.ActiveKey)
+                            {
+                                case "GeneralFtlGeneral":
+                                    <GeneralFtlGeneral/>
+                                    break;
+                                case "GeneralFtlAdvanced":
+                                    <GeneralFtlAdvanced/>
+                                    break;
+                                case "GeneralFtlSettings":
+                                    <GeneralFtlSettings/>
+                                    break;
+                                case "GeneralFtlTntEncoding":
+                                    <GeneralFtlTntEncoding/>
+                                    break;
+                                default:
+                                    <Empty/>
+                                    break;
+                            }
+                        </ChildContent>
+                    </TabPane>
+                }
             </Tabs>
         </CardTabs>
     </Card>
@@ -33,27 +40,33 @@
             <Select DataSource="@_selectList"
                     DefaultValue="@("GeneralFtlGeneral")"
                     @bind-Value="_activeKey"
-                    ValueName="@nameof(Array.ActiveKey)"
-                    LabelName="@nameof(Array.DisplayName)"
+                    ValueName="@nameof(TabItem.ActiveKey)"
+                    LabelName="@nameof(TabItem.DisplayName)"
                     IgnoreItemChanges="false">
             </Select>
         </SpaceItem>
         <Divider></Divider>
         <SpaceItem>
-            @if (_activeKey == "GeneralFtlGeneral")
-            {
-                <GeneralFtlGeneral/>
-            }
-            else if (_activeKey == "GeneralFtlAdvanced")
-            {
-                <GeneralFtlAdvanced/>
-            }
-            else
-            {
-                <GeneralFtlSettings/>
-            }
+            <ChildContent>
+                @switch (_activeKey)
+                {
+                    case "GeneralFtlGeneral":
+                        <GeneralFtlGeneral/>
+                        break;
+                    case "GeneralFtlAdvanced":
+                        <GeneralFtlAdvanced/>
+                        break;
+                    case "GeneralFtlSettings":
+                        <GeneralFtlSettings/>
+                        break;
+                    case "GeneralFtlTntEncoding":
+                        <GeneralFtlTntEncoding/>
+                        break;
+                    default:
+                        <Empty/>
+                        break;
+                }
+            </ChildContent>
         </SpaceItem>
     </Space>
 </div>
-
-@code { private string _activeKey = "GeneralFtlGeneral"; }

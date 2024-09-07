@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AntDesign;
@@ -47,7 +46,7 @@ public partial class EditSettingSlideBar : ComponentBase
                 NotificationType = NotificationType.Error
             });
         _tempCannonNames[SettingsManager.SettingsList.Count - 1] = newCannon.CannonName;
-        
+
         StateHasChanged();
     }
 
@@ -65,7 +64,7 @@ public partial class EditSettingSlideBar : ComponentBase
                 NotificationType = NotificationType.Error
             });
         _tempCannonNames[SettingsManager.SettingsList.Count - 1] = newCannon.CannonName;
-        
+
         StateHasChanged();
     }
 
@@ -81,7 +80,7 @@ public partial class EditSettingSlideBar : ComponentBase
     private void RenameCannon(string newName, int index)
     {
         var oldName = SettingsManager.SettingsList[index].CannonName;
-        
+
         if (string.IsNullOrWhiteSpace(newName))
         {
             Notice.Open(new NotificationConfig
@@ -95,10 +94,7 @@ public partial class EditSettingSlideBar : ComponentBase
             return;
         }
 
-        if (newName == oldName)
-        {
-            return;
-        }
+        if (newName == oldName) return;
 
         if (SettingsManager.SettingsList.Any(c => c.CannonName == newName))
         {
@@ -121,18 +117,14 @@ public partial class EditSettingSlideBar : ComponentBase
         TranslateText.OnLanguageChange += RefreshPage;
         EventManager.Instance.AddListener<BaseEventArgs>("importSettings", (_, _) => { RefreshPage(); });
         foreach (var (cannon, index) in SettingsManager.SettingsList.Select((value, index) => (value, index)))
-        {
             _tempCannonNames[index] = cannon.CannonName;
-        }
     }
 
     private void RefreshPage()
     {
         _tempCannonNames.Clear();
         foreach (var (cannon, index) in SettingsManager.SettingsList.Select((value, index) => (value, index)))
-        {
             _tempCannonNames[index] = cannon.CannonName;
-        }
         StateHasChanged();
     }
 }

@@ -60,7 +60,6 @@
                             </Table>
                             break;
                         case ShowResultMode.Momentum:
-                        default:
                             <Table TItem="EntityWrapper"
                                    DataSource="@PearlMotion"
                                    Total="MotionTotal"
@@ -74,6 +73,33 @@
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayYMotion")" @bind-Field="@context.YCoor"></AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayZMotion")" @bind-Field="@context.ZCoor"></AntDesign.Column>
                             </Table>
+                            break;
+                        case ShowResultMode.TntEncoding:
+                            <Table
+                                TItem="TntConfigurationResult"
+                                DataSource="@TntResults"
+                                Total="TntResults.Count"
+                                @bind-PageIndex="_pageIndex"
+                                @bind-PageSize="_pageSize"
+                                ScrollY="80vh"
+                                Class="calculator-result-table">
+
+                                <AntDesign.Column Title="TNT Value" @bind-Field="@context.TntValue"/>
+                                <AntDesign.Column Title="Red" @bind-Field="@context.RedIsUsed">
+                                    <Template>
+                                        <Checkbox Disabled="true" Checked="@context.RedIsUsed"/>
+                                    </Template>
+                                </AntDesign.Column>
+                                <AntDesign.Column Title="Blue" @bind-Field="@context.BlueIsUsed">
+                                    <Template>
+                                        <Checkbox Disabled="true" Checked="@context.BlueIsUsed"/>
+                                    </Template>
+                                </AntDesign.Column>
+                            </Table>
+                            break;
+                        case ShowResultMode.Empty:
+                        default:
+                            <Empty/>
                             break;
                     }
                     <GridRow Gutter="12">
@@ -113,13 +139,16 @@
                                         <Radar Data="@GetRadarChartData()" Config="@_radarConfig"/>
                                     </GridCol>
                                 </GridRow>
-                    <AntDesign.Charts.Line Data="@PearlTraceData" Config="@_lineConfig"/>
+                                <AntDesign.Charts.Line Data="@PearlTraceData" Config="@_lineConfig"/>
                                 break;
                             case ShowResultMode.Momentum:
                                 <AntDesign.Charts.Line Data="@PearlMotionData" Config="@_lineConfig"/>
                                 break;
                             case ShowResultMode.Amount:
                                 <DualAxes Data="@(new[] { AmountResultStackedBarData, AmountResultLineData })" Config="_dualAxesConfig"/>
+                                break;
+                            case ShowResultMode.TntEncoding:
+                                <AntDesign.Charts.Column Data="@GetTntEncodingData()" Config="@_columnConfig"/>
                                 break;
                             case ShowResultMode.Empty:
                             default:

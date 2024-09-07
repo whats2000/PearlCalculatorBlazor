@@ -86,11 +86,26 @@ public partial class ResultView
             }
         }
     };
+    
+    private readonly ColumnConfig _columnConfig = new()
+    {
+        IsGroup = true,
+        XField = "index",
+        YField = "value",
+        SeriesField = "type",
+        Tooltip = new Tooltip
+        {
+            Fields = new[] { "index", "value", "type" }
+        },
+        Color = new[] { "#FF7260", "#9BD7D5" }
+    };
 
     private bool _graphLoading = false;
 
     private int _pageIndex = 1;
     private int _pageSize = 50;
+
+    private List<TntConfigurationResult> TntResults = new();
 
     private object[] PearlTraceData => GetEntityWrapperData(PearlTrace);
     private object[] PearlMotionData => GetEntityWrapperData(PearlMotion);
@@ -201,6 +216,23 @@ public partial class ResultView
                 index,
                 count = (double)r.Tick,
                 name = TranslateText.GetTranslateText("DisplayTicks")
+            }))
+            .ToArray<object>();
+    }
+    
+    private object[] GetTntEncodingData()
+    {
+        return TntResults.Select(r => new
+            {
+                index = r.TntValue.ToString(),
+                type = TranslateText.GetTranslateText("DisplayRed"),
+                value = r.RedIsUsed ? 1 : 0
+            })
+            .Concat(TntResults.Select(r => new
+            {
+                index = r.TntValue.ToString(),
+                type = TranslateText.GetTranslateText("DisplayBlue"),
+                value = r.BlueIsUsed ? 1 : 0
             }))
             .ToArray<object>();
     }
@@ -375,6 +407,49 @@ public partial class ResultView
             RefreshPage();
         });
 
+        EventManager.Instance.AddListener<BaseEventArgs>("calculateTntEncoding", async (_, _) =>
+        {
+            var success = Calculation.CalculateTNTConfiguration(Data.RedTNT, Data.BlueTNT, out var tntCombination);
+
+            if (!success)
+            {
+                await NoticeWithIcon(NotificationType.Error,
+                    TranslateText.GetTranslateText("TNTCalculationFailedMessage"));
+                return;
+            }
+
+            ShowMode = ShowResultMode.TntEncoding;
+
+            TntResults.Clear();
+
+            Dictionary<int, bool> redTntUsage = new();
+            Dictionary<int, bool> blueTntUsage = new();
+
+            for (var i = 0; i < Data.RedTNTConfiguration.Count; i++)
+                redTntUsage[Data.RedTNTConfiguration[i]] = tntCombination[i];
+
+            for (var i = 0; i < Data.BlueTNTConfiguration.Count; i++)
+                blueTntUsage[Data.BlueTNTConfiguration[i]] = tntCombination[i + Data.RedTNTConfiguration.Count];
+
+            foreach (var redTnt in redTntUsage)
+                TntResults.Add(new TntConfigurationResult
+                {
+                    TntValue = redTnt.Key,
+                    RedIsUsed = redTnt.Value,
+                    BlueIsUsed = blueTntUsage.ContainsKey(redTnt.Key) && blueTntUsage[redTnt.Key]
+                });
+
+            foreach (var blueTnt in blueTntUsage.Where(blueTnt => !redTntUsage.ContainsKey(blueTnt.Key)))
+                TntResults.Add(new TntConfigurationResult
+                {
+                    TntValue = blueTnt.Key,
+                    RedIsUsed = false,
+                    BlueIsUsed = blueTnt.Value
+                });
+
+            RefreshPage();
+        });
+
         TranslateText.OnLanguageChange += RefreshPage;
     }
 
@@ -396,7 +471,8 @@ public partial class ResultView
         Empty,
         Amount,
         Trace,
-        Momentum
+        Momentum,
+        TntEncoding
     }
 }
 
@@ -406,4 +482,11 @@ public class EntityWrapper
     public double YCoor { get; set; }
     public double ZCoor { get; set; }
     public int Tick { get; set; }
+}
+
+public class TntConfigurationResult
+{
+    public int TntValue { get; set; }
+    public bool RedIsUsed { get; set; }
+    public bool BlueIsUsed { get; set; }
 }

@@ -1,0 +1,83 @@
+﻿@using PearlCalculatorBlazor.Localizer
+@using PearlCalculatorLib.PearlCalculationLib.World
+@inject IMessageService AntMessage
+@inject NotificationService Notice
+
+<Space Direction="DirectionVHType.Vertical" Wrap="true" Style="width: 100%;">
+    <SpaceItem>
+        <Text>
+            @TranslateText.GetTranslateText("TNTEncodingConfigurationRed") :
+        </Text>
+    </SpaceItem>
+    <SpaceItem>
+        <Input @bind-Value="RedTntInput" @onblur="ValidateRedTntInput" Placeholder="e.g. 10, 20, 30"/>
+    </SpaceItem>
+
+    <SpaceItem>
+        <Text>
+            @TranslateText.GetTranslateText("TNTEncodingConfigurationBlue") :
+        </Text>
+    </SpaceItem>
+    <SpaceItem>
+        <Input @bind-Value="BlueTntInput" @onblur="ValidateBlueTntInput" Placeholder="e.g. 15, 25, 35"/>
+    </SpaceItem>
+    <SpaceItem>
+        <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+            <SpaceItem>
+                <Text>@TranslateText.GetTranslateText("Direction")</Text>
+            </SpaceItem>
+            <SpaceItem>
+                <RadioGroup @bind-Value="@Direction" Style="width: 100%;">
+                    <Row>
+                        <AntDesign.Col Span="6">
+                            <Radio Value="@Direction.North">
+                                @TranslateText.GetTranslateText("North")
+                            </Radio>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="6">
+                            <Radio Value="@Direction.South">
+                                @TranslateText.GetTranslateText("South")
+                            </Radio>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="6">
+                            <Radio Value="@Direction.East">
+                                @TranslateText.GetTranslateText("East")
+                            </Radio>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="6">
+                            <Radio Value="@Direction.West">
+                                @TranslateText.GetTranslateText("West")
+                            </Radio>
+                        </AntDesign.Col>
+                    </Row>
+                </RadioGroup>
+            </SpaceItem>
+        </Space>
+    </SpaceItem>
+    <SpaceItem>
+        <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+            <SpaceItem>
+                <Text>@TranslateText.GetTranslateText("RedTNT")</Text>
+            </SpaceItem>
+            <SpaceItem>
+                <InputNumber Style="width: 100%" @bind-Value="@RedTnt"/>
+            </SpaceItem>
+        </Space>
+    </SpaceItem>
+    <SpaceItem>
+        <Space Direction="DirectionVHType.Vertical" Style="width: 100%">
+            <SpaceItem>
+                <Text>@TranslateText.GetTranslateText("BlueTNT")</Text>
+            </SpaceItem>
+            <SpaceItem>
+                <InputNumber Style="width: 100%" @bind-Value="@BlueTnt"/>
+            </SpaceItem>
+        </Space>
+    </SpaceItem>
+    <SpaceItem>
+        <div class="button-block">
+            <Button Block="true" @onclick="PearlSimulate">@TranslateText.GetTranslateText("PearlSimulate")</Button>
+            <Button Block="true" @onclick="CalculateTntEncoding">@TranslateText.GetTranslateText("CalculateTNTEncoding")</Button>
+        </div>
+    </SpaceItem>
+</Space>

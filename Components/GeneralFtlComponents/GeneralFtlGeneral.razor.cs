@@ -72,18 +72,6 @@ public partial class GeneralFtlGeneral
         set => Data.Direction = value;
     }
 
-    private Direction DefaultRedTntDirection
-    {
-        get => Data.DefaultRedDuper;
-        set => Data.DefaultRedDuper = value;
-    }
-
-    private Direction DefaultBlueTntDirection
-    {
-        get => Data.DefaultBlueDuper;
-        set => Data.DefaultBlueDuper = value;
-    }
-
     private uint RedTnt
     {
         get => (uint)Data.RedTNT;
@@ -109,7 +97,7 @@ public partial class GeneralFtlGeneral
     protected override void OnInitialized()
     {
         TranslateText.OnLanguageChange += RefreshPage;
-        
+
         EventManager.Instance.AddListener<SetRtCountArgs>("tntAmountSetRTCount", (_, args) =>
         {
             Direction = DirectionUtils.GetDirection(Data.Pearl.Position.WorldAngle(Data.Destination));
@@ -117,7 +105,7 @@ public partial class GeneralFtlGeneral
             BlueTnt = (uint)args.Blue;
             StateHasChanged();
         });
-        
+
         EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
     }
 
@@ -241,15 +229,18 @@ public partial class GeneralFtlGeneral
 
                 if (!string.IsNullOrEmpty(settingsCollection.SelectedCannon))
                 {
-                    var index = SettingsManager.SettingsList.FindIndex(x => x.CannonName == settingsCollection.SelectedCannon);
+                    var index = SettingsManager.SettingsList.FindIndex(x =>
+                        x.CannonName == settingsCollection.SelectedCannon);
                     SettingsManager.SelectCannon(index);
                 }
                 else
+                {
                     SettingsManager.SelectCannon(0);
+                }
             }
 
             PearlSimulate();
-            
+
             EventManager.Instance.PublishEvent(this, "importSettings", new BaseEventArgs(PublishKey));
         }
         catch (Exception e)

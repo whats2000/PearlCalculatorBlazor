@@ -5,23 +5,32 @@ namespace PearlCalculatorBlazor.Components;
 
 public partial class GeneralFtl
 {
-    private List<Array> _selectList;
+    private string _activeKey = "GeneralFtlGeneral";
+    private List<TabItem> _selectList;
 
     protected override void OnInitialized()
     {
-        _selectList = new List<Array>
+        _selectList = new List<TabItem>
         {
             new()
             {
-                ActiveKey = "GeneralFtlGeneral", DisplayName = TranslateText.GetTranslateText("GeneralFtlGeneral")
+                ActiveKey = "GeneralFtlGeneral",
+                DisplayName = TranslateText.GetTranslateText("GeneralFtlGeneral")
             },
             new()
             {
-                ActiveKey = "GeneralFtlAdvanced", DisplayName = TranslateText.GetTranslateText("GeneralFtlAdvanced")
+                ActiveKey = "GeneralFtlAdvanced",
+                DisplayName = TranslateText.GetTranslateText("GeneralFtlAdvanced")
             },
             new()
             {
-                ActiveKey = "GeneralFtlSettings", DisplayName = TranslateText.GetTranslateText("GeneralFtlSettings")
+                ActiveKey = "GeneralFtlSettings",
+                DisplayName = TranslateText.GetTranslateText("GeneralFtlSettings")
+            },
+            new()
+            {
+                ActiveKey = "GeneralFtlTntEncoding",
+                DisplayName = TranslateText.GetTranslateText("GeneralFtlTntEncoding")
             }
         };
 
@@ -36,7 +45,7 @@ public partial class GeneralFtl
         StateHasChanged();
     }
 
-    private class Array
+    private class TabItem
     {
         public string DisplayName { get; set; }
         public string ActiveKey { get; set; }
