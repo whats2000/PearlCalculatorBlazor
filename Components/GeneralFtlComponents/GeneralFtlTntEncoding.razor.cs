@@ -122,6 +122,8 @@ public partial class GeneralFtlTntEncoding : ComponentBase
 
     private void RefreshPage()
     {
+        RedTntInput = string.Join(", ", Data.RedTNTConfiguration);
+        BlueTntInput = string.Join(", ", Data.BlueTNTConfiguration);
         StateHasChanged();
     }
 }
