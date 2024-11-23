@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AntDesign;
 using AntDesign.Charts;
 using AntDesign.TableModels;
+using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
@@ -19,6 +20,19 @@ public partial class ResultView
 {
     private static string _resultDirection = string.Empty;
     private static string _resultAngle = string.Empty;
+
+    private readonly ColumnConfig _columnConfig = new()
+    {
+        IsGroup = true,
+        XField = "index",
+        YField = "value",
+        SeriesField = "type",
+        Tooltip = new Tooltip
+        {
+            Fields = new[] { "index", "value", "type" }
+        },
+        Color = new[] { "#FF7260", "#9BD7D5" }
+    };
 
     private readonly LineConfig _lineConfig = new()
     {
@@ -85,19 +99,6 @@ public partial class ResultView
                 }
             }
         }
-    };
-    
-    private readonly ColumnConfig _columnConfig = new()
-    {
-        IsGroup = true,
-        XField = "index",
-        YField = "value",
-        SeriesField = "type",
-        Tooltip = new Tooltip
-        {
-            Fields = new[] { "index", "value", "type" }
-        },
-        Color = new[] { "#FF7260", "#9BD7D5" }
     };
 
     private bool _graphLoading = false;
@@ -219,7 +220,7 @@ public partial class ResultView
             }))
             .ToArray<object>();
     }
-    
+
     private object[] GetTntEncodingData()
     {
         return TntResults.Select(r => new
@@ -459,6 +460,15 @@ public partial class ResultView
             new SetRtCountArgs("ResultView", res.Data.Red, res.Data.Blue));
         await NoticeWithIcon(NotificationType.Success,
             TranslateText.GetTranslateText("TNTCalculationSetSuccessMessage"));
+    }
+
+    private async Task OnTraceRowClickAsync(RowData<EntityWrapper> res)
+    {
+        await JsRuntime.InvokeVoidAsync("navigator.clipboard.writeText",
+            $"/tp {res.Data.XCoor} {res.Data.YCoor} {res.Data.ZCoor}");
+        await NoticeWithIcon(
+            NotificationType.Success
+            , TranslateText.GetTranslateText("CoordinateCopiedMessage"));
     }
 
     private void RefreshPage()

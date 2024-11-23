@@ -1,33 +1,33 @@
 ﻿{
-  "version": "2.73.1",
+  "version": "2.73.2",
   "updateNotes": {
     "en": [
       "Added cannon configuration mode: Multiple cannons can now be stored in the same configuration file.",
       "Added manual mode to copy data from general mode.",
       "Fixed issue where previous calculation results were displayed if no direction angle was found in the updated calculation.",
-      "Added update log feature.",
-      "Added TNT encoding combination calculator."
+      "Added TNT encoding combination calculator.",
+      "Added copy the coordinates of the pearl to the clipboard at tracing result."
     ],
     "es_ES": [
       "Se añadió el modo de configuración de cañón: ahora se pueden almacenar varios cañones en el mismo archivo de configuración.",
       "Se añadió el modo manual para copiar datos del modo general.",
       "Se corrigió un problema donde se mostraban los resultados de cálculos anteriores si no se encontraba un ángulo de dirección en el cálculo actualizado.",
-      "Se añadió la función de registro de actualizaciones.",
-      "Se añadió la calculadora de combinación de codificación de TNT."
+      "Se añadió la calculadora de combinación de codificación de TNT.",
+      "Se añadió copiar las coordenadas de la perla al portapapeles en el resultado del trazado."
     ],
     "zh_tw": [
       "新增切換 Cannon 配置模式：現在同個配置檔可以寫入多個砲台資料。",
       "新增手動模式複製一般模式資料。",
       "修正更新計算後若不存在方向角則仍維持顯示前一計算結果。",
-      "新增更新日誌功能。",
-      "新增 TNT 編碼組合計算機。"
+      "新增 TNT 編碼組合計算機。",
+      "新增複製珍珠座標到剪貼簿在追蹤結果。"
     ],
     "zh_cn": [
       "新增切换 Cannon 配置模式：现在同个配置档可以写入多个炮台资料。",
       "新增手动模式复制一般模式资料。",
       "修正更新计算后若不存在方向角则仍维持显示前一计算结果。",
-      "新增更新日志功能。",
-      "新增 TNT 编码组合计算器。"
+      "新增 TNT 编码组合计算器。",
+      "新增复制珍珠坐标到剪贴板在追踪结果。"
     ]
   }
 }

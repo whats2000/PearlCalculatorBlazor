@@ -7,6 +7,7 @@
 @inject MessageService AntMessage
 @inject NotificationService Notice
 @inject TranslateText TransText
+@inject IJSRuntime JsRuntime
 
 <Card Style="height: 100%">
     <CardTabs>
@@ -50,8 +51,17 @@
                                    @bind-PageIndex="_pageIndex"
                                    @bind-PageSize="_pageSize"
                                    ScrollY="80vh"
+                                   OnRowClick="OnTraceRowClickAsync"
                                    Class="calculator-result-table">
 
+                                <!-- A Tooltips with icon for click to copy tp command -->
+                                <ActionColumn Width="50px">
+                                    <Tooltip Title="@TranslateText.GetTranslateText("ClickToCopyTpCommand")">
+                                        <Text Type="secondary">
+                                            <Icon Type="info-circle" Theme="outline"/>
+                                        </Text>
+                                    </Tooltip>
+                                </ActionColumn>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("DisplayTicks")" @bind-Field="@context.Tick"></AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("XCoor")" @bind-Field="@context.XCoor"></AntDesign.Column>
                                 <AntDesign.Column Title="@TranslateText.GetTranslateText("YCoor")" @bind-Field="@context.YCoor"></AntDesign.Column>
