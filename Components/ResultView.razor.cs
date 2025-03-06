@@ -223,19 +223,28 @@ public partial class ResultView
 
     private object[] GetTntEncodingData()
     {
-        return TntResults.Select(r => new
+        // Group the TNT results by the TNT value.
+        var groupedResults = TntResults.GroupBy(r => r.TntValue);
+
+        // For each unique TNT value, create two entries: one for red and one for blue.
+        // The value is the total count of active occurrences within that group.
+        var data = groupedResults.SelectMany(g => new[]
+        {
+            new
             {
-                index = r.TntValue.ToString(),
+                index = g.Key.ToString(),
                 type = TranslateText.GetTranslateText("DisplayRed"),
-                value = r.RedIsUsed ? 1 : 0
-            })
-            .Concat(TntResults.Select(r => new
+                value = g.Count(r => r.RedIsUsed)
+            },
+            new
             {
-                index = r.TntValue.ToString(),
+                index = g.Key.ToString(),
                 type = TranslateText.GetTranslateText("DisplayBlue"),
-                value = r.BlueIsUsed ? 1 : 0
-            }))
-            .ToArray<object>();
+                value = g.Count(r => r.BlueIsUsed)
+            }
+        }).ToArray();
+
+        return data;
     }
 
     private async void RefreshGraph()
