@@ -173,17 +173,16 @@ namespace PearlCalculatorLib.General
         /// <param name="blueTNT">The amount of blue TNT</param>
         /// <param name="tntCombination">Output the TNT combination</param>
         /// <returns>Returns a true or false value indicates whether the calculation is correctly executed or not</returns>
-        public static bool CalculateTNTConfiguration(int redTNT, int blueTNT, out BitArray tntCombination)
+        public static bool CalculateTNTConfiguration(int redTNT, int blueTNT, out List<int> redTntEncoding, out List<int> blueTntEncoding)
         {
-            int indexCount = Data.RedTNTConfiguration.Count + Data.BlueTNTConfiguration.Count;
-            tntCombination = new BitArray(indexCount);
+
+            redTntEncoding = new List<int>();
+            blueTntEncoding = new List<int>();
 
             //How can i sort it if i don't know anything about the configuration
             if (Data.RedTNTConfiguration.Count == 0 && Data.BlueTNTConfiguration.Count == 0)
                 return false;
 
-            BitArray redBitArray = new BitArray(indexCount);
-            BitArray blueBitArray = new BitArray(indexCount);
             List<int> sortedRedConfig = new List<int>(Data.RedTNTConfiguration);
             List<int> sortedBlueConfig = new List<int>(Data.BlueTNTConfiguration);
 
@@ -191,16 +190,16 @@ namespace PearlCalculatorLib.General
             sortedRedConfig.Sort((a, b) => a >= b ? (a == b ? 0 : -1) : 1);
             sortedBlueConfig.Sort((a, b) => a >= b ? (a == b ? 0 : -1) : 1);
 
+            
+
             for (int i = 0; i < sortedRedConfig.Count; i++)
             {
                 if (redTNT >= sortedRedConfig[i])
                 {
                     redTNT -= sortedRedConfig[i];
                     //Sets the corresponding bit to true according to the Data.RedTNTConfiguration
-                    redBitArray.Set(Data.RedTNTConfiguration.FindIndex(x => x == sortedRedConfig[i]), true);
+                    redTntEncoding.Add(sortedRedConfig[i]);
                 }
-                else
-                    redBitArray.Set(Data.RedTNTConfiguration.FindIndex(x => x == sortedRedConfig[i]), false);
             }
 
             for (int i = 0; i < sortedBlueConfig.Count; i++)
@@ -209,16 +208,9 @@ namespace PearlCalculatorLib.General
                 {
                     blueTNT -= sortedBlueConfig[i];
                     //Sets the corresponding bit to true according to the Data.BlueTNTConfiguration
-                    blueBitArray.Set(Data.BlueTNTConfiguration.FindIndex(x => x == sortedBlueConfig[i]), true);
+                    blueTntEncoding.Add(sortedBlueConfig[i]);
                 }
-                else
-                    blueBitArray.Set(Data.BlueTNTConfiguration.FindIndex(x => x == sortedBlueConfig[i]), false);
             }
-
-            //Combine those result into tntCombination
-            tntCombination.Or(redBitArray);
-            blueBitArray.LeftShift(Data.RedTNTConfiguration.Count);
-            tntCombination.Or(blueBitArray);
 
             return true;
         }
