@@ -223,19 +223,28 @@ public partial class ResultView
 
     private object[] GetTntEncodingData()
     {
-        return TntResults.Select(r => new
+        // Group the TNT results by the TNT value.
+        var groupedResults = TntResults.GroupBy(r => r.TntValue);
+
+        // For each unique TNT value, create two entries: one for red and one for blue.
+        // The value is the total count of active occurrences within that group.
+        var data = groupedResults.SelectMany(g => new[]
+        {
+            new
             {
-                index = r.TntValue.ToString(),
+                index = g.Key.ToString(),
                 type = TranslateText.GetTranslateText("DisplayRed"),
-                value = r.RedIsUsed ? 1 : 0
-            })
-            .Concat(TntResults.Select(r => new
+                value = g.Count(r => r.RedIsUsed)
+            },
+            new
             {
-                index = r.TntValue.ToString(),
+                index = g.Key.ToString(),
                 type = TranslateText.GetTranslateText("DisplayBlue"),
-                value = r.BlueIsUsed ? 1 : 0
-            }))
-            .ToArray<object>();
+                value = g.Count(r => r.BlueIsUsed)
+            }
+        }).ToArray();
+
+        return data;
     }
 
     private async void RefreshGraph()
@@ -420,32 +429,25 @@ public partial class ResultView
             }
 
             ShowMode = ShowResultMode.TntEncoding;
-
             TntResults.Clear();
 
-            Dictionary<int, bool> redTntUsage = new();
-            Dictionary<int, bool> blueTntUsage = new();
-
+            // Process each red TNT configuration entry individually.
             for (var i = 0; i < Data.RedTNTConfiguration.Count; i++)
-                redTntUsage[Data.RedTNTConfiguration[i]] = tntCombination[i];
-
-            for (var i = 0; i < Data.BlueTNTConfiguration.Count; i++)
-                blueTntUsage[Data.BlueTNTConfiguration[i]] = tntCombination[i + Data.RedTNTConfiguration.Count];
-
-            foreach (var redTnt in redTntUsage)
                 TntResults.Add(new TntConfigurationResult
                 {
-                    TntValue = redTnt.Key,
-                    RedIsUsed = redTnt.Value,
-                    BlueIsUsed = blueTntUsage.ContainsKey(redTnt.Key) && blueTntUsage[redTnt.Key]
+                    TntValue = Data.RedTNTConfiguration[i],
+                    RedIsUsed = tntCombination[i],
+                    BlueIsUsed = false
                 });
 
-            foreach (var blueTnt in blueTntUsage.Where(blueTnt => !redTntUsage.ContainsKey(blueTnt.Key)))
+            // Process each blue TNT configuration entry individually.
+            // Note: the BitArray for blue starts after red entries.
+            for (var i = 0; i < Data.BlueTNTConfiguration.Count; i++)
                 TntResults.Add(new TntConfigurationResult
                 {
-                    TntValue = blueTnt.Key,
+                    TntValue = Data.BlueTNTConfiguration[i],
                     RedIsUsed = false,
-                    BlueIsUsed = blueTnt.Value
+                    BlueIsUsed = tntCombination[i + Data.RedTNTConfiguration.Count]
                 });
 
             RefreshPage();
