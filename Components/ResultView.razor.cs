@@ -419,7 +419,7 @@ public partial class ResultView
 
         EventManager.Instance.AddListener<BaseEventArgs>("calculateTntEncoding", async (_, _) =>
         {
-            var success = Calculation.CalculateTNTConfiguration(Data.RedTNT, Data.BlueTNT, out var tntCombination);
+            var success = Calculation.CalculateTNTConfiguration(Data.RedTNT, Data.BlueTNT, out var redTntEncoding, out var blueTntEncoding);
 
             if (!success)
             {
@@ -429,26 +429,36 @@ public partial class ResultView
             }
 
             ShowMode = ShowResultMode.TntEncoding;
+
             TntResults.Clear();
 
-            // Process each red TNT configuration entry individually.
-            for (var i = 0; i < Data.RedTNTConfiguration.Count; i++)
-                TntResults.Add(new TntConfigurationResult
-                {
-                    TntValue = Data.RedTNTConfiguration[i],
-                    RedIsUsed = tntCombination[i],
-                    BlueIsUsed = false
-                });
+            foreach (int n in Data.RedTNTConfiguration) {
+                bool red = false, blue = false;
+                if (redTntEncoding.Contains(n)) {
+                    red = true;
+                    redTntEncoding.Remove(n);
+                }
+                if (blueTntEncoding.Contains(n)) {
+                    blue = true;
+                    blueTntEncoding.Remove(n);
+                }
 
-            // Process each blue TNT configuration entry individually.
-            // Note: the BitArray for blue starts after red entries.
-            for (var i = 0; i < Data.BlueTNTConfiguration.Count; i++)
-                TntResults.Add(new TntConfigurationResult
-                {
-                    TntValue = Data.BlueTNTConfiguration[i],
-                    RedIsUsed = false,
-                    BlueIsUsed = tntCombination[i + Data.RedTNTConfiguration.Count]
+                TntResults.Add(new TntConfigurationResult {
+                    TntValue = n, RedIsUsed = red, BlueIsUsed = blue
                 });
+            }
+
+            foreach (int n in Data.BlueTNTConfiguration.Where(n => !Data.RedTNTConfiguration.Contains(n))) {
+                bool blue = false;
+                if (blueTntEncoding.Contains(n)) {
+                    blue = true;
+                    blueTntEncoding.Remove(n);
+                }
+
+                TntResults.Add(new TntConfigurationResult {
+                    TntValue = n, RedIsUsed = false, BlueIsUsed = blue
+                });
+            }
 
             RefreshPage();
         });

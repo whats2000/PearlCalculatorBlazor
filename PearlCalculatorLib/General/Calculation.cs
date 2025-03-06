@@ -4,7 +4,6 @@ using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
 
 namespace PearlCalculatorLib.General
@@ -174,71 +173,43 @@ namespace PearlCalculatorLib.General
         /// <param name="blueTNT">The amount of blue TNT</param>
         /// <param name="tntCombination">Output the TNT combination</param>
         /// <returns>Returns a true or false value indicates whether the calculation is correctly executed or not</returns>
-        public static bool CalculateTNTConfiguration(int redTNT, int blueTNT, out BitArray tntCombination)
+        public static bool CalculateTNTConfiguration(int redTNT, int blueTNT, out List<int> redTntEncoding, out List<int> blueTntEncoding)
         {
-            // Total number of bits equals the count of red and blue configuration values combined.
-            int totalCount = Data.RedTNTConfiguration.Count + Data.BlueTNTConfiguration.Count;
-            tntCombination = new BitArray(totalCount);
 
-            // If both configurations are empty, return false.
+            redTntEncoding = new List<int>();
+            blueTntEncoding = new List<int>();
+
+            //How can i sort it if i don't know anything about the configuration
             if (Data.RedTNTConfiguration.Count == 0 && Data.BlueTNTConfiguration.Count == 0)
                 return false;
 
-            // Create BitArrays for red and blue configurations separately.
-            // Their sizes correspond to the number of configuration items.
-            BitArray redBitArray = new BitArray(Data.RedTNTConfiguration.Count);
-            BitArray blueBitArray = new BitArray(Data.BlueTNTConfiguration.Count);
+            List<int> sortedRedConfig = new List<int>(Data.RedTNTConfiguration);
+            List<int> sortedBlueConfig = new List<int>(Data.BlueTNTConfiguration);
 
-            // Create lists of anonymous objects to keep both value and original index.
-            var redConfig = Data.RedTNTConfiguration
-                .Select((value, index) => new { Value = value, Index = index })
-                .ToList();
-            var blueConfig = Data.BlueTNTConfiguration
-                .Select((value, index) => new { Value = value, Index = index })
-                .ToList();
+            //Sorts the list from large to small
+            sortedRedConfig.Sort((a, b) => a >= b ? (a == b ? 0 : -1) : 1);
+            sortedBlueConfig.Sort((a, b) => a >= b ? (a == b ? 0 : -1) : 1);
 
-            // Sort both lists in descending order by value.
-            redConfig.Sort((a, b) => b.Value.CompareTo(a.Value));
-            blueConfig.Sort((a, b) => b.Value.CompareTo(a.Value));
+            
 
-            // Process red TNT configuration
-            foreach (var config in redConfig)
+            for (int i = 0; i < sortedRedConfig.Count; i++)
             {
-                if (redTNT >= config.Value)
+                if (redTNT >= sortedRedConfig[i])
                 {
-                    redTNT -= config.Value;
-                    redBitArray.Set(config.Index, true);
-                }
-                else
-                {
-                    redBitArray.Set(config.Index, false);
+                    redTNT -= sortedRedConfig[i];
+                    //Sets the corresponding bit to true according to the Data.RedTNTConfiguration
+                    redTntEncoding.Add(sortedRedConfig[i]);
                 }
             }
 
-            // Process blue TNT configuration
-            foreach (var config in blueConfig)
+            for (int i = 0; i < sortedBlueConfig.Count; i++)
             {
-                if (blueTNT >= config.Value)
+                if (blueTNT >= sortedBlueConfig[i])
                 {
-                    blueTNT -= config.Value;
-                    blueBitArray.Set(config.Index, true);
+                    blueTNT -= sortedBlueConfig[i];
+                    //Sets the corresponding bit to true according to the Data.BlueTNTConfiguration
+                    blueTntEncoding.Add(sortedBlueConfig[i]);
                 }
-                else
-                {
-                    blueBitArray.Set(config.Index, false);
-                }
-            }
-
-            // Combine red and blue BitArrays into the final tntCombination.
-            // First, copy the red configuration bits.
-            for (int i = 0; i < redBitArray.Count; i++)
-            {
-                tntCombination[i] = redBitArray[i];
-            }
-            // Then, copy the blue configuration bits to the correct offset.
-            for (int i = 0; i < blueBitArray.Count; i++)
-            {
-                tntCombination[Data.RedTNTConfiguration.Count + i] = blueBitArray[i];
             }
 
             return true;
