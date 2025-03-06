@@ -451,28 +451,6 @@ public partial class ResultView
                 });
             }
 
-            // for (var i = 0; i < Data.RedTNTConfiguration.Count; i++)
-            //     redTntUsage[Data.RedTNTConfiguration[i]] = tntCombination[i];
-
-            // for (var i = 0; i < Data.BlueTNTConfiguration.Count; i++)
-            //     blueTntUsage[Data.BlueTNTConfiguration[i]] = tntCombination[i + Data.RedTNTConfiguration.Count];
-
-            // foreach (var redTnt in redTntUsage)
-            //     TntResults.Add(new TntConfigurationResult
-            //     {
-            //         TntValue = redTnt.Key,
-            //         RedIsUsed = redTnt.Value,
-            //         BlueIsUsed = blueTntUsage.ContainsKey(redTnt.Key) && blueTntUsage[redTnt.Key]
-            //     });
-
-            // foreach (var blueTnt in blueTntUsage.Where(blueTnt => !redTntUsage.ContainsKey(blueTnt.Key)))
-            //     TntResults.Add(new TntConfigurationResult
-            //     {
-            //         TntValue = blueTnt.Key,
-            //         RedIsUsed = false,
-            //         BlueIsUsed = blueTnt.Value
-            //     });
-
             RefreshPage();
         });
 
