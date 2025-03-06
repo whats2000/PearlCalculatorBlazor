@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PearlCalculatorLib.PearlCalculationLib.Utility;
 using PearlCalculatorLib.PearlCalculationLib.World;
 
 namespace PearlCalculatorLib.Settings
@@ -123,6 +124,8 @@ namespace PearlCalculatorLib.Settings
 
                 cannon.RedTNTConfiguration = new List<int>();
                 cannon.BlueTNTConfiguration = new List<int>();
+                cannon.gameVersion = root.TryGetProperty(nameof(cannon.gameVersion), out var v) &&
+                    Enum.TryParse<GameVersion>(v.GetString(), out var version) ? version : GameVersion.unknown;
 #endregion
 
                 result.CannonSettings = new[] { cannon };

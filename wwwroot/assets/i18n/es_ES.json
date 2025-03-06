@@ -1,4 +1,6 @@
 ﻿{
+  "1.11-1.21.1": "1.11-1.21.1",
+  "1.21.2+": "1.21.2+",
   "AddNewCannon": "Añadir Nuevo Cañón",
   "AmountA": "Cantidad de TNT(A):",
   "AmountB": "Cantidad de TNT(B):",
@@ -40,6 +42,7 @@
   "EditCannonSettings": "Editar Configuración de Cañón",
   "FailedToCopyCannon": "Error al copiar el cañón.",
   "FailedToCreateNewCannon": "Error al crear el nuevo cañón.",
+  "GameVersion": "Game Version",
   "GeneralFtlAdvanced": "Avanzado",
   "GeneralFtlGeneral": "General",
   "GeneralFtlSettings": "Configuración",

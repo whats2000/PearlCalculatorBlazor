@@ -208,7 +208,8 @@ public partial class GeneralFtlGeneral
                     BlueTNTConfiguration = new List<int>(),
                     PearlYMotionCancellation = settings.PearlYMotionCancellation,
                     PearlYPositionOriginal = settings.PearlYPositionOriginal,
-                    PearlYPositionAdjusted = settings.PearlYPositionAdjusted
+                    PearlYPositionAdjusted = settings.PearlYPositionAdjusted,
+                    gameVersion = settings.gameVersion
                 };
 
                 SettingsManager.SettingsList.Clear();

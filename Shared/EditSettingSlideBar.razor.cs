@@ -33,7 +33,8 @@ public partial class EditSettingSlideBar : ComponentBase
             BlueTNTConfiguration = Data.BlueTNTConfiguration,
             PearlYMotionCancellation = Data.PearlYMotionCancellation,
             PearlYPositionOriginal = Data.PearlYPositionOriginal,
-            PearlYPositionAdjusted = Data.PearlYPositionAdjusted
+            PearlYPositionAdjusted = Data.PearlYPositionAdjusted,
+            gameVersion = Data.gameVersion
         };
 
         var success = SettingsManager.AddSettings(newCannon);

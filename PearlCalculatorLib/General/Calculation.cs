@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorLib.PearlCalculationLib.Utility;
 
 namespace PearlCalculatorLib.General
 {
@@ -33,7 +34,7 @@ namespace PearlCalculatorLib.General
             }
 
             for (int i = 0; i < ticks; i++)
-                pearlEntity.Tick();
+                pearlEntity.Tick(Data.gameVersion);
 
             return pearlEntity;
         }
@@ -75,7 +76,7 @@ namespace PearlCalculatorLib.General
             for (int tick = 1; tick <= maxTicks; tick++)
             {
                 //Factorization trueDistance to make a easier calculation
-                divider += Math.Pow(0.99, tick - 1);
+                divider += Math.Pow(0.99, tick - (Data.gameVersion == GameVersion.version_1_11_to_1_21_1 ? 1 : 0));
 
                 redTNT = Convert.ToInt32(trueRed / divider);
                 blueTNT = Convert.ToInt32(trueBlue / divider);
@@ -159,7 +160,7 @@ namespace PearlCalculatorLib.General
 
             for (int i = 0; i < ticks; i++)
             {
-                pearl.Tick();
+                pearl.Tick(Data.gameVersion);
                 result.Add(new PearlEntity(pearl));
             }
 
@@ -171,7 +172,8 @@ namespace PearlCalculatorLib.General
         /// </summary>
         /// <param name="redTNT">The amount of red TNT</param>
         /// <param name="blueTNT">The amount of blue TNT</param>
-        /// <param name="tntCombination">Output the TNT combination</param>
+        /// <param name="redTntEncoding">Output the TNT combination</param>
+        /// <param name="blueTntEncoding">Output the TNT combination</param>
         /// <returns>Returns a true or false value indicates whether the calculation is correctly executed or not</returns>
         public static bool CalculateTNTConfiguration(int redTNT, int blueTNT, out List<int> redTntEncoding, out List<int> blueTntEncoding)
         {
@@ -236,7 +238,7 @@ namespace PearlCalculatorLib.General
             {
                 //There is always a TNT that is already stand by
                 //In this case, it is blue.
-                blueTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultBlueDuper));
+                blueTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultBlueDuper), Data.gameVersion);
                 redTNTVector = VectorCalculation.CalculateMotion
                     (
                         pearlPosition,
@@ -244,19 +246,21 @@ namespace PearlCalculatorLib.General
                         (
                             // 0b1111 = Direction.NorthEast | Direction.SouthWest
                             (Direction)(((int)~(direction | Data.DefaultBlueDuper) & 0b1111) | (int)direction.Invert())
-                        )
+                        ),
+                        Data.gameVersion
                     );
             }
             else
             {
-                redTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultRedDuper));
+                redTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultRedDuper), Data.gameVersion);
                 blueTNTVector = VectorCalculation.CalculateMotion
                     (
                         pearlPosition,
                         TNTDirectionToCoordinate
                         (
                             (Direction)(((int)~(direction | Data.DefaultRedDuper) & 0b1111) | (int)direction.Invert())
-                        )
+                        ),
+                        Data.gameVersion
                     );
             }
         }

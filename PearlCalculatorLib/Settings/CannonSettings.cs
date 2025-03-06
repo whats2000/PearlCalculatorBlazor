@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorLib.PearlCalculationLib.Utility;
 using PearlCalculatorLib.PearlCalculationLib.World;
 
 namespace PearlCalculatorLib.Settings
@@ -31,6 +32,7 @@ namespace PearlCalculatorLib.Settings
         public bool PearlYMotionCancellation { get; set; }
         public double PearlYPositionOriginal { get; set; }
         public double PearlYPositionAdjusted { get; set; }
+        public GameVersion gameVersion { get; set; }
         
         public CannonSettings DeepClone()
         {
@@ -56,7 +58,8 @@ namespace PearlCalculatorLib.Settings
                 BlueTNTConfiguration = blueTNTConfiguration,
                 PearlYMotionCancellation = PearlYMotionCancellation,
                 PearlYPositionOriginal = PearlYPositionOriginal,
-                PearlYPositionAdjusted = PearlYPositionAdjusted
+                PearlYPositionAdjusted = PearlYPositionAdjusted,
+                gameVersion = gameVersion
             };
 
             return result;
@@ -78,6 +81,7 @@ namespace PearlCalculatorLib.Settings
             PearlYMotionCancellation = Data.PearlYMotionCancellation;
             PearlYPositionOriginal   = Data.PearlYPositionOriginal;
             PearlYPositionAdjusted   = Data.PearlYPositionAdjusted;
+            gameVersion              = Data.gameVersion;
         }
 
         object IDeepCloneable.DeepClone() => DeepClone();

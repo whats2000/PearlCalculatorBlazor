@@ -2,6 +2,7 @@
 using PearlCalculatorLib.Result;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorLib.PearlCalculationLib.Utility;
 
 namespace PearlCalculatorLib.General
 {
@@ -193,6 +194,11 @@ namespace PearlCalculatorLib.General
         /// A list if TNT configuration
         /// </summary>
         public static List<int> BlueTNTConfiguration { get; set; } = new List<int>();
+
+        /// <summary>
+        /// The version of minecraft the calculation is for
+        /// </summary>
+        public static GameVersion gameVersion { get; set; } = GameVersion.version_1_11_to_1_21_1;
 
 
 

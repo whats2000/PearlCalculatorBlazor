@@ -7,6 +7,7 @@ using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.Manually;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
+using PearlCalculatorLib.PearlCalculationLib.Utility;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
 using Calculation = PearlCalculatorLib.Manually.Calculation;
@@ -17,8 +18,9 @@ public partial class Manually
 {
     private const string PublishKey = "Manually";
     private List<Entity> _calculateResult;
-    private ManuallyData _manuallyData;
+    private static ManuallyData _manuallyData;
     private bool _valueHasChanged = true;
+    private List<ArrayPos> _selectedGameVersion;
 
     private double ManuallyPearlPosX
     {
@@ -180,9 +182,17 @@ public partial class Manually
         }
     }
 
+    private string ManuallyGameVersion {
+        get => GameVersionUtils.ToString(_manuallyData.GameVersion);
+        set {
+            _manuallyData.GameVersion = GameVersionUtils.TryParse(value);
+            _valueHasChanged = true;
+        }
+    }
+
     protected override void OnInitialized()
     {
-        _manuallyData = new ManuallyData(0, 0, new Space3D(), new Space3D(), new Surface2D(), new PearlEntity());
+        _manuallyData = new ManuallyData(0, 0, new Space3D(), new Space3D(), new Surface2D(), new PearlEntity(), GameVersion.version_1_11_to_1_21_1);
 
         EventManager.Instance.AddListener<SetRtCountArgs>("tntAmountSetRTCount", (_, args) =>
         {
@@ -191,6 +201,11 @@ public partial class Manually
 
             StateHasChanged();
         });
+
+        _selectedGameVersion = new List<ArrayPos> {
+            new() { ActiveKey = "1.11-1.21.1", DisplayName = TranslateText.GetTranslateText("1.11-1.21.1") },
+            new() { ActiveKey = "1.21.2+", DisplayName = TranslateText.GetTranslateText("1.21.2+") }
+        };
 
         TranslateText.OnLanguageChange += RefreshPage;
     }
@@ -261,6 +276,8 @@ public partial class Manually
         _manuallyData.Pearl = Data.Pearl.DeepClone();
         _manuallyData.ATNTAmount = Data.RedTNT;
         _manuallyData.BTNTAmount = Data.BlueTNT;
+
+        _manuallyData.GameVersion = Data.gameVersion;
         
         _valueHasChanged = true;
     }
@@ -303,6 +320,14 @@ public partial class Manually
 
     private void RefreshPage()
     {
+        foreach (var pair in _selectedGameVersion)
+            pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
         StateHasChanged();
     }
+    private class ArrayPos
+    {
+        public string ActiveKey { get; set; }
+        public string DisplayName { get; set; }
+    }
+
 }

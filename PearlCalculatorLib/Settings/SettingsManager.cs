@@ -61,7 +61,8 @@ namespace PearlCalculatorLib.Settings
                 BlueTNTConfiguration     = Data.BlueTNTConfiguration,
                 PearlYMotionCancellation = Data.PearlYMotionCancellation,
                 PearlYPositionOriginal   = Data.PearlYPositionOriginal,
-                PearlYPositionAdjusted   = Data.PearlYPositionAdjusted
+                PearlYPositionAdjusted   = Data.PearlYPositionAdjusted,
+                gameVersion              = Data.gameVersion
             };
             SettingsList.Add(setting);
             _selectedCannon = setting;
@@ -105,6 +106,7 @@ namespace PearlCalculatorLib.Settings
             Data.PearlYMotionCancellation = settings.PearlYMotionCancellation;
             Data.PearlYPositionOriginal   = settings.PearlYPositionOriginal;
             Data.PearlYPositionAdjusted   = settings.PearlYPositionAdjusted;
+            Data.gameVersion              = settings.gameVersion;
         }
 
         public CannonSettings GetSettings(string cannonName) => 
