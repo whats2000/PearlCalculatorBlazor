@@ -26,7 +26,7 @@ namespace PearlCalculatorLib.General
         public bool PearlYMotionCancellation;
         public double PearlYPositionOriginal;
         public double PearlYPositionAdjusted;
-        public GameVersion gameVersion;
+        public GameVersion GameVersion;
 
         public static Settings CreateSettingsFormData() => new Settings()
         {
@@ -53,7 +53,7 @@ namespace PearlCalculatorLib.General
             PearlYPositionOriginal = Data.PearlYPositionOriginal,
             PearlYPositionAdjusted = Data.PearlYPositionAdjusted,
 
-            gameVersion = Data.gameVersion
+            GameVersion = Data.gameVersion
         };
     }
 }

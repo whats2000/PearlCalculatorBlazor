@@ -92,7 +92,7 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
 
         public double AngleInRad(Space3D position2) => Math.Atan((position2.Z - Z) / (position2.X - X));
 
-        public double AngleInAbsPolarRad(Space3D position2)
+        public readonly double AngleInAbsPolarRad(Space3D position2)
         {
             double angle = Math.Atan2(position2.Z - Z, position2.X - X);
             return angle < 0 ? angle + Math.PI * 2 : angle;

@@ -198,7 +198,7 @@ namespace PearlCalculatorLib.General
         /// <summary>
         /// The version of minecraft the calculation is for
         /// </summary>
-        public static GameVersion gameVersion { get; set; } = GameVersion.version_1_11_to_1_21_1;
+        public static GameVersion gameVersion { get; set; } = GameVersion.Version111To1211;
 
 
 

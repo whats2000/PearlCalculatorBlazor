@@ -5,9 +5,6 @@ using PearlCalculatorLib.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PearlCalculatorLib.General;
-using PearlCalculatorLib.PearlCalculationLib.Utility;
-using System.Data.Common;
 
 namespace PearlCalculatorLib.Manually
 {
@@ -93,30 +90,30 @@ namespace PearlCalculatorLib.Manually
             {
                 for (int tick = 1; tick <= ticks; tick++)
                 {
-                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.version_1_11_to_1_21_1 ? 1 : 0));
+                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                     int tnt1 = Convert.ToInt32(trueAmount1 / divider);
                     int tnt2 = Convert.ToInt32(trueAmount2 / divider);
                     int tnt3 = Convert.ToInt32(trueAmount3 / divider);
                     int tnt4 = Convert.ToInt32(trueAmount4 / divider);
-                    result.Add(SingleTNTPearlSimulation(data, tnt1, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, tnt2, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, tnt3, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, tnt4, 0, tick, vector, data.Destination, data.Pearl));
+                    result.Add(SingleTNTPearlSimulation(tnt1, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt2, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt3, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt4, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
                 }
             }
             else
             {
                 for (int tick = 1; tick <= ticks; tick++)
                 {
-                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.version_1_11_to_1_21_1 ? 1 : 0));
+                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                     int tnt1 = Convert.ToInt32(trueAmount1 / divider);
                     int tnt2 = Convert.ToInt32(trueAmount2 / divider);
                     int tnt3 = Convert.ToInt32(trueAmount3 / divider);
                     int tnt4 = Convert.ToInt32(trueAmount4 / divider);
-                    result.Add(SingleTNTPearlSimulation(data, 0, tnt1, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, 0, tnt2, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, 0, tnt3, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(data, 0, tnt4, tick, vector, data.Destination, data.Pearl));
+                    result.Add(SingleTNTPearlSimulation(0, tnt1, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt2, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt3, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt4, tick, vector, data.Destination, data.Pearl, data.GameVersion));
                 }
             }
 
@@ -153,7 +150,7 @@ namespace PearlCalculatorLib.Manually
 
             for (int i = 1; i <= ticks; i++)
             {
-                divider += Math.Pow(0.99, i - (data.GameVersion == GameVersion.version_1_11_to_1_21_1 ? 1 : 0));
+                divider += Math.Pow(0.99, i - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                 aTNT = Convert.ToInt32(trueA / divider);
                 bTNT = Convert.ToInt32(trueB / divider);
 
@@ -162,7 +159,7 @@ namespace PearlCalculatorLib.Manually
 
                     for (int b = -5; b <= 5; b++)
                     {
-                        PearlEntity aPearl = PearlSimulation(data, aTNT + a, bTNT + b, i, vectorA, vectorB, new PearlEntity(data.Pearl));
+                        PearlEntity aPearl = PearlSimulation(aTNT + a, bTNT + b, i, vectorA, vectorB, new PearlEntity(data.Pearl), data.GameVersion);
                         Surface2D displacement = aPearl.Position.ToSurface2D() - data.Destination;
 
                         if (displacement.AxialDistanceLessOrEqualTo(maxDistance) && bTNT + b > 0 && aTNT + a > 0)
@@ -188,22 +185,22 @@ namespace PearlCalculatorLib.Manually
             return true;
         }
 
-        private static PearlEntity PearlSimulation(ManuallyData data, int aTNT, int bTNT, int ticks, Space3D aTNTVector, Space3D bTNTVector, PearlEntity pearl)
+        private static PearlEntity PearlSimulation(int aTNT, int bTNT, int ticks, Space3D aTNTVector, Space3D bTNTVector, PearlEntity pearl, GameVersion gameVersion)
         {
             pearl.Motion += aTNT * aTNTVector + bTNT * bTNTVector;
 
             for (int i = 0; i < ticks; i++)
-                pearl.Tick(data.GameVersion);
+                pearl.Tick(gameVersion);
 
             return pearl;
         }
 
-        private static TNTCalculationResult SingleTNTPearlSimulation(ManuallyData data, int atnt, int btnt, int ticks, Space3D vector, Surface2D destination, PearlEntity pearl)
+        private static TNTCalculationResult SingleTNTPearlSimulation(int atnt, int btnt, int ticks, Space3D vector, Surface2D destination, PearlEntity pearl, GameVersion gameVersion)
         {
             pearl.Motion += (atnt + btnt) * vector;
 
             for (int i = 0; i < ticks; i++)
-                pearl.Tick(data.GameVersion);
+                pearl.Tick(gameVersion);
 
             return new TNTCalculationResult
             {

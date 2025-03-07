@@ -4,9 +4,7 @@ using Microsoft.JSInterop;
 using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
-using PearlCalculatorLib.PearlCalculationLib.Utility;
 using PearlCalculatorLib.PearlCalculationLib.World;
-using PearlCalculatorLib.Settings;
 
 namespace PearlCalculatorBlazor.Components.GeneralFtlComponents;
 

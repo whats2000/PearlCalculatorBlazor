@@ -76,7 +76,7 @@ namespace PearlCalculatorLib.General
             for (int tick = 1; tick <= maxTicks; tick++)
             {
                 //Factorization trueDistance to make a easier calculation
-                divider += Math.Pow(0.99, tick - (Data.gameVersion == GameVersion.version_1_11_to_1_21_1 ? 1 : 0));
+                divider += Math.Pow(0.99, tick - (Data.gameVersion == GameVersion.Version111To1211 ? 1 : 0));
 
                 redTNT = Convert.ToInt32(trueRed / divider);
                 blueTNT = Convert.ToInt32(trueBlue / divider);
@@ -238,7 +238,15 @@ namespace PearlCalculatorLib.General
             {
                 //There is always a TNT that is already stand by
                 //In this case, it is blue.
-                blueTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultBlueDuper), Data.gameVersion);
+                blueTNTVector = VectorCalculation.CalculateMotion
+                    (
+                        pearlPosition, 
+                        TNTDirectionToCoordinate
+                        (
+                            Data.DefaultBlueDuper
+                        ), 
+                        Data.gameVersion
+                    );
                 redTNTVector = VectorCalculation.CalculateMotion
                     (
                         pearlPosition,

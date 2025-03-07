@@ -7,7 +7,6 @@ using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.Manually;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
-using PearlCalculatorLib.PearlCalculationLib.Utility;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using PearlCalculatorLib.Result;
 using Calculation = PearlCalculatorLib.Manually.Calculation;
@@ -192,7 +191,7 @@ public partial class Manually
 
     protected override void OnInitialized()
     {
-        _manuallyData = new ManuallyData(0, 0, new Space3D(), new Space3D(), new Surface2D(), new PearlEntity(), GameVersion.version_1_11_to_1_21_1);
+        _manuallyData = new ManuallyData(0, 0, new Space3D(), new Space3D(), new Surface2D(), new PearlEntity(), GameVersion.Version111To1211);
 
         EventManager.Instance.AddListener<SetRtCountArgs>("tntAmountSetRTCount", (_, args) =>
         {
@@ -324,6 +323,7 @@ public partial class Manually
             pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
         StateHasChanged();
     }
+    
     private class ArrayPos
     {
         public string ActiveKey { get; set; }

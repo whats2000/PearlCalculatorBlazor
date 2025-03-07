@@ -1,6 +1,4 @@
-﻿using PearlCalculatorLib.General;
-using PearlCalculatorLib.PearlCalculationLib.Utility;
-using PearlCalculatorLib.PearlCalculationLib.World;
+﻿using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 
 namespace PearlCalculatorLib.PearlCalculationLib.Entity
@@ -24,9 +22,9 @@ namespace PearlCalculatorLib.PearlCalculationLib.Entity
 
         }
 
-        public override void Tick(GameVersion version)
+        public override void Tick(GameVersion gameVersion)
         {
-            if (version == GameVersion.version_1_11_to_1_21_1) {
+            if (gameVersion == GameVersion.Version111To1211) {
                 Position += Motion;
                 Motion *= 0.99;
                 Motion.Y -= 0.03;

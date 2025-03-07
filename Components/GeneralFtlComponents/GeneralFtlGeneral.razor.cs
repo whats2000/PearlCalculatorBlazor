@@ -209,7 +209,7 @@ public partial class GeneralFtlGeneral
                     PearlYMotionCancellation = settings.PearlYMotionCancellation,
                     PearlYPositionOriginal = settings.PearlYPositionOriginal,
                     PearlYPositionAdjusted = settings.PearlYPositionAdjusted,
-                    gameVersion = settings.gameVersion
+                    GameVersion = settings.GameVersion
                 };
 
                 SettingsManager.SettingsList.Clear();
