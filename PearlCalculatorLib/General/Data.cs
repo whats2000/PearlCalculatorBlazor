@@ -219,6 +219,7 @@ namespace PearlCalculatorLib.General
             DefaultRedDuper = Direction.SouthEast;
             DefaultBlueDuper = Direction.NorthWest;
             PearlOffset = new Surface2D();
+            GameVersion = GameVersion.Version111To1211;
         }
     }
 }

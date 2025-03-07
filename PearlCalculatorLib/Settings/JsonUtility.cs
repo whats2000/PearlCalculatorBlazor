@@ -43,19 +43,25 @@ namespace PearlCalculatorLib.Settings
 
         internal class SettingsJsonConverter : JsonConverter<SettingsCollection>
         {
-            public override SettingsCollection Read(ref Utf8JsonReader reader , Type typeToConvert , JsonSerializerOptions options)
+            public override SettingsCollection Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 JsonDocument document = JsonDocument.ParseValue(ref reader);
-                if (document.RootElement.TryGetProperty("Version" , out JsonElement ver))
+    
+                if (document.RootElement.TryGetProperty("Version", out JsonElement ver))
                 {
                     string str = ver.GetString();
-                    if (string.IsNullOrEmpty(str) || str.Length <= "2.7".Length)
+        
+                    if (!string.IsNullOrEmpty(str) && Version.TryParse(str, out Version version))
                     {
-                        return ReadOldSettings(document);
+                        Version thresholdVersion = new Version(2, 7);
+                        if (version > thresholdVersion)
+                        {
+                            return document.Deserialize<SettingsCollection>(NewVersionReadOptions);
+                        }
                     }
                 }
-
-                return document.Deserialize<SettingsCollection>(NewVersionReadOptions);
+    
+                return ReadOldSettings(document);
             }
 
             public override void Write(Utf8JsonWriter writer , SettingsCollection value , JsonSerializerOptions options)
