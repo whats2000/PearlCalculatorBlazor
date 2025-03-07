@@ -12,8 +12,10 @@ namespace PearlCalculatorLib.PearlCalculationLib.World
         public static GameVersion TryParse(string s) {
             switch (s) {
                 case "1.11-1.21.1":
+                case "Version111To1211":
                     return GameVersion.Version111To1211;
                 case "1.21.2+":
+                case "Version1212Plus":
                     return GameVersion.Version1212Plus;
                 default:
                     return GameVersion.Unknown;

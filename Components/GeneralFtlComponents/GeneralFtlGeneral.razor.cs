@@ -246,8 +246,9 @@ public partial class GeneralFtlGeneral
         }
         catch (Exception e)
         {
+            String errorMessage = "Error while importing settings: " + e.Message;
             AntMessage.Error(e.GetType().ToString());
-            AntMessage.Error(e.Message);
+            AntMessage.Error(errorMessage);
         }
 
         StateHasChanged();

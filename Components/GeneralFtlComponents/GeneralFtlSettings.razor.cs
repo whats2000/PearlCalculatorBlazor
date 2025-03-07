@@ -196,9 +196,7 @@ public partial class GeneralFtlSettings
 
     private string SelectedGameVersion {
         get => GameVersionUtils.ToString(Data.GameVersion);
-        set {
-            Data.GameVersion = GameVersionUtils.TryParse(value);
-        }
+        set => Data.GameVersion = GameVersionUtils.TryParse(value);
     }
 
     private async void ResetToDefaultOnClick()

@@ -6,7 +6,7 @@ namespace PearlCalculatorLib.Settings
     [Serializable]
     public class SettingsCollection
     {
-        public const string CurrentVersion = "2.71";
+        public const string CurrentVersion = "2.8";
 
 
         public string Version { get; set; }

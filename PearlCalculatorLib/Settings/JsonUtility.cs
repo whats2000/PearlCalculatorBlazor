@@ -87,9 +87,10 @@ namespace PearlCalculatorLib.Settings
                 result.Destination = ReadSurface2D(root.GetProperty(nameof(result.Destination)));
 
 #region read cannon settings
-                CannonSettings cannon = new CannonSettings();
-
-                cannon.CannonName = "Default";
+                CannonSettings cannon = new CannonSettings
+                {
+                    CannonName = "Default"
+                };
 
                 cannon.MaxTNT = root.GetProperty(nameof(cannon.MaxTNT)).GetInt32();
 
@@ -97,14 +98,14 @@ namespace PearlCalculatorLib.Settings
                     cannon.DefaultRedDirection = root.TryGetProperty("DefaultRedTNTDirection" , out var drt) &&
                         Enum.TryParse<Direction>(drt.GetString() , out var direction)
                             ? direction
-                            : PearlCalculatorLib.General.Data.DefaultRedDuper;
+                            : General.Data.DefaultRedDuper;
                 }
 
                 {
                     cannon.DefaultBlueDirection = root.TryGetProperty("DefaultBlueTNTDirection" , out var drt) &&
                         Enum.TryParse<Direction>(drt.GetString() , out var direction)
                             ? direction
-                            : PearlCalculatorLib.General.Data.DefaultBlueDuper;
+                            : General.Data.DefaultBlueDuper;
                 }
 
                 cannon.NorthWestTNT = ReadSpace3D(root.GetProperty(nameof(cannon.NorthWestTNT)));

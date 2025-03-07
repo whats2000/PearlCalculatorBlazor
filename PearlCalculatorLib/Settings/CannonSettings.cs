@@ -31,6 +31,7 @@ namespace PearlCalculatorLib.Settings
         public bool PearlYMotionCancellation { get; set; }
         public double PearlYPositionOriginal { get; set; }
         public double PearlYPositionAdjusted { get; set; }
+        
         public GameVersion GameVersion { get; set; }
         
         public CannonSettings DeepClone()
@@ -43,22 +44,22 @@ namespace PearlCalculatorLib.Settings
 
             CannonSettings result = new CannonSettings
             {
-                CannonName           = $"{CannonName}(clone)",
-                MaxTNT               = MaxTNT,
-                DefaultRedDirection  = DefaultRedDirection,
-                DefaultBlueDirection = DefaultBlueDirection,
-                NorthWestTNT         = NorthWestTNT,
-                NorthEastTNT         = NorthEastTNT,
-                SouthWestTNT         = SouthWestTNT,
-                SouthEastTNT         = SouthEastTNT,
-                Offset               = Offset,
-                Pearl                = Pearl.DeepClone(),
-                RedTNTConfiguration  = redTNTConfiguration,
-                BlueTNTConfiguration = blueTNTConfiguration,
+                CannonName               = $"{CannonName}(clone)",
+                MaxTNT                   = MaxTNT,
+                DefaultRedDirection      = DefaultRedDirection,
+                DefaultBlueDirection     = DefaultBlueDirection,
+                NorthWestTNT             = NorthWestTNT,
+                NorthEastTNT             = NorthEastTNT,
+                SouthWestTNT             = SouthWestTNT,
+                SouthEastTNT             = SouthEastTNT,
+                Offset                   = Offset,
+                Pearl                    = Pearl.DeepClone(),
+                RedTNTConfiguration      = redTNTConfiguration,
+                BlueTNTConfiguration     = blueTNTConfiguration,
                 PearlYMotionCancellation = PearlYMotionCancellation,
-                PearlYPositionOriginal = PearlYPositionOriginal,
-                PearlYPositionAdjusted = PearlYPositionAdjusted,
-                GameVersion = GameVersion
+                PearlYPositionOriginal   = PearlYPositionOriginal,
+                PearlYPositionAdjusted   = PearlYPositionAdjusted,
+                GameVersion              = GameVersion
             };
 
             return result;
