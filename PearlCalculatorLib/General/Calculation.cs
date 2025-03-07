@@ -3,9 +3,7 @@ using PearlCalculatorLib.PearlCalculationLib;
 using PearlCalculatorLib.PearlCalculationLib.World;
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using PearlCalculatorLib.PearlCalculationLib.Entity;
-using PearlCalculatorLib.PearlCalculationLib.Utility;
 
 namespace PearlCalculatorLib.General
 {
