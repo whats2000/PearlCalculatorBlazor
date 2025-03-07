@@ -80,7 +80,7 @@ namespace PearlCalculatorLib.Settings
             PearlYMotionCancellation = Data.PearlYMotionCancellation;
             PearlYPositionOriginal   = Data.PearlYPositionOriginal;
             PearlYPositionAdjusted   = Data.PearlYPositionAdjusted;
-            GameVersion              = Data.gameVersion;
+            GameVersion              = Data.GameVersion;
         }
 
         object IDeepCloneable.DeepClone() => DeepClone();

@@ -34,7 +34,7 @@ namespace PearlCalculatorLib.General
             }
 
             for (int i = 0; i < ticks; i++)
-                pearlEntity.Tick(Data.gameVersion);
+                pearlEntity.Tick(Data.GameVersion);
 
             return pearlEntity;
         }
@@ -76,7 +76,7 @@ namespace PearlCalculatorLib.General
             for (int tick = 1; tick <= maxTicks; tick++)
             {
                 //Factorization trueDistance to make a easier calculation
-                divider += Math.Pow(0.99, tick - (Data.gameVersion == GameVersion.Version111To1211 ? 1 : 0));
+                divider += Math.Pow(0.99, tick - (Data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
 
                 redTNT = Convert.ToInt32(trueRed / divider);
                 blueTNT = Convert.ToInt32(trueBlue / divider);
@@ -160,7 +160,7 @@ namespace PearlCalculatorLib.General
 
             for (int i = 0; i < ticks; i++)
             {
-                pearl.Tick(Data.gameVersion);
+                pearl.Tick(Data.GameVersion);
                 result.Add(new PearlEntity(pearl));
             }
 
@@ -245,7 +245,7 @@ namespace PearlCalculatorLib.General
                         (
                             Data.DefaultBlueDuper
                         ), 
-                        Data.gameVersion
+                        Data.GameVersion
                     );
                 redTNTVector = VectorCalculation.CalculateMotion
                     (
@@ -255,12 +255,12 @@ namespace PearlCalculatorLib.General
                             // 0b1111 = Direction.NorthEast | Direction.SouthWest
                             (Direction)(((int)~(direction | Data.DefaultBlueDuper) & 0b1111) | (int)direction.Invert())
                         ),
-                        Data.gameVersion
+                        Data.GameVersion
                     );
             }
             else
             {
-                redTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultRedDuper), Data.gameVersion);
+                redTNTVector = VectorCalculation.CalculateMotion(pearlPosition, TNTDirectionToCoordinate(Data.DefaultRedDuper), Data.GameVersion);
                 blueTNTVector = VectorCalculation.CalculateMotion
                     (
                         pearlPosition,
@@ -268,7 +268,7 @@ namespace PearlCalculatorLib.General
                         (
                             (Direction)(((int)~(direction | Data.DefaultRedDuper) & 0b1111) | (int)direction.Invert())
                         ),
-                        Data.gameVersion
+                        Data.GameVersion
                     );
             }
         }

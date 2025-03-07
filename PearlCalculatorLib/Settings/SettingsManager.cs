@@ -62,7 +62,7 @@ namespace PearlCalculatorLib.Settings
                 PearlYMotionCancellation = Data.PearlYMotionCancellation,
                 PearlYPositionOriginal   = Data.PearlYPositionOriginal,
                 PearlYPositionAdjusted   = Data.PearlYPositionAdjusted,
-                GameVersion              = Data.gameVersion
+                GameVersion              = Data.GameVersion
             };
             SettingsList.Add(setting);
             _selectedCannon = setting;
@@ -106,7 +106,7 @@ namespace PearlCalculatorLib.Settings
             Data.PearlYMotionCancellation = settings.PearlYMotionCancellation;
             Data.PearlYPositionOriginal   = settings.PearlYPositionOriginal;
             Data.PearlYPositionAdjusted   = settings.PearlYPositionAdjusted;
-            Data.gameVersion              = settings.GameVersion;
+            Data.GameVersion              = settings.GameVersion;
         }
 
         public CannonSettings GetSettings(string cannonName) => 

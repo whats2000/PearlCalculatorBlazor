@@ -34,7 +34,7 @@ public partial class EditSettingSlideBar : ComponentBase
             PearlYMotionCancellation = Data.PearlYMotionCancellation,
             PearlYPositionOriginal = Data.PearlYPositionOriginal,
             PearlYPositionAdjusted = Data.PearlYPositionAdjusted,
-            GameVersion = Data.gameVersion
+            GameVersion = Data.GameVersion
         };
 
         var success = SettingsManager.AddSettings(newCannon);

@@ -276,7 +276,7 @@ public partial class Manually
         _manuallyData.ATNTAmount = Data.RedTNT;
         _manuallyData.BTNTAmount = Data.BlueTNT;
 
-        _manuallyData.GameVersion = Data.gameVersion;
+        _manuallyData.GameVersion = Data.GameVersion;
         
         _valueHasChanged = true;
     }

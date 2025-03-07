@@ -53,7 +53,7 @@ namespace PearlCalculatorLib.General
             PearlYPositionOriginal = Data.PearlYPositionOriginal,
             PearlYPositionAdjusted = Data.PearlYPositionAdjusted,
 
-            GameVersion = Data.gameVersion
+            GameVersion = Data.GameVersion
         };
     }
 }
