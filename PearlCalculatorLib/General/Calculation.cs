@@ -136,7 +136,7 @@ namespace PearlCalculatorLib.General
         public static List<Entity> CalculatePearlTrace(int redTNT, int blueTNT, int ticks, Direction direction)
         {
             List<Entity> result = new List<Entity>(ticks + 1);
-            PearlEntity pearl = new PearlEntity(Data.Pearl.AddPosition(Data.PearlOffset));
+            PearlEntity pearl = new PearlEntity(Data.Pearl).AddPosition(Data.PearlOffset);
             
             // Override the Y position of the pearl when Y Motion cancellation is enabled
             if (Data.PearlYMotionCancellation)
