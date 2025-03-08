@@ -8,6 +8,6 @@ namespace PearlCalculatorLib.PearlCalculationLib.Entity
     {
         public override Space3D Size => new Space3D(0.98, 0.98, 0.98);
 
-        public override void Tick() => throw new NotImplementedException();
+        public override void Tick(GameVersion gameVersion) => throw new NotImplementedException();
     }
 }

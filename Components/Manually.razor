@@ -170,7 +170,25 @@
     </GridRow>
 
     <GridRow Gutter="16">
-        <GridCol Span="12" Style="height: 12px"></GridCol>
+        <GridCol Span="24">
+            <Text>@TranslateText.GetTranslateText("GameVersion")</Text>
+        </GridCol>
+    </GridRow>
+
+    <GridRow Gutter="16">
+        <GridCol Span="24">
+            <Select DataSource="@_selectedGameVersion"
+                    @bind-Value="ManuallyGameVersion"
+                    DefaultValue="@ManuallyGameVersion"
+                    ValueName="@nameof(ArrayPos.ActiveKey)"
+                    LabelName="@nameof(ArrayPos.DisplayName)"
+                    Size="@InputSize.Small">
+            </Select>
+        </GridCol>
+    </GridRow>
+
+    <GridRow Gutter="16">
+        <GridCol Span="12" Style="height: 16px"></GridCol>
     </GridRow>
 
     <div class="button-block">

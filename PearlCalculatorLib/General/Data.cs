@@ -194,6 +194,11 @@ namespace PearlCalculatorLib.General
         /// </summary>
         public static List<int> BlueTNTConfiguration { get; set; } = new List<int>();
 
+        /// <summary>
+        /// The version of minecraft the calculation is for
+        /// </summary>
+        public static GameVersion GameVersion { get; set; } = GameVersion.Version111To1211;
+
 
 
         /// <summary>
@@ -213,6 +218,7 @@ namespace PearlCalculatorLib.General
             DefaultRedDuper = Direction.SouthEast;
             DefaultBlueDuper = Direction.NorthWest;
             PearlOffset = new Surface2D();
+            GameVersion = GameVersion.Version111To1211;
         }
     }
 }

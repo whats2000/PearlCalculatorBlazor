@@ -41,6 +41,7 @@
 
 | 名称                   | 值类型    | 默认值                | 注释                                                                                                         |
 |----------------------|--------|--------------------|------------------------------------------------------------------------------------------------------------|
+| `游戏版本`               | enum   | 1.11-1.21.1        | 该大炮设计用于的 Minecraft 版本                                                                                      |
 | `North West TNT (X)` | double | -0.884999990463257 | `/data get entity @e[type=minecraft:tnt,limit=1]` 或者 `/log tnt` 并使用 `/tick freeze` 和 `/tick step 1` 可能会帮助您 |
 | `North West TNT (Y)` | double | 170.5              | `/data get entity @e[type=minecraft:tnt,limit=1]` 或者 `/log tnt` 并使用 `/tick freeze` 和 `/tick step 1` 可能会帮助您 |
 | `North West TNT (Z)` | double | -0.884999990463257 | `/data get entity @e[type=minecraft:tnt,limit=1]` 或者 `/log tnt` 并使用 `/tick freeze` 和 `/tick step 1` 可能会帮助您 |

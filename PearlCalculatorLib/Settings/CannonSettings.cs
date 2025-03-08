@@ -32,6 +32,8 @@ namespace PearlCalculatorLib.Settings
         public double PearlYPositionOriginal { get; set; }
         public double PearlYPositionAdjusted { get; set; }
         
+        public GameVersion GameVersion { get; set; }
+        
         public CannonSettings DeepClone()
         {
             List<int> redTNTConfiguration = new List<int>(RedTNTConfiguration.Count);
@@ -42,21 +44,22 @@ namespace PearlCalculatorLib.Settings
 
             CannonSettings result = new CannonSettings
             {
-                CannonName           = $"{CannonName}(clone)",
-                MaxTNT               = MaxTNT,
-                DefaultRedDirection  = DefaultRedDirection,
-                DefaultBlueDirection = DefaultBlueDirection,
-                NorthWestTNT         = NorthWestTNT,
-                NorthEastTNT         = NorthEastTNT,
-                SouthWestTNT         = SouthWestTNT,
-                SouthEastTNT         = SouthEastTNT,
-                Offset               = Offset,
-                Pearl                = Pearl.DeepClone(),
-                RedTNTConfiguration  = redTNTConfiguration,
-                BlueTNTConfiguration = blueTNTConfiguration,
+                CannonName               = $"{CannonName}(clone)",
+                MaxTNT                   = MaxTNT,
+                DefaultRedDirection      = DefaultRedDirection,
+                DefaultBlueDirection     = DefaultBlueDirection,
+                NorthWestTNT             = NorthWestTNT,
+                NorthEastTNT             = NorthEastTNT,
+                SouthWestTNT             = SouthWestTNT,
+                SouthEastTNT             = SouthEastTNT,
+                Offset                   = Offset,
+                Pearl                    = Pearl.DeepClone(),
+                RedTNTConfiguration      = redTNTConfiguration,
+                BlueTNTConfiguration     = blueTNTConfiguration,
                 PearlYMotionCancellation = PearlYMotionCancellation,
-                PearlYPositionOriginal = PearlYPositionOriginal,
-                PearlYPositionAdjusted = PearlYPositionAdjusted
+                PearlYPositionOriginal   = PearlYPositionOriginal,
+                PearlYPositionAdjusted   = PearlYPositionAdjusted,
+                GameVersion              = GameVersion
             };
 
             return result;
@@ -78,6 +81,7 @@ namespace PearlCalculatorLib.Settings
             PearlYMotionCancellation = Data.PearlYMotionCancellation;
             PearlYPositionOriginal   = Data.PearlYPositionOriginal;
             PearlYPositionAdjusted   = Data.PearlYPositionAdjusted;
+            GameVersion              = Data.GameVersion;
         }
 
         object IDeepCloneable.DeepClone() => DeepClone();

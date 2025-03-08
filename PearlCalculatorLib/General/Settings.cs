@@ -7,7 +7,7 @@ namespace PearlCalculatorLib.General
     [Serializable]
     public class Settings
     {
-        public const string Version = "2.7";
+        public const string Version = "2.8";
 
         public Space3D NorthWestTNT;
         public Space3D NorthEastTNT;
@@ -25,6 +25,7 @@ namespace PearlCalculatorLib.General
         public bool PearlYMotionCancellation;
         public double PearlYPositionOriginal;
         public double PearlYPositionAdjusted;
+        public GameVersion GameVersion;
 
         public static Settings CreateSettingsFormData() => new Settings()
         {
@@ -49,7 +50,9 @@ namespace PearlCalculatorLib.General
             
             PearlYMotionCancellation = Data.PearlYMotionCancellation,
             PearlYPositionOriginal = Data.PearlYPositionOriginal,
-            PearlYPositionAdjusted = Data.PearlYPositionAdjusted
+            PearlYPositionAdjusted = Data.PearlYPositionAdjusted,
+
+            GameVersion = Data.GameVersion
         };
     }
 }

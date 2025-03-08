@@ -208,7 +208,8 @@ public partial class GeneralFtlGeneral
                     BlueTNTConfiguration = new List<int>(),
                     PearlYMotionCancellation = settings.PearlYMotionCancellation,
                     PearlYPositionOriginal = settings.PearlYPositionOriginal,
-                    PearlYPositionAdjusted = settings.PearlYPositionAdjusted
+                    PearlYPositionAdjusted = settings.PearlYPositionAdjusted,
+                    GameVersion = settings.GameVersion
                 };
 
                 SettingsManager.SettingsList.Clear();
@@ -245,8 +246,9 @@ public partial class GeneralFtlGeneral
         }
         catch (Exception e)
         {
+            String errorMessage = "Error while importing settings: " + e.Message;
             AntMessage.Error(e.GetType().ToString());
-            AntMessage.Error(e.Message);
+            AntMessage.Error(errorMessage);
         }
 
         StateHasChanged();

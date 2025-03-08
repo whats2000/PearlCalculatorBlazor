@@ -17,7 +17,9 @@ namespace PearlCalculatorLib.Manually
 
         public PearlEntity Pearl;
 
-        public ManuallyData(int aTNTAmount, int bTNTAmount, Space3D aTNT, Space3D bTNT, Surface2D destination, PearlEntity pearl)
+        public GameVersion GameVersion;
+
+        public ManuallyData(int aTNTAmount, int bTNTAmount, Space3D aTNT, Space3D bTNT, Surface2D destination, PearlEntity pearl, GameVersion gameVersion)
         {
             ATNTAmount = aTNTAmount;
             BTNTAmount = bTNTAmount;
@@ -25,6 +27,7 @@ namespace PearlCalculatorLib.Manually
             BTNT = bTNT;
             Destination = destination;
             Pearl = pearl;
+            GameVersion = gameVersion;
         }
     }
 }

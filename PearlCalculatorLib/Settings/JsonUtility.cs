@@ -43,19 +43,25 @@ namespace PearlCalculatorLib.Settings
 
         internal class SettingsJsonConverter : JsonConverter<SettingsCollection>
         {
-            public override SettingsCollection Read(ref Utf8JsonReader reader , Type typeToConvert , JsonSerializerOptions options)
+            public override SettingsCollection Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 JsonDocument document = JsonDocument.ParseValue(ref reader);
-                if (document.RootElement.TryGetProperty("Version" , out JsonElement ver))
+    
+                if (document.RootElement.TryGetProperty("Version", out JsonElement ver))
                 {
                     string str = ver.GetString();
-                    if (string.IsNullOrEmpty(str) || str.Length <= "2.7".Length)
+        
+                    if (!string.IsNullOrEmpty(str) && Version.TryParse(str, out Version version))
                     {
-                        return ReadOldSettings(document);
+                        Version thresholdVersion = new Version(2, 7);
+                        if (version > thresholdVersion)
+                        {
+                            return document.Deserialize<SettingsCollection>(NewVersionReadOptions);
+                        }
                     }
                 }
-
-                return document.Deserialize<SettingsCollection>(NewVersionReadOptions);
+    
+                return ReadOldSettings(document);
             }
 
             public override void Write(Utf8JsonWriter writer , SettingsCollection value , JsonSerializerOptions options)
@@ -87,9 +93,10 @@ namespace PearlCalculatorLib.Settings
                 result.Destination = ReadSurface2D(root.GetProperty(nameof(result.Destination)));
 
 #region read cannon settings
-                CannonSettings cannon = new CannonSettings();
-
-                cannon.CannonName = "Default";
+                CannonSettings cannon = new CannonSettings
+                {
+                    CannonName = "Default"
+                };
 
                 cannon.MaxTNT = root.GetProperty(nameof(cannon.MaxTNT)).GetInt32();
 
@@ -97,14 +104,14 @@ namespace PearlCalculatorLib.Settings
                     cannon.DefaultRedDirection = root.TryGetProperty("DefaultRedTNTDirection" , out var drt) &&
                         Enum.TryParse<Direction>(drt.GetString() , out var direction)
                             ? direction
-                            : PearlCalculatorLib.General.Data.DefaultRedDuper;
+                            : General.Data.DefaultRedDuper;
                 }
 
                 {
                     cannon.DefaultBlueDirection = root.TryGetProperty("DefaultBlueTNTDirection" , out var drt) &&
                         Enum.TryParse<Direction>(drt.GetString() , out var direction)
                             ? direction
-                            : PearlCalculatorLib.General.Data.DefaultBlueDuper;
+                            : General.Data.DefaultBlueDuper;
                 }
 
                 cannon.NorthWestTNT = ReadSpace3D(root.GetProperty(nameof(cannon.NorthWestTNT)));
@@ -123,6 +130,8 @@ namespace PearlCalculatorLib.Settings
 
                 cannon.RedTNTConfiguration = new List<int>();
                 cannon.BlueTNTConfiguration = new List<int>();
+                cannon.GameVersion = root.TryGetProperty(nameof(cannon.GameVersion), out var v) &&
+                    Enum.TryParse<GameVersion>(v.GetString(), out var version) ? version : GameVersion.Unknown;
 #endregion
 
                 result.CannonSettings = new[] { cannon };

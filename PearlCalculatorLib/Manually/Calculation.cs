@@ -12,8 +12,8 @@ namespace PearlCalculatorLib.Manually
     {
         public static bool CalculateTNTAmount(ManuallyData data, int ticks, double maxDistance, out List<TNTCalculationResult> result)
         {
-            Space3D vectorA = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT);
-            Space3D vectorB = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT);
+            Space3D vectorA = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT, data.GameVersion);
+            Space3D vectorB = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT, data.GameVersion);
             double angleDestination = Space3D.Zero.AngleInAbsPolarRad(data.Destination.ToSpace3D());
             double angleA = Space3D.Zero.AngleInAbsPolarRad(vectorA);
             double angleB = Space3D.Zero.AngleInAbsPolarRad(vectorB);
@@ -90,30 +90,30 @@ namespace PearlCalculatorLib.Manually
             {
                 for (int tick = 1; tick <= ticks; tick++)
                 {
-                    divider += Math.Pow(0.99, tick - 1);
+                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                     int tnt1 = Convert.ToInt32(trueAmount1 / divider);
                     int tnt2 = Convert.ToInt32(trueAmount2 / divider);
                     int tnt3 = Convert.ToInt32(trueAmount3 / divider);
                     int tnt4 = Convert.ToInt32(trueAmount4 / divider);
-                    result.Add(SingleTNTPearlSimulation(tnt1, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(tnt2, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(tnt3, 0, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(tnt4, 0, tick, vector, data.Destination, data.Pearl));
+                    result.Add(SingleTNTPearlSimulation(tnt1, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt2, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt3, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(tnt4, 0, tick, vector, data.Destination, data.Pearl, data.GameVersion));
                 }
             }
             else
             {
                 for (int tick = 1; tick <= ticks; tick++)
                 {
-                    divider += Math.Pow(0.99, tick - 1);
+                    divider += Math.Pow(0.99, tick - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                     int tnt1 = Convert.ToInt32(trueAmount1 / divider);
                     int tnt2 = Convert.ToInt32(trueAmount2 / divider);
                     int tnt3 = Convert.ToInt32(trueAmount3 / divider);
                     int tnt4 = Convert.ToInt32(trueAmount4 / divider);
-                    result.Add(SingleTNTPearlSimulation(0, tnt1, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(0, tnt2, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(0, tnt3, tick, vector, data.Destination, data.Pearl));
-                    result.Add(SingleTNTPearlSimulation(0, tnt4, tick, vector, data.Destination, data.Pearl));
+                    result.Add(SingleTNTPearlSimulation(0, tnt1, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt2, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt3, tick, vector, data.Destination, data.Pearl, data.GameVersion));
+                    result.Add(SingleTNTPearlSimulation(0, tnt4, tick, vector, data.Destination, data.Pearl, data.GameVersion));
                 }
             }
 
@@ -135,8 +135,8 @@ namespace PearlCalculatorLib.Manually
             if (distance.Absolute().ToSurface2D() == 0)
                 return false;
 
-            vectorA = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT);
-            vectorB = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT);
+            vectorA = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT, data.GameVersion);
+            vectorB = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT, data.GameVersion);
             denominator = vectorA.Z * vectorB.X - vectorB.Z * vectorA.X;
 
             trueA = (distance.Z * vectorB.X - distance.X * vectorB.Z) / denominator;
@@ -150,7 +150,7 @@ namespace PearlCalculatorLib.Manually
 
             for (int i = 1; i <= ticks; i++)
             {
-                divider += Math.Pow(0.99, i - 1);
+                divider += Math.Pow(0.99, i - (data.GameVersion == GameVersion.Version111To1211 ? 1 : 0));
                 aTNT = Convert.ToInt32(trueA / divider);
                 bTNT = Convert.ToInt32(trueB / divider);
 
@@ -159,7 +159,7 @@ namespace PearlCalculatorLib.Manually
 
                     for (int b = -5; b <= 5; b++)
                     {
-                        PearlEntity aPearl = PearlSimulation(aTNT + a, bTNT + b, i, vectorA, vectorB, new PearlEntity(data.Pearl));
+                        PearlEntity aPearl = PearlSimulation(aTNT + a, bTNT + b, i, vectorA, vectorB, new PearlEntity(data.Pearl), data.GameVersion);
                         Surface2D displacement = aPearl.Position.ToSurface2D() - data.Destination;
 
                         if (displacement.AxialDistanceLessOrEqualTo(maxDistance) && bTNT + b > 0 && aTNT + a > 0)
@@ -185,22 +185,22 @@ namespace PearlCalculatorLib.Manually
             return true;
         }
 
-        private static PearlEntity PearlSimulation(int aTNT, int bTNT, int ticks, Space3D aTNTVector, Space3D bTNTVector, PearlEntity pearl)
+        private static PearlEntity PearlSimulation(int aTNT, int bTNT, int ticks, Space3D aTNTVector, Space3D bTNTVector, PearlEntity pearl, GameVersion gameVersion)
         {
             pearl.Motion += aTNT * aTNTVector + bTNT * bTNTVector;
 
             for (int i = 0; i < ticks; i++)
-                pearl.Tick();
+                pearl.Tick(gameVersion);
 
             return pearl;
         }
 
-        private static TNTCalculationResult SingleTNTPearlSimulation(int atnt, int btnt, int ticks, Space3D vector, Surface2D destination, PearlEntity pearl)
+        private static TNTCalculationResult SingleTNTPearlSimulation(int atnt, int btnt, int ticks, Space3D vector, Surface2D destination, PearlEntity pearl, GameVersion gameVersion)
         {
             pearl.Motion += (atnt + btnt) * vector;
 
             for (int i = 0; i < ticks; i++)
-                pearl.Tick();
+                pearl.Tick(gameVersion);
 
             return new TNTCalculationResult
             {
@@ -214,8 +214,8 @@ namespace PearlCalculatorLib.Manually
 
         public static List<Entity> CalculatePearlTrace(ManuallyData data, int ticks)
         {
-            Space3D aTNTVector = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT);
-            Space3D bTNTVector = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT);
+            Space3D aTNTVector = VectorCalculation.CalculateMotion(data.Pearl.Position, data.ATNT, data.GameVersion);
+            Space3D bTNTVector = VectorCalculation.CalculateMotion(data.Pearl.Position, data.BTNT, data.GameVersion);
             PearlEntity pearl = new PearlEntity(data.Pearl);
             List<Entity> pearlTrace = new List<Entity>();
 
@@ -224,7 +224,7 @@ namespace PearlCalculatorLib.Manually
 
             for (int i = 0; i < ticks; i++)
             {
-                pearl.Tick();
+                pearl.Tick(data.GameVersion);
                 pearlTrace.Add(new PearlEntity(pearl)); ;
             }
 

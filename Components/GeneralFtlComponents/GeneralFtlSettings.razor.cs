@@ -5,7 +5,6 @@ using PearlCalculatorBlazor.Localizer;
 using PearlCalculatorBlazor.Managers;
 using PearlCalculatorLib.General;
 using PearlCalculatorLib.PearlCalculationLib.World;
-using PearlCalculatorLib.Settings;
 
 namespace PearlCalculatorBlazor.Components.GeneralFtlComponents;
 
@@ -18,6 +17,7 @@ public partial class GeneralFtlSettings
     private readonly Checkbox _southWestTntCheck = new();
     private List<ArrayPos> _pearlYMotionOptions;
     private List<ArrayPos> _selectList;
+    private List<ArrayPos> _selectedGameVersion;
 
     private double NorthWestTntX
     {
@@ -194,6 +194,11 @@ public partial class GeneralFtlSettings
         set => Data.DefaultBlueDuper = Enum.Parse<Direction>(value);
     }
 
+    private string SelectedGameVersion {
+        get => GameVersionUtils.ToString(Data.GameVersion);
+        set => Data.GameVersion = GameVersionUtils.TryParse(value);
+    }
+
     private async void ResetToDefaultOnClick()
     {
         Data.Reset();
@@ -225,6 +230,11 @@ public partial class GeneralFtlSettings
             }
         };
 
+        _selectedGameVersion = new List<ArrayPos> {
+            new() { ActiveKey = "1.11-1.21.1", DisplayName = TranslateText.GetTranslateText("1.11-1.21.1") },
+            new() { ActiveKey = "1.21.2+", DisplayName = TranslateText.GetTranslateText("1.21.2+") }
+        };
+
         TranslateText.OnLanguageChange += RefreshPage;
         
         EventManager.Instance.AddListener<BaseEventArgs>("dataChanged", (_, _) => { RefreshPage(); });
@@ -237,6 +247,9 @@ public partial class GeneralFtlSettings
 
         // Update the display names for PearlYMotionMode options
         foreach (var pair in _pearlYMotionOptions)
+            pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
+
+        foreach (var pair in _selectedGameVersion)
             pair.DisplayName = TranslateText.GetTranslateText(pair.ActiveKey);
 
         StateHasChanged();

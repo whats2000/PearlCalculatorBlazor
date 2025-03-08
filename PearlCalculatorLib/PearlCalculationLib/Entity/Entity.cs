@@ -11,7 +11,7 @@ namespace PearlCalculatorLib.PearlCalculationLib.Entity
         public Space3D Position;
         private AABBBox _aabb = new AABBBox();
 
-        public abstract void Tick();
+        public abstract void Tick(GameVersion gameVersion);
 
         public abstract Space3D Size { get; }
 

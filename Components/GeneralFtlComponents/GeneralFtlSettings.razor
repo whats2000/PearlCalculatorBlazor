@@ -12,6 +12,22 @@
     <SpaceItem>
         <GridRow Align="center">
             <GridCol Span="12">
+                <Text>@TranslateText.GetTranslateText("GameVersion")</Text>
+            </GridCol>
+            <GridCol Span="12">
+                <Select DataSource="@_selectedGameVersion"
+                        @bind-Value="SelectedGameVersion"
+                        DefaultValue="@SelectedGameVersion"
+                        ValueName="@nameof(ArrayPos.ActiveKey)"
+                        LabelName="@nameof(ArrayPos.DisplayName)"
+                        Size="@InputSize.Small">
+                </Select>
+            </GridCol>
+        </GridRow>
+    </SpaceItem>
+    <SpaceItem>
+        <GridRow Align="center">
+            <GridCol Span="12">
                 <Text>@TranslateText.GetTranslateText("SettingsNorthWestTNT")</Text>
             </GridCol>
             <GridCol Span="12">
