@@ -9,7 +9,7 @@
       "Added copy the coordinates of the pearl to the clipboard at tracing result.",
       "Fixed issue when the encoding combination calculator was not working properly when there is duplicated encoding.",
       "Added support for minecraft 1.12.2+, please swap the version in the settings to change the calculation method.",
-      "Changed to make old format configuration files default game version to 1.11~1.21.1 (As old format do not have the version field).",
+      "Changed to make old format configuration files default game version to 1.11~1.21.1 (As old format do not have the version field)."
     ],
     "es_ES": [
       "Se añadió el modo de configuración de cañón: ahora se pueden almacenar varios cañones en el mismo archivo de configuración.",
