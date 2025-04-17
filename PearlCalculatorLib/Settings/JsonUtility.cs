@@ -120,7 +120,7 @@ namespace PearlCalculatorLib.Settings
                 cannon.SouthEastTNT = ReadSpace3D(root.GetProperty(nameof(cannon.SouthEastTNT)));
 
                 var pearlElemRoot = root.GetProperty(nameof(cannon.Pearl));
-                cannon.Pearl = new PearlCalculatorLib.PearlCalculationLib.Entity.PearlEntity
+                cannon.Pearl = new PearlCalculationLib.Entity.PearlEntity
                 {
                     Position = ReadSpace3D(pearlElemRoot.GetProperty(nameof(cannon.Pearl.Position))) ,
                     Motion = ReadSpace3D(pearlElemRoot.GetProperty(nameof(cannon.Pearl.Motion)))
@@ -131,7 +131,7 @@ namespace PearlCalculatorLib.Settings
                 cannon.RedTNTConfiguration = new List<int>();
                 cannon.BlueTNTConfiguration = new List<int>();
                 cannon.GameVersion = root.TryGetProperty(nameof(cannon.GameVersion), out var v) &&
-                    Enum.TryParse<GameVersion>(v.GetString(), out var version) ? version : GameVersion.Unknown;
+                    Enum.TryParse<GameVersion>(v.GetString(), out var version) ? version : GameVersion.Version111To1211;
 #endregion
 
                 result.CannonSettings = new[] { cannon };

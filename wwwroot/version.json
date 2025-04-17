@@ -1,5 +1,5 @@
 ﻿{
-  "version": "2.73.4",
+  "version": "2.73.5",
   "updateNotes": {
     "en": [
       "Added cannon configuration mode: Multiple cannons can now be stored in the same configuration file.",
@@ -8,7 +8,8 @@
       "Added TNT encoding combination calculator.",
       "Added copy the coordinates of the pearl to the clipboard at tracing result.",
       "Fixed issue when the encoding combination calculator was not working properly when there is duplicated encoding.",
-      "Added support for minecraft 1.12.2+, please swap the version in the settings to change the calculation method."
+      "Added support for minecraft 1.12.2+, please swap the version in the settings to change the calculation method.",
+      "Changed to make old format configuration files default game version to 1.11~1.21.1 (As old format do not have the version field).",
     ],
     "es_ES": [
       "Se añadió el modo de configuración de cañón: ahora se pueden almacenar varios cañones en el mismo archivo de configuración.",
@@ -17,7 +18,8 @@
       "Se añadió la calculadora de combinación de codificación de TNT.",
       "Se añadió copiar las coordenadas de la perla al portapapeles en el resultado del trazado.",
       "Se corrigió un problema cuando la calculadora de combinación de codificación no funcionaba correctamente cuando había codificación duplicada.",
-      "Se añadió soporte para minecraft 1.12.2+, por favor cambie la versión en la configuración para cambiar el método de cálculo."
+      "Se añadió soporte para minecraft 1.12.2+, por favor cambie la versión en la configuración para cambiar el método de cálculo.",
+        "Se cambió para que los archivos de configuración en formato antiguo tengan la versión del juego predeterminada a 1.11~1.21.1 (ya que el formato antiguo no tiene el campo de versión)."
     ],
     "zh_tw": [
       "新增切換 Cannon 配置模式：現在同個配置檔可以寫入多個砲台資料。",
@@ -26,7 +28,8 @@
       "新增 TNT 編碼組合計算機。",
       "新增複製珍珠座標到剪貼簿在追蹤結果。",
       "修正編碼組合計算機在存在重複編碼時無法正常運作的問題。",
-      "新增支援 minecraft 1.12.2+，請在設定中切換版本以更改計算方式。"
+      "新增支援 minecraft 1.12.2+，請在設定中切換版本以更改計算方式。",
+      "變更舊格式配置檔預設遊戲版本為 1.11~1.21.1 (因為舊格式沒有版本欄位)。"
     ],
     "zh_cn": [
       "新增切换 Cannon 配置模式：现在同个配置档可以写入多个炮台资料。",
@@ -35,7 +38,8 @@
       "新增 TNT 编码组合计算器。",
       "新增复制珍珠坐标到剪贴板在追踪结果。",
       "修正编码组合计算器在存在重复编码时无法正常运作的问题。",
-      "新增支援 minecraft 1.12.2+，请在设定中切换版本以更改计算方式。"
+      "新增支援 minecraft 1.12.2+，请在设定中切换版本以更改计算方式。",
+      "变更旧格式配置档预设游戏版本为 1.11~1.21.1 (因为旧格式没有版本栏位)。"
     ]
   }
 }
