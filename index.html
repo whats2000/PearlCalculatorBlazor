@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/PearlCalculatorBlazor/"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>Pearl Calculator</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+
+    <!-- Meta for description and keywords -->
+    <meta content="Pearl Calculator is a tool designed for precise trajectory and landing point calculations for Minecraft pearl cannons."
+          name="description"/>
+    <meta content="Pearl Calculator, Minecraft, trajectory calculation, pearl cannon, landing points, FTL"
+          name="keywords"/>
+
+    <!-- Open Graph meta tags for better social media sharing -->
+    <meta content="Pearl Calculator" property="og:title"/>
+    <meta content="A precise tool for calculating the trajectory and landing points of Minecraft pearl cannons."
+          property="og:description"/>
+    <meta content="banner.png" property="og:image"/>
+    <meta content="banner.png" property="og:image:secure_url"/>
+    <meta content="https://whats2000.github.io/PearlCalculatorBlazor/" property="og:url"/>
+    <meta content="website" property="og:type"/>
+
+    <!-- Twitter meta tags for Twitter Card support -->
+    <meta content="summary_large_image" name="twitter:card"/>
+    <meta content="Pearl Calculator" name="twitter:title"/>
+    <meta content="A precise tool for calculating the trajectory and landing points of Minecraft pearl cannons."
+          name="twitter:description"/>
+    <meta content="banner.png" name="twitter:image"/>
+
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="PearlCalculatorBlazor.styles.css?v=2021061516" rel="stylesheet"/>
+    <link href="manifest.json" rel="manifest"/>
+    <link href="favicon.ico" rel="shortcut"/>
+    <link href="favicon.ico" rel="apple-touch-icon" sizes="512x512"/>
+    <link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet"/>
+    <link href="_content/AntDesign/css/ant-design-blazor.aliyun.min.css" rel="stylesheet"/>
+    <link href="_content/AntDesign/css/ant-design-blazor.dark.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="app">
+    <div id="start-up-container">
+        <div id="start-up-loading-circle"></div>
+        <p>Loading, first entry will take a while...</p>
+    </div>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a class="reload" href="">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="scripts/chartEvent.js?v=20240905"></script>
+<script src="scripts/fileInputProxy.js?v=20240905"></script>
+<script src="scripts/theme.js?v=20240905"></script>
+<script src="scripts/tntWeightSlider.js?v=20240905"></script>
+<script src="scripts/version.js?v=20240906"></script>
+<script>navigator.serviceWorker.register('service-worker.js');</script>
+<script src="_content/AntDesign/js/ant-design-blazor.js"></script>
+<script src="_content/AntDesign.Charts/g2plot.min.js"></script>
+<script src="_content/AntDesign.Charts/ant-design-charts-blazor.js"></script>
+</body>
+
+</html>
