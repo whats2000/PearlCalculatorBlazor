@@ -108,7 +108,9 @@
                             </Table>
                             <Card Title="@TranslateText.GetTranslateText("GeneralFtlTntEncoding")" Style="margin-top: 12px;">
                                 <Text>@TntEncodingResultString</Text>
-                                <Button Type="link" Icon="copy" OnClick="OnTntEncodingCopy"/>
+                                <Tooltip Title="@TranslateText.GetTranslateText("CopyEncoding")">
+                                    <Button Type="link" Icon="copy" OnClick="OnTntEncodingCopy"/>
+                                </Tooltip>
                             </Card>
                             break;
                         case ShowResultMode.Empty:
