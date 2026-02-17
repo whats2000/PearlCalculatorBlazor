@@ -1,0 +1,49 @@
+﻿{
+  "version": "2.73.6",
+  "updateNotes": {
+    "en": [
+      "Added cannon configuration mode: Multiple cannons can now be stored in the same configuration file.",
+      "Added manual mode to copy data from general mode.",
+      "Fixed issue where previous calculation results were displayed if no direction angle was found in the updated calculation.",
+      "Added TNT encoding combination calculator.",
+      "Added copy the coordinates of the pearl to the clipboard at tracing result.",
+      "Fixed issue when the encoding combination calculator was not working properly when there is duplicated encoding.",
+      "Added support for minecraft 1.12.2+, please swap the version in the settings to change the calculation method.",
+      "Changed to make old format configuration files default game version to 1.11~1.21.1 (As old format do not have the version field).",
+      "Added the ability to copy the TNT encoding result."
+    ],
+    "es_ES": [
+      "Se añadió el modo de configuración de cañón: ahora se pueden almacenar varios cañones en el mismo archivo de configuración.",
+      "Se añadió el modo manual para copiar datos del modo general.",
+      "Se corrigió un problema donde se mostraban los resultados de cálculos anteriores si no se encontraba un ángulo de dirección en el cálculo actualizado.",
+      "Se añadió la calculadora de combinación de codificación de TNT.",
+      "Se añadió copiar las coordenadas de la perla al portapapeles en el resultado del trazado.",
+      "Se corrigió un problema cuando la calculadora de combinación de codificación no funcionaba correctamente cuando había codificación duplicada.",
+      "Se añadió soporte para minecraft 1.12.2+, por favor cambie la versión en la configuración para cambiar el método de cálculo.",
+      "Se cambió para que los archivos de configuración en formato antiguo tengan la versión del juego predeterminada a 1.11~1.21.1 (ya que el formato antiguo no tiene el campo de versión).",
+      "Se añadió la capacidad de copiar el resultado de la codificación de TNT."
+    ],
+    "zh_tw": [
+      "新增切換 Cannon 配置模式：現在同個配置檔可以寫入多個砲台資料。",
+      "新增手動模式複製一般模式資料。",
+      "修正更新計算後若不存在方向角則仍維持顯示前一計算結果。",
+      "新增 TNT 編碼組合計算機。",
+      "新增複製珍珠座標到剪貼簿在追蹤結果。",
+      "修正編碼組合計算機在存在重複編碼時無法正常運作的問題。",
+      "新增支援 minecraft 1.12.2+，請在設定中切換版本以更改計算方式。",
+      "變更舊格式配置檔預設遊戲版本為 1.11~1.21.1 (因為舊格式沒有版本欄位)。",
+      "新增複製 TNT 編碼結果的功能。"
+    ],
+    "zh_cn": [
+      "新增切换 Cannon 配置模式：现在同个配置档可以写入多个炮台资料。",
+      "新增手动模式复制一般模式资料。",
+      "修正更新计算后若不存在方向角则仍维持显示前一计算结果。",
+      "新增 TNT 编码组合计算器。",
+      "新增复制珍珠坐标到剪贴板在追踪结果。",
+      "修正编码组合计算器在存在重复编码时无法正常运作的问题。",
+      "新增支援 minecraft 1.12.2+，请在设定中切换版本以更改计算方式。",
+      "变更旧格式配置档预设游戏版本为 1.11~1.21.1 (因为旧格式没有版本栏位)。",
+      "新增复制 TNT 编码结果的功能。"
+    ]
+  }
+}
