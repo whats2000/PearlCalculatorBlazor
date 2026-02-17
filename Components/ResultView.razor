@@ -106,28 +106,35 @@
                                     </Template>
                                 </AntDesign.Column>
                             </Table>
+                            <Card Title="@TranslateText.GetTranslateText("GeneralFtlTntEncoding")" Style="margin-top: 12px;">
+                                <Text>@TntEncodingResultString</Text>
+                                <Button Type="link" Icon="copy" OnClick="OnTntEncodingCopy"/>
+                            </Card>
                             break;
                         case ShowResultMode.Empty:
                         default:
                             <Empty/>
                             break;
                     }
-                    <GridRow Gutter="12">
-                        <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
-                            <Card Title="@TranslateText.GetTranslateText("DisplayDirection")">
-                                <Text>
-                                    @TranslateText.GetTranslateText(_resultDirection)
-                                </Text>
-                            </Card>
-                        </GridCol>
-                        <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
-                            <Card Title="@TranslateText.GetTranslateText("DisplayAngle")">
-                                <Text>
-                                    @_resultAngle
-                                </Text>
-                            </Card>
-                        </GridCol>
-                    </GridRow>
+                    @if (ShowMode != ShowResultMode.TntEncoding && ShowMode != ShowResultMode.Empty)
+                    {
+                        <GridRow Gutter="12">
+                            <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                                <Card Title="@TranslateText.GetTranslateText("DisplayDirection")">
+                                    <Text>
+                                        @TranslateText.GetTranslateText(_resultDirection)
+                                    </Text>
+                                </Card>
+                            </GridCol>
+                            <GridCol Span="24" Sm="24" Md="12" Lg="12" Xl="12">
+                                <Card Title="@TranslateText.GetTranslateText("DisplayAngle")">
+                                    <Text>
+                                        @_resultAngle
+                                    </Text>
+                                </Card>
+                            </GridCol>
+                        </GridRow>
+                    }
                 </TabPane>
                 <TabPane Key="GraphMode" Tab="@TranslateText.GetTranslateText("GraphMode")">
                     @if (_graphLoading)

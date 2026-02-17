@@ -474,6 +474,24 @@ public partial class ResultView
             TranslateText.GetTranslateText("TNTCalculationSetSuccessMessage"));
     }
 
+    private string TntEncodingResultString
+    {
+        get
+        {
+            var redMsg = string.Join(", ", TntResults.Where(t => t.RedIsUsed).Select(t => t.TntValue));
+            var blueMsg = string.Join(", ", TntResults.Where(t => t.BlueIsUsed).Select(t => t.TntValue));
+            var redLabel = TranslateText.GetTranslateText("DisplayRed");
+            var blueLabel = TranslateText.GetTranslateText("DisplayBlue");
+            return $"{redLabel}: {redMsg} | {blueLabel}: {blueMsg}";
+        }
+    }
+
+    private async Task OnTntEncodingCopy()
+    {
+        await JsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", TntEncodingResultString);
+        await NoticeWithIcon(NotificationType.Success, TranslateText.GetTranslateText("EncodingCopiedMessage"));
+    }
+
     private async Task OnTraceRowClickAsync(RowData<EntityWrapper> res)
     {
         await JsRuntime.InvokeVoidAsync("navigator.clipboard.writeText",
